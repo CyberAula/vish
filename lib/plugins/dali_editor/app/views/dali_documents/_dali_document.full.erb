@@ -9,7 +9,7 @@
     <%= yield :dali_head %>
     <script src="/assets/lib/ckeditor/ckeditor.js"></script>
     <script>
-        var dali_editor_json = '<%= raw dali_editor_json %>';
+        var dali_editor_json = JSON.stringify(JSON.parse('<%= raw dali_editor_json %>').present);
     </script>
 </head>
 <body style="margin: 0px; height: 100%" id="mainbody">
