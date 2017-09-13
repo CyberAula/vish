@@ -19,7 +19,7 @@ class DaliDocumentsController < ApplicationController
 		if params[:dali_document][:json][:present][:globalConfig][:title].blank? or params[:dali_document][:json][:present][:globalConfig][:title].include?("/dali_documents/")
 			render :nothing => true, :status => 200, :content_type => 'text/html'
 		end
-		
+
 		if current_subject.actor.id == params[:dali_document][:user][:id].to_i
 			dd = DaliDocument.new
 			dd.json = params[:dali_document][:json].to_json
@@ -84,7 +84,6 @@ class DaliDocumentsController < ApplicationController
 	end
 
 	def delete
-		binding.pry
 		dd = DaliDocument.find(params[:id])
 		authorize!(:delete, dd)
 		if !params[:user].blank? and !params[:user][:id].blank? and current_subject.actor.id == params[:user][:id].to_i
