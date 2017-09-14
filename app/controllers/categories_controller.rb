@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
           folderPath = "#{Rails.root}/public/tmp/scorm/"
           fileName = "scorm" + scormVersion + "-tmp-#{count.to_s}"
           filePath = "#{folderPath}#{fileName}.zip";
-          @category.to_scorm(self,folderPath,fileName,scormVersion,{:rec => rec})
+          @category.to_scorm(self,folderPath,fileName,scormVersion,{:category => @category, :rec => rec})
           send_file filePath, :type => 'application/zip', :disposition => 'attachment', :filename => ("scorm" + scormVersion + "-#{@category.id}.zip") if File.exists?(filePath)
         else
           render :nothing => true, :status => 500
