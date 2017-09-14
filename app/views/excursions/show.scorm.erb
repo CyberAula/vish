@@ -21,6 +21,7 @@
 			excursion = nil if excursion.nil? or excursion.draft
 		end
 	end %>
+	<% options ||= {} %>
 
 	<script>
 		options = {};
@@ -30,11 +31,13 @@
 		configuration["ImagesPath"] = "images/";
 		configuration["StylesheetsPath"] = "stylesheets/";
 
-		// Recommendations API
-		configuration["recommendationsAPI"] = {
-			rootURL: "<%=Vish::Application.config.full_domain%>" + "/excursions/last_slide.json"
-		};
-		
+		<% unless options[:rec] === "false" %>
+			// Recommendations API
+			configuration["recommendationsAPI"] = {
+				rootURL: "<%=Vish::Application.config.full_domain%>" + "/excursions/last_slide.json"
+			};
+		<% end %>
+
 		//Tracking System
 		<%if Vish::Application.config.trackingSystem %>
 			configuration["TrackingSystemAPIKEY"] = "<%= Vish::Application.config.APP_CONFIG['trackingSystemAPIKEY'] %>";

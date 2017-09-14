@@ -151,6 +151,12 @@ class Category < ActiveRecord::Base
     ([["",nil]] + allCategories.sort_by!{|e| e.title.downcase}.map{|c| [c.title, c.id]}).uniq
   end
 
+  #SCORM
+  def to_scorm(controller,folderPath,fileName,version="2004",options={})
+    excursions = self.all_property_objects.select{|ao| ao.object_type=="Excursion" and ao.scope=0}.map{|ao| ao.object}
+    return nil unless excursions.length > 0
+    Excursion.createSCORMForGroup(version,folderPath,fileName,excursions,controller,options)
+  end
 
   private
 

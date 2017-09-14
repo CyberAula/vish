@@ -302,6 +302,58 @@ class Excursion < ActiveRecord::Base
     return myxml
   end
 
+  def self.createSCORMForGroup(version="2004",folderPath,fileName,excursions,controller,options)
+    require 'zip'
+    t = File.open("#{folderPath}#{fileName}.zip", 'w')
+
+    themes = ["theme1"]
+
+    #Add manifest, main HTML file and additional files
+    Zip::OutputStream.open(t.path) do |zos|
+      # xml_manifest = Excursion.generate_scorm_manifest_for_group(version,excursions)
+      # zos.put_next_entry("imsmanifest.xml")
+      # zos.print xml_manifest.target!()
+      excursions.each do |ex|
+        ex_json = JSON.parse(ex.json)
+        themes.push(ex_json["theme"])
+        zos.put_next_entry("excursion-" + ex.id.to_s + ".html")
+        zos.print controller.render_to_string "excursions/show.scorm.erb", :locals => {:excursion=>ex, :json => ex_json, :options => options}, :layout => false
+      end
+    end
+
+    #Add required XSD files and folders
+    schemaDirs = []
+    schemaFiles = []
+    #SCORM schema
+    schemaDirs.push("#{Rails.root}/public/schemas/SCORM_" + version)
+    #LOM schema
+    # schemaDirs.push("#{Rails.root}/public/schemas/lom")
+    schemaFiles.push("#{Rails.root}/public/schemas/lom/lom.xsd");
+    
+    schemaDirs.each do |dir|
+      zip_folder(t.path,dir)
+    end
+
+    if schemaFiles.length > 0
+      Zip::File.open(t.path, Zip::File::CREATE) { |zipfile|
+        schemaFiles.each do |filePath|
+          zipfile.add(File.basename(filePath),filePath)
+        end
+      }
+    end
+
+    #Copy SCORM assets (image, javascript and css files)
+    dir = "#{Rails.root}/lib/plugins/vish_editor/app/scorm"
+    zip_folder(t.path,dir)
+
+    #Add themes
+    themesPath = "#{Rails.root}/lib/plugins/vish_editor/app/assets/images/themes/"
+    themes.compact.uniq.each do |theme|
+      zip_folder(t.path,"#{Rails.root}/lib/plugins/vish_editor/app/assets",themesPath + theme) if File.exists?(themesPath + theme)
+    end
+
+    t.close
+  end
 
 
   ####################
