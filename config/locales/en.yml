@@ -400,7 +400,10 @@ en:
   dali_document:
     actions:
       add: "Add Dali Document"
+      delete: "Delete"
       delete_alert: "Are you sure? If you delete this item you will NOT be able to recover it ever again."
+      edit: "Edit"
+      favorite: "Favorite"
     other: "Dali Documents"
   date_name: "date"
   description: "description"

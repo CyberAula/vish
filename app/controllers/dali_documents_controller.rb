@@ -23,7 +23,7 @@ class DaliDocumentsController < ApplicationController
 		if current_subject.actor.id == params[:dali_document][:user][:id].to_i
 			dd = DaliDocument.new
 			dd.json = params[:dali_document][:json].to_json
-			dd.title = params[:dali_document][:json][:present][:title]
+			dd.title = params[:dali_document][:json][:present][:globalConfig][:title]
 			dd.owner_id = params[:dali_document][:user][:id]
 			dd.author_id = params[:dali_document][:user][:id]
 			dd.save!
@@ -62,7 +62,7 @@ class DaliDocumentsController < ApplicationController
 			dd = DaliDocument.find(params[:id])
 			authorize!(:update, dd)
 			dd.json = params[:dali_document][:json].to_json
-			dd.title = params[:dali_document][:json][:present][:title]
+			dd.title = params[:dali_document][:json][:present][:globalConfig][:title]
 			dd.save!
 
 			render json: { dali_id: dd.id}
