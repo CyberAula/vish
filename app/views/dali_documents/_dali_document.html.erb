@@ -12,24 +12,43 @@
   </div>-->
 
   <!-- corner -->
-  <%= link_to edit_dali_document_path(dali_document) do %>
-    <div class="corner-item">
-      <div class="corner-item2">
-        <div class="corner-color"></div>
-        <%#= link_to raw(icon(resource,false)), resource, :title => resource.title %>
-        <%= raw(icon(dali_document,false)) %>
+  <% if current_subject and dali_document.owner_id == current_subject.actor.id%>
+    <%= link_to edit_dali_document_path(dali_document) do %>
+      <div class="corner-item">
+        <div class="corner-item2">
+          <div class="corner-color"></div>
+          <%#= link_to raw(icon(resource,false)), resource, :title => resource.title %>
+          <%= raw(icon(dali_document,false)) %>
+        </div>
+        <div class="corner-background"></div>
       </div>
-      <div class="corner-background"></div>
-    </div>
-    <!-- image/icon -->
-    <div class="container-img">
-      <div class="img-box resource-center">
-        <%#= link_to raw(icon(resource)), resource, :title => resource.title %>
-        <%= raw(icon(dali_document)) %>
+      <!-- image/icon -->
+      <div class="container-img">
+        <div class="img-box resource-center">
+          <%#= link_to raw(icon(resource)), resource, :title => resource.title %>
+          <%= raw(icon(dali_document)) %>
+        </div>
       </div>
-    </div>
-  <%end%>
-
+    <%end%>
+  <% else %>
+    <%= link_to dali_document_path(dali_document) do %>
+      <div class="corner-item">
+        <div class="corner-item2">
+          <div class="corner-color"></div>
+          <%#= link_to raw(icon(resource,false)), resource, :title => resource.title %>
+          <%= raw(icon(dali_document,false)) %>
+        </div>
+        <div class="corner-background"></div>
+      </div>
+      <!-- image/icon -->
+      <div class="container-img">
+        <div class="img-box resource-center">
+          <%#= link_to raw(icon(resource)), resource, :title => resource.title %>
+          <%= raw(icon(dali_document)) %>
+        </div>
+      </div>
+    <%end%>
+  <% end %>
   <!-- INFO -->
   <div class="caption">
 

@@ -399,12 +399,12 @@ en:
     tags: "Tags"
   dali_document:
     actions:
-      add: "Add Dali Document"
+      add: "Try new editor"
       delete: "Delete"
       delete_alert: "Are you sure? If you delete this item you will NOT be able to recover it ever again."
       edit: "Edit"
       favorite: "Favorite"
-    other: "Dali Documents"
+    other: "Nuevo Editor"
   date_name: "date"
   description: "description"
   devise:
@@ -1013,6 +1013,7 @@ en:
       all_resources: "All Resources"
       audio: "Audios"
       category: "Categories"
+      dalidocument: "New Editor"
       document: "Documents"
       embed: "Embeds"
       event: "Events"

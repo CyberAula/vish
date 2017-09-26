@@ -375,9 +375,12 @@ es:
     tags: "Etiquetas"
   dali_document:
     actions:
-      add: "Añadir Documento Dali"
+      add: "Prueba nuevo Editor"
+      delete: "Eliminar"
       delete_alert: "¿Estás seguro? Si eliminas este documento los cambios NO podrán recuperarse."
-    other: "Documentos Dali"
+      edit: "Editar"
+      favorite: "Favoritas"
+    other: "Nuevo Editor"
   date_name: "fecha"
   description: "descripción"
   devise:
@@ -994,6 +997,7 @@ es:
       all_resources: "Todos los Recursos"
       audio: "Audios"
       category: "Categorías"
+      dalidocument: "Nuevo Editor"
       document: "Documentos"
       embed: "Embeds"
       event: "Eventos"

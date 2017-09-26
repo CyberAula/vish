@@ -14,7 +14,6 @@ class DaliDocumentsController < ApplicationController
 	end
 
 	def create
-		#TODO: make this work
 		authorize! :create, DaliDocument
 		if params[:dali_document][:json][:present][:globalConfig][:title].blank? or params[:dali_document][:json][:present][:globalConfig][:title].include?("/dali_documents/")
 			render :nothing => true, :status => 200, :content_type => 'text/html'
@@ -24,8 +23,8 @@ class DaliDocumentsController < ApplicationController
 			dd = DaliDocument.new
 			dd.json = params[:dali_document][:json].to_json
 			dd.title = params[:dali_document][:json][:present][:globalConfig][:title]
-			dd.owner_id = params[:dali_document][:user][:id]
-			dd.author_id = params[:dali_document][:user][:id]
+			dd.owner_id = current_subject.actor_id
+			dd.author_id = current_subject.actor_id
 			dd.save!
 
 			render json: { dali_id: dd.id}
@@ -78,6 +77,7 @@ class DaliDocumentsController < ApplicationController
 	end
 
 	def show
+		 @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @dali_document, :n=>10, :models => [DaliDocument,Excursion]})
 		show! do |format|
 			format.full
 		end

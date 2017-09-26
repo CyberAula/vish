@@ -1,0 +1,19 @@
+<span class="helpheader"> 
+  <a>
+    <i class="fa fa-question-circle" id="helpdalidocumentid" data-toggle="popover" data-placement='left' aria-hidden="true" data-original-title="New Editor<%#= t('document.help.dali_document1')%>" href='#' value=""></i>
+  </a>
+  <div id="contenthelpdalidocumentid" style="display: none">
+    <div class="popover-body">
+      <p> New Editor Help<%#= t('document.help.dali_document2')%> </p>
+    </div>
+  </div>
+</span>
+
+<%content_for :javascript do%>
+  $('#helpdalidocumentid').popover({
+    html : true,
+    content: function() {
+      return $('#contenthelpdalidocumentid').html();
+    }
+  });
+<%end%>
