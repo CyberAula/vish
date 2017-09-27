@@ -6,6 +6,11 @@
 			<%= form_for(@contest, url: disenroll_contest_path(@contest), method: "post") do |f| %>
 				<%= f.submit t("contest.disenroll") %>
 			<%end%>
+		<% elsif @contest.has_additional_fields? %>
+			<p>Do you want to enroll in this contest?</p>
+			<%= form_tag(@contest.getUrlWithName + "/other_fields_enrollment", method: "get") do |f| %>
+				<%= submit_tag t("contest.enroll") %>
+			<%end%>
 		<% else %>
 			<p>Do you want to enroll in this contest?</p>
 			<%= form_for(@contest, url: enroll_contest_path(@contest), method: "post") do |f| %>

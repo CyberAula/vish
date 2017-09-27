@@ -29,6 +29,10 @@ class AdminController < ApplicationController
 		@requests = ServiceRequest.all
 	end
 
+	def contests
+		@contests = Contest.all
+	end
+
 	private
 
 	def authenticate_user_as_admin!

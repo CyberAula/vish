@@ -88,8 +88,14 @@
             VISH.IframeAPI.allowExitWithoutConfirmation();
           }
         });
+        $("#editor_tools_wrapper").css("padding-bottom","100px");
       <% end %>
     });
+    <% if editingToolbar %>
+      $('.delete').on('hidden.bs.popover', function(){
+          $("#editor_tools_wrapper").css("padding-bottom","0px");
+      });
+    <% end %>
 
     $('[data-toggle="tooltip"], .with_tooltip').tooltip({ placement: 'bottom',container:'body'});
   });
@@ -123,13 +129,12 @@
 
   <!--Remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
-    <button class="with_tooltip delete btn btn-default" data-toggle="popover" data-container="body" title="<%=t('excursion.actions.delete')%>" data-placement="left" aria-hidden="true">
+    <button class="with_tooltip delete btn btn-default" data-toggle="popover" data-container="body" title="<%=t('excursion.confirm_delete')%>" data-placement="left" aria-hidden="true">
       <i class="fa fa-trash-o"></i>
     </button>
   <%end%>
 
   <div class="contentdelete" style="display: none">
-    <p class="delete_p"><i class="fa fa-trash-o"></i>  <%=t('excursion.confirm_delete')%></p>
     <div class="actions">
       <a class="btn btn-default btn_cancel closepopover"><%=t('cancel')%></a>
       <%= link_to t('excursion.actions.delete'),  @excursion, :method => :delete, :class => 'btn btn-primary' %>

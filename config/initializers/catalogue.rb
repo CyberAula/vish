@@ -14,10 +14,19 @@ Vish::Application.configure do
     #Specify the categories of the catalogue
     unless config.catalogue["categories"].is_a? Array and !config.catalogue["categories"].blank?
         #Fill with popular tags
-        config.catalogue["categories"] = ActivityObject.tag_counts(:order => "count desc").first(10).map{|t| t.name} if ActiveRecord::Base.connection.table_exists?('tags')
+        if ActiveRecord::Base.connection.table_exists?('tags')
+            config.catalogue["categories"] = []
+            plainNames = []
+            ActivityObject.tag_counts(:order => "count desc").first(50).each do |tag|
+                config.catalogue["categories"] << tag.name unless plainNames.include? tag.plain_name
+                plainNames << tag.plain_name
+                break if config.catalogue["categories"].length > 9
+            end
+        end
     end
     config.catalogue["categories"] = [] unless config.catalogue["categories"].is_a? Array
-    
+    config.catalogue["categories"] = config.catalogue["categories"].uniq
+
     #Category_keywords is a hash with the keywords of each category
     config.catalogue["category_keywords"] = Hash.new
     if config.catalogue['mode'] == "matchtag"

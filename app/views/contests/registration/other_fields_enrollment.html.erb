@@ -1,0 +1,12 @@
+<% if user_signed_in? %>	
+	<div>Fill the following data to enroll this contest:</div>
+	
+	<%= form_tag(enroll_contest_path(@contest), method: "post") do  %>
+		<% @contest.additional_fields.each do |element|%>
+			<%= t("contest." + @contest.name + "." + element) %>
+			<%= text_field_tag element, nil, :required => true %>
+			</br>
+		<%end%>
+		<%= submit_tag t("contest.enroll") %>
+	<% end %>
+<%end%>

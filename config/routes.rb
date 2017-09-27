@@ -180,15 +180,19 @@ Vish::Application.routes.draw do
     post 'submit', :on => :member
     post 'remove_submit', :on => :member
   end
+
   match 'contest/:name' => 'contests#show'
   match 'contest/:name/page/:page' => 'contests#show'
   match 'contests/:id/page/:page' => 'contests#show'
+  match 'contest/:name/other_fields_enrollment' => 'contests#other_fields_enrollment'
+  match 'contest/:id/get_enrolled_users_to_contest' => 'contests#get_enrolled_users_to_contest'
 
   #Administration panel
   match 'admin' => 'admin#index'
   match 'admin/closed_reports' => 'admin#closed_reports'
   match 'admin/users' => 'admin#users'
   match 'admin/requests' => 'admin#requests'
+  match 'admin/contests' => 'admin#contests'
 
   #Spam reports
   resources :spam_reports

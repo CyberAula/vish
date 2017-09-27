@@ -1,10 +1,11 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container-fluid">
+    
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <a type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse-out">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#nav-collapse-out">
         <i class="fa fa-angle-down"></i>
-      </a>
+      </button>
 
       <!--logo-->
       <div class="logo-header">
@@ -14,6 +15,7 @@
       <!--browse-->
       <%= render partial: 'layouts/header/browse_header'%>
     </div>
+
     <!--collapse-->
     <div class="collapse navbar-collapse" id="nav-collapse-out">
 
@@ -26,8 +28,8 @@
             </a>
           </li>
         <% end %>
-        
-        <% if !Vish::Application.config.cas %>
+
+        <% if !Vish::Application.config.only_cas %>
           <li class="btn-group dropdown">
             <a href="#" id="drop3" role="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
               <%=t("sign_in")%>
@@ -37,7 +39,7 @@
               <%= form_for User.new, :as => :user, :class => "form-horizontal", :url => user_session_path do |f| %>
                 <div class="form-group">
                   <%= f.email_field :email, :id => "username", :class => "form-control" %>
-                  <%= f.password_field :password, :id => "password", :class => "form-control" %>       
+                  <%= f.password_field :password, :id => "password", :class => "form-control" %>
                 </div>
                 <div class="checkbox">
                   <label>

@@ -5,6 +5,7 @@ class Contest < ActiveRecord::Base
   has_many :submissions, :through => :categories
   has_many :activity_objects, :through => :submissions
   belongs_to :mail_list
+  serialize :other_data
 
   validates :name, :presence => true, :allow_blank => false, :uniqueness => true
   validates_presence_of :template, allow_blank: false
@@ -83,7 +84,7 @@ class Contest < ActiveRecord::Base
     #enroll => true/false
     #submission =>  "free" / "one_per_user" / "one_per_user_category"
     #"submission_require_enroll" => true/false
-    {"enroll" => "false", "submission" => "one_per_user", "submission_require_enroll" => "false"}
+    {"enroll" => "false", "submission" => "one_per_user", "submission_require_enroll" => "false", "additional_fields" => []}
   end
 
   def enrollActor(actor)
@@ -92,6 +93,20 @@ class Contest < ActiveRecord::Base
       ce = ContestEnrollment.new
       ce.contest_id = self.id
       ce.actor_id = actor.id
+      ce.valid?
+      return ce.errors.full_messages.to_sentence unless ce.errors.blank? and ce.save
+      return ce.actor
+    end
+    nil
+  end
+
+  def enrollActorWithOtherData(actor, other_data)
+    return nil unless self.allowEnrollments?
+    if !actor.nil? and actor.class.name=="Actor" and !self.enrolled_participants.include? actor and ["User"].include? actor.subject_type
+      ce = ContestEnrollment.new
+      ce.contest_id = self.id
+      ce.actor_id = actor.id
+      ce.settings = JSON({"additional_fields" => other_data})
       ce.valid?
       return ce.errors.full_messages.to_sentence unless ce.errors.blank? and ce.save
       return ce.actor
@@ -112,6 +127,14 @@ class Contest < ActiveRecord::Base
     "/contest/" + self.name
   end
 
+
+  def has_additional_fields?
+    !self.additional_fields.blank?
+  end
+
+  def additional_fields
+    JSON.parse(self.settings)["additional_fields"]
+  end
 
   private
 

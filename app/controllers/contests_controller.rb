@@ -1,6 +1,6 @@
 class ContestsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :enroll, :disenroll ]
+  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :enroll, :disenroll, :get_enrolled_users_to_contest ]
   before_filter :find_contest
   skip_after_filter :discard_flash, :only => [:enroll, :disenroll]
 
@@ -11,14 +11,49 @@ class ContestsController < ApplicationController
     end
   end
 
-  def enroll
-    result = @contest.enrollActor(current_subject.actor)
-    unless result.nil?
-      flash[:success] = t('contest.enrollment_success')
-    else
-      flash[:errors] = t('contest.enrollment_failure')
+  def other_fields_enrollment
+    render "contests/registration/other_fields_enrollment"
+  end
+
+  def get_enrolled_users_to_contest
+    if current_user.admin?
+      @contest = Contest.find(params[:id])
+      @contest_enrolled = ContestEnrollment.where(:contest_id=>params[:id])
+
+      respond_to do |format|
+        format.json {
+          render :json => @contest_enrolled
+        }
+        format.any {
+          render :xlsx => "contest_participants", :filename => "contest_participants_" + @contest.name + ".xlsx", :type => "application/vnd.openxmlformates-officedocument.spreadsheetml.sheet"
+        }
+      end
     end
-    redirect_to(@contest.getUrlWithName)
+  end
+
+  def enroll
+    #enrolls with extra fields
+    if @contest.has_additional_fields?
+      additional_fields =  {}
+      @contest.additional_fields.map do |n|
+        additional_fields[n] = params[n]
+      end
+     result = @contest.enrollActorWithOtherData(current_subject.actor, additional_fields)
+     unless result.nil?
+      flash[:success] = t('contest.enrollment_success')
+      else
+        flash[:errors] = t('contest.enrollment_failure')
+      end
+        redirect_to(@contest.getUrlWithName)
+    else
+      result = @contest.enrollActor(current_subject.actor)
+      unless result.nil?
+        flash[:success] = t('contest.enrollment_success')
+      else
+        flash[:errors] = t('contest.enrollment_failure')
+      end
+      redirect_to(@contest.getUrlWithName)
+    end
   end
 
   def disenroll

@@ -3,7 +3,7 @@
  * http://loep.global.dit.upm.es
  * Provides an API that allows to embed LOEP evaluation forms via iframe
  * @author Aldo Gordillo
- * @version 1.1
+ * @version 1.1.1
  */
 
 var LOEP = LOEP || {};
@@ -35,20 +35,20 @@ LOEP.IframeAPI = (function(L,undefined){
       
       _settings.action = _settings.action || "evaluate";
       if(["evaluate","showchart"].indexOf(_settings.action)===-1){
-        return _onError("No valid action.");
+        return _onError(1,"No valid action.");
       };
 
       //Check mandatory settings
       if(typeof _settings.domain != "string"){
-        return _onError("No valid domain.");
+        return _onError(1,"No valid domain.");
       }
 
       if(typeof _settings.loId == "undefined"){
-        return _onError("Missing loId setting");
+        return _onError(1,"Missing loId setting");
       }
 
       if(typeof _settings.evmethod == "undefined"){
-        return _onError("Missing evmethod setting");
+        return _onError(1,"Missing evmethod setting");
       }
 
       
@@ -80,17 +80,17 @@ LOEP.IframeAPI = (function(L,undefined){
 
     var _initWithToken = function(token){
       if(typeof token != "string"){
-        return _onError("No LOEP session token available");
+        return _onError(1,"No LOEP session token available");
       }
 
       var url = _buildIframeURL(token);
       if(typeof url != "string"){
-        return _onError("URL could not be built. Incorrect or missing params.");
+        return _onError(1,"URL could not be built. Incorrect or missing params.");
       }
 
       var container = $(_settings.containerDOM)[0];
       if(typeof container == "undefined"){
-        return _onError("Container not found.");
+        return _onError(1,"Container not found.");
       }
 
       _insertIframe(container,url);
@@ -213,9 +213,8 @@ LOEP.IframeAPI = (function(L,undefined){
           if(typeof _settings.submitCallback == "function"){
             _settings.submitCallback(LOEPdata);
           }
-        }else if(LOEPdata.error===true){
-          var errorCode = LOEPdata.error_code;
-          _onError(errorCode);
+        }else if(LOEPdata.success===false){
+          _onError(2,LOEPdata.msg);
         }
       }
     };
@@ -224,15 +223,14 @@ LOEP.IframeAPI = (function(L,undefined){
     // Helpers
     ///////////
 
-    var _onError = function(msg){
-      if(typeof msg != "string"){
-        msg = "";
-      }
-      errorMsg = "[Error] " + msg;
+    var _onError = function(errorCode,errorMsg){
       if(typeof _settings.errorCallback == "function"){
-        _settings.errorCallback(errorMsg);
+        _settings.errorCallback(errorCode,errorMsg);
       }
-      return _print(errorMsg);
+      if(typeof errorMsg != "string"){
+        errorMsg = "";
+      }
+      return _print("[Error] " + errorMsg);
     };
 
     var _print = function(msg){

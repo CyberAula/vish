@@ -2,7 +2,7 @@ class Ability
   include SocialStream::Ability
 
   def initialize(subject)
-    
+
     can :show_favorites, Category
     can :excursions, User
     can :dali_documents, User
@@ -55,10 +55,9 @@ class Ability
       ao.downloadable? or can?(:update, ao.object)
     end
 
-    can :download_source, [Document, Webapp, Scormfile, Imscpfile, Link, Embed, Writing, Excursion, DaliDocument, Workshop] do |o|
+    can :download_source, [Document, Webapp, Scormfile, Imscpfile, Link, Embed, Writing, Excursion, Workshop, DaliDocument, Category] do |o|
       can?(:download_source,o.activity_object)
     end
-
 
     unless subject.nil?
 

@@ -2,7 +2,7 @@
 <%= javascript_include_tag "vasearch" %>
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function(){
-    VASearch.init({locale: '<%=I18n.locale%>', current_instance: '<%=Vish::Application.config.full_domain%>', draw: "boxes", allowAddInstance:false});
+    VASearch.init({locale: '<%=I18n.locale%>', current_instance: '<%=Embed.checkUrlProtocol(Vish::Application.config.full_domain,request.protocol)%>', draw: "boxes", allowAddInstance:false});
   });
 </script>
 
@@ -108,7 +108,7 @@
         <span class="addInstanceButton" title="add">[<%=t("search.instances.add")%>]</span>
       </div>
       <ul>
-        <% VishConfig.getViSHInstances.each_with_index do |instance,index| %>
+        <% VishConfig.getViSHInstances(request.protocol).each_with_index do |instance,index| %>
           <li>
             <input type="checkbox" <%= checked="checked"%>/>&nbsp;
             <span><%=instance%></span>

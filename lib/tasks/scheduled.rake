@@ -424,7 +424,9 @@ namespace :scheduled do
     puts "Updating Interactions"
     
     Rake::Task["trsystem:populateRelatedExcursions"].invoke
-    Rake::Task["trsystem:deleteNonValidEntriesForLoInteractions"].invoke
+    Rake::Task["trsystem:checkEntriesOfExcursions"].invoke
+    Rake::Task["trsystem:deleteEntriesOfRemovedExcursions"].invoke
+    Rake::Task["trsystem:limitEntriesOfExcursions"].invoke
     Rake::Task["trsystem:calculateInteractionValues"].invoke
 
     #Send excursions with interactions to LOEP

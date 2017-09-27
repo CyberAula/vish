@@ -17,7 +17,6 @@ namespace :trsystem do
   #Usage
   #Development:   bundle exec rake trsystem:removeBotEntries
   #In production: bundle exec rake trsystem:removeBotEntries RAILS_ENV=production
-  #Manual check: TrackingSystemEntry.all.select{|e| TrackingSystemEntry.isUserAgentBot?(e.user_agent)}.length
   task :removeBotEntries, [:prepare] => :environment do |t,args|
     printTitle("Removing bot entries")
 
@@ -26,7 +25,7 @@ namespace :trsystem do
     ActiveRecord::Base.uncached do
       TrackingSystemEntry.find_each batch_size: 1000 do |e|
         if TrackingSystemEntry.isUserAgentBot?(e.user_agent)
-          e.destroy
+          e.delete
           entriesDestroyed += 1
         end
       end
@@ -84,25 +83,19 @@ namespace :trsystem do
   #Development:   bundle exec rake trsystem:populateRelatedExcursions
   task :populateRelatedExcursions, [:prepare] => :environment do |t,args|
     args.with_defaults(:prepare => true)
-
-    if args.prepare
-      Rake::Task["trsystem:prepare"].invoke
-    end
+    Rake::Task["trsystem:prepare"].invoke if args.prepare
 
     writeInTRS("")
     writeInTRS("Populating related excursions")
     writeInTRS("")
 
     ActiveRecord::Base.uncached do
-      vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil)
-      vvEntries.find_each batch_size: 1000 do |e|
+      TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil).find_each batch_size: 1000 do |e|
         begin
           d = JSON(e["data"]) rescue {}
           unless d.blank? or d["lo"].nil? or d["lo"]["id"].nil?
             entityId = (d["lo"]["id"]).to_i rescue nil
-            unless entityId.nil?
-              e.update_column :related_entity_id, entityId
-            end
+            e.update_column :related_entity_id, entityId unless entityId.nil?
           end
         rescue Exception => e
           puts "Exception: " + e.message
@@ -110,39 +103,100 @@ namespace :trsystem do
       end
 
       #Remove bad entries
-      vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil)
-      vvEntries.find_each batch_size: 1000 do |e|
-        e.destroy
+      TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :related_entity_id => nil).find_each batch_size: 1000 do |e|
+        e.delete
       end
     end
 
     writeInTRS("Task finished")
   end
 
-  #Delete non useful tracking system entries for LO interactions
+  #Check entries of excursions
+  #  Delete non useful tracking system entries of excursions
+  #  Lighten stored data
   #Usage
-  #Development:   bundle exec rake trsystem:deleteNonValidEntriesForLoInteractions
-  task :deleteNonValidEntriesForLoInteractions, [:prepare] => :environment do |t,args|
+  #Development:   bundle exec rake trsystem:checkEntriesOfExcursions
+  task :checkEntriesOfExcursions, [:prepare] => :environment do |t,args|
     args.with_defaults(:prepare => true)
-
-    if args.prepare
-      Rake::Task["trsystem:prepare"].invoke
-    end
+    Rake::Task["trsystem:prepare"].invoke if args.prepare
 
     writeInTRS("")
-    writeInTRS("Deleting non useful tracking system entries for LO interactions")
+    writeInTRS("Checking tracking system entries of excursions")
     writeInTRS("")
 
     ActiveRecord::Base.uncached do
-      # nonVVEntries = TrackingSystemEntry.where("app_id!='ViSH Viewer'")
-      # nonVVEntries.find_each batch_size: 1000 do |e|
-      #   e.destroy
-      # end
-      
-      vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer")
+      vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id is NOT NULL and checked='false'")
       vvEntries.find_each batch_size: 1000 do |e|
-        unless LoInteraction.isValidTSEntry?(e)
-          e.destroy
+        if LoInteraction.isValidTSEntry?(e)
+          e.update_column :checked, true
+
+          #Lighten stored data
+          d = JSON.parse(e.data)
+          d.delete "device"
+          d.delete "rs"
+          d["lo"]["nSlides"] = d["lo"]["content"]["slides"].values.length rescue nil
+          d["lo"].delete "content"
+
+          e.update_column :data, d.to_json
+        else
+          e.delete
+        end
+      end
+    end
+
+    writeInTRS("Task finished")
+  end
+
+  #Delete tracking system entries of removed excursions
+  #Usage
+  #Development:   bundle exec rake trsystem:deleteEntriesOfRemovedExcursions
+  task :deleteEntriesOfRemovedExcursions, [:prepare] => :environment do |t,args|
+    args.with_defaults(:prepare => true)
+    Rake::Task["trsystem:prepare"].invoke if args.prepare
+
+    writeInTRS("")
+    writeInTRS("Deleting tracking system entries of excursions that have been removed")
+    writeInTRS("")
+
+    ActiveRecord::Base.uncached do
+      eIds = Excursion.pluck(:id)
+      vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id not in (?)", eIds)
+      vvEntries.find_each batch_size: 1000 do |e|
+        e.delete
+      end
+      #Delete LOInteractions from removed excursions
+      LoInteraction.all.select{|l| l.activity_object.nil?}.each do |loi|
+        loi.destroy
+      end
+    end
+
+    writeInTRS("Task finished")
+  end
+
+  #Limit the number of entries that are stored for each excursion
+  #Save the last N entries for each excursion
+  #Usage
+  #Development:   bundle exec rake trsystem:limitEntriesOfExcursions
+  task :limitEntriesOfExcursions, [:prepare] => :environment do |t,args|
+    args.with_defaults(:prepare => true)
+    Rake::Task["trsystem:prepare"].invoke if args.prepare
+
+    writeInTRS("")
+    writeInTRS("Limiting stored tracking system entries of excursions")
+    writeInTRS("")
+
+    n = (Vish::Application.config.APP_CONFIG["tracking_system"] and Vish::Application.config.APP_CONFIG["tracking_system"]["max_interactions_per_lo"].is_a? Integer) ? Vish::Application.config.APP_CONFIG["tracking_system"]["max_interactions_per_lo"] : 2000
+
+    unless n < 0
+      ActiveRecord::Base.uncached do
+        Excursion.pluck(:id).each do |eId|
+          vvEntries = TrackingSystemEntry.where(:app_id=>"ViSH Viewer", :checked => true, :related_entity_id => eId)
+          if vvEntries.count > n
+            ids = vvEntries.limit(n).order("created_at DESC").pluck(:id)
+            vvEntries.where("id not in (?)", ids).find_each batch_size: 1000 do |e|
+              e.delete
+            end
+          end
         end
       end
     end
@@ -157,14 +211,12 @@ namespace :trsystem do
   task :calculateInteractionValues, [:prepare] => :environment do |t,args|
     args.with_defaults(:prepare => true)
     Rake::Task["trsystem:prepare"].invoke if args.prepare
-    Rake::Task["trsystem:populateRelatedExcursions"].invoke
+
     writeInTRS("Calculating interaction values")
 
     ActiveRecord::Base.uncached do
       excursions = Excursion.where("draft='false'")
-      # excursions = Excursion.where("id='1143'")
-
-      vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id is NOT NULL")
+      vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id is NOT NULL and checked='true'")
 
       excursions.find_each batch_size: 1000 do |ex|
         next if ex.activity_object.nil?
@@ -204,22 +256,21 @@ namespace :trsystem do
         exEntries.find_each batch_size: 1000 do |tsentry|
           begin
             d = JSON(tsentry["data"])
-            if LoInteraction.isValidInteraction?(d)
+            if LoInteraction.isValidCheckedInteraction?(d)
               loInteraction.nvalidsamples += 1
 
               #Aux vars
               totalDuration = d["duration"].to_i
 
-              isSignificativeInteraction = LoInteraction.isSignificativeInteraction?(d)
+              isSignificativeInteraction = LoInteraction.isSignificativeCheckedInteraction?(d)
               if isSignificativeInteraction
                 loInteraction.nsamples += 1
 
                 #Aux vars
                 actions = d["chronology"].values.map{|v| v["actions"]}.compact.map{|v| v.values}.flatten
-                nSlides = d["lo"]["content"]["slides"].values.length
+                nSlides = d["lo"]["nSlides"]
                 cValues = d["chronology"].map{|k,v| v}
                 viewedSlides = []
-
 
                 loInteraction.tlo += totalDuration
 
@@ -230,15 +281,9 @@ namespace :trsystem do
                 tloslide_max = 0
                 nSlides.times do |i|
                   tSlide = cValues.select{|v| v["slideNumber"]===(i+1).to_s}.map{|v| v["duration"].to_f}.sum.ceil.to_i
-                  if tSlide < tloslide_min
-                    tloslide_min = tSlide
-                  end
-                  if tSlide > tloslide_max
-                    tloslide_max = tSlide
-                  end
-                  if tSlide > 5
-                    viewedSlides.push(i+1)
-                  end
+                  tloslide_min = tSlide if tSlide < tloslide_min
+                  tloslide_max = tSlide if tSlide > tloslide_max
+                  viewedSlides.push(i+1) if tSlide > 5
                 end
                 tloslide_min = [tloslide_min,totalDuration].min
                 tloslide_max = [tloslide_max,totalDuration].min
@@ -317,11 +362,8 @@ namespace :trsystem do
           loInteraction.naq = (loInteraction.naq * 100)/loInteraction.nsamples
           loInteraction.nsq = (loInteraction.nsq * 100)/loInteraction.nsamples
           loInteraction.neq = (loInteraction.neq * 100)/loInteraction.nsamples
-
           loInteraction.repeatrate = (users_repeat/uniqUsers.to_f * 100).ceil.to_i rescue 0
-
-          loFavorites = (ex.activities.select{|a| a.activity_verb.name==="like" and a.created_at > DateTime.new(2014, 12, 1, 00, 00, 0)}.length) rescue 0
-          #do not use 'ex.like_count' as loFavorites, since not all favorites have been tracked
+          loFavorites = (ex.activities.select{|a| a.activity_verb.name==="like"}.length) rescue 0
           loInteraction.favrate = (loFavorites/uniqUsers.to_f * 100).ceil.to_i rescue 0
         end
 
@@ -333,60 +375,6 @@ namespace :trsystem do
       end
     end
 
-    # d = JSON.parse(TrackingSystemEntry.where("app_id='ViSH Viewer'").last.data)
-    # actions = d["chronology"].values.map{|v| v["actions"].values}.flatten
-
-    writeInTRS("Task finished")
-  end
-
-  #Delete tracking system entries with LO interactions with invalid values
-  #Usage
-  #Development:   bundle exec rake trsystem:filtertsentriesForLoInteractions
-  task :filtertsentriesForLoInteractions, [:prepare] => :environment do |t,args|
-    args.with_defaults(:prepare => true)
-
-    if args.prepare
-      Rake::Task["trsystem:prepare"].invoke
-    end
-
-    writeInTRS("")
-    writeInTRS("Filtering tracking system entries for LO interactions")
-    writeInTRS("")
-
-    destroyEntities = false #set true to remove the entities. false for tests.
-    iterationsToFilter = 0
-
-    validInteractions = LoInteraction.all.select{|it| it.nvalidsamples >= 1 and !it.activity_object.nil? and !it.activity_object.object.nil? and !it.activity_object.object.reviewers_qscore.nil?}
-    # validInteractions = [Excursion.find(628).lo_interaction]
-    los = validInteractions.map{|it| it.activity_object.object}
-
-    ActiveRecord::Base.uncached do
-      los.each do |lo|
-        interaction = lo.lo_interaction
-        vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer' and related_entity_id='"+lo.id.to_s+"'")
-        vvEntries.find_each batch_size: 1000 do |e|
-          #Extremely high tlo values
-          d = JSON(e["data"])
-          durationI = d["duration"].to_i
-          actions = actions = d["chronology"].values.map{|v| v["actions"]}.compact.map{|v| v.values}.flatten
-          nActions = actions.length
-          actionsPer10Minutes = (nActions*10/([1,durationI/60].max).to_f).ceil
-          if (durationI > (4*interaction.tlo)) and (durationI > 600) and (actionsPer10Minutes<2)
-            iterationsToFilter += 1
-            if destroyEntities
-              e.destroy
-            end
-          end
-        end
-      end
-    end
-
-    if destroyEntities
-      writeInTRS(iterationsToFilter.to_s + " iterations were deleted")
-    else
-      writeInTRS(iterationsToFilter.to_s + " iterations to filter were identified")
-    end
-    
     writeInTRS("Task finished")
   end
 

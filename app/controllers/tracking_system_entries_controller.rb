@@ -24,22 +24,12 @@ class TrackingSystemEntriesController < ApplicationController
     tsentry = TrackingSystemEntry.new
     tsentry.app_id = params[:app_id]
     tsentry.user_agent = params[:user_agent]
-
-    unless params[:referrer].blank?
-      tsentry.referrer = params[:referrer]
-    end
-
+    tsentry.referrer = params[:referrer] unless params[:referrer].blank?
     unless params[:actor_id].blank?
       tsentry.user_logged = true
-      unless params[:data].blank?
-        params[:data] = fillActorData(params[:data],params[:actor_id])
-      end
+      params[:data] = fillActorData(params[:data],params[:actor_id]) unless params[:data].blank?
     end
-
-    unless params[:tracking_system_entry_id].blank?
-      tsentry.tracking_system_entry_id = params[:tracking_system_entry_id]
-    end
-
+    tsentry.tracking_system_entry_id = params[:tracking_system_entry_id] unless params[:tracking_system_entry_id].blank?
     tsentry.data = params[:data].to_json
     
     if tsentry.save

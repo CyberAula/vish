@@ -34,7 +34,7 @@
     lanalyticsLoepSettings.action = "showchart";
     lanalyticsLoepSettings.evmethod = "qinteraction";
     lanalyticsLoepSettings.containerDOM = $('#learning-analytics-chart');
-    lanalyticsLoepSettings.errorCallback = function(errorMsg){
+    lanalyticsLoepSettings.errorCallback = function(errorCode,errorMsg){
       $('#learning-analytics-chart').remove();
     };
     lanalyticsLoepSettings.loadCallback = function(){

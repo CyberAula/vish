@@ -422,7 +422,6 @@ fr:
   header:
     tooltip:
       add_button: "Create excursions, resources, etc."
-  help_page: "AIDE ViSH"
   help_manual: "Télécharger le manuel d'utilisation"
   hide: "Masquer"
   lang:

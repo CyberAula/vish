@@ -19,6 +19,7 @@
 	// Sources enabled
 	configuration["ViSH"] = true;
 	configuration["ViSH_instances"] = ["<%= Vish::Application.config.full_domain %>"];
+	
 	<% unless Vish::Application.config.APP_CONFIG['Flickr'].nil? %>
 		configuration["Flickr"] = true;
 	<% end %>
@@ -37,6 +38,10 @@
 	<% unless Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'].nil? %>
 		configuration["SoundCloud"] = true;
 		configuration["SoundCloudAPIKEY"] =  "<%= Vish::Application.config.APP_CONFIG['soundCloudAPIKEY'] %>";
+	<% end %>
+	<% unless Vish::Application.config.APP_CONFIG['xwiki_url'].nil? %>
+		configuration["XWiki"] = true;
+		configuration["XWiki_url"] =  "<%= Vish::Application.config.APP_CONFIG['xwiki_url'] %>";
 	<% end %>
 
 	//Thumbnails

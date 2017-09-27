@@ -15,7 +15,7 @@ development:
   services: ["ARS","Catalogue","ASearch"]
   languages: ["en", "es", "de", "nl", "hu", "fr"]
   register_policy: "REGISTER_ONLY"  #this can be 'REGISTER_ONLY', 'INVITATION_ONLY' or 'HYBRID'
-  login_policy: "LOCAL" #this can be "LOCAL" or "CAS"
+  login_policy: "LOCAL" #this can be "LOCAL" or "CAS" or "HYBRID"
   advanced_search:
     instances: ["http://vishub.org"]
   catalogue:
@@ -103,6 +103,9 @@ production:
 
 # Enable LRE (Learning Resource Exchange) in the ViSH Editor. No key required.
 # LRE: "true"
+
+# XWiki (http://www.xwiki.org)
+# xwiki_url: "http://localhost:8080/xwiki/bin/view/"
 
 # LOEP configuration. Allow to evaluate the quality of the ViSH resources in a systematic way (See http://loep.global.dit.upm.es for more info).
 # loep:
@@ -249,7 +252,7 @@ production:
 
 # CAS (Central Authentication Service)
 # CAS:  #only if login_policy is "CAS"
-#   cas_base_url: "https://educainternet.es/cas"
+#   cas_base_url: "https://vishub.org/cas"
 #   cas_create_user: false
 #   cas_username_column: "email"
 #   cas_logout_url_param: "destination"

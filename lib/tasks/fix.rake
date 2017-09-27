@@ -157,9 +157,18 @@ namespace :fix do
         jsonChange = false
         eJson = JSON(excursion.json)
         eJson["slides"].each do |slide|
-          sElements = slide["elements"]
-          if sElements != nil
-            sElements.each do |el|
+          sElements = []
+          if slide["type"] == "standard"
+            sElements << slide["elements"]
+          else
+            if slide["slides"].is_a? Array
+              slide["slides"].each do |subslide|
+                sElements << subslide["elements"]
+              end
+            end
+          end
+          sElements.each do |elArray|
+            elArray.each do |el|
               if el["type"]=="object" and el["body"].class == String and el["body"].include?("vishubcode.global.dit.upm.es") and el["body"].include?("</iframe>")
                 newBody = el["body"].gsub("vishubcode.global.dit.upm.es",Vish::Application.config.APP_CONFIG['code_domain'])
                 el["body"] = newBody 
@@ -229,6 +238,38 @@ namespace :fix do
     printTitle("Task finished. Test contest created with id " + c.id.to_s)
   end
 
+ #Usage
+  #Development:   bundle exec rake fix:createTestContest
+  task :createTestOtherDataContest => :environment do
+    printTitle("Create a test Contest")
+
+    c = Contest.find_by_template("test")
+    c.destroy unless c.nil?
+
+    ml = MailList.find_by_name("MailList Contest Test")
+    ml.destroy unless ml.nil?
+
+    #Create MailList
+    ml = MailList.new
+    ml.name = "MailList Contest Test"
+    ml.settings = ({"require_login" => "false", "require_name" => "false"}).to_json
+    ml.save!
+
+    c = Contest.new
+    c.name = "test"
+    c.template = "test"
+    c.show_in_ui = true
+    c.settings = ({"enroll" => "true", "submission" => "one_per_user", "submission_require_enroll" => "false", "additional_fields" => ["province","postal_code"]}).to_json
+    c.mail_list_id = ml.id
+    c.save!
+
+    cc = ContestCategory.new
+    cc.name = "General"
+    cc.contest_id = c.id
+    cc.save!
+
+    printTitle("Task finished. Test contest created with id " + c.id.to_s)
+  end
 
   ####################
   #Task Utils

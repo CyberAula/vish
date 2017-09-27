@@ -432,10 +432,11 @@ namespace :db do
       #ViSH Viewer data
       vvEntries = TrackingSystemEntry.where("app_id='ViSH Viewer'")
       vvEntries.where("related_entity_id is NULL").delete_all
+      vvEntries.where("checked='false'").delete_all
 
       vvEntries.find_each batch_size: 1000 do |e|
         d = JSON(e.data) rescue {}
-        unless LoInteraction.isValidInteraction?(d)
+        unless LoInteraction.isValidCheckedInteraction?(d)
           e.delete
           next
         end
@@ -457,14 +458,10 @@ namespace :db do
       TrackingSystemEntry.record_timestamps=true
     end
     
-
     #Anonymizing comments
     Comment.all.each do |c|
       c.activity_object.update_column :description, Faker::Lorem.sentence(20, true)
     end
-
-    #Updating excursion authors
-    Rake::Task["fix:authors"].invoke
 
     User.record_timestamps=true
     Actor.record_timestamps=true
@@ -506,4 +503,3 @@ namespace :db do
   end
 
 end
-
