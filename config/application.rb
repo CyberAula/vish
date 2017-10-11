@@ -97,6 +97,7 @@ module Vish
 
     #Load ViSH Editor plugin
     config.before_configuration do
+      require_relative './initializers/selective_assets_compressor'
       $:.unshift File.expand_path("#{__FILE__}/../../lib/plugins/vish_editor/lib")
       require 'vish_editor'
     end
