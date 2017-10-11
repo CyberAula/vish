@@ -15,7 +15,7 @@ Vish::Application.configure do
   if Vish::Application.config.APP_CONFIG["test_domain"]
     config.assets.compress = false
   else
-    config.assets.compress = true #TODO: check this config.assets.compress = false
+    config.assets.compress = false #TODO: check this config.assets.compress = false
   end
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
