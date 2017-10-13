@@ -35,6 +35,9 @@ REGEX_IMAGES_SRC2 = '\.\./images'
 REGEX_IMAGES_PLAIN = 'images/'
 
 REGEX_IMAGES_SRC_PREV = 'src\="/images'
+
+COMMENT_TO_AVOID_COMPRESSION = "\/\* DO NOT REMOVE THIS COMMENT, It turns off compression during the asset precompilation phase, to avoid failures caused by unwanted side effects of compression., no_asset_compression \*/"
+
 ######################
 # 	PATHS REWRITES   #
 ######################
@@ -129,6 +132,8 @@ namespace :dali_editor do
 		system "cp " + DALI_EDITOR_PATH + "/dist/prod/app-bundle.min.js " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
 		system "cp " + DALI_EDITOR_PATH + "/dist/prod/visor-bundle.min.js " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/visor-bundle.js"
 		
+		system "sed -i '1i" + COMMENT_TO_AVOID_COMPRESSION + "' "+ DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
+		system "sed -i '1i" + COMMENT_TO_AVOID_COMPRESSION + "' "+ DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/visor-bundle.js"
 		#system "cp " + DALI_EDITOR_PATH + "/dist/lib/visor/index.ejs " +  DALI_EDITOR_PLUGIN_PATH + "/vendor/lib/visor/index.ejs"
 		#system "cp " + DALI_EDITOR_PATH + "/dist/lib/visor/index_exercise.ejs " +  DALI_EDITOR_PLUGIN_PATH + "/vendor/lib/visor/index_exercise.ejs"
 		#system "cp " + DALI_EDITOR_PATH + "/dist/lib/scorm/scorm_nav.ejs " +  DALI_EDITOR_PLUGIN_PATH + "/vendor/lib/scorm/scorm_nav.ejs"
