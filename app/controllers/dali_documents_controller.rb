@@ -27,6 +27,12 @@ class DaliDocumentsController < ApplicationController
 			dd.author_id = current_subject.actor_id
 			dd.save!
 
+			### Refactor to fill_create parms
+			scope = JSON.parse(dd.json)["present"]["globalConfig"]["status"]
+			ao = dd.activity_object
+			ao.scope = scope == "draft" ? 0 : 1
+			ao.save!
+
 			render json: { dali_id: dd.id}
 		else
 			render status: :forbidden
@@ -63,6 +69,12 @@ class DaliDocumentsController < ApplicationController
 			dd.json = params[:dali_document][:json].to_json
 			dd.title = params[:dali_document][:json][:present][:globalConfig][:title]
 			dd.save!
+
+			### Refactor to fill_create parms
+			scope = JSON.parse(dd.json)["present"]["globalConfig"]["status"]
+			ao = dd.activity_object
+			ao.scope = scope == "draft" ? 0 : 1
+			ao.save!
 
 			render json: { dali_id: dd.id}
 		else
