@@ -341,6 +341,7 @@ es:
       body2: "Se ha registrado correctamente en ViSH, con los siguientes datos:"
       body3: "Con el email y la contraseña que ha elegido para ViSH podrá acceder también a la plataforma de MOOCS en %{url}"
       body4: "Una vez logueado en dicha plataforma verá un curso titulado <span class='bold'>'%{name}'</span>, al que podrá acceder con la contraseña: <span class='primary bold underline'>%{password}</span>"
+      body4b: "Una vez logueado en dicha plataforma podrá acceder a un curso titulado '%{name}'"
       body5: "Muchas gracias por registrarse en ViSH"
       body6: "Click para acceder a"
       body7: "ViSH"
