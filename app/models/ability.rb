@@ -47,10 +47,9 @@ class Ability
       ao.downloadable? or can?(:update, ao.object)
     end
 
-    can :download_source, [Document, Webapp, Scormfile, Imscpfile, Link, Embed, Writing, Excursion, Workshop] do |o|
+    can :download_source, [Document, Webapp, Scormfile, Imscpfile, Link, Embed, Writing, Excursion, Workshop, Category] do |o|
       can?(:download_source,o.activity_object)
     end
-
 
     unless subject.nil?
 

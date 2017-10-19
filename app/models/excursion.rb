@@ -302,6 +302,166 @@ class Excursion < ActiveRecord::Base
     return myxml
   end
 
+  def self.createSCORMForGroup(version="2004",folderPath,fileName,excursions,controller,options)
+    require 'zip'
+    t = File.open("#{folderPath}#{fileName}.zip", 'w')
+
+    themes = ["theme1"]
+
+    #Add manifest, main HTML file and additional files
+    Zip::OutputStream.open(t.path) do |zos|
+      xml_manifest = Excursion.generate_scorm_manifest_for_group(version,excursions,options)
+      zos.put_next_entry("imsmanifest.xml")
+      zos.print xml_manifest.target!()
+      excursions.each do |ex|
+        ex_json = JSON.parse(ex.json)
+        themes.push(ex_json["theme"])
+        zos.put_next_entry("excursion-" + ex.id.to_s + ".html")
+        zos.print controller.render_to_string "excursions/show.scorm.erb", :locals => {:excursion=>ex, :json => ex_json, :options => options}, :layout => false
+      end
+    end
+
+    #Add required XSD files and folders
+    schemaDirs = []
+    schemaFiles = []
+    #SCORM schema
+    schemaDirs.push("#{Rails.root}/public/schemas/SCORM_" + version)
+    #LOM schema
+    # schemaDirs.push("#{Rails.root}/public/schemas/lom")
+    schemaFiles.push("#{Rails.root}/public/schemas/lom/lom.xsd");
+    
+    schemaDirs.each do |dir|
+      zip_folder(t.path,dir)
+    end
+
+    if schemaFiles.length > 0
+      Zip::File.open(t.path, Zip::File::CREATE) { |zipfile|
+        schemaFiles.each do |filePath|
+          zipfile.add(File.basename(filePath),filePath)
+        end
+      }
+    end
+
+    #Copy SCORM assets (image, javascript and css files)
+    dir = "#{Rails.root}/lib/plugins/vish_editor/app/scorm"
+    zip_folder(t.path,dir)
+
+    #Add themes
+    themesPath = "#{Rails.root}/lib/plugins/vish_editor/app/assets/images/themes/"
+    themes.compact.uniq.each do |theme|
+      zip_folder(t.path,"#{Rails.root}/lib/plugins/vish_editor/app/assets",themesPath + theme) if File.exists?(themesPath + theme)
+    end
+
+    t.close
+  end
+
+  def self.generate_scorm_manifest_for_group(version,excursions,options={})
+    version = "2004" unless version.is_a? String and ["12","2004"].include?(version)
+
+    #Get manifest resource identifier and LOM identifier
+    if options[:category]
+      identifier = "Category-" + options[:category].id.to_s
+      lomIdentifier = "urn:ViSH:" + identifier
+      title = options[:category].title
+    else
+      count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+      Site.current.config["tmpCounter"] = count + 1
+      Site.current.save!
+      identifier = "TmpSCORM_" + count.to_s
+      lomIdentifier = "urn:ViSH:" + identifier
+      title = "Untitled"
+    end
+    
+    myxml = ::Builder::XmlMarkup.new(:indent => 2)
+    myxml.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+
+    #Select LOM Header options
+    manifestHeaderOptions = {}
+    manifestContent = {}
+
+    case version
+    when "12"
+      #SCORM 1.2
+      manifestHeaderOptions = {
+        "identifier"=>"VISH_PRESENTATION_GROUP_" + identifier,
+        "version"=>"1.0",
+        "xmlns"=>"http://www.imsproject.org/xsd/imscp_rootv1p1p2",
+        "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_rootv1p2",
+        "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+        "xsi:schemaLocation"=>"http://www.imsproject.org/xsd/imscp_rootv1p1p2 imscp_rootv1p1p2.xsd http://www.imsglobal.org/xsd/imsmd_rootv1p2p1 imsmd_rootv1p2p1.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd"
+      }
+      manifestContent["schemaVersion"] = "1.2"
+    when "2004"
+      #SCORM 2004 4th Edition
+      manifestHeaderOptions =  { 
+        "identifier"=>"VISH_PRESENTATION_GROUP_" + identifier,
+        "version"=>"1.3",
+        "xmlns"=>"http://www.imsglobal.org/xsd/imscp_v1p1",
+        "xmlns:adlcp"=>"http://www.adlnet.org/xsd/adlcp_v1p3",
+        "xmlns:adlseq"=>"http://www.adlnet.org/xsd/adlseq_v1p3",
+        "xmlns:adlnav"=>"http://www.adlnet.org/xsd/adlnav_v1p3",
+        "xmlns:imsss"=>"http://www.imsglobal.org/xsd/imsss",
+        "xmlns:xsi"=>"http://www.w3.org/2001/XMLSchema-instance",
+        "xsi:schemaLocation"=>"http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd"
+      }
+      manifestContent["schemaVersion"] = "2004 4th Edition"
+    else
+      #Future SCORM versions
+    end
+
+    myxml.manifest(manifestHeaderOptions) do
+
+      myxml.metadata do
+        myxml.schema("ADL SCORM")
+        myxml.schemaversion(manifestContent["schemaVersion"])
+        #TODO: add LOM metadata
+      end
+
+      myxml.organizations('default'=>"defaultOrganization") do
+        myxml.organization('identifier'=>"defaultOrganization") do
+          myxml.title(title)
+
+          excursions.each do |ex|
+            itemOptions = {
+              'identifier'=>"PRESENTATION_GROUP_" + ex.id.to_s,
+              'identifierref'=>"PRESENTATION_GROUP_" + ex.id.to_s + "_RESOURCE"
+            }
+            if version == "12"
+              itemOptions["isvisible"] = "true"
+            end
+            myxml.item(itemOptions) do
+              myxml.title(ex.title || "Untitled")
+              if version == "12"
+                myxml.tag!("adlcp:masteryscore") do
+                  myxml.text!("50")
+                end
+              end
+            end
+          end
+        end
+      end
+
+      myxml.resources do
+        excursions.each do |ex|
+          resourceOptions = {
+            'identifier'=>"PRESENTATION_GROUP_" + ex.id.to_s + "_RESOURCE",
+            'type'=>"webcontent",
+            'href'=>"excursion-" + ex.id.to_s + ".html",
+          }
+          if version == "12"
+            resourceOptions['adlcp:scormtype'] = "sco"
+          else
+            resourceOptions['adlcp:scormType'] = "sco"
+          end
+          myxml.resource(resourceOptions) do
+            myxml.file('href'=> "excursion-" + ex.id.to_s + ".html")
+          end
+        end
+      end
+    end    
+
+    return myxml
+  end
 
 
   ####################

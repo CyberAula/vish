@@ -11,6 +11,33 @@ class CategoriesController < ApplicationController
     redirect_to url_for(current_subject) + "?tab=categories"
   end
 
+  def show
+    show! do |format|
+      format.html {
+        render
+      }
+      format.json {
+        render :json => @category 
+      }
+      format.scorm {
+        if (can? :download_source, @category)
+          scormVersion = (params["version"].present? and ["12","2004"].include?(params["version"])) ? params["version"] : "2004"
+          rec = (params["rec"].present? and ["true","false"].include?(params["rec"])) ? params["rec"] : "true"
+          count = Site.current.config["tmpCounter"].nil? ? 1 : Site.current.config["tmpCounter"]
+          Site.current.config["tmpCounter"] = count + 1
+          Site.current.save!
+          folderPath = "#{Rails.root}/public/tmp/scorm/"
+          fileName = "scorm" + scormVersion + "-tmp-#{count.to_s}"
+          filePath = "#{folderPath}#{fileName}.zip";
+          @category.to_scorm(self,folderPath,fileName,scormVersion,{:category => @category, :rec => rec})
+          send_file filePath, :type => 'application/zip', :disposition => 'attachment', :filename => ("scorm" + scormVersion + "-#{@category.id}.zip") if File.exists?(filePath)
+        else
+          render :nothing => true, :status => 500
+        end
+      }
+    end
+  end
+
   def show_favorites
     render "favorites"
   end
