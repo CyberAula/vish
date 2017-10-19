@@ -385,7 +385,7 @@ en:
       course_closed: "This course is closed."
       course_ended: "This course has ended"
       course_registration_ended: "This course has already started and is no longer available  for registration"
-      registration_passwd: "You are going to register in EducaInternet and also in a course that has password, please enter here the course password"
+      registration_passwd: "You are going to register on ViSH and also in a course that has password, please enter here the course password"
       only_email: "Sorry this course is restricted."
       unknown: "Restricted course"
     my: "My courses"
