@@ -121,6 +121,7 @@ module HomeHelper
       query = query.not_authored_by(following_ids)
     end
 
+
     #Filtering private entities
     unless ((defined?(current_subject)&&((options[:scope] == :me && subject == current_subject)||(!current_subject.nil? && current_subject.admin?)))&&(options[:force_filter_private]==false))
       query = query.includes("activity_object_audiences")
@@ -128,7 +129,7 @@ module HomeHelper
     end
 
     query = query.order(options[:order_by]) unless options[:order_by].blank?
-  
+
     query = query.offset(options[:offset]) if options[:offset] > 0
 
     # pagination, 0 means without pagination
@@ -147,7 +148,6 @@ module HomeHelper
             else
               query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}])
             end
-            
     query
   end
 

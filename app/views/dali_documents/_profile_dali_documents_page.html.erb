@@ -1,4 +1,5 @@
 <% all_dali_documents = subject_dali_documents(profile_or_current_subject, {:scope => scope, :limit => 10, :page=> page, :sort_by=> "updated_at"}) %>
+
 <% all_dali_documents.each do |dali_document| %>
     <%= render :partial => 'dali_documents/dali_document', :locals => { :dali_document => dali_document.object } %>
 <% end %>

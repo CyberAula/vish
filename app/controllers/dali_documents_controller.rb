@@ -25,13 +25,11 @@ class DaliDocumentsController < ApplicationController
 			dd.title = params[:dali_document][:json][:present][:globalConfig][:title]
 			dd.owner_id = current_subject.actor_id
 			dd.author_id = current_subject.actor_id
-			dd.save!
-
-			### Refactor to fill_create parms
+			#DRAFT
+			
 			scope = JSON.parse(dd.json)["present"]["globalConfig"]["status"]
-			ao = dd.activity_object
-			ao.scope = scope == "draft" ? 0 : 1
-			ao.save!
+			dd.draft = scope == "draft" ? true :  false
+			dd.save!
 
 			render json: { dali_id: dd.id}
 		else
@@ -72,9 +70,10 @@ class DaliDocumentsController < ApplicationController
 
 			### Refactor to fill_create parms
 			scope = JSON.parse(dd.json)["present"]["globalConfig"]["status"]
+			dd.draft = scope == "draft" ? true :  false
 			ao = dd.activity_object
 			ao.scope = scope == "draft" ? 0 : 1
-			ao.save!
+			dd.save!
 
 			render json: { dali_id: dd.id}
 		else
@@ -89,9 +88,24 @@ class DaliDocumentsController < ApplicationController
 	end
 
 	def show
-		 @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @dali_document, :n=>10, :models => [DaliDocument,Excursion]})
+		@resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @dali_document, :n=>10, :models => [DaliDocument, Excursion]})
 		show! do |format|
-			format.full
+			format.full{
+				if @dali_document.draft 
+		          if (can? :edit, @dali_document)
+		            redirect_to edit_dali_document_path(@dali_document)
+		          else
+		            redirect_to "/"
+		          end
+		        else
+		          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @dali_document, :n=>10, :models => [DaliDocument]})
+		          ActorHistorial.saveAO(current_subject,@dali_document)
+		          render
+		        end
+			}
+			format.json {
+		      render :json => resource 
+		    }
 		end
 	end
 

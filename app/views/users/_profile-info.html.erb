@@ -71,21 +71,6 @@
     return the_url;
   }
 
-  var delete_function = function(dali_id){
-    if(confirm("<%=t('dali_document.actions.delete_alert')%>")){
-      $.ajax({
-                url: '/dali_documents/' + dali_id + '/delete' ,
-                type: 'POST',
-                dataType: "json",
-                success: function(data){
-                    $("#dali_documents_tab_ready [dali_id="+dali_id+"]").fadeOut();
-                },
-                 error: function(){
-                }
-          });
-    }
-  };
-
 </script>
 
 <%content_for :javascript do%>
@@ -122,7 +107,7 @@
 
     $("#dali_documents_tab").click(function(){
       updateWindowTopUrl($(this).attr("id"));
-      if(dali_documents_tab_loaded===false){
+      if(dali_documents_tab_loaded === false){
         $('.loader_pagination').show();
         dali_documents_tab_loaded = true;
         $.ajax({
