@@ -50,7 +50,7 @@
         <div class="clear"></div>
       <% end %>
 
-      <% if user_enrolled && @course.course_password %>
+      <% if user_enrolled && @course.course_password.present? %>
         <h2><%=t('course.show_password')%></h2>
         <p><%=t('course.fields.course_password') + ": " + @course.course_password%></p>
       <% end %>
