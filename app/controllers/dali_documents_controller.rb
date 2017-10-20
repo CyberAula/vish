@@ -90,6 +90,19 @@ class DaliDocumentsController < ApplicationController
 	def show
 		@resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @dali_document, :n=>10, :models => [DaliDocument, Excursion]})
 		show! do |format|
+			format.html{
+				if @dali_document.draft 
+		          if (can? :edit, @dali_document)
+		            redirect_to edit_dali_document_path(@dali_document)
+		          else
+		            redirect_to "/"
+		          end
+		        else
+		          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @dali_document, :n=>10, :models => [DaliDocument]})
+		          ActorHistorial.saveAO(current_subject,@dali_document)
+		          render
+		        end
+			}
 			format.full{
 				if @dali_document.draft 
 		          if (can? :edit, @dali_document)
