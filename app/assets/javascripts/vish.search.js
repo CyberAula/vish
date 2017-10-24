@@ -27,7 +27,7 @@ Vish.Search = (function(V,undefined){
         excursionsInCatalogue: true,
         excursionsInDirectory: false,
         excursionsInArchive: false
-      }  
+      }
   */
   var init = function(options){
     _options = options || {};
@@ -41,9 +41,9 @@ Vish.Search = (function(V,undefined){
       _options.resource_types = ["Webapp", "Scormfile", "Link", "Embed", "Writing", "Officedoc", "Video", "Swf", "Audio", "Zipfile", "Picture"];
     }
 
-    //take the params from the URL 
+    //take the params from the URL
     _parsed_url = _getUrlParameters();
-    
+
     _customizeInterface();
 
     _recalculateTags(_options.tags, true);
@@ -244,6 +244,8 @@ Vish.Search = (function(V,undefined){
       //do nothing
     } else if(_parsed_url["type"] == "User"){
       _toggleFilter("type", "User");
+    } else if(_parsed_url["type"] == "Course"){
+      _toggleFilter("type", "Course");
     } else {
       _toggleFilter("type", "Learning_object");
 
@@ -293,8 +295,8 @@ Vish.Search = (function(V,undefined){
     if(filter_obj.length>0){
       //check catalogue, directory, archive or neither of them
       if((_parsed_url["catalogue"] && filter_obj.parents(".filter_set").attr("catalogue_filter")) || (_parsed_url["directory"] && filter_obj.parents(".filter_set").attr("directory_filter")) || (_parsed_url["archive"] && filter_obj.parents(".filter_set").attr("archive_filter")) || (!_parsed_url["catalogue"] && !_parsed_url["directory"] && !_parsed_url["archive"]) ){
-        if(filter_obj.hasClass("search-sidebar-selected")) {        
-          _deactivateFilter(filter_obj, update_url);          
+        if(filter_obj.hasClass("search-sidebar-selected")) {
+          _deactivateFilter(filter_obj, update_url);
         } else {
           _activateFilter(filter_obj, update_url);
         }
@@ -456,7 +458,7 @@ Vish.Search = (function(V,undefined){
       }
     }
     if(filter_key==="type" && filter_name==="Excursion" && _parsed_url["sort_by"] && _parsed_url["sort_by"][0]==="quality" ){
-      _parsed_url["sort_by"]=["popularity"]; 
+      _parsed_url["sort_by"]=["popularity"];
     }
 
     if(call_server){
@@ -572,7 +574,7 @@ Vish.Search = (function(V,undefined){
             //resourcesTypes == ["Actor"]
             parsed["type"] = ["User"];
           }
-          
+
           if(parsed["type"]){
             var newURLWithType = (window.top.location.pathname + window.top.location.search) + "&type=" + parsed["type"];
             window.history.pushState(undefined, undefined, newURLWithType);

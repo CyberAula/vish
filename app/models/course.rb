@@ -6,6 +6,10 @@ class Course < ActiveRecord::Base
                     :path => ':rails_root/documents/:class/attachments/:id_partition/:filename.:extension'
   after_save :update_course_count
 
+  define_index do
+    activity_object_index
+  end
+
   def thumbnail_url
     self.getAvatarUrl || "/assets/logos/original/default_course.png"
   end
