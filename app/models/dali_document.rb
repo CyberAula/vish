@@ -19,7 +19,13 @@ class DaliDocument < ActiveRecord::Base
     "/dali_documents/" + self.id.to_s + "/edit"
   end
 
+  def thumbnail
+    JSON.parse(self.json)["present"]["globalConfig"]["thumbnail"] || ""
+  end
+
+
   private
+
    def parse_for_meta
       if self.draft
         activity_object.scope = 1
@@ -43,4 +49,5 @@ class DaliDocument < ActiveRecord::Base
       a.save!
     end
   end
+
 end

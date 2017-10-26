@@ -29,14 +29,19 @@
                 <h2 class="draftstyle">
                   <i class="fa fa-edit"></i>
                   <%=t('excursion.draft')%>
-                </h2>
+                </h2> 
             </div>
           <% end %>
           <%#= link_to raw(icon(resource)), resource, :title => resource.title %>
-          <%= raw(icon(dali_document)) %>
+          <%#= raw(icon(dali_document)) %>
         </div>
       </div>
     <%end%>
+
+    <script>
+      document.getElementById("<%=generated_id%>").style.backgroundImage = "url('<%= dali_document.thumbnail %>')";
+    </script>
+
   <!-- INFO -->
   <div class="caption">
 
