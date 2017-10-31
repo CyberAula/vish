@@ -61,7 +61,7 @@
             <div class=""><%=t('course.msgs.course_closed')%></div>
           <% else %>
               <%if user_enrolled %>
-                  <a class="btn btn-default" href="<%=@course.url%>" target="_blank"><%=t('course.actions.go')%></a>
+                  <a class="btn btn-default" href="<%=@course.moodle_url%>" target="_blank"><%=t('course.actions.go')%></a>
                   <%= form_for @course, :url => { :action => :leave }, method: "post"  do |f| %>
                     <%= f.submit t('course.actions.leave'), class: "btn btn-primary" %>
                   <% end %>
@@ -140,7 +140,7 @@
                 </div>
             </div>
         <%end%>
-        <a class="btn btn-default" href="<%=@course.url%>" target="_blank"><%=t('course.actions.go')%></a>
+        <a class="btn btn-default" href="<%=@course.moodle_url%>" target="_blank"><%=t('course.actions.go')%></a>
       <%end%>
 
     </div>

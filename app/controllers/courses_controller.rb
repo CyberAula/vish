@@ -1,4 +1,4 @@
-class CoursesController < ApplicationController  
+class CoursesController < ApplicationController
   include SocialStream::Controllers::Objects
   before_filter :authenticate_user!, :except => [:show, :attachment, :index]
   skip_authorize_resource :only => [:attachment, :join, :leave]
@@ -38,7 +38,7 @@ class CoursesController < ApplicationController
     if @course.users.include? current_user
       flash[:errors] = t('course.flash.already_in')
       is_already_in = true
-    else      
+    else
       is_already_in = false
     end
 
@@ -76,7 +76,6 @@ class CoursesController < ApplicationController
   private
 
   def allowed_params
-    [:start_date, :end_date, :restricted, :restriction_email, :restriction_password, :url, :course_password, :closed, :avatar, :attachment, :language, :license_id, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
+    [:start_date, :end_date, :restricted, :restriction_email, :restriction_password, :moodle_url, :course_password, :closed, :avatar, :attachment, :language, :license_id, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
   end
 end
-

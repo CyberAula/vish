@@ -24,7 +24,7 @@
                   <div style="line-height: 1.3em;height: auto;font-weight: 100;padding: 20px 50px 10px; color: #484848; background-color: #FFF; font-size: 15px;">
 
                     <p style="font-size: 20px;margin-bottom: 15px;">
-                    
+
                     <%if @user %>
                       <span><%=t('course.first_mail.body1') + " " + @user.name %>:</span>
                     <%end%>
@@ -45,7 +45,7 @@
                     </div>
                     <div style="margin-bottom:10px;padding-left: 20px;padding-bottom:10px;">
                       <p><%=t('course.first_mail.body6')%></p>
-                      <a href="<%=@course.url%>" style="text-decoration: none; color: black;font-weight: bold;">> <%=t('course.first_mail.body8')%></a>
+                      <a href="<%=@course.moodle_url%>" style="text-decoration: none; color: black;font-weight: bold;">> <%=t('course.first_mail.body8')%></a>
                     </div>
                     <p>
                       <div>

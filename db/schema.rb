@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20170822124033) do
+ActiveRecord::Schema.define(:version => 20171031172400) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -265,7 +265,7 @@ ActiveRecord::Schema.define(:version => 20170822124033) do
     t.boolean  "restricted",              :default => false
     t.string   "restriction_email"
     t.string   "restriction_password"
-    t.string   "url"
+    t.string   "moodle_url"
     t.string   "course_password"
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
