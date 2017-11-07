@@ -173,14 +173,8 @@ ActivityObject.class_eval do
   end
 
   def clonable?
-    unless self.allow_clone
-      return false
-    end
-
-    if self.license and (self.license.no_derivatives? or self.license.private?)
-      return false
-    end
-
+    return false unless self.allow_clone
+    return false if self.license and (self.license.no_derivatives? or self.license.private?)
     true
   end
 
@@ -602,6 +596,40 @@ ActivityObject.class_eval do
 
   def generate_LOM_metadata(options)
     Lom.generateMetadata(self,options)
+  end
+
+  def change_owner(new_owner)
+    new_owner = new_owner.actor if new_owner.is_a? User
+    return nil unless new_owner.is_a? Actor and !self.object.nil? and self.resource?
+    return if new_owner == self.owner
+    
+    oldTimestamp = self.updated_at
+    oldOwnerId = self.owner_id
+    self.owner_id = new_owner.id
+    self.author_id = new_owner.id
+    self.user_author_id = new_owner.id
+    self.save!
+    ActivityAction.where(:activity_object_id => self.id, :actor_id => oldOwnerId, :owner => true).destroy_all
+    self.update_column :updated_at, oldTimestamp
+    self.update_column :license_attribution, ActivityObject.find(self.id).default_license_attribution if self.should_have_license? and self.original_author.nil?
+    
+    pa = self.post_activity
+    if pa
+      pa.owner_id = new_owner.id
+      pa.author_id = new_owner.id
+      pa.user_author_id = new_owner.id
+      pa.save!
+      pa.update_column :created_at, Time.now
+      pa.update_column :updated_at, Time.now
+    end
+
+    if self.object_type == "Excursion"
+      eJson = JSON.parse(self.object.json) rescue nil
+      unless eJson.nil?
+        eJson["author"] = {name: new_owner.name, vishMetadata:{ id: new_owner.id }}
+        self.object.update_column :json, eJson.to_json
+      end
+    end
   end
 
   ##############
