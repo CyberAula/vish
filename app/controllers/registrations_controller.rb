@@ -58,7 +58,7 @@ class RegistrationsController < Devise::RegistrationsController
   def after_sign_up_path_for(resource)
     if params[:course].present?
       course = Course.find_by_id(params[:course])
-      return course.url unless course.nil?
+      return course_path(course) unless course.nil?
     end
     '/home'
   end
