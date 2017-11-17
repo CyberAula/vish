@@ -1,0 +1,9 @@
+<ul class="repository-item items">
+    <% if profile_subject_is_current?%>
+      <%= render partial: 'ediphy_documents/add_new' %>
+    <% end %>
+    <% default_sort_by = "updated_at" %>
+    <%= render partial: 'ediphy_documents/profile_ediphy_documents_page', :locals => { :scope => scope, :limit => limit, :page => page, :sort_by=> "updated_at"} %>
+</ul>
+
+

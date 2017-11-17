@@ -12,8 +12,8 @@ module HomeHelper
     subject_content subject, Excursion, options
   end
 
-  def subject_dali_documents(subject, options = {})
-    subject_content subject, DaliDocument, options
+  def subject_ediphy_documents(subject, options = {})
+    subject_content subject, EdiphyDocument, options
   end
 
   def subject_workshops(subject, options = {})

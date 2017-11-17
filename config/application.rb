@@ -102,10 +102,10 @@ module Vish
       require 'vish_editor'
     end
 
-    #Load Dali Editor Plugin
+    #Load Ediphy Editor Plugin
     config.before_configuration do
-      $:.unshift File.expand_path("#{__FILE__}/../../lib/plugins/dali_editor/lib")
-      require 'dali_editor'
+      $:.unshift File.expand_path("#{__FILE__}/../../lib/plugins/ediphy/lib")
+      require 'ediphy'
     end
 
     #Require core extensions

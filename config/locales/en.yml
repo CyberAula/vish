@@ -399,7 +399,7 @@ en:
     required_fields: "*Required fields"
     show_password: "Course password in Moodle (only for enrolled users)"
     tags: "Tags"
-  dali_document:
+  ediphy_document:
     actions:
       add: "Try new editor"
       delete: "Delete"
@@ -1014,7 +1014,7 @@ en:
       all_resources: "All Resources"
       audio: "Audios"
       category: "Categories"
-      dalidocument: "New Editor"
+      ediphydocument: "New Editor"
       document: "Documents"
       embed: "Embeds"
       event: "Events"

@@ -8,8 +8,8 @@
       "num_pages":0,
       "current_page":0
     },
-    "dali_documents":{
-      "url": "<%=user_url(profile_subject)%>/dali_documents",
+    "ediphy_documents":{
+      "url": "<%=user_url(profile_subject)%>/ediphy_documents",
       "num_pages":0,
       "current_page":0
     },
@@ -76,7 +76,7 @@
 <%content_for :javascript do%>
 
   var excursions_tab_loaded = false;
-  var dali_documents_tab_loaded = false;
+  var ediphy_documents_tab_loaded = false;
   var workshops_tab_loaded = false;
   var resources_tab_loaded = false;
   var events_tab_loaded = false;
@@ -105,24 +105,24 @@
       }
     });
 
-    $("#dali_documents_tab").click(function(){
+    $("#ediphy_documents_tab").click(function(){
       updateWindowTopUrl($(this).attr("id"));
-      if(dali_documents_tab_loaded === false){
+      if(ediphy_documents_tab_loaded === false){
         $('.loader_pagination').show();
-        dali_documents_tab_loaded = true;
+        ediphy_documents_tab_loaded = true;
         $.ajax({
           type : "GET",
-          url : "<%=user_url(profile_subject)%>/dali_documents",
+          url : "<%=user_url(profile_subject)%>/ediphy_documents",
           success : function(html) {
             $('.loader_pagination').hide();
-            $("#dali_documents_tab_ready").append(html);
-            re_apply_pageless("dali_documents");
+            $("#ediphy_documents_tab_ready").append(html);
+            re_apply_pageless("ediphy_documents");
           },
           error: function(){
          }
         });
       } else {
-        re_apply_pageless("dali_documents");
+        re_apply_pageless("ediphy_documents");
       }
     });
 
@@ -281,11 +281,11 @@
               <span class=" hidden-xs"><%=t('excursion.other')%></span>
             </a>
           </li>
-        <% elsif modelName == "DaliDocument" %>
-          <li class="<%= params[:tab]=='dali_documents' ? 'active':''%>">
-            <a id="dali_documents_tab" href="#tabDaliDocuments" data-toggle="tab">
+        <% elsif modelName == "EdiphyDocument" %>
+          <li class="<%= params[:tab]=='ediphy_documents' ? 'active':''%>">
+            <a id="ediphy_documents_tab" href="#tabEdiphyDocuments" data-toggle="tab">
               <i class="fa fa-cube"></i>
-              <span class=" hidden-xs"><%=t('dali_document.other')%></span>
+              <span class=" hidden-xs"><%=t('ediphy_document.other')%></span>
             </a>
           </li>
         <% elsif modelName == "Workshop" %>
@@ -376,12 +376,12 @@
        <!-- DALI DOCUMENTS -->
 
       <% if availableModels.include? "Excursion" %>
-        <div class="tab-pane <%=params[:tab]=='dali_documents' ? 'active':''%>" id="tabDaliDocuments">
+        <div class="tab-pane <%=params[:tab]=='ediphy_documents' ? 'active':''%>" id="tabEdiphyDocuments">
 
-          <div id="dali_documents_tab_ready"  class="resources">
-            <% if params[:tab]== 'dali_documents' %>
+          <div id="ediphy_documents_tab_ready"  class="resources">
+            <% if params[:tab]== 'ediphy_documents' %>
               <% default_sort_by = "updated_at" %>
-              <%= render partial: 'dali_documents/profile_dali_documents_list', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]|| default_sort_by}%>
+              <%= render partial: 'ediphy_documents/profile_ediphy_documents_list', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]|| default_sort_by}%>
             <%end%>
           </div>
 
@@ -537,9 +537,9 @@
     <% if params[:tab]=="excursions" %>
         excursions_tab_loaded = true;
         re_apply_pageless("excursions");
-    <% elsif params[:tab]=="dali_documents" %>
-        dali_documents_tab_loaded = true;
-        re_apply_pageless("dali_documents");
+    <% elsif params[:tab]=="ediphy_documents" %>
+        ediphy_documents_tab_loaded = true;
+        re_apply_pageless("ediphy_documents");
     <% elsif params[:tab]=="workshops" %>
         workshops_tab_loaded = true;
         re_apply_pageless("workshops");

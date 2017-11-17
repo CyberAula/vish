@@ -1,0 +1,19 @@
+<span class="helpheader"> 
+  <a>
+    <i class="fa fa-question-circle" id="helpediphydocumentid" data-toggle="popover" data-placement='left' aria-hidden="true" data-original-title="New Editor<%#= t('document.help.ediphy_document1')%>" href='#' value=""></i>
+  </a>
+  <div id="contenthelpediphydocumentid" style="display: none">
+    <div class="popover-body">
+      <p> New Editor Help<%#= t('document.help.ediphy_document2')%> </p>
+    </div>
+  </div>
+</span>
+
+<%content_for :javascript do%>
+  $('#helpediphydocumentid').popover({
+    html : true,
+    content: function() {
+      return $('#contenthelpediphydocumentid').html();
+    }
+  });
+<%end%>

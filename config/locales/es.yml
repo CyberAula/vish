@@ -375,7 +375,7 @@ es:
     required_fields: "*Estos campos son obligatorios"
     show_password: "Contraseña del curso en Moodle (solo visible para inscritos)"
     tags: "Etiquetas"
-  dali_document:
+  ediphy_document:
     actions:
       add: "Prueba nuevo Editor"
       delete: "Eliminar"
@@ -998,7 +998,7 @@ es:
       all_resources: "Todos los Recursos"
       audio: "Audios"
       category: "Categorías"
-      dalidocument: "Nuevo Editor"
+      ediphydocument: "Nuevo Editor"
       document: "Documentos"
       embed: "Embeds"
       event: "Eventos"

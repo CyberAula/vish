@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Ging Editor</title>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML&messageStyle=none&showProcessingMessages=false"></script>
+    <%= yield :ediphy_head %>
+    <script src="/assets/lib/ckeditor/ckeditor.js"></script>
+    <script>
+        var ediphy_editor_json = JSON.stringify(JSON.parse('<%= raw ediphy_editor_json %>').present);
+    </script>
+</head>
+<body style="margin: 0px; height: 100%" id="mainbody">
+    <div id="root" style="height: 100%"></div>
+    <script src="/assets/editor/visor-bundle.js"></script>
+
+</body>
+</html>

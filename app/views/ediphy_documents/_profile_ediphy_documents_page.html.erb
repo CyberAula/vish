@@ -1,0 +1,15 @@
+<% all_ediphy_documents = subject_ediphy_documents(profile_or_current_subject, {:scope => scope, :limit => 10, :page=> page, :sort_by=> "updated_at"}) %>
+
+<% all_ediphy_documents.each do |ediphy_document| %>
+    <%= render :partial => 'ediphy_documents/ediphy_document', :locals => { :ediphy_document => ediphy_document.object } %>
+<% end %>
+
+<script>
+  <%if request.xhr?%>
+    update_pageless_state("ediphy_documents", <%=all_ediphy_documents.num_pages%>, <%=all_ediphy_documents.current_page%>);
+  <%else%>
+    document.addEventListener("DOMContentLoaded", function(){
+      update_pageless_state("ediphy_documents", <%=all_ediphy_documents.num_pages%>, <%=all_ediphy_documents.current_page%>);
+    });
+  <%end%>
+</script>

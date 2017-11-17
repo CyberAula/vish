@@ -122,7 +122,7 @@ ActivityObject.class_eval do
   end
 
   def should_have_license?
-    return ((self.object_type.is_a? String) and (["Document", "Excursion", "DaliDocument", "Scormfile", "Imscpfile", "Webapp", "Workshop", "Writing"].include? self.object_type))
+    return ((self.object_type.is_a? String) and (["Document", "Excursion", "EdiphyDocument", "Scormfile", "Imscpfile", "Webapp", "Workshop", "Writing"].include? self.object_type))
   end
 
   def should_have_authorship?
@@ -131,7 +131,7 @@ ActivityObject.class_eval do
 
   def resource?
     #"Actor", "Post", "Category", "Document", "Excursion", "Scormfile", "Imscpfile", "Link", "Webapp", "Comment", "Event", "Embed", "Workshop", "Writing"
-    return ((self.object_type.is_a? String) and (["Category", "Document", "Excursion", "DaliDocument", "Scormfile", "Imscpfile", "Link", "Webapp", "Event", "Embed", "Workshop", "Writing"].include? self.object_type))
+    return ((self.object_type.is_a? String) and (["Category", "Document", "Excursion", "EdiphyDocument", "Scormfile", "Imscpfile", "Link", "Webapp", "Event", "Embed", "Workshop", "Writing"].include? self.object_type))
   end
 
   def document?

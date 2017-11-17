@@ -60,13 +60,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def dali_documents
+  def ediphy_documents
     respond_to do |format|
       format.html{
-        if !params[:page] || params[:tab] == "dali_documents" || (params[:page] && (params[:page] == 1))
-          render :partial => 'dali_documents/profile_dali_documents_list', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+        if !params[:page] || params[:tab] == "ediphy_documents" || (params[:page] && (params[:page] == 1))
+          render :partial => 'ediphy_documents/profile_ediphy_documents_list', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
         else
-          render :partial => 'dali_documents/profile_dali_documents_page', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
+          render :partial => 'ediphy_documents/profile_ediphy_documents_page', :locals => {:scope => :me, :limit => 0, :page=> params[:page] || 1, :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
         end
       }
     end

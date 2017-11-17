@@ -1,9 +1,0 @@
-<ul class="repository-item items">
-    <% if profile_subject_is_current?%>
-      <%= render partial: 'dali_documents/add_new' %>
-    <% end %>
-    <% default_sort_by = "updated_at" %>
-    <%= render partial: 'dali_documents/profile_dali_documents_page', :locals => { :scope => scope, :limit => limit, :page => page, :sort_by=> "updated_at"} %>
-</ul>
-
-

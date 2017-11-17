@@ -278,22 +278,6 @@ ActiveRecord::Schema.define(:version => 20171019151615) do
     t.integer "course_id"
   end
 
-  create_table "dali_documents", :force => true do |t|
-    t.string   "title"
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
-    t.integer  "activity_object_id"
-    t.text     "json"
-    t.boolean  "draft",              :default => true
-  end
-
-  create_table "dali_exercises", :force => true do |t|
-    t.integer  "dali_document_id"
-    t.text     "xml"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
-  end
-
   create_table "documents", :force => true do |t|
     t.string   "type"
     t.integer  "activity_object_id"
@@ -306,6 +290,22 @@ ActiveRecord::Schema.define(:version => 20171019151615) do
   end
 
   add_index "documents", ["activity_object_id"], :name => "index_documents_on_activity_object_id"
+
+  create_table "ediphy_documents", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
+    t.integer  "activity_object_id"
+    t.text     "json"
+    t.boolean  "draft",              :default => true
+  end
+
+  create_table "ediphy_exercises", :force => true do |t|
+    t.integer  "ediphy_document_id"
+    t.text     "xml"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "embeds", :force => true do |t|
     t.integer  "activity_object_id"

@@ -8,7 +8,7 @@ development:
   no_reply_mail: "no-reply@vishub.org"
   main_mail: "virtual.science.hub@gmail.com"
   models:
-    available: ["Excursion","DaliDocument","Resource","Category","Event","Workshop"]
+    available: ["Excursion","EdiphyDocument","Resource","Category","Event","Workshop"]
     resources: ["Document","Webapp","Scormfile","Link","Embed", "Writing"]
     home: ["Excursion"]
     catalogue: ["Excursion"]
