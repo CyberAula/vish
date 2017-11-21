@@ -1,0 +1,106 @@
+
+@mixin background-size ($value)
+	-webkit-background-size: $value
+	-moz-background-size: $value
+	-o-background-size: $value
+	background-size: $value
+
+.blocks_columns
+	height: 100vh
+	display: flex
+	flex-flow: row nowrap
+	justify-content: center
+	align-items: center
+	.block01
+		width: 50%
+		height: 100vh
+		background-image: url(../assets/other/aula_upm.jpg)
+		background-repeat: no-repeat
+		background-position: center
+		background-attachment: fixed
+		@include background-size (cover)
+		display: flex
+		flex-flow: column nowrap
+		justify-content: center
+		align-items: center
+		img
+			width: 25em
+	.block02
+		width: 50%
+		height: 100vh
+		background-image: url(../assets/other/aula_upm.jpg)
+		background-repeat: no-repeat
+		background-position: center
+		background-attachment: fixed
+		@include background-size (cover)
+		.background
+			width: 100%
+			height: 100vh
+			background-color: rgba(255,255,255,.9)
+			display: flex
+			flex-flow: column nowrap
+			justify-content: center
+			align-items: center
+			.block_text
+				width: 75%
+				.title
+					font-size: 2em
+					padding-bottom: 1em
+					border-bottom: .01em solid gray
+				.text
+					padding-top: 1em
+
+					a
+						color: #1867b7
+
+
+@media (max-width: 736px)
+
+	.blocks_columns
+		height: 60em
+		.block01
+			height: 60em
+			img
+				width: 17em
+		.block02
+			height: 60em
+			.background
+				height: 60em
+				.block_text
+					.title
+						font-size: 1.8em
+
+
+@media (max-width: 480px)
+	
+	.blocks_columns
+		height: auto
+		flex-flow: column nowrap
+		.block01
+			width: 100%
+			height: 50em
+			img
+				width: 20em
+		.block02
+			width: 100%
+			height: 52em
+			.background
+				height: 52em
+
+
+@media (max-width: 320px)
+	
+	.blocks_columns
+		font-size: .8em
+		.block01
+			img
+				width: 18em
+	
+
+
+
+
+
+
+
+
