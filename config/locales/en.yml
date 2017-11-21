@@ -662,6 +662,8 @@ en:
     unload_warning: "The excursion is not saved!"
     top: "forMe"
   external: "external"
+  faq:
+    title: "Frequently Asked Questions"
   filter: "filter"
   follow:
     add_favorite: "Add favorite"

@@ -641,6 +641,8 @@ es:
     unload_warning: "¡La excursión no está salvada!"
     top: "paraMí"
   external: "externo"
+  faq:
+    title: "Preguntas frecuentes"
   filter: "filtrar"
   follow:
     add_favorite: "Añadir favorito"
