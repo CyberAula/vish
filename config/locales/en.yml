@@ -10,6 +10,7 @@ en:
         ¡: "¡"
         ́ : ""
   about:
+    agreement: "ViSH-UPM Agreement"
     blog: "News"
     contact: "Contact"
     code: "Source code"
