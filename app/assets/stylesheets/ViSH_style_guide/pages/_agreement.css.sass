@@ -6,12 +6,12 @@
 	background-size: $value
 
 .blocks_columns
-	height: 100vh
+	height: calc(100vh - 130px)
 	display: flex
 	flex-flow: row nowrap
 	justify-content: center
 	align-items: center
-	.block01
+	.block_img
 		width: 50%
 		height: 100vh
 		background-image: url(../assets/other/aula_upm.jpg)
@@ -25,7 +25,7 @@
 		align-items: center
 		img
 			width: 25em
-	.block02
+	.block_content_text
 		width: 50%
 		height: 100vh
 		background-image: url(../assets/other/aula_upm.jpg)
@@ -58,11 +58,11 @@
 
 	.blocks_columns
 		height: 60em
-		.block01
+		.block_img
 			height: 60em
 			img
 				width: 17em
-		.block02
+		.block_content_text
 			height: 60em
 			.background
 				height: 60em
@@ -71,17 +71,17 @@
 						font-size: 1.8em
 
 
-@media (max-width: 480px)
+@media (max-width: 584px)
 	
 	.blocks_columns
 		height: auto
 		flex-flow: column nowrap
-		.block01
+		.block_img
 			width: 100%
 			height: 50em
 			img
 				width: 20em
-		.block02
+		.block_content_text
 			width: 100%
 			height: 52em
 			.background
@@ -92,7 +92,7 @@
 	
 	.blocks_columns
 		font-size: .8em
-		.block01
+		.block_img
 			img
 				width: 18em
 	
