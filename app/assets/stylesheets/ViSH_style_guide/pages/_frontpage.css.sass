@@ -104,8 +104,16 @@
       .vishphoto
         z-index: 1
         width: 100%
+        height: auto
+        @media (max-width: 480px)
+          display: none
       .vishphoto_mobile
         display: none
+        @media (max-width: 480px)
+          display: block
+          z-index: 1
+          width: 100%
+          height: auto
       .gradient1
         z-index: 2
         position:  absolute
@@ -113,7 +121,7 @@
         left: 0
         bottom: 0
         right: 0
-        background: rgba(0,124,200,0.6)
+        //background: rgba(0,124,200,0.6)
       .tree
         z-index: 5
         width: 32%
