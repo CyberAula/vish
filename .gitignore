@@ -51,6 +51,7 @@ public/scorm/packages/*
 
 #web apps
 public/webappscode/*
+public/newappsdirectory/*
 
 #tmp files
 public/tmp/json/*

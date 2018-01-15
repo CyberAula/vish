@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<script type="text/javascript">
 		var protocol = (document.location.protocol==="file:" ? "http:" : document.location.protocol);
-		<% resources = ["/imscp_api/jquery-1.11.1.min.js","/imscp_api/IMSCP_Player.js","/apis/iframe_api.js"] %>
+		<% resources = ["/imscp_api/jquery-3.2.1.min.js","/imscp_api/IMSCP_Player.js"] %>
 		<% resources.each do |resource| %>
 			document.write(unescape("%3Cscript src='" + protocol + "//<%=Vish::Application.config.domain + resource%>' type='text/javascript'%3E%3C/script%3E"));
 		<% end %>
@@ -13,7 +13,7 @@
 <body>
 	<script type="text/javascript">
 		//Create IMSCP player
-		var IMSCP_Player = new IMSCP_Player({debug: false, IMSCP_VERSION: "<%=imscpPackage.imscp_version%>", VISH_IFRAME_API: VISH.IframeAPI, IMSCP_PACKAGE_URL: "<%=imscpPackage.loresourceurl%>", IMSCP_PACKAGE_NAVIGATION: JSON.parse(<%= raw imscpPackage.lohrefs.to_json %>) });
+		var IMSCP_Player = new IMSCP_Player({debug: false, IMSCP_VERSION: "<%=imscpPackage.imscp_version%>", IMSCP_PACKAGE_URL: "<%=imscpPackage.loresourceurl%>", IMSCP_PACKAGE_NAVIGATION: JSON.parse(<%= raw imscpPackage.lohrefs.to_json %>) });
 
 		IMSCP_Player.loadIMSCPContent(function(){
 			// IMSCP content loaded

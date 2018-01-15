@@ -29,8 +29,7 @@ function IMSCP_Player(options){
 		language: undefined,
 		IMSCP_VERSION: undefined,
 		IMSCP_PACKAGE_URL: undefined,
-		IMSCP_PACKAGE_NAVIGATION: undefined,
-		VISH_IFRAME_API: undefined
+		IMSCP_PACKAGE_NAVIGATION: undefined
 	};
 
 	// Settings merged with defaults and extended options */
