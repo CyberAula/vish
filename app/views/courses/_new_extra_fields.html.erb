@@ -38,6 +38,16 @@
 	<%= f.text_field :accredited_logo, :class => "form-control" %>
 </section>
 
+<div class="checkbox_course_field">
+	<%= f.check_box :self_learning_format, :class => "form-control" %>
+	<%= f.label :self_learning_format, t('course.fields.self_learning_format') %>
+</div>
+
+<section class="duration_text">
+	<%= f.label :duration_text, t('course.fields.duration_text') %>
+	<%= f.text_field :duration_text, :class => "form-control" %>
+</section>
+
 <section class="">
     <%= f.label t('course.fields.start_date') %>
     <%= date_select "course", "start_date", :order => [:day, :month, :year], :end_year => Date.today.year+1, :start_year => Date.today.year, :prompt => {:day => 'Day', :month => 'Month', :year => 'Year'} %>

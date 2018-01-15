@@ -76,6 +76,6 @@ class CoursesController < ApplicationController
   private
 
   def allowed_params
-    [:start_date, :end_date, :restricted, :restriction_email, :restriction_password, :accredited, :accredited_text, :accredited_logo, :moodle_url, :course_password, :closed, :avatar, :attachment, :language, :license_id, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
+    [:start_date, :end_date, :restricted, :restriction_email, :restriction_password, :accredited, :accredited_text, :accredited_logo, :self_learning_format, :duration_text, :moodle_url, :course_password, :closed, :avatar, :attachment, :language, :license_id, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
   end
 end
