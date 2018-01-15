@@ -350,6 +350,9 @@ en:
     date_range: "from %{date_from} to %{date_to}"
     extra_info: "Other information (visible only by the owner)"
     fields:
+      accredited: "Accredited"
+      accredited_text: "Accreditation text (for example: ' Accredited by the Community of Madrid')"
+      accredited_logo: "Accreditation logo URL (will be placed over the thumbnail)"
       closed: "Close course. Warning this disables users going to the course"
       course_password: "Moodle course password"
       course_program: "Course Program"
