@@ -48,7 +48,9 @@ class Scormfile < ActiveRecord::Base
       Scorm::Package.open(zipfile.file, :cleanup => true) do |pkg|
         resource.schema = pkg.manifest.schema
         resource.schemaversion = pkg.manifest.schema_version
-        resource.lohref = pkg.manifest.resources.first.href
+        scormResourceHrefs = pkg.manifest.resources.map{|r| r.href}
+        resource.lohrefs = scormResourceHrefs.to_json
+        resource.lohref = scormResourceHrefs.first
         pkgPath = pkg.path
       end
 
@@ -89,7 +91,9 @@ class Scormfile < ActiveRecord::Base
         Scorm::Package.open(self.file, :cleanup => true) do |pkg|
           self.schema = pkg.manifest.schema
           self.schemaversion = pkg.manifest.schema_version
-          self.lohref = pkg.manifest.resources.first.href
+          scormResourceHrefs = pkg.manifest.resources.map{|r| r.href}
+          self.lohrefs = scormResourceHrefs.to_json
+          self.lohref = scormResourceHrefs.first
           pkgPath = pkg.path
         end
       else
