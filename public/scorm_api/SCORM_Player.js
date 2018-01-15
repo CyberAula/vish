@@ -18,7 +18,7 @@ function SCORM_Player(options){
 		SCORM_RESOURCE_URLS: undefined,
 		NAVBAR: undefined,
 		LMS_API: undefined,
-		LOCALE: "en",
+		LOCALE: undefined,
 		IFRAME_API: undefined
 	};
 
@@ -57,6 +57,15 @@ function SCORM_Player(options){
 	if(typeof settings.NAVBAR == "undefined"){
 		settings.NAVBAR = (settings.SCORM_RESOURCE_URLS.length > 1);
 	}
+
+	if(!isValidLanguage(settings.LOCALE)){
+		var uL = getUserLanguage();
+		if(isValidLanguage(uL)){
+			settings.LOCALE = uL;
+		} else {
+			settings.LOCALE = "en"; //Default language
+		}
+	}
 	
 	if((typeof settings.LMS_API != "undefined")&&(typeof settings.IFRAME_API != "undefined")){
 		setSCORMGateway();
@@ -85,7 +94,7 @@ function SCORM_Player(options){
 											settings.LMS_API.setCMILMSValue("learner_name",user.username);
 										}
 									}
-									if((typeof user.language == "string")&&(["en","es"].indexOf(user.language)!=-1)){
+									if((typeof user.language == "string")&&(isValidLanguage(user.language))){
 										settings.LOCALE = user.language;
 									}
 								}
@@ -156,17 +165,9 @@ function SCORM_Player(options){
 	function createNavBar(){
 		var navbar = $('<div id="scormnavbar"><div id="scormnavbar_prev"></div><div id="scormnavbar_title"></div><div id="scormnavbar_next"></div></div>');
 		
-		var prevText;
-		var nextText;
-		switch(settings.LOCALE){
-			case "es":
-				prevText = "Anterior";
-				nextText = "Siguiente";
-				break;
-			default:
-				prevText = "Previous";
-				nextText = "Next";
-		}
+		var prevText = getTransFromLocales(SCORM_PLAYER_LOCALES,"i.prevText");
+		var nextText = getTransFromLocales(SCORM_PLAYER_LOCALES,"i.nextText");
+		
 		$(navbar).find("#scormnavbar_prev").html(prevText);
 		$(navbar).find("#scormnavbar_next").html(nextText);
 
@@ -305,6 +306,69 @@ function SCORM_Player(options){
 			}
 		}
 		return url;
+	};
+
+	function getUserLanguage(){
+		//Locale in URL
+		var urlParams = readURLparams();
+		if(isValidLanguage(urlParams["locale"])){
+			return urlParams["locale"];
+		}
+		//Browser language
+		var browserLang = (navigator.language || navigator.userLanguage);
+		if(isValidLanguage(browserLang)){
+			return browserLang;
+		}
+		return undefined;
+	};
+
+	function isValidLanguage(language){
+		return ((typeof language == "string")&&(["en","es"].indexOf(language)!=-1));
+	};
+
+	function getTransFromLocales(locales,s,params){
+		//First language
+		if((typeof locales[settings.LOCALE] != "undefined")&&(typeof locales[settings.LOCALE][s] == "string")) {
+			return getTransWithParams(locales[settings.LOCALE][s],params);
+		}
+
+		//Default language
+		if((settings.LOCALE != "en")&&(typeof locales["en"] != "undefined")&&(typeof locales["en"][s] == "string")){
+			return getTransWithParams(locales["en"][s],params);
+		}
+
+		return undefined;
+	};
+
+	/*
+	 * Replace params (if they are provided) in the translations keys. Example:
+	 * // "i.dtest"	: "Download #{name}",
+	 * // getTrans("i.dtest", {name: "SCORM package"}) -> "Download SCORM package"
+	 */
+	function getTransWithParams(trans,params){
+		if(typeof params != "object"){
+			return trans;
+		}
+
+		for(var key in params){
+			var stringToReplace = "#{" + key + "}";
+			if(trans.indexOf(stringToReplace)!=-1){
+				trans = trans.replaceAll(stringToReplace,params[key]);
+			}
+		};
+
+		return trans;
+	};
+
+	var SCORM_PLAYER_LOCALES = {
+		"en": {
+			"i.prevText": "Previous",
+			"i.nextText": "Next"
+		},
+		"es": {
+			"i.prevText": "Anterior",
+			"i.nextText": "Siguiente"
+		}
 	};
 
 	function setSCORMGateway(){

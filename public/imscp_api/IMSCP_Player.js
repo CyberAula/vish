@@ -289,21 +289,12 @@ function IMSCP_Player(options){
 		}
 
 		//Default language
-		if((_language != "en")&&(typeof locales["en"] != "undefined")&&(typeof locales["en"][s] == "string")){
+		if((settings.language != "en")&&(typeof locales["en"] != "undefined")&&(typeof locales["en"][s] == "string")){
 			return getTransWithParams(locales["en"][s],params);
 		}
 
 		return undefined;
 	};
-
-	var IMSCP_PLAYER_LOCALES = {
-		"en": {
-			"i.header_title": "Navigation"
-		},
-		"es": {
-			"i.header_title": "Navegación"
-		}
-	}
 
 	/*
 	 * Replace params (if they are provided) in the translations keys. Example:
@@ -323,6 +314,15 @@ function IMSCP_Player(options){
 		};
 
 		return trans;
+	};
+
+	var IMSCP_PLAYER_LOCALES = {
+		"en": {
+			"i.header_title": "Navigation"
+		},
+		"es": {
+			"i.header_title": "Navegación"
+		}
 	};
 
 
