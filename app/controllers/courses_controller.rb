@@ -28,6 +28,8 @@ class CoursesController < ApplicationController
         is_ok = true
       elsif @course.restriction_password.present? && params[:password].present? &&  params[:password]== @course.restriction_password
         is_ok = true
+      elsif @course.restriction_email_list.present? && @course.can_enrol_user_with_mail(current_user.email)
+        is_ok = true
       else
         flash[:errors] = t('course.flash.not_allowed')
       end
@@ -76,6 +78,6 @@ class CoursesController < ApplicationController
   private
 
   def allowed_params
-    [:start_date, :end_date, :restricted, :restriction_email, :restriction_password, :accredited, :accredited_text, :accredited_logo, :self_learning_format, :duration_text, :moodle_url, :course_password, :closed, :avatar, :attachment, :language, :license_id, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
+    [:start_date, :end_date, :restricted, :restriction_email, :restriction_email_list, :restriction_password, :accredited, :accredited_text, :accredited_logo, :self_learning_format, :duration_text, :moodle_url, :course_password, :closed, :avatar, :attachment, :language, :license_id, :age_min, :age_max, :scope, :avatar, :tag_list=>[]]
   end
 end

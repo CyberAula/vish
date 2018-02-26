@@ -70,7 +70,7 @@
                     <div class=""><%=t('course.msgs.course_ended')%></div>
                   <% else %>
                     <% if user_signed_in? %>
-                      <%if !@course.restricted || (@course.restricted && @course.restriction_email.present? && (current_user.email.ends_with? @course.restriction_email))%>
+                      <%if !@course.restricted || (@course.restricted && @course.restriction_email.present? && (current_user.email.ends_with? @course.restriction_email) || (@course.restriction_email_list.present? && @course.can_enrol_user_with_mail(current_user.email)))%>
                         <%= form_for @course, :url => { :action => :join }, method: "post"  do |f| %>
                           <%= f.submit t('course.actions.enrol'), class: "btn btn-primary" %>
                         <% end %>
@@ -114,6 +114,11 @@
               <p><%=t('course.fields.restriction_password') + ": " + @course.restriction_password%></p>
             <%else%>
               <p><%=t("course.no_restriction_password")%></p>
+            <%end%>
+            <%if @course.restriction_email_list.present?%>
+              <p><%=t('course.fields.restriction_email_list') + t('course.fields.restriction_email_list_help')%></p>
+            <%else%>
+              <p><%=t("course.no_restriction_email_list")%></p>
             <%end%>
         <%else%>
             <p><%=t('course.has_no_restrictions')%></p>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180115105425) do
+ActiveRecord::Schema.define(:version => 20180222172400) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -271,6 +271,12 @@ ActiveRecord::Schema.define(:version => 20180115105425) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.boolean  "accredited",              :default => false
+    t.text     "accredited_text"
+    t.text     "accredited_logo"
+    t.boolean  "self_learning_format",    :default => false
+    t.text     "duration_text"
+    t.text     "restriction_email_list"
   end
 
   create_table "courses_users", :id => false, :force => true do |t|
