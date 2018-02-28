@@ -49,7 +49,7 @@
                     </div>
                     <p>
                       <div>
-                        <% if @course.has_password? %>
+                        <% if @course.course_password.present? %>
                           <%= raw t('course.first_mail.body4', :name => @course.title, :password => @course.course_password) %>
                         <% else %>
                           <%= raw t('course.first_mail.body4b', :name => @course.title) %>
