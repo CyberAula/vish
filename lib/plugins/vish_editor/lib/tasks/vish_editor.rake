@@ -46,9 +46,6 @@ namespace :vish_editor do
     system "rm -rf " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/*"
     system "rm -rf " + VISH_EDITOR_PLUGIN_PATH + "/app/views/*"
     system "rm -rf " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/*"
-    system "rm -rf " + VISH_EDITOR_PATH + "/examples/contents/scorm/images"
-    system "rm -rf " + VISH_EDITOR_PATH + "/examples/contents/scorm/javascripts"
-    system "rm -rf " + VISH_EDITOR_PATH + "/examples/contents/scorm/stylesheets"
 
     system "mkdir -p " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/"
     system "mkdir -p " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions"
@@ -64,11 +61,6 @@ namespace :vish_editor do
     system "cp " + VISH_EDITOR_PATH + "/js/VISH.IframeAPI.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/"
     system "cp " + VISH_EDITOR_PATH + "/js/libs/RegaddiChart.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/"
     system "cp " + VISH_EDITOR_PATH + "/js/VISH.QuizCharts.js " + VISH_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/"
-
-    system "cp " + VISH_EDITOR_PATH + "/examples/SCORM_APP/jquery-1.11.1.min.js " + "public/scorm_api/"
-    system "cp " + VISH_EDITOR_PATH + "/examples/SCORM_APP/Local_API_SCORM_12.js " + "public/scorm_api/"
-    system "cp " + VISH_EDITOR_PATH + "/examples/SCORM_APP/Local_API_1484_11.js " + "public/scorm_api/"
-    system "cp " + VISH_EDITOR_PATH + "/examples/SCORM_APP/SCORM_Player.js " + "public/scorm_api/"
 
     #Copy HTML
     system "sed -n  '/<!-- Copy HTML from here -->/,/<!-- Copy HTML until here -->/p' " + VISH_EDITOR_PATH + "/viewer.html > " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer.full.erb"
@@ -182,8 +174,6 @@ namespace :vish_editor do
     system "sed -i 's/\\\/images\\\//images\\\//g' " + VISH_EDITOR_PLUGIN_PATH + "/app/views/excursions/_vish_viewer_scorm.full.erb"
     system "sed -i 's/\\\/images\\\//..\\\/..\\\/images\\\//g' " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/stylesheets/*/*css"
     
-    #Copy files to scorm folder in ViSH Editor
-    # system "cp -r " + VISH_EDITOR_PLUGIN_PATH + "/app/scorm/* " + VISH_EDITOR_PATH + "/examples/contents/scorm/"
   end
 
   task :rewritePaths do
