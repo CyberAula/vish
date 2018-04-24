@@ -2,11 +2,25 @@
 <html lang="en" style="height: 100%">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <title>Ging Editor</title>
-
+    <meta name="author" content="GING">
+    <meta name="description" content="E-learning authoring tool built with React & Redux.">
+    <meta property="og:description" content="E-learning authoring tool built with React & Redux.">
+    <meta property="og:title" content="Ediphy">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>EDiphy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML&messageStyle=none&showProcessingMessages=false"></script>
     <%= yield :ediphy_head %>
+    <script src="/assets/lib/html2canvas.min.js"></script>
     <script src="/assets/lib/ckeditor/ckeditor.js"></script>
+    <script src="/assets/lib/jspdf.js"></script>
+
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({showProcessingMessages: false,
+                           showMathMenu: false,
+                           messageStyle: "none" });
+    </script>
     <script>
         var ediphy_editor_json = '<%= raw ediphy_editor_json %>';
     </script>
