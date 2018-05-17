@@ -140,7 +140,7 @@ namespace :ediphy do
 	end
 
 	task :rewrite_api_paths do
-		system "mv " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/lib/jspdf.debug.js " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/lib/jspdf.debug.js"
+		system "mv " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/lib/jspdf.debug.js " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/lib/jspdf.js"
 		#system "sed -i 's#" + REGEX_SAVE+ "#" + SAVE_URL_DALI + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
 		#system "sed -i 's#" + REGEX_GET+ "#" + GET_URL_DALI + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
 	end
