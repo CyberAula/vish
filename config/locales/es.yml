@@ -382,7 +382,7 @@ es:
       delete_alert: "¿Estás seguro? Si eliminas este documento los cambios NO podrán recuperarse."
       edit: "Editar"
       favorite: "Favoritas"
-    other: "Nuevo Editor"
+    other: "Documentos Ediphy"
   date_name: "fecha"
   description: "descripción"
   devise:
@@ -432,6 +432,8 @@ es:
       create_group_title: "Modal para la creación de grupos de alumnos"
       create_group_p1: "Rellena el formulario con el nombre que desees darle al grupo y el número de alumnos que contiene"
       create_group_p2: "Una vez creado tendrás esa cantidad de cuentas de alumnos y podrás bajarte las credenciales para que accedan"
+      ediphydocument1_html: "Documentos Ediphy"
+      ediphydocument2_html: "En esta sección se muestra el documento ediphy al que ha accedido.</br> Puedes navegar por las páginas del documento ediphy haciendo clic en las flechas, haciendo clic en la parte izquierda sobre el índice o usando las teclas de dirección del teclado.</br> En la zona de la derecha se muestran excursiones recomendadas, bajo la excursión se muestra la información de la misma, así como opciones para compartirla , descargarla (en formato SCORM), notificar contenidos inapropiados o spam, clonarla, añadirla a sus favoritos, o añadirla a una categoría.</br> También puede comentar el documento desde la parte inferior."
       embed:
         title: "Incrustar este enlace"
         content: "Si marca esta opción el sitio web referenciado por el enlace será incrustado en la página de la plataforma correspondiente al enlace añadido. De este modo no sólo se mostrará el texto del enlace sino también el contenido referenciado."
@@ -998,7 +1000,7 @@ es:
       all_resources: "Todos los Recursos"
       audio: "Audios"
       category: "Categorías"
-      ediphydocument: "Nuevo Editor"
+      ediphydocument: "Documentos Ediphy"
       document: "Documentos"
       embed: "Embeds"
       event: "Eventos"

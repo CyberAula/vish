@@ -98,7 +98,7 @@ class EdiphyDocumentsController < ApplicationController
 		            redirect_to "/"
 		          end
 		        else
-		          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument]})
+		          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument, Excursion]})
 		          ActorHistorial.saveAO(current_subject,@ediphy_document)
 		          render
 		        end
@@ -111,7 +111,7 @@ class EdiphyDocumentsController < ApplicationController
 		            redirect_to "/"
 		          end
 		        else
-		          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument]})
+		          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument, Excursion]})
 		          ActorHistorial.saveAO(current_subject,@ediphy_document)
 		          render
 		        end

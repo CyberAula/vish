@@ -1,3 +1,4 @@
+<% availableModels ||= available_models %>
 <script>
   var delete_function = function(ediphy_id){
     if(confirm("<%=t('ediphy_document.actions.delete_alert')%>")){
@@ -54,7 +55,13 @@
       </button>
     <%end%>
 
-
+    <!--Categorize-->
+    <%if user_signed_in? and availableModels.include? "Category" %>
+      <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @ediphy_document} %>
+      <button id="AddCategory" role="button" class="categorize_select btn with_tooltip" data-toggle="modal" data-target="#categories_viewer_modal" title="<%=t('category.modalLabel')%>" aria-hidden="true" >
+        <i class="fa fa-th-large"></i>
+      </button>
+    <%end%>
   <%end%>
 </div>
 
