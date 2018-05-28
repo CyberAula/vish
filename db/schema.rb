@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20171019151615) do
+ActiveRecord::Schema.define(:version => 20180115172400) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -265,12 +265,17 @@ ActiveRecord::Schema.define(:version => 20171019151615) do
     t.boolean  "restricted",              :default => false
     t.string   "restriction_email"
     t.string   "restriction_password"
-    t.string   "url"
+    t.string   "moodle_url"
     t.string   "course_password"
     t.string   "attachment_file_name"
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.boolean  "accredited",              :default => false
+    t.text     "accredited_text"
+    t.text     "accredited_logo"
+    t.boolean  "self_learning_format",    :default => false
+    t.text     "duration_text"
   end
 
   create_table "courses_users", :id => false, :force => true do |t|
@@ -629,6 +634,7 @@ ActiveRecord::Schema.define(:version => 20171019151615) do
     t.string   "scorm_version"
     t.string   "lohref"
     t.string   "loresourceurl"
+    t.text     "lohrefs"
   end
 
   create_table "service_permissions", :force => true do |t|
