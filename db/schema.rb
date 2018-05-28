@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20180115172400) do
+ActiveRecord::Schema.define(:version => 20180222172400) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -276,6 +276,7 @@ ActiveRecord::Schema.define(:version => 20180115172400) do
     t.text     "accredited_logo"
     t.boolean  "self_learning_format",    :default => false
     t.text     "duration_text"
+    t.text     "restriction_email_list"
   end
 
   create_table "courses_users", :id => false, :force => true do |t|

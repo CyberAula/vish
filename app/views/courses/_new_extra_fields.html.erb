@@ -1,6 +1,6 @@
 <section class="">
-	<%= f.label :url, t('course.fields.url') %>
-	<%= f.text_field :url, :class => "form-control" %>
+	<%= f.label :moodle_url, t('course.fields.url') %>
+	<%= f.text_field :moodle_url, :class => "form-control" %>
 </section>
 
 <section class="">
@@ -21,6 +21,36 @@
 <section class="restriction_password">
 	<%= f.label :restriction_password, t('course.fields.restriction_password') %>
 	<%= f.text_field :restriction_password, :class => "form-control" %>
+</section>
+
+<section class="restriction_email_list">
+	<%= f.label :restriction_email_list, t('course.fields.restriction_email_list') %>
+	<%= f.text_area :restriction_email_list, :class => "form-control", cols: "30", rows: "10" %>
+</section>
+
+<div class="checkbox_course_field">
+	<%= f.check_box :accredited, :class => "form-control" %>
+	<%= f.label :accredited, t('course.fields.accredited') %>
+</div>
+
+<section class="accredited_text">
+	<%= f.label :accredited_text, t('course.fields.accredited_text') %>
+	<%= f.text_field :accredited_text, :class => "form-control" %>
+</section>
+
+<section class="accredited_logo">
+	<%= f.label :accredited_logo, t('course.fields.accredited_logo') %>
+	<%= f.text_field :accredited_logo, :class => "form-control" %>
+</section>
+
+<div class="checkbox_course_field">
+	<%= f.check_box :self_learning_format, :class => "form-control" %>
+	<%= f.label :self_learning_format, t('course.fields.self_learning_format') %>
+</div>
+
+<section class="duration_text">
+	<%= f.label :duration_text, t('course.fields.duration_text') %>
+	<%= f.text_field :duration_text, :class => "form-control" %>
 </section>
 
 <section class="">
@@ -50,19 +80,42 @@
         var checked = $(this).prop('checked');
         var pass_input = $("#course_restriction_password");
         var email_input = $("#course_restriction_email");
+				var email_list_input = $("#course_restriction_email_list");
 
-        if(checked){
+				if(checked){
           $(pass_input).removeAttr("disabled");
           $(email_input).removeAttr("disabled");
+					$(email_list_input).removeAttr("disabled");
         } else {
           $(pass_input).attr("disabled","disabled");
           $(email_input).attr("disabled","disabled");
+					$(email_list_input).attr("disabled","disabled");
         }
       });
 
       if( !$("#course_restricted").prop('checked')){
       	$("#course_restriction_password").attr("disabled","disabled");
         $("#course_restriction_email").attr("disabled","disabled");
+				$("#course_restriction_email_list").attr("disabled","disabled");
+      }
+
+			$("#course_accredited").change(function(){
+        var checked = $(this).prop('checked');
+        var acc_text_input = $("#course_accredited_text");
+        var logo_input = $("#course_accredited_logo");
+
+        if(checked){
+          $(acc_text_input).removeAttr("disabled");
+          $(logo_input).removeAttr("disabled");
+        } else {
+          $(acc_text_input).attr("disabled","disabled");
+          $(logo_input).attr("disabled","disabled");
+        }
+      });
+
+			if( !$("#course_accredited").prop('checked')){
+      	$("#course_accredited_text").attr("disabled","disabled");
+        $("#course_accredited_logo").attr("disabled","disabled");
       }
     });
 </script>

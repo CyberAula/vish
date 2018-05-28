@@ -25,23 +25,28 @@ footer#footer
           color: $gray-dark
       .fa-facebook
         font-size: 1.25rem
-
-
+  .upmlogo
+    float: left
+    cursor: default
+    img
+      width: 30px
+      cursor: pointer
+    span
+      margin-left: 10px
+      color: #1867b7
+      font-size: 1.7em
+      font-weight: bold
+      user-select: none
   ul
     margin: 0 auto
     padding: 0
     height: 63px
     width: 640px
     text-align: center
-    //border-bottom: 2px solid #C7C7C7
-    //padding-bottom: 21px
-
-
   .open
     .btn
       &:hover
         border: 1px solid transparent
-
   li
     float: left
     padding-left: 1%
@@ -60,14 +65,11 @@ footer#footer
         margin-right: 5px
         vertical-align: baseline
         width: 15px
-
-
       &:hover,
       &:focus
         border: 1px solid transparent
         background-color: rgba(0, 0, 0, 0)
         color: $black
-
     .dropdown-menu
       width: auto
       height: auto
@@ -75,12 +77,10 @@ footer#footer
       float: none
       .dropdown-toggle
         width: 100%
-
   li.btn-group
     @media (max-width: 500px)
       display: block
       min-height: 34px
-
   li.global
     img
       width: 116px
@@ -92,7 +92,6 @@ footer#footer
     display: block
     width: 100%
     padding: 0
-
 #push
   height: 100px
   clear: both

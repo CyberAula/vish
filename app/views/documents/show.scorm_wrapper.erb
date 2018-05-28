@@ -5,7 +5,7 @@
 	<script type="text/javascript">
 		var protocol = (document.location.protocol==="file:" ? "http:" : document.location.protocol);
 		<%
-			resources = ["/scorm_api/jquery-1.11.1.min.js","/scorm_api/SCORM_Player.js","/apis/iframe_api.js"]
+			resources = ["/scorm_api/jquery-3.2.1.min.js","/scorm_api/SCORM_Player.js","/apis/iframe_api.js"]
 			case scormPackage.scorm_version
 			when "1.2"
 				resources.push("/scorm_api/Local_API_SCORM_12.js");
@@ -23,7 +23,8 @@
 	<script type="text/javascript">
 		//SCORM URL
 		var scormpackageURL = "<%=scormPackage.loresourceurl%>";
-		
+		var scormResourceURLs = JSON.parse(<%= raw scormPackage.lohrefs.to_json %>);
+
 		// Create LMS API
 		var LMS_API;
 		<% if scormPackage.scorm_version == "1.2" %>
@@ -35,7 +36,7 @@
 		<% end %>
 		
 		//Create SCORM player
-		var SCORM_Player = new SCORM_Player({debug: false, SCORM_VERSION: "<%=scormPackage.scorm_version%>", LMS_API: LMS_API, VISH_IFRAME_API: VISH.IframeAPI, SCORM_PACKAGE_URL: scormpackageURL });
+		var SCORM_Player = new SCORM_Player({debug: false, SCORM_VERSION: "<%=scormPackage.scorm_version%>", LMS_API: LMS_API, IFRAME_API: VISH.IframeAPI, SCORM_PACKAGE_URL: scormpackageURL, SCORM_RESOURCE_URLS: scormResourceURLs });
 
 		SCORM_Player.loadScormContent(function(){
 			// Scorm content loaded
