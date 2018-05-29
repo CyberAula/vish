@@ -6,7 +6,7 @@ gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => "3-2-stable"
 #Database Adapters
 gem 'sqlite3', '= 1.3.9'
 gem 'pg', '= 0.17.1'
-gem 'mysql2', '= 0.3.16'
+#gem 'mysql2', '= 0.3.16'
 
 gem 'sass-rails', '= 3.2.6'
 gem 'bootstrap-sass', '= 3.1.1.0'

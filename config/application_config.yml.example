@@ -21,6 +21,8 @@ development:
   catalogue:
     mode: "matchtag" #matchany or matchtag
     qualityThreshold: 5
+  twitter:
+    user: "@vish_portal"
   #Uncomment to enable recaptcha. Get your own keys from https://www.google.com/recaptcha
   #recaptcha:
   #  site_key: AAABBBCCC

@@ -25,6 +25,7 @@ namespace :scheduled do
     metricsParams = Vish::Application::config.metrics_default_ranking
     modelCoefficients = {}
     modelCoefficients[:Excursion] = metricsParams[:coefficients][:excursion] || 1
+    modelCoefficients[:EdiphyDocument] = metricsParams[:coefficients][:ediphy_document] || 1
     modelCoefficients[:Resource] = metricsParams[:coefficients][:resource] || 1
     modelCoefficients[:User] = metricsParams[:coefficients][:user] || 1
     modelCoefficients[:Event] = metricsParams[:coefficients][:event] || 1
@@ -91,6 +92,8 @@ namespace :scheduled do
         case ao.object_type
         when "Excursion"
           ao.ranking = ao.ranking * modelCoefficients[:Excursion]
+        when "EdiphyDocument"
+          ao.ranking = ao.ranking * modelCoefficients[:EdiphyDocument]
         when "Category"
           ao.ranking = ao.ranking * modelCoefficients[:Category]
         else
@@ -200,6 +203,7 @@ namespace :scheduled do
 
     unless userAOs.blank?
       #Get values to normalize scores
+      #TODO: Take into account EdiphyDocuments for calculating user popularity
       user_maxFollowerCount = [userAOs.maximum(:follower_count),1].max
       user_maxResourcesPopularity = [userAOs.map{|ao| 
         Excursion.authored_by(ao.object).map{|e| e.popularity}.sum
@@ -300,6 +304,7 @@ namespace :scheduled do
 
     modelCoefficients = {}
     modelCoefficients[:Excursion] = metricsParams[:coefficients][:excursion] || 1
+    modelCoefficients[:EdiphyDocument] = metricsParams[:coefficients][:ediphy_document] || 1
     modelCoefficients[:Resource] = metricsParams[:coefficients][:resource] || 1
     modelCoefficients[:User] = metricsParams[:coefficients][:user] || 1
     modelCoefficients[:Event] = metricsParams[:coefficients][:event] || 1
@@ -309,6 +314,8 @@ namespace :scheduled do
       ao.popularity = ao.popularity * resourcesCoefficient
       if ao.object_type == "Excursion"
         ao.popularity = ao.popularity * modelCoefficients[:Excursion]
+      elsif ao.object_type == "EdiphyDocument"
+        ao.popularity = ao.popularity * modelCoefficients[:EdiphyDocument]
       else
         ao.popularity = ao.popularity * modelCoefficients[:Resource]
       end

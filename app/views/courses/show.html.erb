@@ -1,4 +1,4 @@
-<%content_for :title do %><%= @course.title %> - <%= !@course.author.nil? ? @course.author.name : "" %><% end %>
+<%content_for :title do %><%= @course.title %><% end %>
 <%content_for :description do %><%=t("site.meta_desc.course")+@course.title + ". " + (@course.description ? @course.description : "")%><% end %>
 <%content_for :keywords do %><%= @course.tag_list %><% end %>
 <%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@course), @course)%><%end%>
@@ -50,7 +50,7 @@
         <div class="clear"></div>
       <% end %>
 
-      <% if user_enrolled && @course.course_password %>
+      <% if user_enrolled && @course.course_password.present? %>
         <h2><%=t('course.show_password')%></h2>
         <p><%=t('course.fields.course_password') + ": " + @course.course_password%></p>
       <% end %>
@@ -61,16 +61,16 @@
             <div class=""><%=t('course.msgs.course_closed')%></div>
           <% else %>
               <%if user_enrolled %>
-                  <a class="btn btn-default" href="<%=@course.url%>" target="_blank"><%=t('course.actions.go')%></a>
+                  <a class="btn btn-default" href="<%=@course.moodle_url%>" target="_blank"><%=t('course.actions.go')%></a>
                   <%= form_for @course, :url => { :action => :leave }, method: "post"  do |f| %>
                     <%= f.submit t('course.actions.leave'), class: "btn btn-primary" %>
                   <% end %>
               <%else%>
                   <% if @course.end_date.present? && @course.end_date < Date.today %>
-                    <div class=""><%=t('course.msgs.course_ended')%></div>                  
+                    <div class=""><%=t('course.msgs.course_ended')%></div>
                   <% else %>
                     <% if user_signed_in? %>
-                      <%if !@course.restricted || (@course.restricted && @course.restriction_email.present? && (current_user.email.ends_with? @course.restriction_email))%>
+                      <%if !@course.restricted || (@course.restricted && @course.restriction_email.present? && (current_user.email.ends_with? @course.restriction_email) || (@course.restriction_email_list.present? && @course.can_enrol_user_with_mail(current_user.email)))%>
                         <%= form_for @course, :url => { :action => :join }, method: "post"  do |f| %>
                           <%= f.submit t('course.actions.enrol'), class: "btn btn-primary" %>
                         <% end %>
@@ -115,6 +115,11 @@
             <%else%>
               <p><%=t("course.no_restriction_password")%></p>
             <%end%>
+            <%if @course.restriction_email_list.present?%>
+              <p><%=t('course.fields.restriction_email_list') + t('course.fields.restriction_email_list_help')%></p>
+            <%else%>
+              <p><%=t("course.no_restriction_email_list")%></p>
+            <%end%>
         <%else%>
             <p><%=t('course.has_no_restrictions')%></p>
         <%end%>
@@ -140,7 +145,7 @@
                 </div>
             </div>
         <%end%>
-        <a class="btn btn-default" href="<%=@course.url%>" target="_blank"><%=t('course.actions.go')%></a>
+        <a class="btn btn-default" href="<%=@course.moodle_url%>" target="_blank"><%=t('course.actions.go')%></a>
       <%end%>
 
     </div>

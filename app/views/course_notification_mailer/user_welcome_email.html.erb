@@ -24,7 +24,7 @@
                   <div style="line-height: 1.3em;height: auto;font-weight: 100;padding: 20px 50px 10px; color: #484848; background-color: #FFF; font-size: 15px;">
 
                     <p style="font-size: 20px;margin-bottom: 15px;">
-                    
+
                     <%if @user %>
                       <span><%=t('course.first_mail.body1') + " " + @user.name %>:</span>
                     <%end%>
@@ -41,13 +41,21 @@
 
                     <div style="margin-bottom:10px;padding-left: 20px;padding-bottom:10px;">
                       <p><%=t('course.first_mail.body6')%> </p>
-                      <a href="http://educainternet.es" style="text-decoration: none; color: black;font-weight: bold;">> <%=t('course.first_mail.body7')%></a>
+                      <a href="<%=Vish::Application.config.full_domain%>" style="text-decoration: none; color: black;font-weight: bold;">> <%=t('course.first_mail.body7')%></a>
                     </div>
                     <div style="margin-bottom:10px;padding-left: 20px;padding-bottom:10px;">
                       <p><%=t('course.first_mail.body6')%></p>
-                      <a href="<%=@course.url%>" style="text-decoration: none; color: black;font-weight: bold;">> <%=t('course.first_mail.body8')%></a>
+                      <a href="<%=@course.moodle_url%>" style="text-decoration: none; color: black;font-weight: bold;">> <%=t('course.first_mail.body8')%></a>
                     </div>
-                    <p><div><%= raw t('course.first_mail.body4', :name => @course.title, :password => @course.course_password) %></div></p>
+                    <p>
+                      <div>
+                        <% if @course.course_password.present? %>
+                          <%= raw t('course.first_mail.body4', :name => @course.title, :password => @course.course_password) %>
+                        <% else %>
+                          <%= raw t('course.first_mail.body4b', :name => @course.title) %>
+                        <% end %>
+                      </div>
+                    </p>
                     <br/>
                     <span><%=t('course.first_mail.body5')%></span>
                     <p style="padding-top: 15px;"><%=t('course.first_mail.body9')%></p>

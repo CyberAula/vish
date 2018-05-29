@@ -3,7 +3,7 @@
 class VishConfig
 
   def self.getMainModels
-    ["Excursion","Event","Category","Resource","Workshop","Course", "EdiphyDocument"]
+    ["Excursion","EdiphyDocument","Event","Category","Resource","Workshop","Course"]
   end
 
   def self.getFixedMainModels
@@ -15,7 +15,7 @@ class VishConfig
   end
 
   def self.getMainModelsWhichActAsResources
-    ["Excursion","Workshop"]
+    ["Excursion","EdiphyDocument","Workshop"]
   end
 
   def self.getAllLanguages
