@@ -92,7 +92,6 @@
         </span>
       </a>
     </li>
-    <% if false %>
       <li>
         <a href="#tab4" tabTitle='download' data-toggle="tab">
           <i class="fa fa-download"></i>
@@ -101,7 +100,6 @@
           </span>
         </a>
       </li>
-    <%end%>
     <li>
       <a href="#tab5" tabTitle='flag' data-toggle="tab">
         <i class="fa fa-flag"></i>
@@ -156,18 +154,17 @@
       <%= render :partial=>'shareon/share', :locals=>{:url=> request.env["HTTP_HOST"] + ediphy_document_path(@ediphy_document), :title => @ediphy_document.title, :name => (user_signed_in? ? current_subject.name : '')} %>
     </div>
     <%#TODO: GetUrl/Short Make sure helper work instead of request.env + ediphy_document_path%>
-    <% if false %>
       <!-- tab4 / scorm -->
       <div class="tab-pane contentscorm" id="tab4">
         <div class="contentscormc1">
-          <a class="btn btn-secundary" href='<%=excursion_path(@ediphy_document, :format => "scorm", :version => "12")%>'><i class="fa fa-download"></i> <%=t('ediphy_document.actions.scorm12')%></a>
-          <a class="btn btn-secundary" href='<%=excursion_path(@ediphy_document, :format => "scorm", :version => "2004")%>'><i class="fa fa-download"></i> <%=t('ediphy_document.actions.scorm2004')%></a>
+          <a class="btn btn-secundary" href='#' onclick="document.getElementById('presentation_editor_iframe').contentWindow.export('SCORM12');return false;"><i class="fa fa-download"></i> <%=t('ediphy_document.actions.scorm12')%></a>
+          <a class="btn btn-secundary" href='#' onclick="document.getElementById('presentation_editor_iframe').contentWindow.export('SCORM2004');return false;"><i class="fa fa-download"></i> <%=t('ediphy_document.actions.scorm2004')%></a>
+          <a class="btn btn-secundary" href='#' onclick="document.getElementById('presentation_editor_iframe').contentWindow.export('HTML');return false;"><i class="fa fa-download"></i> <%=t('ediphy_document.actions.html')%></a>
         </div>
         <div class="contentscormc2">
           <p><%=t("ediphy_document.download_scorm")%></p>
         </div>
       </div>
-    <% end %>
 
     <!-- tab5 / spam -->
     <div class="tab-pane" id="tab5">

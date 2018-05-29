@@ -70,10 +70,16 @@ class EdiphyDocumentsController < ApplicationController
 
 			### Refactor to fill_create parms
 			scope = JSON.parse(ed.json)["present"]["globalConfig"]["status"]
-			ed.draft = scope == "draft" ? true :  false
+			published = scope == "draft" ? true :  false
+			ed.draft = published
+			
 			ao = ed.activity_object
 			ao.scope = scope == "draft" ? 0 : 1
 			ed.save!
+
+			if published
+      			ed.afterPublish
+    		end
 
 			render json: { ediphy_id: ed.id}
 		else
@@ -136,6 +142,22 @@ class EdiphyDocumentsController < ApplicationController
 		end
 	end
 
+	def metadata
+		ed = EdiphyDocument.find_by_id(params[:id])
+	    respond_to do |format|
+	      format.any {
+	        unless ed.nil?
+	          xmlMetadata = EdiphyDocument.generate_LOM_metadata(JSON(ed.json),ed,{:id => Rails.application.routes.url_helpers.ediphy_document_url(:id => ed.id), :LOMschema => params[:LOMschema] || "custom"})
+	          render :xml => xmlMetadata.target!, :content_type => "text/xml"
+	        else
+	          xmlMetadata = ::Builder::XmlMarkup.new(:indent => 2)
+	          xmlMetadata.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
+	          xmlMetadata.error("Ediphy Document not found")
+	          render :xml => xmlMetadata.target!, :content_type => "text/xml", :status => 404
+	        end
+	      }
+	    end
+	end
 
 	private
 

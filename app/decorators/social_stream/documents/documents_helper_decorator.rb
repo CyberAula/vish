@@ -31,7 +31,6 @@ DocumentsHelper.module_eval do
         when "Imscpfile" then "scorm"
         when "Webapp" then "webapp"
         when "Workshop" then "book"
-        when "EdiphyDocument" then "webapp"
         when "Excursion" then "webapp"
         else "file" # SocialStream::Documents.icon_mime_types[:default]
       end
@@ -44,8 +43,10 @@ DocumentsHelper.module_eval do
       customAvatar = nil
     end
 
-    unless customAvatar.nil?
+    if !customAvatar.nil?
       return "<div class='img-box resource_avatar resource_avatar_for_#{ icon_name }' style='background-image: url("+customAvatar+")'></div>"
+    elsif document.class.name == "EdiphyDocument"
+      return "<i><img src=\"/assets/icons/icoEdiphy_white_24px.svg\" style=\"height:20px;width:20px;\"></img></i>".html_safe
     else
       return "<i class=\"fa fa-#{ icon_name }\"></i>".html_safe
     end
