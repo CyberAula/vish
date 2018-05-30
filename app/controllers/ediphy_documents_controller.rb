@@ -6,6 +6,7 @@ class EdiphyDocumentsController < ApplicationController
 	before_filter :authenticate_user!
 	after_filter :cors_set_access_control_headers, :only => [:create, :merge_json_params]
 	skip_load_and_authorize_resource :only => [:create, :update, :add_xml,:delete]
+	after_filter :notify_teacher, :only => [:create, :update]
 
 	def new
 		new! do |format|
@@ -158,6 +159,20 @@ class EdiphyDocumentsController < ApplicationController
 	      }
 	    end
 	end
+
+	def notify_teacher    
+    if VishConfig.getAvailableServices.include? "PrivateStudentGroups"
+      author_id = resource.author.user.id rescue nil
+      unless author_id.nil?
+        pupil = resource.author.user
+        if !pupil.private_student_group_id.nil? && pupil.private_student_group.teacher_notification == "ALL"
+          teacher = Actor.find(pupil.private_student_group.owner_id).user
+          resource_path = document_path(resource) #TODO get full path
+          TeacherNotificationMailer.notify_teacher(teacher, pupil, resource_path)
+        end
+      end
+    end
+  end
 
 	private
 
