@@ -16,13 +16,15 @@
       export_url: "/ediphy_documents/",
       edit_prefix: "/edit"
     };
-
+    
     function ediphy_exit_confirmation() {
-      return 'Non saved changes will be erased';
+      if(!window.publishing){
+        return 'Non saved changes will be erased';
+      }
     }
 
     window.onbeforeunload = ediphy_exit_confirmation;
-
+    
   </script>
 <% end %>
 
