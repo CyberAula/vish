@@ -1,4 +1,5 @@
 class EdiphyDocumentsController < ApplicationController
+	layout "ediphy", only: [:new, :edit]
 	include SocialStream::Controllers::Objects
 
 	before_filter :merge_json_params
@@ -27,7 +28,7 @@ class EdiphyDocumentsController < ApplicationController
 			ed.owner_id = current_subject.actor_id
 			ed.author_id = current_subject.actor_id
 			#DRAFT
-			
+
 			scope = JSON.parse(ed.json)["present"]["globalConfig"]["status"]
 			ed.draft = scope == "draft" ? true :  false
 			ed.save!
@@ -73,7 +74,7 @@ class EdiphyDocumentsController < ApplicationController
 			scope = JSON.parse(ed.json)["present"]["globalConfig"]["status"]
 			published = scope == "draft" ? true :  false
 			ed.draft = published
-			
+
 			ao = ed.activity_object
 			ao.scope = scope == "draft" ? 0 : 1
 			ed.save!
@@ -98,7 +99,7 @@ class EdiphyDocumentsController < ApplicationController
 		@resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument, Excursion]})
 		show! do |format|
 			format.html{
-				if @ediphy_document.draft 
+				if @ediphy_document.draft
 		          if (can? :edit, @ediphy_document)
 		            redirect_to edit_ediphy_document_path(@ediphy_document)
 		          else
@@ -111,7 +112,7 @@ class EdiphyDocumentsController < ApplicationController
 		        end
 			}
 			format.full{
-				if @ediphy_document.draft 
+				if @ediphy_document.draft
 		          if (can? :edit, @ediphy_document)
 		            redirect_to edit_ediphy_document_path(@ediphy_document)
 		          else
@@ -124,7 +125,7 @@ class EdiphyDocumentsController < ApplicationController
 		        end
 			}
 			format.json {
-		      render :json => resource 
+		      render :json => resource
 		    }
 		end
 	end
@@ -160,7 +161,7 @@ class EdiphyDocumentsController < ApplicationController
 	    end
 	end
 
-	def notify_teacher    
+	def notify_teacher
     if VishConfig.getAvailableServices.include? "PrivateStudentGroups"
       author_id = resource.author.user.id rescue nil
       unless author_id.nil?
