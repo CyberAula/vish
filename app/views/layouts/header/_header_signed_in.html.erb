@@ -33,10 +33,11 @@
           </a>
           <ul class="dropdown-menu dropdown-menu-right">
             <% availableModels.each do |modelName| %>
-                <% if modelName == "Excursion" %>
+                <% if modelName == "EdiphyDocument" %>
+                   <li><%= link_to new_ediphy_document_path do %><img src="/assets/icons/icoEdiphy_white_24px.svg" style="height:22px;width:22px;"></img> <%= t('ediphy_document.actions.add') %><% end %></li>
+                    <li class="divider"></li>
+                <% elsif modelName == "Excursion" %>
                   <li><%= link_to new_excursion_path do %><i class="fa fa-list-alt"></i> <%= t('excursion.actions.add') %><% end %></li>
-                <% elsif modelName == "EdiphyDocument" %>
-                  <li><%= link_to new_ediphy_document_path do %><img src="/assets/icons/icoEdiphy_white_24px.svg" style="height:22px;width:22px;"></img> <%= t('ediphy_document.actions.add') %><% end %></li>
                 <% elsif modelName == "Workshop" %>
                   <li><%= link_to new_workshop_path do %><i class="fa fa-book"></i> <%= t('workshop.actions.add') %><% end %></li>
                 <% elsif modelName == "Resource" %>

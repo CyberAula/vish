@@ -387,7 +387,7 @@ es:
     tags: "Etiquetas"
   ediphy_document:
     actions:
-      add: "Prueba nuevo Editor"
+      add: "Prueba EDiphy"
       delete: "Eliminar"
       delete_alert: "¿Estás seguro? Si eliminas este documento los cambios NO podrán recuperarse."
       edit: "Editar"

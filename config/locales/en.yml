@@ -411,7 +411,7 @@ en:
     tags: "Tags"
   ediphy_document:
     actions:
-      add: "Try new editor"
+      add: "Try EDiphy"
       delete: "Delete"
       delete_alert: "Are you sure? If you delete this item you will NOT be able to recover it ever again."
       edit: "Edit"
