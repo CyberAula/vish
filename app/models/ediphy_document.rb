@@ -39,10 +39,10 @@ class EdiphyDocument < ActiveRecord::Base
       self.inferLanguage
     end
 
-    if self.notified_teacher == true
-      self.notified_teacher = false
-      self.save
-    end
+    #if self.notified_teacher == true
+    #  self.notified_teacher = false
+    #  self.save
+    #end
 
     #If LOEP is enabled, upload the excursion to LOEP
     unless Vish::Application.config.APP_CONFIG['loep'].nil?
@@ -94,12 +94,33 @@ class EdiphyDocument < ActiveRecord::Base
   private
 
    def parse_for_meta
-      if self.draft
-        activity_object.scope = 1
-      else
-        activity_object.scope = 0
+    globalconfig = JSON(json)["present"]["globalConfig"]
+
+    activity_object.title = globalconfig["title"]
+    activity_object.description = globalconfig["description"]
+    activity_object.tag_list = globalconfig["keywords"]
+    activity_object.language = globalconfig["language"]
+
+    unless globalconfig["age_range"].blank?
+      begin
+        activity_object.age_min = globalconfig["age_range"]["min"]
+        activity_object.age_max = globalconfig["age_range"]["max"]
+      rescue
       end
+    end
+
+    ori_updated_at = self.updated_at
+
+    if self.draft
+        activity_object.scope = 1
+    else
+        activity_object.scope = 0
+    end
       activity_object.save!
+
+
+     self.update_column :updated_at, ori_updated_at
+     activity_object.update_column :updated_at, ori_updated_at
    end
    
    def fix_post_activity_nil
