@@ -6,9 +6,16 @@
 </head>
 
 <body style="padding: 0">
-  <div style="background-color: white;padding: 15px; border-radius: 0 0 10px 10px;width: 85px;position: absolute;top: 0;left: 120px;z-index: 9999;">Vish</div>
   <%= render :partial => "layouts/header/header_warning" %>
-  <%#= render :partial => "layouts/header/header" %>
+
+  <div class="header_ediphy">
+    <div id="hmin" class="header_min"><img src="/assets/logo/brand.svg"></img></div>
+    <div id="hcomp" class="header_complete">
+      <%= render :partial => "layouts/header/header" %>
+      <i id="upIcon" class="fa fa-angle-up fa-lg switchBar"></i>
+    </div>
+  </div>
+
   <%= flashy %>
   <%= yield %>
 </body>
@@ -34,7 +41,19 @@
     <%= yield :javascript %>
   });
 </script>
-
+<script type="text/javascript">
+  $('#hmin').click(function (event) {
+    $('#hmin').css('top', '-40px');
+    $('#hcomp').css('top', '0');
+    $('#upIcon').css('top', '40px');
+  });
+  //upIcon
+  $('#upIcon').click(function (event) {
+    $('#hmin').css('top', '0');
+    $('#hcomp').css('top', '-60px');
+    $('#upIcon').css('top', '0');
+  });
+</script>
 <%= render :partial => 'layouts/tools/google_analytics' %>
 <%= render :partial => 'layouts/tools/uservoice' %>
 

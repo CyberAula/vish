@@ -264,3 +264,41 @@ li.sign_in_mobile.dropdown
       max-width: 80%
     div.checkbox
       float: none
+
+//EDiphy header
+.header_ediphy
+  .header_min
+    transition: all 0.5s ease 0s
+    box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1)
+    position: absolute
+    z-index: 9999
+    top: 0
+    left: 115px
+    background-color: white
+    padding: 10px
+    border-radius: 0 0 10px 10px
+    width: 85px
+    img
+      width: 100%
+    &:hover
+      cursor: pointer
+  .header_complete
+    transition: all 0.5s ease 0s
+    position: absolute
+    z-index: 2
+    top: -50px
+    width: 100%
+    .navbar-fixed-top
+      position: static
+    .switchBar
+      position: absolute
+      z-index: 3
+      top: 0
+      left: 0
+      width: 30px
+      height: 30px
+      padding: 8px
+      background: white
+      border-radius: 0 0 5px 0
+      &:hover
+        cursor: pointer
