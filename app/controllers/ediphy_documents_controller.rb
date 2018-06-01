@@ -68,8 +68,7 @@ class EdiphyDocumentsController < ApplicationController
 			authorize!(:update, ed)
 			ed.json = params[:ediphy_document][:json].to_json
 			ed.title = params[:ediphy_document][:json][:present][:globalConfig][:title]
-			ed.save!
-
+			
 			### Refactor to fill_create parms
 			scope = JSON.parse(ed.json)["present"]["globalConfig"]["status"]
 			published = scope == "draft" ? true :  false
