@@ -11,6 +11,7 @@
    var ediphy_editor_params = {
       name: "<%= current_subject.name %>",
       id: "<%= Actor.normalize_id(current_subject) %>",
+      exit_url: "<%= url_for(current_subject) %>",
       authenticity_token: "<%= form_authenticity_token %>",
       export_url: "/ediphy_documents/<%= params[:id] %>",
       edit_prefix: "/edit",
