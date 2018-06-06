@@ -46,7 +46,7 @@ DocumentsHelper.module_eval do
     if !customAvatar.nil?
       return "<div class='img-box resource_avatar resource_avatar_for_#{ icon_name }' style='background-image: url("+customAvatar+")'></div>"
     elsif document.class.name == "EdiphyDocument"
-      return "<i><img src=\"/assets/icons/icoEdiphy_white_24px.svg\" style=\"height:20px;width:20px;\"></img></i>".html_safe
+      return "<img src=\"/assets/icons/icoEdiphy_white_24px.svg\"></img>".html_safe
     else
       return "<i class=\"fa fa-#{ icon_name }\"></i>".html_safe
     end
