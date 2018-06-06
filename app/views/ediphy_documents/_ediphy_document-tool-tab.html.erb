@@ -26,7 +26,7 @@
       <i class="fa fa-edit"></i>
     </button>
   <%end%>
- 
+
   <!--Remove-->
   <% if user_signed_in? and can?(:destroy, @ediphy_document) %>
     <button class="with_tooltip delete btn btn-default" data-toggle="popover" data-container="body" title="<%=t('ediphy_document.actions.delete')%>" data-placement="left" aria-hidden="true" onclick="delete_function(<%=@ediphy_document.id%>)">
@@ -157,9 +157,9 @@
       <!-- tab4 / scorm -->
       <div class="tab-pane contentscorm" id="tab4">
         <div class="contentscormc1">
-          <a class="btn btn-secundary" href='#' onclick="document.getElementById('presentation_editor_iframe').contentWindow.export('SCORM12');return false;"><i class="fa fa-download"></i> <%=t('ediphy_document.actions.scorm12')%></a>
-          <a class="btn btn-secundary" href='#' onclick="document.getElementById('presentation_editor_iframe').contentWindow.export('SCORM2004');return false;"><i class="fa fa-download"></i> <%=t('ediphy_document.actions.scorm2004')%></a>
-          <a class="btn btn-secundary" href='#' onclick="document.getElementById('presentation_editor_iframe').contentWindow.export('HTML');return false;"><i class="fa fa-download"></i> <%=t('ediphy_document.actions.html')%></a>
+          <a class="btn btn-secundary" href='#' onclick="document.getElementById('presentation_ediphy_iframe').contentWindow.export('SCORM12');return false;"><i class="fa fa-download"></i> <%=t('ediphy_document.actions.scorm12')%></a>
+          <a class="btn btn-secundary" href='#' onclick="document.getElementById('presentation_ediphy_iframe').contentWindow.export('SCORM2004');return false;"><i class="fa fa-download"></i> <%=t('ediphy_document.actions.scorm2004')%></a>
+          <a class="btn btn-secundary" href='#' onclick="document.getElementById('presentation_ediphy_iframe').contentWindow.export('HTML');return false;"><i class="fa fa-download"></i> <%=t('ediphy_document.actions.html')%></a>
         </div>
         <div class="contentscormc2">
           <p><%=t("ediphy_document.actions.download_scorm")%></p>
