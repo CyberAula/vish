@@ -98,7 +98,12 @@ class EdiphyDocument < ActiveRecord::Base
 
     activity_object.title = globalconfig["title"]
     activity_object.description = globalconfig["description"]
-    activity_object.tag_list = globalconfig["keywords"]
+    parsed_tag_list = []
+    globalconfig["keywords"].each do |key|
+      parsed_tag_list.push(key["text"])
+    end
+
+    activity_object.tag_list = parsed_tag_list
     activity_object.language = globalconfig["language"]
 
     unless globalconfig["age_range"].blank?
