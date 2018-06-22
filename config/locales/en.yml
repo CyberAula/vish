@@ -525,6 +525,7 @@ en:
       types:
         audio: "Audio"
         document: "Document"
+        ediphydocument: "Ediphy Document"
         embed: "Embedded Object"
         excursion: "Excursion (Interactive Presentation)"
         imscpfile: "IMS Content Package"
