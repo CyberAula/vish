@@ -3,6 +3,8 @@
 		<% case item.object.class.to_s %>
 		<% when "Excursion" %>
 			<%= render :partial => "excursions/excursion", :locals => { :excursion => item.object, :obj_id => use_ids ? item.id : ""} %>
+		<% when "EdiphyDocument" %>
+			<%= render :partial => "ediphy_documents/ediphy_document", :locals => { :ediphy_document => item.object, :obj_id => use_ids ? item.id : ""} %>
 		<% when "Category"%>
 			<%# TODO: Take out this elsif and be able to render with hasOwnPartial %>
 			<%= render :partial => 'categories/category', :locals => { :category => item.object, :obj_id => use_ids ? item.id : "" } %>
