@@ -583,6 +583,35 @@ ActivityObject.class_eval do
       end
     end
 
+    if self.object_type == "EdiphyDocument"
+      #Excursions have some extra metadata fields in the json
+      parsed_json = JSON(self.object.json)["present"]["globalConfig"]
+
+      if parsed_json["context"] and parsed_json["context"]!="Unspecified"
+        metadata[I18n.t("activity_object.context")] = self.readable_context(parsed_json["context"])
+      end
+
+      if parsed_json["difficulty"]
+        metadata[I18n.t("activity_object.difficulty")] = self.readable_difficulty(parsed_json["difficulty"])
+      end
+
+      if parsed_json["typicalLearningTime"] and (parsed_json["typicalLearningTime"]["h"] != 0 and parsed_json["typicalLearningTime"]["m"] != 0)
+        metadata[I18n.t("activity_object.tlt")] = parsed_json["typicalLearningTime"]["h"].to_s + "H" + parsed_json["typicalLearningTime"]["m"].to_s + "M" #remove the PT at the beginning
+      end
+
+      if parsed_json["subject"] and parsed_json["subject"].class.name=="Array"
+        parsed_json["subject"].delete("Unspecified")
+        unless parsed_json["subject"].blank?
+          subjects = parsed_json["subject"].map{|subject| self.readable_subject(subject) }
+          metadata[I18n.t("activity_object.subjects")] = subjects.join(",")
+        end
+      end
+
+      if parsed_json["educational_objectives"]
+        metadata[I18n.t("activity_object.educational_objectives")] = parsed_json["educational_objectives"]
+      end
+    end
+
     return metadata
   end
 

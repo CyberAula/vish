@@ -17,9 +17,6 @@ class EdiphyDocumentsController < ApplicationController
 
 	def create
 		authorize! :create, EdiphyDocument
-		if params[:ediphy_document][:json][:present][:globalConfig][:title].blank? or params[:ediphy_document][:json][:present][:globalConfig][:title].include?("/ediphy_documents/")
-			render :nothing => true, :status => 200, :content_type => 'text/html'
-		end
 
 		if current_subject.actor.id == params[:ediphy_document][:user][:id].to_i
 			ed = EdiphyDocument.new
@@ -27,9 +24,10 @@ class EdiphyDocumentsController < ApplicationController
 			ed.title = params[:ediphy_document][:json][:present][:globalConfig][:title]
 			ed.owner_id = current_subject.actor_id
 			ed.author_id = current_subject.actor_id
+			ed.license = nil
 			#DRAFT
 
-			scope = JSON.parse(ed.json)["present"]["globalConfig"]["status"]
+			scope = JSON.parse(ed.json)["present"]["status"]
 			ed.draft = scope == "draft" ? true :  false
 			ed.save!
 
@@ -70,7 +68,7 @@ class EdiphyDocumentsController < ApplicationController
 			ed.title = params[:ediphy_document][:json][:present][:globalConfig][:title]
 			
 			### Refactor to fill_create parms
-			scope = JSON.parse(ed.json)["present"]["globalConfig"]["status"]
+			scope = JSON.parse(ed.json)["present"]["status"]
 			published = scope == "draft" ? true :  false
 			ed.draft = published
 

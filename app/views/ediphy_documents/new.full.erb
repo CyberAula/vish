@@ -12,7 +12,7 @@
     var ediphy_editor_params = {
       name: "<%= current_subject.name %>",
       id: "<%= Actor.normalize_id(current_subject) %>",
-      exit_document_url: "<%= url_for(EdiphyDocument.find(params[:id])) %>",
+      exit_document_url: "",
       exit_tab_url: "<%= url_for(current_subject) %>" + "?tab=ediphy_documents",
       authenticity_token: "<%= form_authenticity_token %>",
       export_url: "/ediphy_documents/",
