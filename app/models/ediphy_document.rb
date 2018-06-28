@@ -21,7 +21,11 @@ class EdiphyDocument < ActiveRecord::Base
   end
 
   def thumbnail
-    JSON.parse(self.json)["present"]["globalConfig"]["thumbnail"] || ""
+    thumbnail = JSON.parse(self.json)["present"]["globalConfig"]["thumbnail"] || ""
+    if /data:image/.match(thumbnail).nil?
+      thumbnail = thumbnail + "?style=500"
+    end
+    thumbnail
   end
 
   def afterPublish
