@@ -29,6 +29,7 @@ class EdiphyDocumentsController < ApplicationController
 
 			scope = JSON.parse(ed.json)["present"]["status"]
 			ed.draft = scope == "draft" ? true :  false
+			ed.scope = scope == "draft" ? 1 :  0
 			ed.save!
 
 			render json: { ediphy_id: ed.id}
@@ -73,7 +74,7 @@ class EdiphyDocumentsController < ApplicationController
 			ed.draft = published
 
 			ao = ed.activity_object
-			ao.scope = scope == "draft" ? 0 : 1
+			ao.scope = scope == "draft" ? 1 : 0
 			ed.save!
 
 			if published
