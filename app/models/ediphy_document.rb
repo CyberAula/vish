@@ -101,27 +101,8 @@ class EdiphyDocument < ActiveRecord::Base
    def fill_license
     if ((self.scope_was!=0 or self.new_record?) and (self.scope==0))
       if self.license.nil? or self.license.private?
-        license_metadata = JSON(self.json)["present"]["globalConfig"]["rights"] rescue nil
-          license = nil
-                case license_metadata
-                  when "Public Domain"
-                    license = License.find_by_key("public")
-                  when "CreativeCommons BY"
-                    license = License.find_by_key("cc-by")
-                  when "CreativeCommons BY-SA"
-                    license = License.find_by_key("cc-by-sa")
-                  when "CreativeCommons BY-ND"
-                    license = License.find_by_key("cc-by-nd")
-                  when "CreativeCommons BY-NC"
-                    license = License.find_by_key("cc-by-nc")
-                  when "CreativeCommons BY-NC-SA"
-                    license = License.find_by_key("cc-by-nc-sa")
-                  when "CreativeCommons BY-NC-ND"
-                    license = License.find_by_key("cc-by-nc-nd")
-                  else
-                    license = License.find_by_key("private")
-                  end
-
+          license_metadata = JSON(self.json)["present"]["globalConfig"]["rights"] rescue nil
+          license = License.find_by_key(license_metadata)
           unless license.nil?
             self.license_id = license.id
           end
