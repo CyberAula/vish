@@ -93,13 +93,15 @@ Vish::Application.routes.draw do
   resources :excursions
 
   #Remember Refactor
-  resources :ediphy_documents
 
+  #match '/ediphy_documents/:id' => 'ediphy_documents#show', :via => :get
   match '/ediphy_documents/:id' => 'ediphy_documents#update', :via => :post
   match '/ediphy_documents/:id/delete' => 'ediphy_documents#delete', :via => :post
   match '/ediphy_documents/:id/add_xml' => 'ediphy_documents#add_xml', :via => :post
   match '/ediphy_exercises/:id' => 'ediphy_exercises#xml', :via => :get
   match '/ediphy_exercises/:id' => 'ediphy_exercises#update_xml', :via => :put
+
+  resources :ediphy_documents
 
   #Workshops
   match '/workshops/:id/edit_details' => 'workshops#edit_details'

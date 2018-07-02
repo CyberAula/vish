@@ -4,7 +4,7 @@ class EdiphyDocumentsController < ApplicationController
 
 	before_filter :merge_json_params
 	#before_filter :verify_authenticity_token
-	before_filter :authenticate_user!
+	before_filter :authenticate_user!, :only=>[:create,:add_xml, :update, :edit, :delete]
 	after_filter :cors_set_access_control_headers, :only => [:create, :merge_json_params]
 	skip_load_and_authorize_resource :only => [:create, :update, :add_xml,:delete]
 	after_filter :notify_teacher, :only => [:create, :update]
