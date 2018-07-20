@@ -1,195 +1,131 @@
 class EdiphyDocumentsController < ApplicationController
-	layout "ediphy", only: [:new, :edit]
-	include SocialStream::Controllers::Objects
 
-	before_filter :merge_json_params
-	#before_filter :verify_authenticity_token
-	before_filter :authenticate_user!, :only=>[:create,:add_xml, :update, :edit, :delete]
-	after_filter :cors_set_access_control_headers, :only => [:create, :merge_json_params]
-	skip_load_and_authorize_resource :only => [:create, :update, :add_xml,:delete]
-	after_filter :notify_teacher, :only => [:create, :update]
+  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update ]
+  before_filter :profile_subject!, :only => :index
+  before_filter :merge_json_params
+  before_filter :fill_create_params, :only => [ :new, :create ]
+  
+  include SocialStream::Controllers::Objects
 
-	def new
-		new! do |format|
-			format.full
-		end
-	end
 
-	def create
-		authorize! :create, EdiphyDocument
+  def index
+    redirect_to home_path
+  end
 
-		if current_subject.actor.id == params[:ediphy_document][:user][:id].to_i
-			ed = EdiphyDocument.new
-			ed.json = params[:ediphy_document][:json].to_json
-			ed.title = params[:ediphy_document][:json][:present][:globalConfig][:title]
-			ed.owner_id = current_subject.actor_id
-			ed.author_id = current_subject.actor_id
-			ed.license = nil
-			#DRAFT
-
-			scope = JSON.parse(ed.json)["present"]["status"]
-			ed.draft = scope == "draft" ? true :  false
-			ed.scope = scope == "draft" ? 1 :  0
-			ed.save!
-
-			render json: { ediphy_id: ed.id}
-		else
-			render status: :forbidden
-		end
-	end
-
-	def add_xml
-		if params["url"] == "/ediphy_documents/new.full"
-			ed = EdiphyDocument.new
-			ed.json = "{}"
-			ed.owner = current_subject.actor
-			ed.author = current_subject.actor
-			ed.save!
-
-			id = ed.id
-		else
-			id = /\d+/.match(params["url"]).to_s.to_i
-		end
-
-		unless id == nil || id == 0
-			ediphy_exercise = EdiphyExercise.new
-			ediphy_exercise.ediphy_document_id = id
-			ediphy_exercise.xml = params["xml"]
-			ediphy_exercise.save!
-		end
-		ed ||= EdiphyDocument.find(id)
-		render json: { ediphy_document_path: ed.absolutePath, ediphy_exercise_path: ediphy_exercise.absolutePath }
-	end
-
-	def update
-		if current_subject.actor.id == params[:ediphy_document][:user][:id].to_i
-			ed = EdiphyDocument.find(params[:id])
-			authorize!(:update, ed)
-			ed.json = params[:ediphy_document][:json].to_json
-			ed.title = params[:ediphy_document][:json][:present][:globalConfig][:title]
-			
-			### Refactor to fill_create parms
-			scope = JSON.parse(ed.json)["present"]["status"]
-			published = scope == "draft" ? true :  false
-			ed.draft = published
-
-			ao = ed.activity_object
-			ao.scope = scope == "draft" ? 1 : 0
-			ed.save!
-
-			if published
-      			ed.afterPublish
-    		end
-
-			render json: { ediphy_id: ed.id}
-		else
-			render status: :forbidden
-		end
-	end
-
-	def edit
-		edit! do |format|
-			format.full
-		end
-	end
-
-	def show
-		@resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument, Excursion]})
-		show! do |format|
-			format.html{
-				if @ediphy_document.draft
-		          if (can? :edit, @ediphy_document)
-		            redirect_to edit_ediphy_document_path(@ediphy_document)
-		          else
-		            redirect_to "/"
-		          end
-		        else
-		          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument, Excursion]})
-		          ActorHistorial.saveAO(current_subject,@ediphy_document)
-		          render
-		        end
-			}
-			format.full{
-				if @ediphy_document.draft
-		          if (can? :edit, @ediphy_document)
-		            redirect_to edit_ediphy_document_path(@ediphy_document)
-		          else
-		            redirect_to "/"
-		          end
-		        else
-		          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument, Excursion]})
-		          ActorHistorial.saveAO(current_subject,@ediphy_document)
-		          render
-		        end
-			}
-			format.json {
-		      render :json => resource
-		    }
-		end
-	end
-
-	def delete
-		ed = EdiphyDocument.find(params[:id])
-		authorize!(:delete, ed)
-		if !params[:user].blank? and !params[:user][:id].blank? and current_subject.actor.id == params[:user][:id].to_i
-			destroy! do |format|
-				format.json { render json:  { redirect_url: user_path(current_subject)}}
-			end
-		elsif ed.author == current_subject.actor
-			destroy! do |format|
-				format.json{  render json: {}}
-			end
-		end
-	end
-
-	def metadata
-		ed = EdiphyDocument.find_by_id(params[:id])
-	    respond_to do |format|
-	      format.any {
-	        unless ed.nil?
-	          xmlMetadata = EdiphyDocument.generate_LOM_metadata(JSON(ed.json),ed,{:id => Rails.application.routes.url_helpers.ediphy_document_url(:id => ed.id), :LOMschema => params[:LOMschema] || "custom"})
-	          render :xml => xmlMetadata.target!, :content_type => "text/xml"
-	        else
-	          xmlMetadata = ::Builder::XmlMarkup.new(:indent => 2)
-	          xmlMetadata.instruct! :xml, :version => "1.0", :encoding => "UTF-8"
-	          xmlMetadata.error("Ediphy Document not found")
-	          render :xml => xmlMetadata.target!, :content_type => "text/xml", :status => 404
-	        end
-	      }
-	    end
-	end
-
-	def notify_teacher
-    if VishConfig.getAvailableServices.include? "PrivateStudentGroups"
-      author_id = resource.author.user.id rescue nil
-      unless author_id.nil?
-        pupil = resource.author.user
-        if !pupil.private_student_group_id.nil? && pupil.private_student_group.teacher_notification == "ALL"
-          teacher = Actor.find(pupil.private_student_group.owner_id).user
-          resource_path = document_path(resource) #TODO get full path
-          TeacherNotificationMailer.notify_teacher(teacher, pupil, resource_path)
+  def show
+    @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument, Excursion]})
+    show! do |format|
+      format.html{
+        if @ediphy_document.draft
+              if (can? :edit, @ediphy_document)
+                redirect_to edit_ediphy_document_path(@ediphy_document)
+              else
+                redirect_to "/"
+              end
+            else
+              @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument, Excursion]})
+              ActorHistorial.saveAO(current_subject,@ediphy_document)
+              render
+            end
+      }
+      format.full{
+        if @ediphy_document.draft
+          if (can? :edit, @ediphy_document)
+            redirect_to edit_ediphy_document_path(@ediphy_document)
+          else
+            redirect_to "/"
+          end
+        else
+          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument, Excursion]})
+          ActorHistorial.saveAO(current_subject,@ediphy_document)
+          render
         end
-      end
+      }
+      format.json {
+        render :json => resource
+      }
     end
   end
 
-	private
+  def new
+    new! do |format|
+      format.html { render :layout => 'ediphy', :locals => {:default_tag=> params[:default_tag]}}
+    end
+  end
 
-	#If you dear programmer are asking ¡what is this method doing', just to mention, rails makes a terrible conversion from json to Ruby arrays
-	#and basically changes all empty arrays for nils (this is for security purposes, but seems like killing flies by cannonballs)
-	#So we need to fix this somehow because our json app does things like that for some reason. I Hope it helped
+  def edit
+    edit! do |format|
+      format.html { render :layout => 'ediphy' }
+    end
+  end
 
-	def allowed_params
-		[:user, :json]
-	end
+  def create
+    params[:ediphy_document].permit!
+    scope = params[:ediphy_document][:json][:present][:status] rescue "draft"
+    params[:ediphy_document][:json] = params[:ediphy_document][:json].to_json if params[:ediphy_document][:json].present?
+    ed = EdiphyDocument.new(params[:ediphy_document])
+    
+    #Check scope and draft
+    ed.draft = (scope == "draft" ? true :  false)
+    ed.scope = (ed.draft == true ? 1 :  0)
+    ed.save!
 
-	def merge_json_params
-		if request.format.json?
-			body = request.body.read
-			request.body.rewind
-			params.merge!(ActiveSupport::JSON.decode(body)) unless body == ""
-		end
-	end
+    render json: { ediphy_id: ed.id }
+  end
 
+  def update
+    params[:ediphy_document].permit!
+    params[:ediphy_document].delete(:user)
+    scope = params[:ediphy_document][:json][:present][:status] rescue "draft"
+    params[:ediphy_document][:json] = params[:ediphy_document][:json].to_json if params[:ediphy_document][:json].present?
+
+    ed = EdiphyDocument.find(params[:id])
+    ed.update_attributes!(params[:ediphy_document])
+
+    #Check scope and draft
+    ed.draft = (scope == "draft" ? true :  false)
+    ed.scope = (ed.draft == true ? 1 :  0)
+    ed.save!
+
+    render json: { ediphy_id: ed.id }
+  end
+
+  def destroy
+    destroy! do |format|
+      format.all { redirect_to user_path(current_subject) }
+    end
+  end
+
+
+  private
+
+  def allowed_params
+    [:json, :draft, :scope]
+  end
+
+  def fill_create_params
+    params["ediphy_document"] ||= {}
+
+    #Include user information according to ViSH requirements
+    params["ediphy_document"].delete("user")
+    unless current_subject.nil?
+      params["ediphy_document"]["owner_id"] = current_subject.actor_id
+      params["ediphy_document"]["author_id"] = current_subject.actor_id
+      params["ediphy_document"]["user_author_id"] = current_subject.actor_id
+    end
+
+  end
+
+  #If you dear programmer are asking ¡what is this method doing', just to mention, rails makes a terrible conversion from json to Ruby arrays
+  #and basically changes all empty arrays for nils (this is for security purposes, but seems like killing flies by cannonballs)
+  #So we need to fix this somehow because our json app does things like that for some reason. I Hope it helped
+
+  def merge_json_params
+    if request.format.json?
+      body = request.body.read
+      request.body.rewind
+      params.merge!(ActiveSupport::JSON.decode(body)) unless body == ""
+    end
+  end
 
 end

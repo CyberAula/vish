@@ -72,6 +72,7 @@ Vish::Application.routes.draw do
   #Thumbnails
   match '/thumbnails' => 'excursions#excursion_thumbnails'
 
+  #Excursions
   match 'excursions/last_slide' => 'excursions#last_slide'
   match 'excursions/preview' => 'excursions#preview'
 
@@ -92,14 +93,9 @@ Vish::Application.routes.draw do
 
   resources :excursions
 
-  #Remember Refactor
-
-  #match '/ediphy_documents/:id' => 'ediphy_documents#show', :via => :get
+  #Ediphy documents
   match '/ediphy_documents/:id' => 'ediphy_documents#update', :via => :post
-  match '/ediphy_documents/:id/delete' => 'ediphy_documents#delete', :via => :post
-  match '/ediphy_documents/:id/add_xml' => 'ediphy_documents#add_xml', :via => :post
-  match '/ediphy_exercises/:id' => 'ediphy_exercises#xml', :via => :get
-  match '/ediphy_exercises/:id' => 'ediphy_exercises#update_xml', :via => :put
+  match '/ediphy_documents/:id/delete' => 'ediphy_documents#destroy', :via => :post
 
   resources :ediphy_documents
 

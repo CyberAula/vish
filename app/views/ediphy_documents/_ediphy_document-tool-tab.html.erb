@@ -58,24 +58,15 @@ document.addEventListener("DOMContentLoaded", function(){
           break;
       }
     });
-  });
 
-  <% unless current_subject.nil? %>
-    var delete_function = function(ediphy_id){
-    if(confirm("<%=t('ediphy_document.actions.delete_alert')%>")){
-      $.ajax({
-                url: '/ediphy_documents/' + ediphy_id + '/delete' ,
-                type: 'POST',
-                dataType: "json",
-                success: function(data){
-                    window.location.replace("<%= user_path(current_subject) %>");
-                },
-                 error: function(){
-                }
-          });
-    }
-  };
-<% end %>
+    $('.delete').popover({
+      html : true,
+      content: function() {
+        return $('.contentdelete').html();
+      },
+      container: ".actions_layout_show"
+    });
+  });
 
 </script>
 
@@ -92,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   <!--Remove-->
   <% if user_signed_in? and can?(:destroy, @ediphy_document) %>
-    <button class="with_tooltip delete btn btn-default" data-toggle="popover" data-container="body" title="<%=t('ediphy_document.actions.delete')%>" data-placement="left" aria-hidden="true" onclick="delete_function(<%=@ediphy_document.id%>)">
+    <button class="with_tooltip delete btn btn-default" data-toggle="popover" data-container="body" title="<%=t('ediphy_document.actions.delete')%>" data-placement="left" aria-hidden="true">
       <i class="fa fa-trash-o"></i>
     </button>
   <%end%>
