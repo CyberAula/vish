@@ -105,10 +105,7 @@ class ExcursionsController < ApplicationController
 
     @excursion.save!
 
-    published = (@excursion.draft===false)
-    if published
-      @excursion.afterPublish
-    end
+    @excursion.afterPublish if (@excursion.draft===false)
 
     render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)),
                       :uploadPath => excursion_path(@excursion, :format=> "json"),
@@ -123,11 +120,11 @@ class ExcursionsController < ApplicationController
     @excursion = Excursion.find(params[:id])
     wasDraft = @excursion.draft
 
-    if(params[:draft])
-      if(params[:draft] == "true")
+    if params[:draft]
+      if params[:draft] == "true"
         @excursion.draft = true
         @excursion.scope = 1
-      elsif (params[:draft] == "false")
+      elsif params[:draft] == "false"
         @excursion.draft = false
         @excursion.scope = 0
       end
@@ -142,10 +139,7 @@ class ExcursionsController < ApplicationController
       Excursion.record_timestamps=true if isAdmin
     end
    
-    published = (wasDraft===true and @excursion.draft===false)
-    if published
-      @excursion.afterPublish
-    end
+    @excursion.afterPublish if (wasDraft===true and @excursion.draft===false)
 
     render :json => { :url => (@excursion.draft ? user_path(current_subject) : excursion_path(resource)),
                       :uploadPath => excursion_path(@excursion, :format=> "json"),

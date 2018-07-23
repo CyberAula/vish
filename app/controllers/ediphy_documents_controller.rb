@@ -13,7 +13,6 @@ class EdiphyDocumentsController < ApplicationController
   end
 
   def show
-    @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument, Excursion]})
     show! do |format|
       format.html{
         if @ediphy_document.draft
@@ -36,8 +35,6 @@ class EdiphyDocumentsController < ApplicationController
             redirect_to "/"
           end
         else
-          @resource_suggestions = RecommenderSystem.resource_suggestions({:user => current_subject, :lo => @ediphy_document, :n=>10, :models => [EdiphyDocument, Excursion]})
-          ActorHistorial.saveAO(current_subject,@ediphy_document)
           render
         end
       }
@@ -65,10 +62,12 @@ class EdiphyDocumentsController < ApplicationController
     params[:ediphy_document][:json] = params[:ediphy_document][:json].to_json if params[:ediphy_document][:json].present?
     ed = EdiphyDocument.new(params[:ediphy_document])
     
-    #Check scope and draft
+    #Set scope and draft
     ed.draft = (scope == "draft" ? true :  false)
     ed.scope = (ed.draft == true ? 1 :  0)
     ed.save!
+
+    ed.afterPublish if (ed.draft===false)
 
     render json: { ediphy_id: ed.id }
   end
@@ -80,12 +79,15 @@ class EdiphyDocumentsController < ApplicationController
     params[:ediphy_document][:json] = params[:ediphy_document][:json].to_json if params[:ediphy_document][:json].present?
 
     ed = EdiphyDocument.find(params[:id])
+    wasDraft = ed.draft
     ed.update_attributes!(params[:ediphy_document])
 
     #Check scope and draft
     ed.draft = (scope == "draft" ? true :  false)
     ed.scope = (ed.draft == true ? 1 :  0)
     ed.save!
+
+    ed.afterPublish if (wasDraft===true and ed.draft===false)
 
     render json: { ediphy_id: ed.id }
   end

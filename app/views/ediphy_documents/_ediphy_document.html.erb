@@ -7,8 +7,8 @@
 
    <%
     generated_id = "ediphy_document-" + ediphy_document.id.to_s
-    #generated_id = prefix_id + "-" + generated_id if defined?(prefix_id)
-    #generated_id = "cat-" + obj_id.to_s + "-" + generated_id if defined?(obj_id)
+    generated_id = prefix_id + "-" + generated_id if defined?(prefix_id)
+    generated_id = "cat-" + obj_id.to_s + "-" + generated_id if defined?(obj_id)
   %>
 
   <!-- corner -->
@@ -16,7 +16,6 @@
       <div class="corner-item">
         <div class="corner-item2">
           <div class="corner-color"></div>
-          <%#= link_to raw(icon(resource,false)), resource, :title => resource.title %>
           <%= raw(icon(ediphy_document,false)) %>
         </div>
         <div class="corner-background"></div>
@@ -32,8 +31,6 @@
                 </h2>
             </div>
           <% end %>
-          <%#= link_to raw(icon(resource)), resource, :title => resource.title %>
-          <%#= raw(icon(ediphy_document)) %>
         </div>
       </div>
     <%end%>
