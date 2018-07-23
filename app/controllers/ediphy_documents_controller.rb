@@ -4,6 +4,7 @@ class EdiphyDocumentsController < ApplicationController
   before_filter :profile_subject!, :only => :index
   before_filter :merge_json_params
   before_filter :fill_create_params, :only => [ :new, :create ]
+  skip_before_filter :store_location, :if => :format_full?
   
   include SocialStream::Controllers::Objects
 
@@ -80,12 +81,17 @@ class EdiphyDocumentsController < ApplicationController
 
     ed = EdiphyDocument.find(params[:id])
     wasDraft = ed.draft
-    ed.update_attributes!(params[:ediphy_document])
-
-    #Check scope and draft
     ed.draft = (scope == "draft" ? true :  false)
     ed.scope = (ed.draft == true ? 1 :  0)
-    ed.save!
+
+    isAdmin = current_subject.admin?
+
+    begin
+      EdiphyDocument.record_timestamps=false if isAdmin
+      ed.update_attributes!(params[:ediphy_document])
+    ensure
+      EdiphyDocument.record_timestamps=true if isAdmin
+    end
 
     ed.afterPublish if (wasDraft===true and ed.draft===false)
 
