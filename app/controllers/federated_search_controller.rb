@@ -96,27 +96,18 @@ class FederatedSearchController < ApplicationController
       allAvailableTypes = allAvailableModels + ["Resource"]
 
       types = type.split(",") & allAvailableTypes
-
-      if types.include? "Resource"
-        types.concat(VishConfig.getAvailableResourceModels(:include_subtypes => true))
-      end
-
+      types.concat(VishConfig.getAvailableResourceModels(:include_subtypes => true)) if types.include? "Resource"
       types = types & allAvailableModels
       types.uniq!
 
       types.each do |type|
         #Find model
         model = type.singularize.classify.constantize rescue nil
-        unless model.nil?
-          models.push(model)
-        end
+        models.push(model) unless model.nil?
       end
-    end
-
-    if models.empty?
+    else
       #Default models
       models = VishConfig.getAvailableResourceModels({:return_instances => true})
-      subtypes = []
     end
 
     models.uniq!

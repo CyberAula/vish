@@ -171,7 +171,7 @@ VASearch.UI = (function(V,undefined){
     if((result.author)&&(result.author_profile_url)&&(result.instance)){
       $(scaffold).append('<div class="resultAuthor"><span class="by">'+V.Utils.getTrans("i.by")+'</span> <a target="'+targetAttr+'" href="'+result.author_profile_url+'">'+result.author+'</a><br/>' + V.Utils.getTrans("i.in") +' <a target="'+targetAttr+'" href="'+result.instance+'">' + result.instance + '</a></div>');
     };
-    if((result.like_count)&&(result.visit_count)&&(result.url)){
+    if((typeof result.like_count!="undefined")&&(typeof result.visit_count != "undefined")&&(typeof result.url == "string")){
       $(scaffold).append('<div class="resultBottom"><div class="likes"><span>'+result.like_count+'</span> <a target="'+targetAttr+'" href="'+result.url+'"><img class="inlineIcon" src="/assets/asearch/star.png"></a></div><div class="views"><span>'+result.visit_count+'</span> <img class="inlineIcon" src="/assets/asearch/eye.png"></div></div>');
     };
     
