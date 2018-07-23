@@ -1,0 +1,122 @@
+<% showLearningEvaluationResults = (!@ediphy_document.users_qscore.nil?) %>
+<% showTeachingEvaluations = (false and !@ediphy_document.teachers_qscore.nil?) %>
+
+<%= content_for :javascript do %>
+
+  var evaluationTabShown = false;
+  $('a[data-toggle="tab"][href="#lo_evaluation"]').on('shown.bs.tab', function(e){
+    if (evaluationTabShown===true){
+      return;
+    }
+    evaluationTabShown = true;
+        
+    <% if showLearningEvaluationResults %>
+      var learningLoepSettings = $.extend({}, loepSettings);
+      learningLoepSettings.action = "showchart";
+      learningLoepSettings.evmethod = "wblts";
+      learningLoepSettings.containerDOM = $('#learning-eval-results');
+      learningLoepSettings.errorCallback = function(errorMsg){
+        $('#learning-eval-results').remove();
+      };
+      $('#learning-eval-results').show();
+      new LOEP.IframeAPI.instance(learningLoepSettings);
+    <% end %>
+
+    <% if showTeachingEvaluations  %>
+      var teachingLoepSettings = $.extend({}, loepSettings);
+      teachingLoepSettings.action = "showchart";
+      teachingLoepSettings.evmethod = "wbltt";
+      teachingLoepSettings.containerDOM = $('#teaching-eval-results');
+      teachingLoepSettings.errorCallback = function(errorMsg){
+        $('#teaching-eval-results').remove();
+      };
+      $('#teaching-eval-results').show();
+      new LOEP.IframeAPI.instance(teachingLoepSettings);
+    <% end %>
+  });
+
+  $('#myLearningModal').on('shown.bs.modal', function(){
+      var evaluateLearningLoepSettings = $.extend({}, loepSettings);
+      evaluateLearningLoepSettings.action = "evaluate";
+      evaluateLearningLoepSettings.evmethod = "wblts";
+      evaluateLearningLoepSettings.containerDOM = $('#myLearningModal').find(".modal-body");
+      evaluateLearningLoepSettings.loadCallback = function(){
+        //LOEP form loaded"
+      };
+      evaluateLearningLoepSettings.submitCallback = function(){
+        //"Sucesfully submitted"
+        $('#myLearningModal').modal('hide');
+      };
+      evaluateLearningLoepSettings.errorCallback = function(errorCode,errorMsg){
+        //"Error"
+        if(errorCode===1){
+          //Error on initialization
+          $('#myLearningModal').find(".modal-body").html("");
+          $('#myLearningModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
+        } else {
+          //Other error
+          $('#myLearningModal').modal('hide');
+        }
+      };
+      new LOEP.IframeAPI.instance(evaluateLearningLoepSettings);
+  });
+
+  $('#myLearningModal').on('hidden.bs.modal', function(){
+    //Learning modal hidden
+    $(this).removeData('modal').find('.modal-body').html('');
+  });
+
+  $('#myTeachingModal').on('shown.bs.modal', function(){
+      var evaluateTeachingLoepSettings = $.extend({}, loepSettings);
+      evaluateTeachingLoepSettings.action = "evaluate";
+      evaluateTeachingLoepSettings.evmethod = "wbltt";
+      evaluateTeachingLoepSettings.containerDOM = $('#myTeachingModal').find(".modal-body");
+      evaluateTeachingLoepSettings.loadCallback = function(){
+        //LOEP form loaded"
+      };
+      evaluateTeachingLoepSettings.submitCallback = function(){
+        //"Sucesfully submitted"
+        $('#myTeachingModal').modal('hide');
+      };
+      evaluateTeachingLoepSettings.errorCallback = function(errorCode,errorMsg){
+        //"Error"
+        if(errorCode===1){
+          //Error on initialization
+          $('#myTeachingModal').find(".modal-body").html("");
+          $('#myTeachingModal').find("div.modal-body").prepend($('<p class="evaluation_modalerror_msg">'+'<%=t("evaluation.error.server")%>'+'</p>'));
+        } else {
+          //Other error
+          $('#myTeachingModal').modal('hide');
+        }
+      };
+      new LOEP.IframeAPI.instance(evaluateTeachingLoepSettings);
+  });
+
+  $('#myTeachingModal').on('hidden.bs.modal', function(){
+    //Teaching modal hidden
+    $(this).removeData('modal').find('.modal-body').html('');
+  });
+<% end %>
+
+<div id="myLearningModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="learningModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 id="learningModalLabel"><%= t('evaluation.modaltitle') %></h4>
+      </div>
+      <div class="modal-body evaluation_body"></div>
+    </div>
+  </div>
+</div>
+<div id="myTeachingModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="teachingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 id="teachingModalLabel"><%= t('evaluation.modaltitle') %></h4>
+      </div>
+      <div class="modal-body evaluation_body"></div>
+    </div>
+  </div>
+</div>

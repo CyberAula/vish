@@ -27,7 +27,6 @@ class VishLoep
 
     #Compose the object to be sent to LOEP
     lo = VishLoep.getLoepHashForActivityObject(ao)
-    
     Loep.createOrUpdateLO(lo){ |response,code|
       # Get quality metrics from automatic evaluation methods. 
       # Not necessary because Loep::LosController:update will be called after publishing by LOEP.

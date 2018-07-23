@@ -378,19 +378,17 @@ ActivityObject.class_eval do
 
   def getUrl
     begin
-      if self.object.nil?
-        return nil
-      end
+      return nil if self.object.nil?
 
       if self.object_type == "Document" and !self.object.type.nil?
-        helper_name = self.object.type.downcase
+        helper_name = self.object.type.underscore
       elsif self.object_type == "Actor" 
         if self.object.subject_type.nil? or ["Site","RemoteSubject"].include? self.object.subject_type
           return nil
         end
-        helper_name = self.object.subject_type.downcase
+        helper_name = self.object.subject_type.underscore
       else
-        helper_name = self.object_type.downcase
+        helper_name = self.object_type.underscore
       end
 
       relativePath = Rails.application.routes.url_helpers.send(helper_name + "_path",self.object)

@@ -1,0 +1,119 @@
+<% showEvaluation = @ediphy_document.evaluable? %>
+<% showAnalytics = (showEvaluation and can?(:show_analytics,@ediphy_document) and @ediphy_document.has_analytics?) %>
+
+<% if showEvaluation %>
+  <script type="text/javascript">
+    var loepSettings = {};
+    <% loepConfig = Vish::Application.config.APP_CONFIG['loep'] %>
+    loepSettings.domain = '<%=loepConfig["domain"]%>';
+    loepSettings.app = '<%=loepConfig["app_name"]%>';
+    <% unless loepConfig["repository_name"].blank? %>
+      loepSettings.repository = '<%=loepConfig["repository_name"]%>';
+    <% end %>
+    <% if user_signed_in? %>
+      loepSettings.user_id = '<%=current_user.id%>';
+    <% end %>
+    loepSettings.loId = "<%=@ediphy_document.activity_object.getGlobalId()%>";
+    loepSettings.language = '<%=I18n.locale.to_s%>';
+    loepSettings.tokenURL = "/loep/session_token.json";
+    loepSettings.debug = false;
+
+    var triggerEvaluation = function(){
+      $("#learning-evaluation-button-id").trigger("click");
+    };
+  </script>
+<% end %>
+
+<!--activity-->
+<div class="activity">
+  <ul class="nav nav-tabs">
+   
+    <li class="active">
+      <a href="#comment1" data-toggle="tab">
+        <i class="fa fa-comment-o"></i>
+        <span class=" hidden-xs"><%=t('comment.other')%></span>
+      </a>
+    </li>
+
+    <% if showEvaluation %>
+      <li>
+        <a href="#lo_evaluation" data-toggle="tab">
+          <i class="fa fa-check-square"></i>
+          <span class="hidden-xs"><%=t('evaluation.tabtitle')%></span>
+        </a>
+      </li>
+    <% end %>
+
+    <% if showAnalytics %>
+      <li>
+        <a href="#lo_analytics" data-toggle="tab">
+          <i class="fa fa-area-chart"></i>
+          <span class="hidden-xs"><%=t('analytics.tabtitle')%></span>
+        </a>
+      </li>
+    <% end %>
+    
+    <li class="suggestion_show hidden-md hidden-lg">
+      <a  href="#suggestion_show" data-toggle="tab">
+        <i class="fa fa-bars"></i>
+        <span class=" hidden-xs"><%=t('recommended')%></span>
+      </a>
+    </li>
+
+  </ul>
+ 
+  <div class="tab-content">
+
+    <% if @ediphy_document.commentable? %>
+      <div class="tab-pane active comments-show" id="comment1">
+        <div id="comments" class="comments">
+          <%= render :partial => 'activities/comments', :locals => { :activity =>@ediphy_document.post_activity } %>
+          <%= render :partial => 'comments/new', :locals => { :activity => @ediphy_document.post_activity } %>
+        </div>
+      </div>
+    <% else %>
+      <div class="tab-pane active comments-not-shown">
+        <p><span><%=t('ediphy_document.disabled_comments')%></span></p>
+      </div>
+    <%end%>
+  
+    <% if showEvaluation %>
+      <div class="tab-pane evaluate-show" id="lo_evaluation">
+        <div class="btn-evalue">
+          <p><%= t('evaluation.contribute.student.title') %></p>
+          <!-- Button to trigger modal -->
+          <a id="learning-evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.contribute.student.evaluate') %></a>
+        </div>
+        <br/>
+        <div class="btn-evalue">
+          <p><%= t('evaluation.contribute.teacher.title') %></p>
+          <!-- Button to trigger modal -->
+          <a id="teaching-evaluation-button-id" href="#myTeachingModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.contribute.teacher.evaluate') %></a>
+        </div>
+        <br/>
+        <div id="learning-eval-results" style="display:none"></div>
+        <div id="teaching-eval-results" style="display:none"></div>
+      </div>
+      <%= render :partial => "ediphy_documents/ediphy_document_evaluate" %>
+    <% end %>
+
+    <% if showAnalytics %>
+      <div class="tab-pane evaluate-show" id="lo_analytics">
+        <%= render :partial => "ediphy_documents/ediphy_document_analytics" %>
+      </div>
+    <% end %>
+
+    <div class="tab-pane" id="suggestion_show">
+      <div class="recomended-mobile hidden-md hidden-lg" id="recomended_box">
+        <div class="recomended-items">
+          <ul class="items clearfix">
+             <% @resource_suggestions .each do |resource| %>
+                <%= render :partial => 'entities/entity', :locals => { :entity => resource, :prefix_id => "resource_suggestions"} %>
+              <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

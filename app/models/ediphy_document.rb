@@ -13,10 +13,8 @@ class EdiphyDocument < ActiveRecord::Base
   end
 
   def thumbnail
-    thumbnail = JSON.parse(self.json)["present"]["globalConfig"]["thumbnail"] || ""
-    if /data:image/.match(thumbnail).nil?
-      thumbnail = thumbnail + "?style=500"
-    end
+    thumbnail = (JSON.parse(self.json)["present"]["globalConfig"]["thumbnail"] || "") rescue ""
+    thumbnail = thumbnail + "?style=500" if thumbnail!="" and /data:image/.match(thumbnail).nil?
     thumbnail
   end
 
@@ -36,10 +34,10 @@ class EdiphyDocument < ActiveRecord::Base
       self.inferLanguage
     end
 
-    # #If LOEP is enabled, upload the ediphy document to LOEP
-    # unless Vish::Application.config.APP_CONFIG['loep'].nil?
-    #   VishLoep.sendActivityObject(self.activity_object) rescue nil
-    # end
+    #If LOEP is enabled, upload the ediphy document to LOEP
+    unless Vish::Application.config.APP_CONFIG['loep'].nil?
+      VishLoep.sendActivityObject(self.activity_object) rescue nil
+    end
   end
 
   def inferLanguage

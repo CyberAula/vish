@@ -1,3 +1,18 @@
+<%content_for :title do %><%= @ediphy_document.title %> - <%= !@ediphy_document.author.nil? ? @ediphy_document.author.name : "" %><% end %>
+<%content_for :description do %><%= t("site.meta_desc.excursion")+@ediphy_document.title + ". " + (@ediphy_document.description ? @ediphy_document.description : "")  %><% end %>
+<%content_for :keywords do %><%= @ediphy_document.tag_list %><% end %>
+<% shortURL = @ediphy_document.getUrl %>
+<%content_for :og_image do %><%= request.protocol + request.env['HTTP_HOST'] + "/assets/logos/original/excursion-vish.png" %><% end %>
+<%content_for :canonical do%><%=polymorphic_url(@ediphy_document, :locale => params[:locale])%><%end%>
+<%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@ediphy_document), @ediphy_document)%><%end%>
+
+<%=javascript_include_tag "RegaddiChart" %>
+<%=javascript_include_tag "loep" %>
+
+<%if @contribution%>
+  <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @contribution.parents_path } %>
+<%end%>
+
 <section id="show_items " class="layout_show">
 
   <!--recomended-->
@@ -22,7 +37,7 @@
       </div>
       <!--activity-->
       <div class="activity-box">
-        <%#= render :partial => 'ediphy_documents/evaluate-activity'%>
+        <%= render :partial => 'ediphy_documents/evaluate-activity'%>
       </div>
     </div>
   </div>
