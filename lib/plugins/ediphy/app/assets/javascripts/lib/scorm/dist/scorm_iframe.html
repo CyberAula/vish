@@ -22,6 +22,9 @@
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
+
+
+    // <iframe src="http://vishubcode.org/scorm/packages/229/vishubcode_scorm_wrapper.html" width="800" height="600" objecttype="scormpackage" webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"
     var query = getParameterByName('url',decodeURIComponent(window.location.search));
     console.log(decodeURIComponent(window.location.search),query)
     var scormpackageURL = query || "/index.html";
@@ -40,5 +43,5 @@
         }
     });
 </script>
-</html>
 </body>
+</html>
