@@ -754,12 +754,12 @@ ActivityObject.class_eval do
   def self.getObjectFromUrl(url)
     return nil if url.blank?
 
-    urlregexp = /([ ]|^)(http[s]?:\/\/[^\/]+\/([a-zA-Z0-9]+)\/([0-9]+))([ ]|$)/
+    urlregexp = /([ ]|^)(http[s]?:\/\/[^\/]+\/([a-zA-Z0-9_]+)\/([0-9]+))([ ]|$)/
     regexpResult = (url =~ urlregexp)
 
     return nil if regexpResult.nil? or $3.nil? or $4.nil?
 
-    modelName = $3.singularize.capitalize
+    modelName = $3.camelize.singularize
     instanceId = $4
 
     begin
