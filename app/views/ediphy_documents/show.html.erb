@@ -6,8 +6,11 @@
 <%content_for :canonical do%><%=polymorphic_url(@ediphy_document, :locale => params[:locale])%><%end%>
 <%content_for :alternate_urls do%><%=raw alternate_urls(polymorphic_url(@ediphy_document), @ediphy_document)%><%end%>
 
-<%=javascript_include_tag "RegaddiChart" %>
-<%=javascript_include_tag "loep" %>
+<% showEvaluation = @ediphy_document.evaluable? %>
+<% showAnalytics = (showEvaluation and can?(:show_analytics,@ediphy_document) and @ediphy_document.has_analytics?) %>
+
+<%=javascript_include_tag "RegaddiChart" if showEvaluation %>
+<%=javascript_include_tag "loep" if showEvaluation %>
 
 <%if @contribution%>
   <%= render :partial => 'application/breadcrumb_path', :locals  => { :path => @contribution.parents_path } %>
@@ -32,12 +35,12 @@
       <div class="box_description">
         <!--tool-->
         <div class="excursion_tool">
-          <%= render :partial => 'ediphy_documents/ediphy_document-tool-tab' %>
+          <%= render :partial => 'ediphy_documents/ediphy_document-tool-tab', :locals => { :showEvaluation => showEvaluation } %>
         </div>
       </div>
       <!--activity-->
       <div class="activity-box">
-        <%= render :partial => 'ediphy_documents/evaluate-activity'%>
+        <%= render :partial => 'ediphy_documents/evaluate-activity', :locals => { :showEvaluation => showEvaluation, :showAnalytics => showAnalytics } %>
       </div>
     </div>
   </div>

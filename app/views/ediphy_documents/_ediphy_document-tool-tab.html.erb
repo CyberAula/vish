@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", function(){
     <%end%>
 
     <!--Evaluate-->
-    <%unless Vish::Application.config.APP_CONFIG['loep'].nil?%>
+    <%if showEvaluation%>
       <button onclick="triggerEvaluation()" class="btn" data-toggle="tooltip" title="<%=t('evaluation.verb')%>">
         <i class="fa fa-check-square"></i>
       </button>

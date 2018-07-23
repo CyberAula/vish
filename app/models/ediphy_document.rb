@@ -34,8 +34,8 @@ class EdiphyDocument < ActiveRecord::Base
       self.inferLanguage
     end
 
-    #If LOEP is enabled, upload the ediphy document to LOEP
-    unless Vish::Application.config.APP_CONFIG['loep'].nil?
+    #If LOEP is enabled and EdiphyDocument is evaluable, register the ediphy document in LOEP
+    if VishConfig.getAvailableEvaluableModels.include?("EdiphyDocument")
       VishLoep.sendActivityObject(self.activity_object) rescue nil
     end
   end

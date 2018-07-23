@@ -1,3 +1,26 @@
+<% if showEvaluation %>
+  <script type="text/javascript">
+    var loepSettings = {};
+    <% loepConfig = Vish::Application.config.APP_CONFIG['loep'] %>
+    loepSettings.domain = '<%=loepConfig["domain"]%>';
+    loepSettings.app = '<%=loepConfig["app_name"]%>';
+    <% unless loepConfig["repository_name"].blank? %>
+      loepSettings.repository = '<%=loepConfig["repository_name"]%>';
+    <% end %>
+    <% if user_signed_in? %>
+      loepSettings.user_id = '<%=current_user.id%>';
+    <% end %>
+    loepSettings.loId = "<%=@workshop.activity_object.getGlobalId()%>";
+    loepSettings.language = '<%=I18n.locale.to_s%>';
+    loepSettings.tokenURL = "/loep/session_token.json";
+    loepSettings.debug = false;
+
+    var triggerEvaluation = function(){
+      $("#learning-evaluation-button-id").trigger("click");
+    };
+  </script>
+<% end %>
+
 <!--activity-->
 <div class="activity">
 
@@ -8,6 +31,14 @@
         <span class=" hidden-xs"><%=t('comment.other')%></span>
       </a>
     </li>
+    <% if showEvaluation %>
+      <li>
+        <a href="#lo_evaluation" data-toggle="tab">
+          <i class="fa fa-check-square"></i>
+          <span class="hidden-xs"><%=t('evaluation.tabtitle')%></span>
+        </a>
+      </li>
+    <% end %>
   </ul>
 
   <div class="tab-content">
@@ -17,5 +48,24 @@
         <%= render :partial => 'comments/new', :locals => { :activity => @workshop.post_activity } %>
       </div>
     </div>
+    <% if showEvaluation %>
+      <div class="tab-pane evaluate-show" id="lo_evaluation">
+        <div class="btn-evalue">
+          <p><%= t('evaluation.contribute.student.title') %></p>
+          <!-- Button to trigger modal -->
+          <a id="learning-evaluation-button-id" href="#myLearningModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.contribute.student.evaluate') %></a>
+        </div>
+        <br/>
+        <div class="btn-evalue">
+          <p><%= t('evaluation.contribute.teacher.title') %></p>
+          <!-- Button to trigger modal -->
+          <a id="teaching-evaluation-button-id" href="#myTeachingModal" role="button" class="btn-view-all" data-toggle="modal"><%= t('evaluation.contribute.teacher.evaluate') %></a>
+        </div>
+        <br/>
+        <div id="learning-eval-results" style="display:none"></div>
+        <div id="teaching-eval-results" style="display:none"></div>
+      </div>
+      <%= render :partial => "workshops/workshop_evaluate" %>
+    <% end %>
   </div>
 </div>

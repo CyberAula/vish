@@ -8,35 +8,14 @@ namespace :loep do
   task :sendLOs => :environment do
 
     puts "#####################################"
-    puts "Sending LOs from ViSH to LOEP"
+    puts "Sending evaluable resources from ViSH to LOEP"
     puts "#####################################"
 
-    #Select an array of excursions to be registered in LOEP
-    #Examples:
-
-    #One single excursion
-    # excursions = [Excursion.last]
-    # excursions = [Excursion.find(690)]
-
-    #All published excursions
-    excursions = Excursion.all.select{ |ex| ex.draft==false }
-
-    #Excursions tagged with ViSHCompetition2013
-    # excursions = ActivityObject.tagged_with("ViSHCompetition2013").map(&:object).select{|a| a.class==Excursion && a.draft == false}
-
-    #Excursions published in the last 3 months
-    # endDate = Time.now
-    # startDate = endDate.advance(:months => -3)
-    # excursions = Excursion.where(:draft=> false, :created_at => startDate..endDate)
-
-    #Excursions with iteractions
-    # excursions = LoInteraction.all.map{|i| i.activity_object.object}.select{|o| o.object_type == "Excursion" and o.draft===false}
-
+    evaluableAndPublicAOs = ActivityObject.where("object_type in (?) and scope=0", VishConfig.getAvailableEvaluableModels).order("created_at DESC")
     
-    aos = excursions.map{|ex| ex.activity_object}
-    VishLoep.sendActivityObjects(aos,{:sync=>true,:trace=>true})
+    VishLoep.sendActivityObjects(evaluableAndPublicAOs,{:sync=>true,:trace=>true})
     # Async
-    # VishLoep.sendActivityObjects(aos,{:async=>true,:trace=>true})
+    # VishLoep.sendActivityObjects(evaluableAndPublicAOs,{:async=>true,:trace=>true})
   end
 
   #Usage
@@ -47,9 +26,9 @@ namespace :loep do
     puts "Getting quality metrics from LOEP and updating ViSH database"
     puts "#####################################"
 
-    Excursion.all.each do |ex|
-      VishLoep.getActivityObjectMetrics(ex.activity_object){ |response|
-        puts "Metrics for excursion: " + ex.id.to_s
+    ActivityObject.where("object_type in (?)", VishConfig.getAvailableEvaluableModels).order("created_at DESC").each do |ao|
+      VishLoep.getActivityObjectMetrics(ao){ |response|
+        puts "Metrics for resource: " + ao.getGlobalId
         puts response
       }
       sleep 2

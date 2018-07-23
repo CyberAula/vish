@@ -130,7 +130,7 @@ ActivityObject.class_eval do
   end
 
   def resource?
-    #"Actor", "Post", "Category", "Document", "Excursion", "Scormfile", "Imscpfile", "Link", "Webapp", "Comment", "Event", "Embed", "Workshop", "Writing"
+    #"Actor", "Post", "Category", "Document", "Excursion", "EdiphyDocument", Scormfile", "Imscpfile", "Link", "Webapp", "Comment", "Event", "Embed", "Workshop", "Writing"
     return ((self.object_type.is_a? String) and (["Category", "Document", "Excursion", "EdiphyDocument", "Scormfile", "Imscpfile", "Link", "Webapp", "Event", "Embed", "Workshop", "Writing"].include? self.object_type))
   end
 
@@ -179,7 +179,7 @@ ActivityObject.class_eval do
   end
 
   def evaluable?
-    self.resource? and !Vish::Application.config.APP_CONFIG['loep'].nil?
+    VishConfig.getAvailableEvaluableModels.include?(self.object_type)
   end
 
   def has_analytics?

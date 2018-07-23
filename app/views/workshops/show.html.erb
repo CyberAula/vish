@@ -6,6 +6,12 @@
 <%content_for :canonical do%><%= polymorphic_url(@workshop, :locale => params[:locale]) %><%end%>
 <% shortURL = @workshop.getUrl %>
 
+<% showEvaluation = @workshop.evaluable? %>
+<% showAnalytics = (showEvaluation and can?(:show_analytics,@workshop) and @workshop.has_analytics?) %>
+
+<%=javascript_include_tag "RegaddiChart" if showEvaluation %>
+<%=javascript_include_tag "loep" if showEvaluation %>
+
 <section id="show_items" class="layout_show workshop_show">
 
   <!--++++++++++++++++toolbar+++++++++++++++++++++++-->
@@ -49,7 +55,7 @@
     <div class="box_description">
       <!--tool-->
       <div class="excursion_tool">
-        <%= render :partial => 'workshops/workshop-tool-tab', :locals => { :shortURL => shortURL} %>
+        <%= render :partial => 'workshops/workshop-tool-tab', :locals => { :shortURL => shortURL, :showEvaluation => showEvaluation } %>
       </div>
     </div>
   </div>
@@ -84,11 +90,10 @@
   <div class="description-activity workshop-comments">
     <!--activity (comments) -->
     <div class="activity-box">
-      <%= render :partial => 'workshops/evaluate-activity'%>
+      <%= render :partial => 'workshops/evaluate-activity', :locals => { :showEvaluation => showEvaluation, :showAnalytics => showAnalytics } %>
     </div>
   </div>
 </section>
-
 
 <%content_for :javascript do%>
   $(".showMore").click(function(){

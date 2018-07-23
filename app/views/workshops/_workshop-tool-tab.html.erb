@@ -63,6 +63,13 @@
     <%= link_like(@workshop.post_activity, {:size => :big, :class=>'btn', :title =>t('excursion.actions.favorite')})%>
   <%end%>
 
+  <!--Evaluate-->
+  <%if showEvaluation%>
+    <button onclick="triggerEvaluation()" class="btn" data-toggle="tooltip" title="<%=t('evaluation.verb')%>">
+      <i class="fa fa-check-square"></i>
+    </button>
+  <%end%>
+
   <!--Categorize-->
   <%if user_signed_in? %>
     <%= render partial: 'categories/category_modal_viewer', :locals => {:remote=> true, :item => @workshop} %>

@@ -1,6 +1,3 @@
-<% showEvaluation = @excursion.evaluable? %>
-<% showAnalytics = (showEvaluation and can?(:show_analytics,@excursion) and @excursion.has_analytics?) %>
-
 <% if showEvaluation %>
   <script type="text/javascript">
     var loepSettings = {};

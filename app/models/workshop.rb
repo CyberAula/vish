@@ -39,6 +39,11 @@ class Workshop < ActiveRecord::Base
       post_activity.relation_ids = [Relation::Public.instance.id]
       post_activity.save!
     end
+
+    #If LOEP is enabled and Workshop is evaluable, register the workshop in LOEP
+    if VishConfig.getAvailableEvaluableModels.include?("Workshop")
+      VishLoep.sendActivityObject(self.activity_object) rescue nil
+    end
   end
 
 

@@ -1,6 +1,3 @@
-<% showEvaluation = @ediphy_document.evaluable? %>
-<% showAnalytics = (showEvaluation and can?(:show_analytics,@ediphy_document) and @ediphy_document.has_analytics?) %>
-
 <% if showEvaluation %>
   <script type="text/javascript">
     var loepSettings = {};
