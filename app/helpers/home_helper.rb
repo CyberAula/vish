@@ -144,7 +144,7 @@ module HomeHelper
     #Optimization code
     #(Old version) return query.map{|ao| ao.object} if klass.is_a?(Array)
     query = if klass.is_a?(Array)
-              query.includes(klass.map{ |e| e.to_s.downcase.to_sym} + [:received_actions, { :received_actions => [:actor]}])
+              query.includes(klass.map{ |e| e.to_s.underscore.to_sym} + [:received_actions, { :received_actions => [:actor]}])
             else
               query.includes([:activity_object, :received_actions, { :received_actions => [:actor]}])
             end
