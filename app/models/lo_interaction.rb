@@ -49,8 +49,8 @@ class LoInteraction < ActiveRecord::Base
   # Public methods
   def extended_attributes
     attrs = {}
-    attrs["nsamples"] = self.nsamples unless self.nsamples.blank?
-    attrs["nvalidsamples"] = self.nvalidsamples unless self.nvalidsamples.blank?
+    attrs["nsamples"] = self.nvalidsamples unless self.nvalidsamples.blank?
+    attrs["nsignificativesamples"] = self.nsamples unless self.nsamples.blank?
     attrs["interactions"] = {}
     attrs["interactions"]["tlo"] = {"average_value" => self.tlo} unless self.tlo.blank?
     attrs["interactions"]["permanency_rate"] = {"average_value" => self.acceptancerate} unless self.acceptancerate.blank?
