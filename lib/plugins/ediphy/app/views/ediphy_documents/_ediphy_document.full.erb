@@ -8,7 +8,8 @@
     <%= yield :ediphy_head %>
     <script src="/assets/lib/ckeditor/ckeditor.js"></script>
     <script>
-        var ediphy_editor_json = JSON.stringify(JSON.parse('<%= raw ediphy_editor_json %>').present);
+        var ediphy_editor_json = <%= raw ediphy_editor_json %>;
+        ediphy_editor_json = JSON.stringify(ediphy_editor_json["present"]);       
     </script>
 </head>
 <body style="margin: 0px; height: 100%" id="mainbody">

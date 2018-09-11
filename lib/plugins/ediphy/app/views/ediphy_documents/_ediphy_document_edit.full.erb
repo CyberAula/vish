@@ -21,7 +21,7 @@
                            messageStyle: "none" });
     </script>
     <script>
-        var ediphy_editor_json = '<%= raw ediphy_editor_json %>';
+        var ediphy_editor_json = JSON.stringify(<%= raw ediphy_editor_json %>);
     </script>
 </head>
 <body style="margin: 0px; height: 100%" id="mainbody">
