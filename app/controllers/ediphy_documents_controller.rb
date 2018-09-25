@@ -1,6 +1,7 @@
 class EdiphyDocumentsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update ]
+  skip_load_and_authorize_resource :only => [:transpile]
   before_filter :profile_subject!, :only => :index
   before_filter :merge_json_params
   before_filter :fill_create_params, :only => [ :new, :create ]
@@ -104,8 +105,18 @@ class EdiphyDocumentsController < ApplicationController
     end
   end
 
+  def transpile
+    ex = Excursion.find params[:id]
+    new_json = convert_excursion ex.json
+    render 'ediphy_documents/new', :layout => 'ediphy', :locals => { :ediphy_editor_json => new_json, :default_tag=> params[:default_tag]}
+  end
+
 
   private
+
+  def convert_excursion(json)
+
+  end
 
   def allowed_params
     [:json, :draft, :scope]

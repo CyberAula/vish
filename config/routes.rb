@@ -91,6 +91,8 @@ Vish::Application.routes.draw do
   match '/excursions/tmpJson' => 'excursions#uploadTmpJSON', :via => :post
   match '/excursions/tmpJson' => 'excursions#downloadTmpJSON', :via => :get
 
+  match '/excursions/:id/transpile' => 'ediphy_documents#transpile', :via => :get
+
   resources :excursions
 
   #Ediphy documents
