@@ -38,6 +38,10 @@ class Excursion < ActiveRecord::Base
     json
   end
 
+  def to_ediphy
+    json
+  end
+
   ####################
   ## OAI-PMH Management
   ####################

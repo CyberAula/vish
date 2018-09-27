@@ -106,17 +106,11 @@ class EdiphyDocumentsController < ApplicationController
   end
 
   def transpile
-    ex = Excursion.find params[:id]
-    new_json = convert_excursion ex.json
-    render 'ediphy_documents/new', :layout => 'ediphy', :locals => { :ediphy_editor_json => new_json, :default_tag=> params[:default_tag]}
+    render 'ediphy_documents/new', :layout => 'ediphy', :locals => { :default_tag=> params[:default_tag]}
   end
 
 
   private
-
-  def convert_excursion(json)
-
-  end
 
   def allowed_params
     [:json, :draft, :scope]

@@ -30,5 +30,5 @@
   </script>
 <% end %>
 
-<%=render partial: 'ediphy_documents/ediphy_document_edit', :locals => {:ediphy_editor_json => 'undefined'}%>
+<%=render partial: 'ediphy_documents/ediphy_document_edit', :locals => {:ediphy_editor_json => Excursion.find(params[:excursion_id]).to_ediphy || 'undefined'}%>
 
