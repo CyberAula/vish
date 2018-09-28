@@ -141,13 +141,12 @@ class VETOEDIPHY
  end
 
  def self.create_plugintoolbar(box, template_box, plugin)
+   plugin_template = self.convert_plugin(plugin)
    binding.pry
    {
      "id" => box,
-     "pluginId" => "HotspotImages",
-     "state" => {
-         "url" => "https://via.placeholder.com/350x150",
-     },
+     "pluginId" => plugin_template["pluginId"],
+     "state" => plugin_template["state"],
      "structure" => {
          "height" => template_box["height"],
          "width" => template_box["width"],
@@ -214,6 +213,24 @@ class VETOEDIPHY
      end
    end
    boxes
+ end
+
+ def self.convert_plugin(plugin_template)
+   require 'uri'
+   pluginId = ""
+   state = {}
+   case plugin_template["type"]
+   when "image"
+     pluginId = "HotspotImages"
+     state = { "url" => plugin_template["body"] }
+   when "text"
+     pluginId = "BasicText"
+     state = { "_text" => URI::encode(plugin_template["body"]) }
+   else
+     pluginId = "HotspotImages"
+     state = { "url" => "https://via.placeholder.com/350x150" }
+   end
+   { "pluginId" => pluginId, "state" => state }
  end
 
  ## Rich plugins & contained views
