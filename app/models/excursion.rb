@@ -39,7 +39,8 @@ class Excursion < ActiveRecord::Base
   end
 
   def to_ediphy
-    json
+    require 've_to_ediphy'
+    VETOEDIPHY.transpile(json)
   end
 
   ####################
