@@ -3,7 +3,7 @@ class VETOEDIPHY
  def self.transpile(vish_excursion_json)
    excursion_json = JSON.parse(vish_excursion_json)
    names = self.generateNames(excursion_json)
-   boxes_by_id = self.create_boxes(excursion_json, names["navs_names"], names["navs_boxes"], names["templates"])
+   boxes_by_id = self.create_boxes(excursion_json, names["navs_names"], names["navs_boxes"], names["templates"], names["plugins"])
    nav_items_by_id = self.create_navitemsbyid(excursion_json, names["navs_names"], names["navs_boxes"])
    nav_items_ids = self.create_navitemsids(names["navs_names"])
    navItemSelected = names["navs_names"].values[0] # TODO Comprobar que hay al menos una slide
@@ -82,8 +82,10 @@ class VETOEDIPHY
      templates[name] = slide["template"]
      slide["elements"].each_with_index   do |element, i|
        box = self.generateBoxName(p,i)
-       plugins[box] = {"type" => element["type"], "body" => element["body"], "style" => element["style"]}
-       navs_boxes[name].push(box)
+       plugins[box] = {"type" => element["type"], "body" => element["body"], "style" => element["style"], "sources" => element["sources"]}
+       if plugins[box]["type"]
+         navs_boxes[name].push(box)
+       end
      end
    end
    { "navs_boxes" => navs_boxes, "navs_names" => names, "templates" => templates, "plugins" => plugins}
@@ -140,9 +142,8 @@ class VETOEDIPHY
    navs
  end
 
- def self.create_plugintoolbar(box, template_box, plugin)
+ def self.create_plugintoolbar(box, template_box, plugin, box_shape)
    plugin_template = self.convert_plugin(plugin)
-   binding.pry
    {
      "id" => box,
      "pluginId" => plugin_template["pluginId"],
@@ -153,16 +154,16 @@ class VETOEDIPHY
          "widthUnit" => "%",
          "heightUnit" => "%",
          "rotation" => 0,
-         "aspectRatio" => true,
+         "aspectRatio" => false,
          "position" => "absolute",
      },
-     "style" => {
-         "padding" => 0,
-         "backgroundColor" => "#ffffff",
+     "style" => { # TODO Poner solo las styles que son en cada plugin
+         # "padding" => 0,
+         # "backgroundColor" => "#ffffff",
          "borderWidth" => 0,
          "borderStyle" => "solid",
          "borderColor" => "#000000",
-         "borderRadius" => 0,
+         "borderRadius" => box_shape.match("circle") ? "50%": "0",
          "opacity" => 1,
      },
      "showTextEditor" => false,
@@ -174,13 +175,14 @@ class VETOEDIPHY
    boxes_names.each do|key, boxes_ids|
      template_slide = template(templates[key])["elements"]
      boxes_ids.each_with_index do |box, index|
-       template_box = template_slide[template_slide.keys[index]]
-       boxes[box] = self.create_plugintoolbar(box, template_box, plugins[box])
+       box_shape = template_slide.keys[index]
+       template_box = template_slide[box_shape]
+       boxes[box] = self.create_plugintoolbar(box, template_box, plugins[box], box_shape)
      end
    end
    boxes
  end
- def self.create_box(box, parent, template_box)
+ def self.create_box(box, parent, template_box, plugin)
    {
         "id" => box,
         "parent" => parent,
@@ -203,13 +205,13 @@ class VETOEDIPHY
         "containedViews" => [ ]
    }
  end
- def self.create_boxes(excursion_json, nav_names, boxes_names, templates)
+ def self.create_boxes(excursion_json, nav_names, boxes_names, templates, plugins)
    boxes = {}
    boxes_names.each do|key, boxes_ids|
      template_slide = template(templates[key])["elements"]
      boxes_ids.each_with_index do |box, index|
        template_box = template_slide[template_slide.keys[index]]
-       boxes[box] = self.create_box(box, key, template_box)
+       boxes[box] = self.create_box(box, key, template_box, plugins[box])
      end
    end
    boxes
@@ -220,17 +222,43 @@ class VETOEDIPHY
    pluginId = ""
    state = {}
    case plugin_template["type"]
-   when "image"
-     pluginId = "HotspotImages"
-     state = { "url" => plugin_template["body"] }
-   when "text"
-     pluginId = "BasicText"
-     state = { "_text" => URI::encode(plugin_template["body"]) }
-   else
-     pluginId = "HotspotImages"
-     state = { "url" => "https://via.placeholder.com/350x150" }
-   end
-   { "pluginId" => pluginId, "state" => state }
+     when "image"
+       pluginId = "HotspotImages"
+       state = { "url" => plugin_template["body"] }
+     when "text"
+       pluginId = "BasicText"
+       state = { "__text" =>   URI::encode("<div>"+ URI::decode(plugin_template["body"])+"</div>") }
+     when "object"
+       if (plugin_template["body"].match("youtube"))
+         pluginId = "EnrichedPlayer"
+         url = plugin_template["body"].match("src=\\\"(.+?)\\\"")
+         state = { "url" => (url && url[1]) ? url[1] : "", "controls" => true}
+       elsif (plugin_template["body"].match("\.pdf\\\""))
+         pluginId = "EnrichedPDF"
+         url = plugin_template["body"].match("src=\\\"(.+?)\\\"")
+         state = { "url" => (url && url[1]) ? url[1] : "", "numPages" => nil, "pageNumber" => "1"}
+       elsif (plugin_template["body"].match("scorm"))
+         pluginId = "ScormPackage"
+         url = plugin_template["body"].match("src=\\\"(.+?)\\\"")
+         state = { "url" => (url && url[1]) ? url[1] : ""}
+       elsif (plugin_template["body"].match("\\u003Cembed"))
+         pluginId = "FlashObject"
+         url = plugin_template["body"].match("src=\\\"(.+?)\\\"")
+         state = { "url" => (url && url[1]) ? url[1] : ""}
+       else
+         pluginId = "Webpage"
+         url = plugin_template["body"].match("src=\\\"(.+?)\\\"")
+         state = { "url" => (url && url[1]) ? url[1] : "" }
+       end
+     when "video"
+       pluginId = "EnrichedPlayer"
+       url = plugin_template["sources"].match("src\\\":\\\"(.*?)\\\"")
+       state = { "url" => (url && url[1]) ? url[1] : "", "controls" => true}
+     else
+       pluginId = "HotspotImages"
+       state = { "url" => "https://via.placeholder.com/350x150" }
+     end
+     { "pluginId" => pluginId, "state" => state }
  end
 
  ## Rich plugins & contained views
@@ -664,70 +692,70 @@ class VETOEDIPHY
                     "height" => "9.2",
                 },
                 "circle" => { # TODO De aquí en adelante
-                              "x" => 0,
-                              "y" => 0,
-                              "width" => 0,
-                              "height" => 0,
+                    "x" => "5",
+                    "y" => "17",
+                    "width" => "43",
+                    "height" => "56",
                 },
                 "left" => {
-                    "x" => 0,
-                    "y" => 0,
-                    "width" => 0,
-                    "height" => 0,
+                    "x" => "52",
+                    "y" => "17",
+                    "width" => "43.2",
+                    "height" => "79",
                 },
                 "right" => {
-                    "x" => 0,
-                    "y" => 0,
-                    "width" => 0,
-                    "height" => 0,
+                    "x" => "5",
+                    "y" => "82.8",
+                    "width" => "43.2",
+                    "height" => "13.7",
                 },
             }
         },
         "t10" => {
             "elements" => {
                 "center" => {
-                    "x" => 0,
-                    "y" => 0,
-                    "width" => 0,
-                    "height" => 0,
+                    "x" => "0",
+                    "y" => "0",
+                    "width" => "100",
+                    "height" => "100",
                 },
             }
         },
         "t18" => {
             "elements" => {
                 "header" => {
-                    "x" => 0,
-                    "y" => 0,
-                    "width" => 0,
-                    "height" => 0,
+                    "x" => "0",
+                    "y" => "0",
+                    "width" => "100",
+                    "height" => "6.35",
                 },
                 "center" => {
-                    "x" => 0,
-                    "y" => 0,
-                    "width" => 0,
-                    "height" => 0,
+                    "x" => "0",
+                    "y" => "6.35",
+                    "width" => "100",
+                    "height" => "93.65",
                 },
             }
         },
         "t19" => {
             "elements" => {
                 "header" => {
-                    "x" => 0,
-                    "y" => 0,
-                    "width" => 0,
-                    "height" => 0,
+                    "x" => "0",
+                    "y" => "0",
+                    "width" => "100",
+                    "height" => "6.35",
                 },
                 "center" => {
-                    "x" => 0,
-                    "y" => 0,
-                    "width" => 0,
-                    "height" => 0,
+                    "x" => "0",
+                    "y" => "6.35",
+                    "width" => "100",
+                    "height" => "87.65",
                 },
                 "bottom" => {
-                    "x" => 0,
-                    "y" => 0,
-                    "width" => 0,
-                    "height" => 0,
+                    "x" => "0",
+                    "y" => "94",
+                    "width" =>"100",
+                    "height" => "6",
                 },
             }
         },
