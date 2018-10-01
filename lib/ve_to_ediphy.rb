@@ -250,6 +250,10 @@ class VETOEDIPHY
          url = plugin_template["body"].match("src=\\\"(.+?)\\\"")
          state = { "url" => (url && url[1]) ? url[1] : "" }
        end
+     when "audio"
+       pluginId = "EnrichedAudio"
+       url = plugin_template["sources"].match("src\\\":\\\"(.*?)\\\"")
+       state = { "url" => (url && url[1]) ? url[1] : "", "auoplay" => false, "controls" => true, "waves" => true, "barWidth" => 2, "progressColor" => "#ccc", "waveColor" => "#178582", "scroll" => false}
      when "video"
        pluginId = "EnrichedPlayer"
        url = plugin_template["sources"].match("src\\\":\\\"(.*?)\\\"")
@@ -540,28 +544,28 @@ class VETOEDIPHY
         "t9" => {
             "elements" => {
                 "header" => {
-                    "x" => 0,
-                    "y" => 0,
-                    "width" => 0,
-                    "height" => 0,
+                    "x" => "5",
+                    "y" => "5",
+                    "width" => "90",
+                    "height" => "9",
                 },
                 "left" => {
-                    "x" => 0,
-                    "y" => 0,
-                    "width" => 0,
-                    "height" => 0,
+                    "x" => "5",
+                    "y" => "16",
+                    "width" => "28",
+                    "height" => "42",
                 },
                 "center" => {
-                    "x" => 0,
-                    "y" => 0,
-                    "width" => 0,
-                    "height" => 0,
+                    "x" => "0",
+                    "y" => "16",
+                    "width" => "30.5",
+                    "height" => "80",
                 },
                 "right" => {
-                    "x" => 0,
-                    "y" => 0,
-                    "width" => 0,
-                    "height" => 0,
+                    "x" => "0",
+                    "y" => "0",
+                    "width" => "28",
+                    "height" => "42",
                 },
             }
         },
@@ -602,13 +606,13 @@ class VETOEDIPHY
                     "height" => "32",
                 },
                 "center" => {
-                    "x" => "66",
+                    "x" => "36",
                     "y" => "4",
                     "width" => "28",
                     "height" => "32",
                 },
                 "right" => {
-                    "x" => "66.3",
+                    "x" => "67",
                     "y" => "4",
                     "width" => "28",
                     "height" =>"32",
@@ -627,19 +631,19 @@ class VETOEDIPHY
                     "x" => "5",
                     "y" => "4",
                     "width" => "90",
-                    "height" => "28,4",
+                    "height" => "28.4",
                 },
                 "center2" => {
                     "x" => "5",
                     "y" => "36",
                     "width" => "90",
-                    "height" => "28,4",
+                    "height" => "28.4",
                 },
                 "center3" => {
                     "x" => "5",
                     "y" => "68",
                     "width" => "90",
-                    "height" => "28,4",
+                    "height" => "28.4",
                 },
             }
         },
