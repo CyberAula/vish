@@ -35,6 +35,10 @@ class VETOEDIPHY
 
  ## Global Config TODO Finish all metadata
  def self.create_global_config(excursion_json)
+
+   time = excursion_json["TLT"].match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
+   age = excursion_json["age_range"].match(/(\d+).+(\d)/)
+
    {
        "title" => excursion_json["title"],
        "author" => excursion_json["author"]["name"],
@@ -46,21 +50,22 @@ class VETOEDIPHY
        },
        "trackProgress" => true,
        "age" => {
-           "min" => 0,
-           "max" => 0
+           "min" => age[1] || 0,
+           "max" => age[2] || 0
        },
        "keywords" => excursion_json["tags"],
        "typicalLearningTime" => {
-           "h" => 0,
-           "m" => 0,
-           "s" => 0
+           "h" => time[1] || 0,
+           "m" => time[2] || 0,
+           "s" => time[3] || 0
        },
        "version" => '1.0.0',
        "thumbnail" => excursion_json["avatar"],
        "status" => 'draft',
        "structure" => 'linear',
-       "difficulty" => 'easy'
+       "difficulty" => excursion_json["difficulty"]
    }
+
  end
 
  ## Nav Items
