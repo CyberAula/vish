@@ -2,17 +2,16 @@ class VETOEDIPHY
 
  def self.transpile(vish_excursion_json)
    excursion_json = JSON.parse(vish_excursion_json)
-   names = self.generateNames(excursion_json)
-   boxes_by_id = self.create_boxes(excursion_json, names["navs_names"], names["navs_boxes"], names["templates"], names["plugins"])
-   nav_items_by_id = self.create_navitemsbyid(excursion_json, names["navs_names"], names["navs_boxes"])
-   nav_items_ids = self.create_navitemsids(names["navs_names"])
-   navItemSelected = names["navs_names"].values[0] # TODO Comprobar que hay al menos una slide
-   view_toolbars_by_id = self.create_viewtoolbars(excursion_json, names["navs_names"])
-   plugin_toolbars_by_id = self.create_plugintoolbars(excursion_json, names["navs_boxes"], names["templates"], names["plugins"])
+   names = self.generate_names(excursion_json)
+   nav_items_by_id = self.create_nav_items_by_id(excursion_json, names["navs_names"], names["navs_boxes"])
+   nav_items_ids = self.create_nav_items_ids(names["navs_names"])
+   nav_item_selected = names["navs_names"].values[0] # TODO Comprobar que hay al menos una slide
+   view_toolbars_by_id = self.create_view_toolbars(excursion_json, names["navs_names"])
+   boxes_and_plugin_toolbars_by_id = self.create_boxes_and_plugin_toolbars_by_id( names["navs_boxes"], names["templates"], names["plugins"])
    global_config = self.create_global_config(excursion_json)
    marks_by_id = self.create_marks(excursion_json)
-   exercises = self.create_exercises(excursion_json, names["navs_boxes"])
-
+   exercises = self.create_exercises(excursion_json, names["navs_boxes"], boxes_and_plugin_toolbars_by_id["toolbars"])
+   
    {
        "present" => {
            "version"=> "2",
@@ -22,11 +21,11 @@ class VETOEDIPHY
            "indexSelected"=> -1,
            "navItemsById"=> nav_items_by_id,
            "navItemsIds"=> nav_items_ids,
-           "navItemSelected" => navItemSelected,
+           "navItemSelected" => nav_item_selected,
            "marksById" => marks_by_id,
-           "boxesById" => boxes_by_id,
+           "boxesById" => boxes_and_plugin_toolbars_by_id["boxes"],
            "viewToolbarsById" => view_toolbars_by_id,
-           "pluginToolbarsById" => plugin_toolbars_by_id,
+           "pluginToolbarsById" => boxes_and_plugin_toolbars_by_id["toolbars"],
            "exercises" => exercises,
            "isBusy" => "",
        }
@@ -69,25 +68,32 @@ class VETOEDIPHY
  end
 
  ## Nav Items
- def self.generateNavItemName(i)
+ def self.generate_nav_item_name(i)
    'pa-' + Time.now.to_i.to_s + i.to_s
  end
- def self.generateBoxName(p,i)
+ def self.generate_box_name(p,i)
    'bo-' + Time.now.to_i.to_s + '_'+ p.to_s + '_'+ i.to_s
  end
- def self.generateNames(excursion_json)
+ def self.generate_names(excursion_json)
    navs_boxes = {}
    names = {}
    templates = {}
    plugins = {}
    excursion_json["slides"].each_with_index  do |slide, p|
-     name = generateNavItemName(p)
+     name = generate_nav_item_name(p)
      names[slide["id"]] = name
      navs_boxes[name] = []
      templates[name] = slide["template"]
      slide["elements"].each_with_index   do |element, i|
-       box = self.generateBoxName(p,i)
-       plugins[box] = {"type" => element["type"], "body" => element["body"], "style" => element["style"], "sources" => element["sources"]}
+       box = self.generate_box_name(p,i)
+       plugins[box] = {"type" => element["type"],
+                       "body" => element["body"],
+                       "style" => element["style"],
+                       "sources" => element["sources"],
+                       "question" => element["question"],
+                       "quiztype" => element["quiztype"],
+                       "choices" => element["choices"]
+       }
        if plugins[box]["type"]
          navs_boxes[name].push(box)
        end
@@ -95,10 +101,10 @@ class VETOEDIPHY
    end
    { "navs_boxes" => navs_boxes, "navs_names" => names, "templates" => templates, "plugins" => plugins}
  end
- def self.create_navitemsids(names)
+ def self.create_nav_items_ids(names)
    names.values
  end
- def self.create_navitem(id, boxes)
+ def self.create_nav_item(id, boxes)
      {
         "id" => id,
         "isExpanded" => true,
@@ -113,16 +119,16 @@ class VETOEDIPHY
         "customSize" => 0
      }
  end
- def self.create_navitemsbyid(excursion_json, names, boxes_names)
+ def self.create_nav_items_by_id(excursion_json, names, boxes_names)
    navs = {}
    names.values.each do |slide|
      boxes = boxes_names[slide]
-     navs[slide] = self.create_navitem(slide, boxes)
+     navs[slide] = self.create_nav_item(slide, boxes)
    end
    navs["0"] = { "id"=> 0, "children"=> names.values, "boxes"=> [], "level"=> 0, "type"=> '', "hidden"=> false }
    navs
  end
- def self.create_viewtoolbar(id,number)
+ def self.create_view_toolbar(id,number)
    {
        "id" => id,
        "viewName" => 'Slide ' + number.to_s,
@@ -139,22 +145,23 @@ class VETOEDIPHY
        "aspectRatio" => ""
    }
  end
- def self.create_viewtoolbars(excursion_json, names)
+
+ def self.create_view_toolbars(excursion_json, names)
    navs = {}
    names.values.each_with_index do |slide, i|
-     navs[slide] = self.create_viewtoolbar(slide, i+1)
+     navs[slide] = self.create_view_toolbar(slide, i+1)
    end
    navs
  end
 
- def self.create_plugintoolbar(box, template_box, plugin, box_shape)
+ def self.create_plugin_toolbar(box, template_box, plugin, box_shape)
    plugin_template = self.convert_plugin(plugin)
    {
      "id" => box,
      "pluginId" => plugin_template["pluginId"],
      "state" => plugin_template["state"],
      "structure" => {
-         "height" => template_box["height"],
+         "height" => template_box["height"] ? template_box["height"] : "auto",
          "width" => template_box["width"],
          "widthUnit" => "%",
          "heightUnit" => "%",
@@ -175,23 +182,13 @@ class VETOEDIPHY
 
  }
  end
- def self.create_plugintoolbars(excursion_json, boxes_names, templates, plugins)
-   boxes = {}
-   boxes_names.each do|key, boxes_ids|
-     template_slide = template(templates[key])["elements"]
-     boxes_ids.each_with_index do |box, index|
-       box_shape = template_slide.keys[index]
-       template_box = template_slide[box_shape]
-       boxes[box] = self.create_plugintoolbar(box, template_box, plugins[box], box_shape)
-     end
-   end
-   boxes
- end
- def self.create_box(box, parent, template_box, plugin)
+
+
+ def self.create_box(box, parent, container, template_box)
    {
         "id" => box,
         "parent" => parent,
-        "container" => 0,
+        "container" => container,
         "level" => 0,
         "col" => 0,
         "row" => 0,
@@ -210,16 +207,51 @@ class VETOEDIPHY
         "containedViews" => [ ]
    }
  end
- def self.create_boxes(excursion_json, nav_names, boxes_names, templates, plugins)
+
+ def self.create_sortable_container(key, children)
+   {
+       "children" =>children,
+       "style" => {
+           "padding" =>"0px",
+           "borderColor" =>"#ffffff",
+           "borderWidth" =>"0px",
+           "borderStyle" =>"solid",
+           "opacity" =>"1",
+           "textAlign" =>"left",
+           "className" =>""
+       },
+       "height" =>"auto",
+       "key" => key,
+       "colDistribution" =>[100],
+       "cols" =>[[100]]
+   }
+ end
+ def self.create_boxes_and_plugin_toolbars_by_id(boxes_names, templates, plugins)
    boxes = {}
+   toolbars = {}
    boxes_names.each do|key, boxes_ids|
      template_slide = template(templates[key])["elements"]
      boxes_ids.each_with_index do |box, index|
-       template_box = template_slide[template_slide.keys[index]]
-       boxes[box] = self.create_box(box, key, template_box, plugins[box])
+       box_shape = template_slide.keys[index]
+       template_box = template_slide[box_shape]
+       toolbars[box] = self.create_plugin_toolbar(box, template_box, plugins[box], box_shape)
+       boxes[box] = self.create_box(box, key, 0, template_box)
+       if !!toolbars[box]["state"]["__pluginContainerIds"]
+         child_states = toolbars[box]["state"]["child_states"]
+         toolbars[box]["state"].delete("child_states")
+         boxes[box]["children"] = toolbars[box]["state"]["__pluginContainerIds"].keys
+         toolbars[box]["state"]["__pluginContainerIds"].keys.each_with_index do |key_c, ind|
+           child = generate_box_name(ind, "_#{index}")
+           boxes[box]["sortableContainers"][key_c] = self.create_sortable_container(key_c, [child])
+           text_plugin = child_states[key_c]
+           template_box_child = { "x" => "0", "y" => "0", "width" => "100" }
+           boxes[child] = self.create_box(child, box, key_c, template_box_child,)
+           toolbars[child] = self.create_plugin_toolbar(child, template_box_child, text_plugin, "")
+         end
+       end
      end
    end
-   boxes
+   { "boxes" => boxes, "toolbars" => toolbars }
  end
 
  def self.convert_px_to_em(num)
@@ -230,6 +262,7 @@ class VETOEDIPHY
    result = result / calculatedFontSize
    result.round(2).to_s + "em"
  end
+
  def self.convert_plugin(plugin_template)
    require 'uri'
    pluginId = ""
@@ -273,11 +306,39 @@ class VETOEDIPHY
        pluginId = "EnrichedPlayer"
        url = plugin_template["sources"].match("src\\\":\\\"(.*?)\\\"")
        state = { "url" => (url && url[1]) ? url[1] : "", "controls" => true}
+      when "quiz"
+        
+       case plugin_template["quiztype"]
+         when "multiplechoice"
+           pluginId = "MultipleChoice"
+           question = plugin_template["question"]
+           answers = plugin_template["choices"]
+           child_states = {
+               "sc-Question" => { "type" => "text", "body" => question["wysiwygValue"] || question["value"] }
+           }
+           plugin_container_ids = {
+               "sc-Question" => { "id" => "sc-Question", "name" => "Question", "height" => "auto" }
+           }
+           answers.each_with_index do |ans, i|
+             plugin_container_ids["sc-Answer#{i}"] = { "id" => "sc-Answer#{i}", "name" => "Answer #{i}", "height" => "auto" }
+             child_states["sc-Answer#{i}"] = { "type" => "text", "body" => ans["wysiwygValue"] || ans["value"] }
+           end
+           plugin_container_ids["sc-Feedback"] = { "id" => "sc-Feedback", "name" => "Feedback", "height"=> "auto"}
+           child_states["sc-Feedback"] =  { "type" => "text", "body" => ""}
+
+           state = {"nBoxes" => answers.length,
+                    "showFeedback" => false,
+                    "letters" => "Letters",
+                    "quizColor" => "rgba(0, 173, 156, 1)",
+                    "__pluginContainerIds" => plugin_container_ids,
+                    "child_states" => child_states
+           }
+        end
      else
        pluginId = "HotspotImages"
        state = { "url" => "https://via.placeholder.com/350x150" }
      end
-     { "pluginId" => pluginId, "state" => state }
+   { "pluginId" => pluginId, "state" => state }
  end
 
  ## Rich plugins & contained views
@@ -288,10 +349,32 @@ class VETOEDIPHY
   {}
  end
 
+def self.create_exercise(name, box)
+  {
+      "name" => name,
+      "id" => box,
+      "weight" => 1,
+      "correctAnswer" => 0,
+      "currentAnswer" => "",
+      "attempted" => false,
+      "score" => 0,
+      "quizColor" => "rgba(11,255,255,1)",
+      "correct" => false
+  }
+end
  ## Exercises
- def self.create_exercises(excursion_json, boxes_names)
+ def self.create_exercises(excursion_json, boxes_names, plugin_toolbars_by_id)
    exercises = {}
+   
    boxes_names.each do|key, boxes|
+     ex_boxes = {}
+     boxes.each do |box|
+        plugin = plugin_toolbars_by_id[box]
+        if  ["MultipleChoice", "MultipleAnswer", "InputText", "Ordering", "ScormPackage", "FreeResponse", "TrueFalse"].include? plugin["pluginId"]
+          ex_boxes[box] = create_exercise( plugin["pluginId"], box )
+        end
+
+     end
      exercises[key] =  {
          "id" => key,
          "submitButton" => true,
@@ -299,13 +382,13 @@ class VETOEDIPHY
          "attempted" => false,
          "weight" => 10,
          "minForPass" => 50,
-         "exercises" => {},
+         "exercises" => ex_boxes,
          "score" => 0,
      }
    end
    exercises
  end
-  def self.template(id)
+ def self.template(id)
     templates = {
         "t1" => {
             "elements" => {
@@ -710,7 +793,7 @@ class VETOEDIPHY
                     "width" => "90",
                     "height" => "9.2",
                 },
-                "circle" => { # TODO De aquí en adelante
+                "circle" => {
                     "x" => "5",
                     "y" => "17",
                     "width" => "43",
@@ -782,5 +865,5 @@ class VETOEDIPHY
     }
 
     templates[id]
+ end
   end
-end

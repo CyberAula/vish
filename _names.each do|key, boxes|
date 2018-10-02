@@ -1,0 +1,29 @@
+
+[1mFrom:[0m /home/slp/vish/lib/ve_to_ediphy.rb @ line 346 VETOEDIPHY.create_exercises:
+
+    [1;34m344[0m: [32mdef[0m [1;36mself[0m.[1;34mcreate_exercises[0m(excursion_json, boxes_names, plugin_toolbars_by_id)
+    [1;34m345[0m:   exercises = {}
+ => [1;34m346[0m:   binding.pry
+    [1;34m347[0m:   boxes_names.each [32mdo[0m|key, boxes|
+    [1;34m348[0m:     ex_boxes = {}
+    [1;34m349[0m:     boxes.each [32mdo[0m |box|
+    [1;34m350[0m:        plugin = plugin_toolbars_by_id[box]
+    [1;34m351[0m:        [32mif[0m  [[31m[1;31m"[0m[31mMultipleChoice[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mMultipleAnswer[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mInputText[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mOrdering[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mScormPackage[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mFreeResponse[1;31m"[0m[31m[0m, [31m[1;31m"[0m[31mTrueFalse[1;31m"[0m[31m[0m].include? plugin[[31m[1;31m"[0m[31mpluginId[1;31m"[0m[31m[0m]
+    [1;34m352[0m:          ex_boxes[box] = create_exercise( plugin[[31m[1;31m"[0m[31mpluginId[1;31m"[0m[31m[0m], box )
+    [1;34m353[0m:        [32mend[0m
+    [1;34m354[0m: 
+    [1;34m355[0m:     [32mend[0m
+    [1;34m356[0m:     exercises[key] =  {
+    [1;34m357[0m:         [31m[1;31m"[0m[31mid[1;31m"[0m[31m[0m => key,
+    [1;34m358[0m:         [31m[1;31m"[0m[31msubmitButton[1;31m"[0m[31m[0m => [1;36mtrue[0m,
+    [1;34m359[0m:         [31m[1;31m"[0m[31mtrackProgress[1;31m"[0m[31m[0m => [1;36mfalse[0m,
+    [1;34m360[0m:         [31m[1;31m"[0m[31mattempted[1;31m"[0m[31m[0m => [1;36mfalse[0m,
+    [1;34m361[0m:         [31m[1;31m"[0m[31mweight[1;31m"[0m[31m[0m => [1;34m10[0m,
+    [1;34m362[0m:         [31m[1;31m"[0m[31mminForPass[1;31m"[0m[31m[0m => [1;34m50[0m,
+    [1;34m363[0m:         [31m[1;31m"[0m[31mexercises[1;31m"[0m[31m[0m => ex_boxes,
+    [1;34m364[0m:         [31m[1;31m"[0m[31mscore[1;31m"[0m[31m[0m => [1;34m0[0m,
+    [1;34m365[0m:     }
+    [1;34m366[0m:   [32mend[0m
+    [1;34m367[0m:   exercises
+    [1;34m368[0m: [32mend[0m
+
