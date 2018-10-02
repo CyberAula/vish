@@ -31,5 +31,5 @@
 <% end %>
 
 
-<%=render partial: 'ediphy_documents/ediphy_document_edit', :locals => {:ediphy_editor_json => params[:excursion_id] != nil ? Excursion.find(params[:excursion_id]).to_ediphy : 'undefined'}%>
+<%=render partial: 'ediphy_documents/ediphy_document_edit', :locals => {:ediphy_editor_json => params[:excursion_id] != "" ? Excursion.find(params[:excursion_id]).to_ediphy : 'undefined'}%>
 
