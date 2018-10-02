@@ -217,6 +217,14 @@ class VETOEDIPHY
    boxes
  end
 
+ def self.convert_px_to_em(num)
+   result = num.delete("px").to_f
+   default_font_base = 14
+   default_width_base = 1100
+   calculatedFontSize = default_font_base * (798) / default_width_base  #px/em in ViSH
+   result = result / calculatedFontSize
+   result.round(2).to_s + "em"
+ end
  def self.convert_plugin(plugin_template)
    require 'uri'
    pluginId = ""
@@ -227,7 +235,9 @@ class VETOEDIPHY
        state = { "url" => plugin_template["body"] }
      when "text"
        pluginId = "BasicText"
-       state = { "__text" =>   URI::encode("<div>"+ URI::decode(plugin_template["body"])+"</div>") }
+       text = plugin_template["body"]
+       result = text.gsub(/([0-9]\d*(\.\d+)?)px/) { |num| (self.convert_px_to_em(num))}
+       state = { "__text" =>   URI::encode("<div>"+ URI::decode(result)+"</div>").gsub(/%23/,'#') }
      when "object"
        if (plugin_template["body"].match("youtube"))
          pluginId = "EnrichedPlayer"
@@ -475,13 +485,13 @@ class VETOEDIPHY
                     "x" => "5",
                     "y" => "55",
                     "width" => "30",
-                    "height" => "37",
+                    "height" => "41.8",
                 },
                 "right" => {
-                    "x" => "41.5",
+                    "x" => "37",
                     "y" => "16",
                     "width" => "58",
-                    "height" => "78",
+                    "height" => "81.2",
                 },
             }
         },
@@ -497,7 +507,7 @@ class VETOEDIPHY
                     "x" => "5",
                     "y" => "16",
                     "width" => "30",
-                    "height" => "84",
+                    "height" => "81.2",
                 },
                 "center" => {
                     "x" => "38",
@@ -552,20 +562,20 @@ class VETOEDIPHY
                 "left" => {
                     "x" => "5",
                     "y" => "16",
-                    "width" => "28",
-                    "height" => "42",
+                    "width" => "56",
+                    "height" => "37",
                 },
                 "center" => {
-                    "x" => "0",
+                    "x" => "63.3",
                     "y" => "16",
                     "width" => "30.5",
                     "height" => "80",
                 },
                 "right" => {
-                    "x" => "0",
-                    "y" => "0",
-                    "width" => "28",
-                    "height" => "42",
+                    "x" => "5",
+                    "y" => "55.35",
+                    "width" => "56",
+                    "height" => "41.5",
                 },
             }
         },
