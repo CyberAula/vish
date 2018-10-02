@@ -10,7 +10,7 @@ class VETOEDIPHY
    boxes_and_plugin_toolbars_by_id = self.create_boxes_and_plugin_toolbars_by_id( names["navs_boxes"], names["templates"], names["plugins"])
    global_config = self.create_global_config(excursion_json)
    marks_by_id = self.create_marks(excursion_json)
-   exercises = self.create_exercises(excursion_json, names["navs_boxes"], boxes_and_plugin_toolbars_by_id["toolbars"])
+   exercises = self.create_exercises(excursion_json, names["navs_boxes"], boxes_and_plugin_toolbars_by_id["toolbars"], boxes_and_plugin_toolbars_by_id["answers"])
    
    {
        "present" => {
@@ -92,7 +92,8 @@ class VETOEDIPHY
                        "sources" => element["sources"],
                        "question" => element["question"],
                        "quiztype" => element["quiztype"],
-                       "choices" => element["choices"]
+                       "choices" => element["choices"],
+                       "extras" => element["extras"]
        }
        if plugins[box]["type"]
          navs_boxes[name].push(box)
@@ -155,7 +156,7 @@ class VETOEDIPHY
  end
 
  def self.create_plugin_toolbar(box, template_box, plugin, box_shape)
-   plugin_template = self.convert_plugin(plugin)
+   plugin_template = self.convert_plugin(plugin, box_shape)
    {
      "id" => box,
      "pluginId" => plugin_template["pluginId"],
@@ -167,17 +168,9 @@ class VETOEDIPHY
          "heightUnit" => "%",
          "rotation" => 0,
          "aspectRatio" => false,
-         "position" => "absolute",
+         "position" => box_shape === "relative" ? "relative":"absolute",
      },
-     "style" => { # TODO Poner solo las styles que son en cada plugin
-         # "padding" => 0,
-         # "backgroundColor" => "#ffffff",
-         "borderWidth" => 0,
-         "borderStyle" => "solid",
-         "borderColor" => "#000000",
-         "borderRadius" => box_shape.match("circle") ? "50%": "0",
-         "opacity" => 1,
-     },
+     "style" => plugin_template["style"],
      "showTextEditor" => false,
 
  }
@@ -195,7 +188,7 @@ class VETOEDIPHY
         "position" => {
             "x" => template_box["x"]+"%",
             "y" => template_box["y"]+"%",
-            "type" => "absolute",
+            "type" => container == 0 ? "absolute" : "relative",
         },
         "content" => { },
         "draggable" => true,
@@ -229,6 +222,7 @@ class VETOEDIPHY
  def self.create_boxes_and_plugin_toolbars_by_id(boxes_names, templates, plugins)
    boxes = {}
    toolbars = {}
+   answers = {}
    boxes_names.each do|key, boxes_ids|
      template_slide = template(templates[key])["elements"]
      boxes_ids.each_with_index do |box, index|
@@ -238,7 +232,10 @@ class VETOEDIPHY
        boxes[box] = self.create_box(box, key, 0, template_box)
        if !!toolbars[box]["state"]["__pluginContainerIds"]
          child_states = toolbars[box]["state"]["child_states"]
+         right_answers = toolbars[box]["state"]["right_answers"]
+         answers[box] = right_answers
          toolbars[box]["state"].delete("child_states")
+         toolbars[box]["state"].delete("right_answers")
          boxes[box]["children"] = toolbars[box]["state"]["__pluginContainerIds"].keys
          toolbars[box]["state"]["__pluginContainerIds"].keys.each_with_index do |key_c, ind|
            child = generate_box_name(ind, "_#{index}")
@@ -246,12 +243,12 @@ class VETOEDIPHY
            text_plugin = child_states[key_c]
            template_box_child = { "x" => "0", "y" => "0", "width" => "100" }
            boxes[child] = self.create_box(child, box, key_c, template_box_child,)
-           toolbars[child] = self.create_plugin_toolbar(child, template_box_child, text_plugin, "")
+           toolbars[child] = self.create_plugin_toolbar(child, template_box_child, text_plugin, "relative")
          end
        end
      end
    end
-   { "boxes" => boxes, "toolbars" => toolbars }
+   { "boxes" => boxes, "toolbars" => toolbars, "answers" => answers}
  end
 
  def self.convert_px_to_em(num)
@@ -263,10 +260,17 @@ class VETOEDIPHY
    result.round(2).to_s + "em"
  end
 
- def self.convert_plugin(plugin_template)
+ def self.convert_plugin(plugin_template,box_shape)
    require 'uri'
    pluginId = ""
    state = {}
+   style = {
+     "borderWidth" => 0,
+     "borderStyle" => "solid",
+     "borderColor" => "#000000",
+     "borderRadius" => box_shape.match("circle") ? "50%": "0",
+     "opacity" => 1,
+   }
    case plugin_template["type"]
      when "image"
        pluginId = "HotspotImages"
@@ -276,6 +280,8 @@ class VETOEDIPHY
        text = plugin_template["body"]
        result = text.gsub(/([0-9]\d*(\.\d+)?)px/) { |num| (self.convert_px_to_em(num))}
        state = { "__text" =>   URI::encode("<div>"+ URI::decode(result)+"</div>").gsub(/%23/,'#') }
+       style["padding"] = "0.5"
+       style["backgroundColor"] = "#ffffff"
      when "object"
        if (plugin_template["body"].match("youtube"))
          pluginId = "EnrichedPlayer"
@@ -310,7 +316,7 @@ class VETOEDIPHY
         
        case plugin_template["quiztype"]
          when "multiplechoice"
-           pluginId = "MultipleChoice"
+           pluginId = plugin_template["extras"]["multipleAnswer"] ? "MultipleAnswer" : "MultipleChoice"
            question = plugin_template["question"]
            answers = plugin_template["choices"]
            child_states = {
@@ -319,26 +325,36 @@ class VETOEDIPHY
            plugin_container_ids = {
                "sc-Question" => { "id" => "sc-Question", "name" => "Question", "height" => "auto" }
            }
+           right_answer = plugin_template["extras"]["multipleAnswer"] ? [] : ""
            answers.each_with_index do |ans, i|
              plugin_container_ids["sc-Answer#{i}"] = { "id" => "sc-Answer#{i}", "name" => "Answer #{i}", "height" => "auto" }
              child_states["sc-Answer#{i}"] = { "type" => "text", "body" => ans["wysiwygValue"] || ans["value"] }
+             if ans["answer"]
+                if plugin_template["extras"]["multipleAnswer"]
+                  right_answer.push(i)
+                else
+                  right_answer = i
+                end
+              end
+
            end
            plugin_container_ids["sc-Feedback"] = { "id" => "sc-Feedback", "name" => "Feedback", "height"=> "auto"}
            child_states["sc-Feedback"] =  { "type" => "text", "body" => ""}
-
-           state = {"nBoxes" => answers.length,
-                    "showFeedback" => false,
-                    "letters" => "Letters",
-                    "quizColor" => "rgba(0, 173, 156, 1)",
-                    "__pluginContainerIds" => plugin_container_ids,
-                    "child_states" => child_states
+           state = {
+              "nBoxes" => answers.length,
+              "showFeedback" => false,
+              "letters" => "Letters",
+              "quizColor" => "rgba(0, 173, 156, 1)",
+              "__pluginContainerIds" => plugin_container_ids,
+              "child_states" => child_states,
+              "right_answers" => right_answer
            }
         end
      else
        pluginId = "HotspotImages"
        state = { "url" => "https://via.placeholder.com/350x150" }
      end
-   { "pluginId" => pluginId, "state" => state }
+   { "pluginId" => pluginId, "state" => state , "style" => style}
  end
 
  ## Rich plugins & contained views
@@ -349,12 +365,12 @@ class VETOEDIPHY
   {}
  end
 
-def self.create_exercise(name, box)
+def self.create_exercise(name, box, answer)
   {
       "name" => name,
       "id" => box,
       "weight" => 1,
-      "correctAnswer" => 0,
+      "correctAnswer" => answer,
       "currentAnswer" => "",
       "attempted" => false,
       "score" => 0,
@@ -363,7 +379,7 @@ def self.create_exercise(name, box)
   }
 end
  ## Exercises
- def self.create_exercises(excursion_json, boxes_names, plugin_toolbars_by_id)
+ def self.create_exercises(excursion_json, boxes_names, plugin_toolbars_by_id, answers)
    exercises = {}
    
    boxes_names.each do|key, boxes|
@@ -371,7 +387,7 @@ end
      boxes.each do |box|
         plugin = plugin_toolbars_by_id[box]
         if  ["MultipleChoice", "MultipleAnswer", "InputText", "Ordering", "ScormPackage", "FreeResponse", "TrueFalse"].include? plugin["pluginId"]
-          ex_boxes[box] = create_exercise( plugin["pluginId"], box )
+          ex_boxes[box] = create_exercise( plugin["pluginId"], box, answers[box] )
         end
 
      end
