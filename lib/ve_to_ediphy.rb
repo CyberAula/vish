@@ -1,19 +1,18 @@
 class VETOEDIPHY
 
- def self.transpile(vish_excursion_json)
+  def self.transpile(vish_excursion_json)
    excursion_json = JSON.parse(vish_excursion_json)
    names = self.generate_names(excursion_json)
-   binding.pry
-   nav_items_by_id = self.create_nav_items_by_id(excursion_json, names["navs_names"], names["navs_boxes"])
-   contained_views_by_id = self.create_contained_views_by_id(excursion_json, names["names_cv"], names["cv_boxes"])
+   nav_items_by_id = self.create_nav_items_by_id(names["navs_names"], names["navs_boxes"])
+   contained_views_by_id = self.create_contained_views_by_id(names["names_cv"], names["cv_boxes"], names["cv_marks"])
    nav_items_ids = self.create_nav_items_ids(names["navs_names"])
    nav_item_selected = names["navs_names"].values[0] # TODO Comprobar que hay al menos una slide
-   view_toolbars_by_id = self.create_view_toolbars(excursion_json, names["navs_names"], names["names_cv"])
-   boxes_and_plugin_toolbars_by_id = self.create_boxes_and_plugin_toolbars_by_id( names["navs_boxes"], names["templates"], names["plugins"])
+   view_toolbars_by_id = self.create_view_toolbars(names["navs_names"], names["names_cv"])
+   boxes_and_plugin_toolbars_by_id = self.create_boxes_and_plugin_toolbars_by_id( names["navs_boxes"], names["cv_boxes"], names["templates"], names["plugins"])
    global_config = self.create_global_config(excursion_json)
-   marks_by_id = self.create_marks(excursion_json)
-   exercises = self.create_exercises(excursion_json, names["navs_boxes"],  names["cv_boxes"], boxes_and_plugin_toolbars_by_id["toolbars"], boxes_and_plugin_toolbars_by_id["answers"])
-   
+   marks_by_id = names["marks"]
+   exercises = self.create_exercises(names["navs_boxes"],  names["cv_boxes"], boxes_and_plugin_toolbars_by_id["toolbars"], boxes_and_plugin_toolbars_by_id["answers"])
+
    {
        "present" => {
            "version"=> "2",
@@ -33,10 +32,9 @@ class VETOEDIPHY
            "isBusy" => "",
        }
    }.to_json
- end
-
- ## Global Config TODO Finish all metadata
- def self.create_global_config(excursion_json)
+  end
+  ## Global Config TODO Finish all metadata
+  def self.create_global_config(excursion_json)
 
    time = excursion_json["TLT"] && excursion_json["TLT"].match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
    age = excursion_json["age_range"] && excursion_json["age_range"].match(/(\d+).+(\d)/)
@@ -68,20 +66,20 @@ class VETOEDIPHY
        "difficulty" => excursion_json["difficulty"]
    }
 
- end
- ## Contained views
- def self.generate_cv_name(i)
+  end
+  def self.generate_cv_name(i)
    'cv-' + Time.now.to_i.to_s + i.to_s
- end
- ## Nav Items
- def self.generate_nav_item_name(i)
+  end
+  def self.generate_nav_item_name(i)
    'pa-' + Time.now.to_i.to_s + i.to_s
- end
- def self.generate_box_name(p,i)
+  end
+  def self.generate_box_name(p,i)
    'bo-' + Time.now.to_i.to_s + '_'+ p.to_s + '_'+ i.to_s
- end
-
- def self.get_box_from_element(element)
+  end
+  def self.generate_mark_name(p,i)
+   'rm-' + Time.now.to_i.to_s + '_'+ p.to_s + '_' + i.to_s
+  end
+  def self.get_box_from_element(element)
    {
         "type" => element["type"],
         "body" => element["body"],
@@ -95,9 +93,20 @@ class VETOEDIPHY
         "extras" => element["extras"],
         "contained_views" => element["contained_views"]
    }
- end
-
- def self.generate_names(excursion_json)
+  end
+  def self.convert_px_to_em(num)
+    result = num.delete("px").to_f
+    default_font_base = 14
+    default_width_base = 1100
+    calculatedFontSize = default_font_base * (798) / default_width_base  #px/em in ViSH
+    result = result / calculatedFontSize
+    result.round(2).to_s + "em"
+  end
+  def self.convert_sec_to_str(secs)
+    t = (secs and secs.to_s.to_i == secs ) ? Time.at(secs.to_i).utc.strftime("%H:%M:%S") : "0"
+    t
+  end
+  def self.generate_names(excursion_json)
    navs_boxes = {}
    cv_boxes = {}
    names = {}
@@ -105,14 +114,16 @@ class VETOEDIPHY
    templates = {}
    plugins = {}
    contained_views = {}
-   excursion_json["slides"].each_with_index  do |slide, p|
+   marks = {}
+   cv_marks = {}
+   excursion_json["slides"].each_with_index do |slide, p|
      name = generate_nav_item_name(p)
      names[slide["id"]] = name
      navs_boxes[name] = []
      templates[name] = slide["template"]
      type = slide["type"]
      if type === "standard"
-       slide["elements"].each_with_index   do |element, i|
+       slide["elements"].each_with_index do |element, i|
          box = self.generate_box_name(p,i)
          plugins[box] = self.get_box_from_element(element)
          if plugins[box]["type"]
@@ -124,13 +135,13 @@ class VETOEDIPHY
      elsif type == "flashcard"
        cvs =  []
        slide["slides"].each_with_index do |slide_cv, q|
-         new_cv = generate_cv_name(q)
+         new_cv = self.generate_cv_name(p.to_s + "_" + q.to_s)
          names_cv[slide_cv["id"]] = new_cv
          cv_boxes[new_cv] = []
          cvs.push(new_cv)
          templates[new_cv] = slide_cv["template"]
          slide_cv["elements"].each_with_index do |element, i|
-           box = self.generate_box_name(q,i)
+           box = self.generate_box_name(q,(i).to_s + "_f_")
            plugins[box] = self.get_box_from_element(element)
            if plugins[box]["type"]
              cv_boxes[new_cv].push(box)
@@ -140,17 +151,101 @@ class VETOEDIPHY
          end
        end
        box = self.generate_box_name(p,0)
-       plugins[box] = self.get_box_from_element({ "type" => "image", "body" => slide["body"], "style" => "", "contained_views"=> cvs })
+       slide["pois"].each_with_index do |q, i|
+         mark = self.generate_mark_name(p,i)
+         cv = names_cv[q["slide_id"]]
+         cvs.push(cv)
+         value = q["x"] + "," + q["y"]
+         mark_obj = self.create_mark(mark,box,cv,value,i)
+         marks[mark] = mark_obj
+         if !cv_marks[cv]
+           cv_marks[cv] = {}
+         end
+         cv_marks[cv][mark] = box
+       end
+       body = slide["background"].match("url.\"(.*)\\\".")
+       if body and body.length > 1
+         body = body[1]
+       end
+       plugins[box] = self.get_box_from_element({ "type" => "image", "body" => body, "style" => "", "contained_views"=> cvs })
+       navs_boxes[name] = [box]
+       templates[name] = "t10"
+     elsif type == "VirtualTour"
+       cvs =  []
+       slide["slides"].each_with_index do |slide_cv, q|
+         new_cv = self.generate_cv_name(p.to_s + "_" + q.to_s)
+         names_cv[slide_cv["id"]] = new_cv
+         cv_boxes[new_cv] = []
+         cvs.push(new_cv)
+         templates[new_cv] = slide_cv["template"]
+         slide_cv["elements"].each_with_index do |element, i|
+           box = self.generate_box_name(q,(i).to_s + "_v_")
+           plugins[box] = self.get_box_from_element(element)
+           if plugins[box]["type"]
+             cv_boxes[new_cv].push(box)
+           else
+             cv_boxes[new_cv].push(nil)
+           end
+         end
+       end
+       box = self.generate_box_name(p,0)
+       slide["pois"].each_with_index do |q, i|
+         mark = self.generate_mark_name(p,i)
+         cv = names_cv[q["slide_id"]]
+         cvs.push(cv)
+         value = q["lat"] + "," + q["lng"]
+         mark_obj = self.create_mark(mark,box,cv,value,i)
+         marks[mark] = mark_obj
+         if !cv_marks[cv]
+           cv_marks[cv] = {}
+         end
+         cv_marks[cv][mark] = box
+       end
+       plugins[box] = self.get_box_from_element({ "type" => "VirtualTour", "body" => {"center"=> slide["center"], "zoom" => slide["zoom"] }, "style" => "", "contained_views"=> cvs })
+       navs_boxes[name] = [box]
+       templates[name] = "t2"
+     elsif type == "enrichedvideo"
+       cvs =  []
+       slide["slides"].each_with_index do |slide_cv, q|
+         new_cv = self.generate_cv_name(p.to_s + "_" + q.to_s)
+         names_cv[slide_cv["id"]] = new_cv
+         cv_boxes[new_cv] = []
+         cvs.push(new_cv)
+         templates[new_cv] = slide_cv["template"]
+         slide_cv["elements"].each_with_index do |element, i|
+           box = self.generate_box_name(q,(i).to_s + "_e_")
+           plugins[box] = self.get_box_from_element(element)
+           if plugins[box]["type"]
+             cv_boxes[new_cv].push(box)
+           else
+             cv_boxes[new_cv].push(nil)
+           end
+         end
+       end
+       box = self.generate_box_name(p,0)
+       slide["pois"].each_with_index do |q, i|
+         mark = self.generate_mark_name(p,i)
+         cv = names_cv[q["slide_id"]]
+         cvs.push(cv)
+         value = self.convert_sec_to_str(q["etime"])
+         mark_obj = self.create_mark(mark,box,cv,value,i)
+         marks[mark] = mark_obj
+         if !cv_marks[cv]
+           cv_marks[cv] = {}
+         end
+         cv_marks[cv][mark] = box
+       end
+       plugins[box] = self.get_box_from_element({ "type" => "video", "body" => slide["video"], "style" => "", "contained_views"=> cvs })
        navs_boxes[name] = [box]
        templates[name] = "t10"
      end
    end
-   { "navs_boxes" => navs_boxes, "navs_names" => names, "templates" => templates, "plugins" => plugins, "contained_views" => contained_views, "cv_boxes"=> cv_boxes, "names_cv" => names_cv}
- end
- def self.create_nav_items_ids(names)
+   { "navs_boxes" => navs_boxes, "navs_names" => names, "templates" => templates, "plugins" => plugins, "contained_views" => contained_views, "cv_boxes"=> cv_boxes, "names_cv" => names_cv, "marks" => marks , "cv_marks" => cv_marks}
+  end
+  def self.create_nav_items_ids(names)
    names.values
- end
- def self.create_nav_item(id, boxes)
+  end
+  def self.create_nav_item(id, boxes)
      {
         "id" => id,
         "isExpanded" => true,
@@ -164,8 +259,8 @@ class VETOEDIPHY
         "extraFiles" => {},
         "customSize" => 0
      }
- end
- def self.create_nav_items_by_id(excursion_json, names, boxes_names)
+  end
+  def self.create_nav_items_by_id(names, boxes_names)
    navs = {}
    names.values.each do |slide|
      boxes = boxes_names[slide]
@@ -173,8 +268,8 @@ class VETOEDIPHY
    end
    navs["0"] = { "id"=> 0, "children"=> names.values, "boxes"=> [], "level"=> 0, "type"=> '', "hidden"=> false }
    navs
- end
- def self.create_view_toolbar(id,number,isCV)
+  end
+  def self.create_view_toolbar(id,number,isCV)
    {
        "id" => id,
        "viewName" => (isCV ? "Contained View " : "Slide " ) + number.to_s,
@@ -190,28 +285,26 @@ class VETOEDIPHY
        "backgroundAttr" => "",
        "aspectRatio" => ""
    }
- end
-
- def self.create_cv(id, boxes)
+  end
+  def self.create_cv(id, boxes, marks)
    {
        "id" => id,
-       "parent" => {},
+       "parent" => marks,
        "info" => "new",
        "boxes" => boxes.compact,
        "type" => "slide",
        "extraFiles" => {},
    }
- end
-
- def self.create_contained_views_by_id(excursion_json, names, boxes_names)
+  end
+  def self.create_contained_views_by_id(names, boxes_names, cv_marks)
    navs = {}
-   names.values.each do |slide|
+   names.values.each_with_index do |slide, index|
      boxes = boxes_names[slide]
-     navs[slide] = self.create_cv(slide, boxes)
+     navs[slide] = self.create_cv(slide, boxes, cv_marks[slide])
    end
    navs
- end
- def self.create_view_toolbars(excursion_json, names, names_cv)
+  end
+  def self.create_view_toolbars(names, names_cv)
    navs = {}
    names.values.each_with_index do |slide, i|
      navs[slide] = self.create_view_toolbar(slide, i+1, false)
@@ -220,9 +313,8 @@ class VETOEDIPHY
      navs[slide] = self.create_view_toolbar(slide, i+1, true)
    end
    navs
- end
-
- def self.create_plugin_toolbar(box, template_box, plugin, box_shape)
+  end
+  def self.create_plugin_toolbar(box, template_box, plugin, box_shape)
    plugin_template = self.convert_plugin(plugin, box_shape)
    {
      "id" => box,
@@ -240,11 +332,9 @@ class VETOEDIPHY
      "style" => plugin_template["style"],
      "showTextEditor" => false,
 
- }
- end
-
-
- def self.create_box(box, parent, container, template_box)
+  }
+  end
+  def self.create_box(box, parent, container, template_box)
    {
         "id" => box,
         "parent" => parent,
@@ -266,9 +356,8 @@ class VETOEDIPHY
         "sortableContainers" => {},
         "containedViews" => [ ]
    }
- end
-
- def self.create_sortable_container(key, children)
+  end
+  def self.create_sortable_container(key, children)
    {
        "children" =>children,
        "style" => {
@@ -285,12 +374,14 @@ class VETOEDIPHY
        "colDistribution" =>[100],
        "cols" =>[[100]]
    }
- end
- def self.create_boxes_and_plugin_toolbars_by_id(boxes_names, templates, plugins)
+  end
+  def self.create_boxes_and_plugin_toolbars_by_id(boxes_names, cv_boxes, templates, plugins)
    boxes = {}
    toolbars = {}
    answers = {}
-   boxes_names.each do|key, boxes_ids|
+   views = boxes_names.merge(cv_boxes)
+   counter = 0
+   views.each do|key, boxes_ids|
      template_slide = template(templates[key])["elements"]
      boxes_ids.each_with_index do |box, index|
        if !box.nil?
@@ -306,7 +397,8 @@ class VETOEDIPHY
            toolbars[box]["state"].delete("right_answers")
            boxes[box]["children"] = toolbars[box]["state"]["__pluginContainerIds"].keys
            toolbars[box]["state"]["__pluginContainerIds"].keys.each_with_index do |key_c, ind|
-             child = generate_box_name(ind, "__#{key}_#{index}")
+             child = generate_box_name(ind, "__#{index}__#{counter}")
+             counter = counter + 1
              boxes[box]["sortableContainers"][key_c] = self.create_sortable_container(key_c, [child])
              text_plugin = child_states[key_c]
              template_box_child = { "x" => "0", "y" => "0", "width" => "100" }
@@ -318,18 +410,8 @@ class VETOEDIPHY
      end
    end
    { "boxes" => boxes, "toolbars" => toolbars, "answers" => answers}
- end
-
- def self.convert_px_to_em(num)
-   result = num.delete("px").to_f
-   default_font_base = 14
-   default_width_base = 1100
-   calculatedFontSize = default_font_base * (798) / default_width_base  #px/em in ViSH
-   result = result / calculatedFontSize
-   result.round(2).to_s + "em"
- end
-
- def self.convert_plugin(plugin_template,box_shape)
+  end
+  def self.convert_plugin(plugin_template, box_shape)
    require 'uri'
    pluginId = ""
    state = {}
@@ -348,7 +430,7 @@ class VETOEDIPHY
        pluginId = "BasicText"
        text = plugin_template["body"]
        result = text.gsub(/([0-9]\d*(\.\d+)?)px/) { |num| (self.convert_px_to_em(num))}
-       state = { "__text" =>   URI::encode("<div>"+ URI::decode(result)+"</div>").gsub(/%23/,'#') }
+       state = { "__text" => URI::encode("<div>"+ URI::decode(result)+"</div>").gsub(/%23/,'#') }
        style["padding"] = 7
        style["backgroundColor"] = "rgba(255,255,255,0)"
      when "object"
@@ -376,13 +458,23 @@ class VETOEDIPHY
      when "audio"
        pluginId = "EnrichedAudio"
        url = plugin_template["sources"].match("src\\\":\\\"(.*?)\\\"")
-       state = { "url" => (url && url[1]) ? url[1] : "", "auoplay" => false, "controls" => true, "waves" => true, "barWidth" => 2, "progressColor" => "#ccc", "waveColor" => "#178582", "scroll" => false}
+       state = { "url" => (url && url[1]) ? url[1] : "", "autoplay" => false, "controls" => true, "waves" => true, "barWidth" => 2, "progressColor" => "#ccc", "waveColor" => "#178582", "scroll" => false}
      when "video"
        pluginId = "EnrichedPlayer"
-       url = plugin_template["sources"].match("src\\\":\\\"(.*?)\\\"")
-       state = { "url" => (url && url[1]) ? url[1] : "", "controls" => true}
-      when "quiz"
-        
+       url = ""
+       if plugin_template["sources"]
+         url = plugin_template["sources"].match("src\\\":\\\"(.*?)\\\"")
+         url = (url && url[1]) ? url[1] : ""
+       elsif plugin_template["body"] and plugin_template["body"]["source"]
+         url = plugin_template["body"]["source"]
+       end
+
+       state = { "url" => url, "controls" => true}
+     when "VirtualTour"
+       pluginId = "VirtualTour"
+       body = plugin_template["body"]
+       state = { "config" => {"lat" => body["center"]["lat"].to_f, "lng" => body["center"]["lng"].to_f, "zoom" => body["zoom"].to_f}}
+     when "quiz"
        case plugin_template["quiztype"]
         when "multiplechoice"
            isMA = plugin_template["extras"]["multipleAnswer"]
@@ -490,7 +582,7 @@ class VETOEDIPHY
        answers.each_with_index do |ans, ind|
          plugin_container_ids["sc-Answer#{ind}"] = { "id" => "sc-Answer#{ind}", "name" => "Answer #{ind}", "height" => "auto" }
          child_states["sc-Answer#{ind}"] = { "type" => "text", "body" => ans["wysiwygValue"] || ans["value"] }
-       end
+     end
        plugin_container_ids["sc-Feedback"] = { "id" => "sc-Feedback", "name" => "Feedback", "height"=> "auto"}
        child_states["sc-Feedback"] =  { "type" => "text", "body" => ""}
        style["padding"] = 10
@@ -511,14 +603,19 @@ class VETOEDIPHY
        state = { "url" => "https://via.placeholder.com/350x150" }
      end
    { "pluginId" => pluginId, "state" => state , "style" => style}
- end
-
- ## Rich plugins & contained views
- def self.create_marks(excursion_json)
-  {}
- end
-
-def self.create_exercise(name, box, answer)
+  end
+  def self.create_mark(mark, box, cv, value, n)
+   {
+       "id"=> mark,
+       "origin"=> box,
+       "title"=> "New mark " + (n+1).to_s,
+       "connection"=> cv,
+       "connectMode"=> "new",
+       "displayMode" => "navigate",
+       "value" => value
+   }
+  end
+  def self.create_exercise(name, box, answer)
   {
       "name" => name,
       "id" => box,
@@ -530,12 +627,10 @@ def self.create_exercise(name, box, answer)
       "quizColor" => "rgba(11,255,255,1)",
       "correct" => false
   }
-end
- ## Exercises
- def self.create_exercises(excursion_json, nav_names, cv_names, plugin_toolbars_by_id, answers)
+  end
+  def self.create_exercises( nav_names, cv_names, plugin_toolbars_by_id, answers)
    exercises = {}
     views = nav_names.merge(cv_names)
-    binding.pry
     views.each do|key, boxes|
      ex_boxes = {}
      boxes.each do |box|
@@ -558,8 +653,8 @@ end
      }
    end
    exercises
- end
- def self.template(id)
+  end
+  def self.template(id)
     templates = {
         "t1" => {
             "elements" => {
@@ -1036,5 +1131,5 @@ end
     }
 
     templates[id]
- end
   end
+end
