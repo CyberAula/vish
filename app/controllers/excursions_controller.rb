@@ -314,7 +314,6 @@ class ExcursionsController < ApplicationController
   end
 
 
-
   #####################
   ## VE Methods
   ####################

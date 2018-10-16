@@ -1,7 +1,7 @@
 class EdiphyDocumentsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update ]
-  skip_load_and_authorize_resource :only => [:transpile]
+  skip_load_and_authorize_resource :only => [:transpile, :transpile_json]
   before_filter :profile_subject!, :only => :index
   before_filter :merge_json_params
   before_filter :fill_create_params, :only => [ :new, :create ]
@@ -106,9 +106,25 @@ class EdiphyDocumentsController < ApplicationController
   end
 
   def transpile
-    render 'ediphy_documents/new', :layout => 'ediphy', :locals => { :default_tag=> params[:default_tag]}
+    respond_to do |format|
+      format.json do
+        @excursion = Excursion.find(params[:id])
+        render json: @excursion.to_ediphy
+      end
+      format.html do
+        render 'ediphy_documents/new', :layout => 'ediphy', :locals => { :default_tag=> params[:default_tag]}
+      end
+    end
   end
 
+  ############################
+  # Convert to EDiphy
+  ############################
+
+  def transpile_json
+    @excursion = Excursion.find(params[:id])
+    render json: @excursion.to_ediphy
+  end
 
   private
 
