@@ -36,35 +36,37 @@ class VETOEDIPHY
   ## Global Config TODO Finish all metadata
   def self.create_global_config(excursion_json)
 
-   time = excursion_json["TLT"] && excursion_json["TLT"].match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
-   age = excursion_json["age_range"] && excursion_json["age_range"].match(/(\d+).+(\d)/)
+    time = excursion_json["TLT"] && excursion_json["TLT"].match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
+    age = excursion_json["age_range"] && excursion_json["age_range"].match(/(\d+).+(\d)/)
 
-   {
-       "title" => excursion_json["title"],
-       "author" => excursion_json["author"]["name"],
-       "canvasRatio" => "1.3333333333333333",
-       "visorNav" => {
-           "player" => true,
-           "sidebar" => true,
-           "keyBindings" => true
-       },
-       "trackProgress" => true,
-       "age" => {
-           "min" => (age && age[1]) ? age[1] : 0,
-           "max" => (age && age[2]) ? age[2] : 0,
-       },
-       "keywords" => excursion_json["tags"],
-       "typicalLearningTime" => {
-           "h" => (time && time[1] )? time[1] : 0,
-           "m" => (time && time[2] )? time[2] : 0,
-           "s" =>  (time && time[3] )? time[3] : 0,
-       },
-       "version" => '1.0.0',
-       "thumbnail" => excursion_json["avatar"],
-       "status" => 'draft',
-       "structure" => 'linear',
-       "difficulty" => excursion_json["difficulty"]
-   }
+    {
+        "title" => excursion_json["title"],
+        "description" => excursion_json["description"],
+        "author" => excursion_json["author"]["name"],
+        "context" => excursion_json["context"].downcase,
+        "canvasRatio" => "1.3333333333333333",
+        "visorNav" => {
+            "player" => true,
+            "sidebar" => true,
+            "keyBindings" => true
+        },
+        "trackProgress" => true,
+        "age" => {
+            "max" => (age && age[2]) ? age[2] : 0,
+            "min" => (age && age[1]) ? age[1] : 0,
+        },
+        "keywords" => excursion_json["tags"],
+        "typicalLearningTime" => {
+            "h" => (time && time[1] )? time[1] : 0,
+            "m" => (time && time[2] )? time[2] : 0,
+            "s" =>  (time && time[3] )? time[3] : 0,
+        },
+        "version" => '1.0.0',
+        "thumbnail" => excursion_json["avatar"],
+        "status" => 'draft',
+        "structure" => 'linear',
+        "difficulty" => excursion_json["difficulty"]
+    }
 
   end
   def self.generate_cv_name(i)
