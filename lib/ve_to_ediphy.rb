@@ -41,7 +41,9 @@ class VETOEDIPHY
 
     {
         "title" => excursion_json["title"],
+        "description" => excursion_json["description"],
         "author" => excursion_json["author"]["name"],
+        "context" => excursion_json["context"].downcase,
         "canvasRatio" => "1.3333333333333333",
         "visorNav" => {
             "player" => true,
@@ -50,8 +52,8 @@ class VETOEDIPHY
         },
         "trackProgress" => true,
         "age" => {
-            "min" => (age && age[1]) ? age[1] : 0,
             "max" => (age && age[2]) ? age[2] : 0,
+            "min" => (age && age[1]) ? age[1] : 0,
         },
         "keywords" => excursion_json["tags"],
         "typicalLearningTime" => {
