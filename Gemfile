@@ -82,6 +82,9 @@ gem 'devise_invitable', '= 1.1.8'
 #CAS
 gem 'devise_cas_authenticatable', '= 1.7.1'
 
+#oauth2
+gem 'omniauth-oauth2', '= 1.1.2'
+
 #recaptcha
 gem "recaptcha", require: "recaptcha/rails"
 

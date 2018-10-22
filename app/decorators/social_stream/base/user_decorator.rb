@@ -23,6 +23,8 @@ User.class_eval do
     validates :password, :presence =>true,  :confirmation =>true, length: { minimum: Devise.password_length.min, maximum: Devise.password_length.max }, :on=>:create
   end
 
+  devise :omniauthable, omniauth_providers: %i[idm]
+
   validate :user_locale
   def user_locale
     if !self.language.blank? and I18n.available_locales.include?(self.language.to_sym)
@@ -59,6 +61,17 @@ User.class_eval do
     ServicePermission.where(:owner_id => actor_id, :key => perm_key).count > 0
   end
 
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0,20]
+      user.name = auth.info.name   # assuming the user model has a name
+      # user.image = auth.info.image # assuming the user model has an image
+      # If you are using confirmable and the provider(s) you use validate emails,
+      # uncomment the line below to skip the confirmation emails.
+      # user.skip_confirmation!
+    end
+  end
 
   private
 
