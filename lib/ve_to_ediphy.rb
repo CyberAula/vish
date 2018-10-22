@@ -43,7 +43,7 @@ class VETOEDIPHY
         "title" => excursion_json["title"],
         "description" => excursion_json["description"],
         "author" => excursion_json["author"]["name"],
-        "context" => excursion_json["context"].downcase,
+        "context" => excursion_json["context"] ? excursion_json["context"].downcase : nil,
         "canvasRatio" => "1.3333333333333333",
         "visorNav" => {
             "player" => true,
