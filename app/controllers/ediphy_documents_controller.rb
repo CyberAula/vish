@@ -41,6 +41,7 @@ class EdiphyDocumentsController < ApplicationController
         end
       }
       format.json {
+        response.headers['Access-Control-Allow-Origin'] = '*'
         render :json => resource
       }
     end
@@ -108,6 +109,7 @@ class EdiphyDocumentsController < ApplicationController
   def transpile
     respond_to do |format|
       format.json do
+        response.headers['Access-Control-Allow-Origin'] = '*'
         @excursion = Excursion.find(params[:id])
         render json: @excursion.to_ediphy
       end
@@ -115,15 +117,6 @@ class EdiphyDocumentsController < ApplicationController
         render 'ediphy_documents/new', :layout => 'ediphy', :locals => { :default_tag=> params[:default_tag]}
       end
     end
-  end
-
-  ############################
-  # Convert to EDiphy
-  ############################
-
-  def transpile_json
-    @excursion = Excursion.find(params[:id])
-    render json: @excursion.to_ediphy
   end
 
   private
