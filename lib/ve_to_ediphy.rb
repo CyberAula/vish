@@ -1,13 +1,13 @@
 class VETOEDIPHY
 
-  def self.transpile(vish_excursion_json)
+  def self.translate(vish_excursion_json)
     excursion_json = JSON.parse(vish_excursion_json)
     names = self.generate_names(excursion_json)
     nav_items_by_id = self.create_nav_items_by_id(names["navs_names"], names["navs_boxes"])
     contained_views_by_id = self.create_contained_views_by_id(names["names_cv"], names["cv_boxes"], names["cv_marks"])
     nav_items_ids = self.create_nav_items_ids(names["navs_names"])
     nav_item_selected = names["navs_names"].values[0] # TODO Comprobar que hay al menos una slide
-    view_toolbars_by_id = self.create_view_toolbars(names["navs_names"], names["names_cv"])
+    view_toolbars_by_id = self.create_view_toolbars(names["navs_names"], names["names_cv"], excursion_json["theme"])
     boxes_and_plugin_toolbars = self.create_boxes_and_plugin_toolbars( names["navs_boxes"], names["cv_boxes"], names["templates"], names["plugins"])
     global_config = self.create_global_config(excursion_json)
     marks_by_id = names["marks"]
@@ -42,7 +42,7 @@ class VETOEDIPHY
     {
         "title" => excursion_json["title"],
         "description" => excursion_json["description"],
-        "author" => excursion_json["author"]["name"],
+        "author" => excursion_json["author"] ? excursion_json["author"]["name"] : nil,
         "context" => excursion_json["context"] ? excursion_json["context"].downcase : nil,
         "canvasRatio" => "1.3333333333333333",
         "visorNav" => {
@@ -52,7 +52,7 @@ class VETOEDIPHY
         },
         "trackProgress" => true,
         "age" => {
-            "max" => (age && age[2]) ? age[2] : 0,
+            "max" => (age && age[2]) ? age[2] : 100,
             "min" => (age && age[1]) ? age[1] : 0,
         },
         "keywords" => excursion_json["tags"],
@@ -273,7 +273,8 @@ class VETOEDIPHY
     navs["0"] = { "id"=> 0, "children"=> names.values, "boxes"=> [], "level"=> 0, "type"=> '', "hidden"=> false }
     navs
   end
-  def self.create_view_toolbar(id,number,isCV)
+  def self.create_view_toolbar(id,number, isCV, theme)
+    bckgTheme = self.themes(theme)
     {
         "id" => id,
         "viewName" => (isCV ? "Contained View " : "Slide " ) + number.to_s,
@@ -285,8 +286,8 @@ class VETOEDIPHY
         "documentTitleContent" => "",
         "numPage" => 'hidden',
         "numPageContent" => '',
-        "background" => "#ffffff",
-        "backgroundAttr" => "",
+        "background" => bckgTheme ? bckgTheme["background"] : "#fff",
+        "backgroundAttr" => bckgTheme ? bckgTheme["backgroundAttr"] : "cover",
         "aspectRatio" => ""
     }
   end
@@ -308,13 +309,13 @@ class VETOEDIPHY
     end
     navs
   end
-  def self.create_view_toolbars(names, names_cv)
+  def self.create_view_toolbars(names, names_cv, theme)
     navs = {}
     names.values.each_with_index do |slide, i|
-      navs[slide] = self.create_view_toolbar(slide, i+1, false)
+      navs[slide] = self.create_view_toolbar(slide, i+1, false, theme)
     end
     names_cv.values.each_with_index do |slide, i|
-      navs[slide] = self.create_view_toolbar(slide, i+1, true)
+      navs[slide] = self.create_view_toolbar(slide, i+1, true, theme)
     end
     navs
   end
@@ -429,7 +430,7 @@ class VETOEDIPHY
     case plugin_template["type"]
     when "image"
       pluginId = "HotspotImages"
-      styled = plugin_template["style"]
+      styled = styled ? plugin_template["style"] : ""
       width = styled.match("width\:(.*?)\%\;")
       width = (width and width.length > 1) ? width[1] : 100
       # height = style.match("height\:(.*?)\%\;")
@@ -437,6 +438,7 @@ class VETOEDIPHY
       left = (left and left.length > 1) ? left[1].to_f : 0
       top = styled.match("top\:(.*?)\%\;")
       top = (top and top.length > 1) ? top[1].to_f : 0
+      binding.pry
       state = {
           "url" => plugin_template["body"],
           "translate" => {
@@ -525,7 +527,7 @@ class VETOEDIPHY
         plugin_container_ids["sc-Feedback"] = { "id" => "sc-Feedback", "name" => "Feedback", "height"=> "auto"}
         child_states["sc-Feedback"] =  { "type" => "text", "body" => ""}
         style["padding"] = 10
-        style["borderWidth"] = 1
+        style["borderWidth"] = 0
         style["borderColor"] = "#dbdbdb"
         state = {
             "nBoxes" => answers.length,
@@ -555,7 +557,7 @@ class VETOEDIPHY
         plugin_container_ids["sc-Feedback"] = { "id" => "sc-Feedback", "name" => "Feedback", "height"=> "auto"}
         child_states["sc-Feedback"] =  { "type" => "text", "body" => ""}
         style["padding"] = 10
-        style["borderWidth"] = 1
+        style["borderWidth"] = 0
         style["borderColor"] = "#dbdbdb"
         state = {
             "nBoxes" => answers.length,
@@ -578,7 +580,7 @@ class VETOEDIPHY
             "sc-Feedback" => { "id" => "sc-Feedback", "name" => "Feedback", "height" => "auto" }
         }
         style["padding"] = 10
-        style["borderWidth"] = 1
+        style["borderWidth"] = 0
         style["borderColor"] = "#dbdbdb"
         state = {
             "showFeedback" => false,
@@ -607,7 +609,7 @@ class VETOEDIPHY
         plugin_container_ids["sc-Feedback"] = { "id" => "sc-Feedback", "name" => "Feedback", "height"=> "auto"}
         child_states["sc-Feedback"] =  { "type" => "text", "body" => ""}
         style["padding"] = 10
-        style["borderWidth"] = 1
+        style["borderWidth"] = 0
         style["borderColor"] = "#dbdbdb"
         state = {
             "nBoxes" => answers.length,
@@ -675,7 +677,6 @@ class VETOEDIPHY
     end
     exercises
   end
-
   def self.template(id)
     templates = {
         "t1" => {
@@ -1153,5 +1154,59 @@ class VETOEDIPHY
     }
 
     templates[id]
+  end
+  def self.themes(id)
+    themeList = {
+        "theme1"=> {
+            "background" => "rgb(255,255,255)",
+            "backgroundAttr" => "full",
+        },
+        "theme13"=> {
+            "background" => "rgb(87,87,87)",
+            "backgroundAttr" => "full",
+        },
+        "theme14"=> {
+            "background" => "https://vishub.org/assets/themes/theme14/bg.jpg",
+            "backgroundAttr" => "full",
+        },
+        "theme15"=> {
+            "background" => "rgb(17,17,17)",
+            "backgroundAttr" => "full",
+        },
+        "theme16"=> {
+            "background" => "https://vishub.org/assets/themes/theme16/bg.jpg",
+            "backgroundAttr" => "full",
+        },
+        "theme17"=> {
+            "background" => "https://vishub.org/assets/themes/theme17/bg.jpg",
+            "backgroundAttr" => "full",
+        },
+        "theme18"=> {
+            "background" => "https://vishub.org/assets/themes/theme18/bg.jpg",
+            "backgroundAttr" => "full",
+        },
+        "theme19"=> {
+            "background" => "https://vishub.org/assets/themes/theme19/bg.jpg",
+            "backgroundAttr" => "full",
+        },
+        "theme20"=> {
+            "background" => "https://vishub.org/assets/themes/theme20/bg.jpg",
+            "backgroundAttr" => "full",
+        },
+        "theme21"=> {
+            "background" => "https://vishub.org/assets/themes/theme21/bg.jpg",
+            "backgroundAttr" => "full",
+        },
+        "theme22"=> {
+            "background" => "https://vishub.org/assets/themes/theme22/bg.jpg",
+            "backgroundAttr" => "full",
+        },
+        "theme23"=> {
+            "background" => "https://vishub.org/assets/themes/theme23/bg.jpg",
+            "backgroundAttr" => "full",
+        },
+
+    }
+    themeList[id]
   end
 end

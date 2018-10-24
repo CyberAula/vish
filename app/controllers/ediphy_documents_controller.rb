@@ -1,7 +1,7 @@
 class EdiphyDocumentsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update ]
-  skip_load_and_authorize_resource :only => [:transpile, :transpile_json]
+  skip_load_and_authorize_resource :only => [:translate, :translate_json]
   before_filter :profile_subject!, :only => :index
   before_filter :merge_json_params
   before_filter :fill_create_params, :only => [ :new, :create ]
@@ -106,11 +106,13 @@ class EdiphyDocumentsController < ApplicationController
     end
   end
 
-  def transpile
+  def translate
     respond_to do |format|
       format.json do
         response.headers['Access-Control-Allow-Origin'] = '*'
-        @excursion = Excursion.find(params[:id])
+        if params[:id]
+          @excursion = Excursion.find(params[:id])
+        end
         render json: @excursion.to_ediphy
       end
       format.html do
