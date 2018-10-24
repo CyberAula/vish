@@ -79,6 +79,7 @@ module HomeHelper
     options[:offset] ||= 0
     options[:page] ||= 0 #page 0 means without pagination
     options[:force_filter_private] ||= false
+    options[:force_filter_private_ignoring_scope] ||= false
     options[:sort_by] ||="popularity"
 
     case options[:sort_by]
@@ -126,6 +127,11 @@ module HomeHelper
     unless ((defined?(current_subject)&&((options[:scope] == :me && subject == current_subject)||(!current_subject.nil? && current_subject.admin?)))&&(options[:force_filter_private]==false))
       query = query.includes("activity_object_audiences")
       query = query.where("activity_object_audiences.relation_id='"+Relation::Public.instance.id.to_s+"' and activity_objects.scope=0")
+    else
+      if options[:force_filter_private_ignoring_scope]==true
+        query = query.includes("activity_object_audiences")
+        query = query.where("activity_object_audiences.relation_id='"+Relation::Public.instance.id.to_s+"'")
+      end
     end
 
     query = query.order(options[:order_by]) unless options[:order_by].blank?
