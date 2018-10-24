@@ -320,7 +320,7 @@ class VETOEDIPHY
     navs
   end
   def self.create_plugin_toolbar(box, template_box, plugin, box_shape)
-    plugin_template = self.convert_plugin(plugin, box_shape)
+    plugin_template = self.convert_plugin(plugin, template_box, box_shape)
     {
         "id" => box,
         "pluginId" => plugin_template["pluginId"],
@@ -416,7 +416,7 @@ class VETOEDIPHY
     end
     { "boxes" => boxes, "toolbars" => toolbars, "answers" => answers}
   end
-  def self.convert_plugin(plugin_template, box_shape)
+  def self.convert_plugin(plugin_template, template_box, box_shape)
     require 'uri'
     pluginId = ""
     state = {}
@@ -430,22 +430,27 @@ class VETOEDIPHY
     case plugin_template["type"]
     when "image"
       pluginId = "HotspotImages"
-      styled = styled ? plugin_template["style"] : ""
+      styled = plugin_template["style"]
       width = styled.match("width\:(.*?)\%\;")
-      width = (width and width.length > 1) ? width[1] : 100
-      # height = style.match("height\:(.*?)\%\;")
+      width_is_defined = (width and width.length > 1)
+      width = width_is_defined ? width[1] : 100
+
+      height = styled.match("height\:(.*?)\%\;")
+      height_is_defined = (height and height.length > 1)
+      height = height_is_defined ? height[1] : 100
+
       left = styled.match("left\:(.*?)\%\;")
       left = (left and left.length > 1) ? left[1].to_f : 0
       top = styled.match("top\:(.*?)\%\;")
       top = (top and top.length > 1) ? top[1].to_f : 0
-      # binding.pry
+      scale = width_is_defined ? (width.to_f/100).round(2) : (height_is_defined ? (height.to_f/100).round(2) : 1 )
       state = {
           "url" => plugin_template["body"],
           "translate" => {
               "x" => left,
               "y" => top
           },
-          "scale" => (width.to_f/100).round(2),
+          "scale" => scale,
           "allowDeformed" => !!plugin_template["contained_views"]
 
       }
