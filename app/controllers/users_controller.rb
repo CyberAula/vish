@@ -93,6 +93,18 @@ class UsersController < ApplicationController
           render :partial => 'repositories/profile_resources_page', :locals => {:scope => :me, :limit => 0, :page=> params[:page], :sort_by=> params[:sort_by]||"updated_at"}, :layout => false
         end
       }
+      format.json {
+        render :json => view_context.subject_resources(profile_or_current_subject, {:scope => :me, :limit => 0, :force_filter_private_ignoring_scope => true}).map{|ao| ao.search_json(self)}
+      }
+    end
+  end
+
+  def all_resources
+    respond_to do |format|
+      format.json {
+        # response.headers['Access-Control-Allow-Origin'] = '*' # SONSOLES
+        render :json => {results: view_context.subject_all_resources(profile_or_current_subject, {:scope => :me, :limit => 0, :force_filter_private_ignoring_scope => true}).map{|ao| ao.search_json(self)}}
+      }
     end
   end
 

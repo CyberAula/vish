@@ -26,6 +26,7 @@ Vish::Application.routes.draw do
   match 'users/:id/ediphy_documents' => 'users#ediphy_documents'
   match 'users/:id/workshops' => 'users#workshops'
   match 'users/:id/resources' => 'users#resources'
+  match 'users/:id/all_resources' => 'users#all_resources'
   match 'users/:id/events' => 'users#events'
   match 'users/:id/categories' => 'users#categories'
   match 'users/:id/followers' => 'users#followers'

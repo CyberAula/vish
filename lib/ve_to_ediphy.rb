@@ -438,7 +438,7 @@ class VETOEDIPHY
       left = (left and left.length > 1) ? left[1].to_f : 0
       top = styled.match("top\:(.*?)\%\;")
       top = (top and top.length > 1) ? top[1].to_f : 0
-      binding.pry
+      # binding.pry
       state = {
           "url" => plugin_template["body"],
           "translate" => {

@@ -1,7 +1,7 @@
 class EdiphyDocumentsController < ApplicationController
 
   before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update ]
-  skip_load_and_authorize_resource :only => [:translate, :translate_json]
+  skip_load_and_authorize_resource :only => [:translate]
   before_filter :profile_subject!, :only => :index
   before_filter :merge_json_params
   before_filter :fill_create_params, :only => [ :new, :create ]
@@ -110,6 +110,7 @@ class EdiphyDocumentsController < ApplicationController
     respond_to do |format|
       format.json do
         response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Max-Age'] = "1728000"
         if params[:id]
           @excursion = Excursion.find(params[:id])
         end
