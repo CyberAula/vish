@@ -14,7 +14,7 @@ class EdiphyDocument < ActiveRecord::Base
 
   def thumbnail
     thumbnail = (JSON.parse(self.json)["present"]["globalConfig"]["thumbnail"] || "") rescue ""
-    thumbnail = thumbnail + "?style=500" if thumbnail!="" and /data:image/.match(thumbnail).nil?
+    thumbnail = thumbnail + "?style=500" if thumbnail!="" and /data:image/.match(thumbnail).nil? and /style=500/.match(thumbnail).nil?
     thumbnail
   end
 

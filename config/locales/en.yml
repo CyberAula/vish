@@ -626,6 +626,7 @@ en:
       attachment: "Attachment"
       bookmark: "bookmark"
       clone: "clone"
+      translate: "transform into an Ediphy Document"
       delete: "delete"
       download: "download"
       edit: "edit"
@@ -684,6 +685,12 @@ en:
       other: "Excursions"
     title:
       other: "excursions"
+    translate:
+      confirm: "This will transform your excursion into an EDiphy Document. The original will be kept."
+      confirm_button: "Confirm"
+      not_found: "Excursion not found"
+      ok: "Succesfully transformed"
+      owner: "You already own this excursion"
     upcomming: "upcoming"
     unload_warning: "The excursion is not saved!"
     top: "forMe"

@@ -69,6 +69,14 @@
       container: ".actions_layout_show"
     });
 
+    $('.translate').popover({
+        html : true,
+        content: function() {
+            return $('.contenttranslate').html();
+        },
+        container: ".actions_layout_show"
+    });
+
     $('.delete').popover({
       html : true,
       <% if editingToolbar %>
@@ -127,6 +135,20 @@
     </div>
   <%end%>
 
+  <!-- Traducir a Ediphy -->
+  <% if user_signed_in? && !editingToolbar && (can? :clone, @excursion) %>
+    <button class="with_tooltip translate btn btn-default" data-toggle="popover" title="<%=t('excursion.actions.translate').capitalize%>">
+      <img src="/assets/icons/ic_widgets_black_24px.svg" style="height:21px;width:15px;">
+    </button>
+
+    <div class="contenttranslate" style="display: none">
+      <p class=""><img src="/assets/icons/icoEdiphy_white_24px.svg" style="height:22px;width:22px;">  <%=t('excursion.translate.confirm')%></p>
+      <div class="actions">
+        <a class="btn btn_cancel closepopover"><%=t('cancel')%></a>
+        <a class="btn btn-primary" onclick="location.href='<%=excursion_path(@excursion) + '/translate'%>'"><%=t('excursion.translate.confirm_button')%></a>
+      </div>
+    </div>
+  <%end%>
   <!--Remove-->
   <% if user_signed_in? and can?(:destroy, @excursion) %>
     <button class="with_tooltip delete btn btn-default" data-toggle="popover" data-container="body" title="<%=t('excursion.confirm_delete')%>" data-placement="left" aria-hidden="true">

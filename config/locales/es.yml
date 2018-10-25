@@ -606,6 +606,7 @@ es:
       attachment: "Archivo Adjunto"
       bookmark: "marcardor"
       clone: "clonar"
+      translate: "transformar en un documento Ediphy"
       delete: "Borrar"
       download: "Descargar"
       edit: "Editar"
@@ -663,6 +664,12 @@ es:
     session_start: "inicia sesión"
     title:
       other: "excursiones"
+    translate:
+      confirm: "Esto transformará tu excursión en un documento EDiphy conservando el original."
+      confirm_button: "Transformar"
+      not_found: "Excursion no encontrada"
+      ok: "Transformada con éxito"
+      owner: "Esta excursión ya es tuya"
     upcomming: "próxima"
     unload_warning: "¡La excursión no está salvada!"
     top: "paraMí"
