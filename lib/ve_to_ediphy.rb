@@ -55,7 +55,7 @@ class VETOEDIPHY
             "max" => (age && age[2]) ? age[2] : 100,
             "min" => (age && age[1]) ? age[1] : 0,
         },
-        "keywords" => excursion_json["tags"],
+        "keywords" => excursion_json["tags"] ? excursion_json["tags"] : [],
         "typicalLearningTime" => {
             "h" => (time && time[1] )? time[1] : 0,
             "m" => (time && time[2] )? time[2] : 0,
@@ -433,17 +433,18 @@ class VETOEDIPHY
       styled = plugin_template["style"]
       width = styled.match("width\:(.*?)\%\;")
       width_is_defined = (width and width.length > 1)
-      width = width_is_defined ? width[1] : 100
+      width = width_is_defined ? width[1].to_f : 100
 
       height = styled.match("height\:(.*?)\%\;")
       height_is_defined = (height and height.length > 1)
-      height = height_is_defined ? height[1] : 100
+      height = height_is_defined ? height[1].to_f : 100
 
       left = styled.match("left\:(.*?)\%\;")
       left = (left and left.length > 1) ? left[1].to_f : 0
       top = styled.match("top\:(.*?)\%\;")
       top = (top and top.length > 1) ? top[1].to_f : 0
-      scale = width_is_defined ? (width.to_f/100).round(2) : (height_is_defined ? (height.to_f/100).round(2) : 1 )
+      top =  top*100/height
+      scale = width_is_defined ? (width.to_f/100).round(2) : (height.to_f/100).round(2)
       state = {
           "url" => plugin_template["body"],
           "translate" => {
