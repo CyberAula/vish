@@ -127,7 +127,6 @@ class EdiphyDocument < ActiveRecord::Base
    
   def parse_for_meta
     globalconfig = JSON(self.json)["present"]["globalConfig"]
-
     activity_object.title = (globalconfig["title"].nil? ? "Untitled" : globalconfig["title"])
     activity_object.description = globalconfig["description"]
 
@@ -140,15 +139,15 @@ class EdiphyDocument < ActiveRecord::Base
     activity_object.language = globalconfig["language"]
 
 
-    unless globalconfig["allowClone"].blank?
+    unless globalconfig["allowClone"].nil?
       activity_object.allow_clone = globalconfig["allowClone"]
     end
 
-    unless globalconfig["allowComment"].blank?
+    unless globalconfig["allowComment"].nil?
       activity_object.allow_comment = globalconfig["allowComment"]
     end
 
-    unless globalconfig["allowDownload"].blank?
+    unless globalconfig["allowDownload"].nil?
       activity_object.allow_download = globalconfig["allowDownload"]
     end
 
