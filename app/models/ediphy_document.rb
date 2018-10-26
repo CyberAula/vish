@@ -101,8 +101,7 @@ class EdiphyDocument < ActiveRecord::Base
     #   eJson["contributors"] = contributors.map{|c| {name: c.name, vishMetadata:{ id: c.id}}}
     # end
     # eJson.delete("license")
-    eJson["present"]["globalConfig"]["status"] = "draft"
-    binding.pry
+    eJson["present"]["status"] = "draft"
     e.json = eJson.to_json
 
     # e.contributors=contributors
