@@ -110,6 +110,20 @@ class EdiphyDocument < ActiveRecord::Base
 
     activity_object.language = globalconfig["language"]
 
+
+    unless globalconfig["allowClone"].blank?
+      activity_object.allow_clone = globalconfig["allowClone"]
+    end
+
+    unless globalconfig["allowComment"].blank?
+      activity_object.allow_comment = globalconfig["allowComment"]
+    end
+
+    unless globalconfig["allowDownload"].blank?
+      activity_object.allow_download = globalconfig["allowDownload"]
+    end
+
+
     unless globalconfig["age"].blank?
       begin
         activity_object.age_min = globalconfig["age"]["min"]
