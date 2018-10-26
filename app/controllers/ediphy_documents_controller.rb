@@ -1,12 +1,12 @@
 class EdiphyDocumentsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update ]
-  skip_load_and_authorize_resource :only => [:translate]
+  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone ]
+  skip_load_and_authorize_resource :only => [:translate, :clone]
   before_filter :profile_subject!, :only => :index
   before_filter :merge_json_params
   before_filter :fill_create_params, :only => [ :new, :create ]
   skip_before_filter :store_location, :if => :format_full?
-  
+  skip_after_filter :discard_flash, :only => [:clone]
   include SocialStream::Controllers::Objects
 
 
@@ -121,7 +121,18 @@ class EdiphyDocumentsController < ApplicationController
       end
     end
   end
-
+  def clone
+    original = EdiphyDocument.find_by_id(params[:id])
+    if original.blank?
+      flash[:error] = t('ediphy_document.clone.not_found')
+      redirect_to excursions_path if original.blank? # Bad parameter
+    else
+      # Do clone
+      ediphy_document = original.clone_for current_subject.actor
+      flash[:success] = t('ediphy_document.clone.ok')
+      redirect_to ediphy_document_path(ediphy_document)
+    end
+  end
   private
 
   def allowed_params

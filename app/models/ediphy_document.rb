@@ -80,14 +80,44 @@ class EdiphyDocument < ActiveRecord::Base
       end
     end
   end
+  def clone_for sbj
+    return nil if sbj.blank?
+    unless self.clonable? or sbj.admin? or (sbj===self.owner)
+      return nil
+    end
 
+    # contributors = self.contributors || []
+    # contributors.push(self.author)
+    # contributors.uniq!
+    # contributors.delete(sbj)
+
+    e=EdiphyDocument.new
+    e.author=sbj
+    e.owner=sbj
+    e.user_author=sbj.user.actor
+    eJson = JSON(self.json)
+    eJson["present"]["globalConfig"]["author"] = sbj.name
+    # unless contributors.blank?
+    #   eJson["contributors"] = contributors.map{|c| {name: c.name, vishMetadata:{ id: c.id}}}
+    # end
+    # eJson.delete("license")
+    eJson["present"]["globalConfig"]["status"] = "draft"
+    binding.pry
+    e.json = eJson.to_json
+
+    # e.contributors=contributors
+    e.draft=true
+
+    e.save!
+    e
+  end
   private
 
   def fill_license
     if ((self.scope_was!=0 or self.new_record?) and (self.scope==0))
       if self.license.nil? or self.license.private?
         license_metadata = JSON(self.json)["present"]["globalConfig"]["rights"] rescue nil
-        license = License.find_by_key(license_metadata)
+        license = License.find_by_id(license_metadata)
         self.license_id = license.id unless license.nil?
         if self.license.nil? or self.license.private?
           self.license_id = License.default.id

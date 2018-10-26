@@ -414,6 +414,7 @@ en:
     actions:
       add: "Add EDiphy"
       delete: "Delete"
+      clone: "Clone"
       delete_alert: "Are you sure? If you delete this item you will NOT be able to recover it ever again."
       edit: "Edit"
       favorite: "Favorite"
@@ -421,6 +422,11 @@ en:
       scorm12: "SCORM 1.2"
       scorm2004: "SCORM 2004"
       html: "HTML"
+    clone:
+      confirm: "This will clone this Ediphy Document to your own repository and will open it for editing"
+      not_found: "Ediphy Document not found"
+      ok: "Succesfully cloned"
+      owner: "You already own this excursion"
     confirm_delete: "Confirm Delete"
     other: "Ediphy Documents"
   date_name: "date"

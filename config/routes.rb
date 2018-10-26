@@ -100,6 +100,7 @@ Vish::Application.routes.draw do
   #Ediphy documents
   match '/ediphy_documents/:id' => 'ediphy_documents#update', :via => :post
   match '/ediphy_documents/:id/delete' => 'ediphy_documents#destroy', :via => :post
+  match 'ediphy_documents/:id/clone' => 'ediphy_documents#clone'
 
   resources :ediphy_documents
 
