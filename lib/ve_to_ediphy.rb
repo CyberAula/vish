@@ -449,7 +449,7 @@ class VETOEDIPHY
           "url" => plugin_template["body"],
           "translate" => {
               "x" => left,
-              "y" => top
+              "y" => top * scale
           },
           "scale" => scale,
           "allowDeformed" => !!plugin_template["contained_views"]
