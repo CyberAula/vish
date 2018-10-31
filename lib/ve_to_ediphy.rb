@@ -430,7 +430,7 @@ class VETOEDIPHY
     case plugin_template["type"]
     when "image"
       pluginId = "HotspotImages"
-      styled = plugin_template["style"]
+      styled = plugin_template["style"] || ""
       width = styled.match("width\:(.*?)\%\;")
       width_is_defined = (width and width.length > 1)
       width = width_is_defined ? width[1].to_f : 100
