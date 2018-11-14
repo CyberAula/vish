@@ -10,7 +10,8 @@ module OmniAuth
       # initializing your consumer from the OAuth gem.
       option :client_options, {
         :site => Vish::Application.config.APP_CONFIG["OAUTH2"]["site"],
-        :authorize_url => Vish::Application.config.APP_CONFIG["OAUTH2"]["authorize_path"]
+        :authorize_url => Vish::Application.config.APP_CONFIG["OAUTH2"]["authorize_path"],
+        :token_url     => Vish::Application.config.APP_CONFIG["OAUTH2"]["token_url"]
       }
 
       # These are called after authentication has succeeded. If
@@ -34,7 +35,8 @@ module OmniAuth
       end
 
       def raw_info
-        @raw_info ||= access_token.get('/me').parsed
+        #/users?access_token=MYTOKEN
+        @raw_info ||= access_token.get('/user').parsed
       end
 
       def callback_url
