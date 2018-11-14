@@ -7,6 +7,7 @@ class Ability
     can :excursions, User
     can :ediphy_documents, User
     can :resources, User
+    can :all_resources, User
     can :events, User
     can :categories, User
     can :followers, User
