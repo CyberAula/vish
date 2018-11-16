@@ -1,16 +1,14 @@
 class SpamReport < ActiveRecord::Base
   belongs_to :activity_object
 
-  validates :report_value,
-  :presence => true
+  validates :report_value,:presence => true
   validates_inclusion_of :report_value, :in => [0, 1, 2], :allow_nil => false, :message => I18n.t('report.failure')
   #Report value: 0=spam/inappropriate content, 1=error, 2=low quality content
 
-  validates :activity_object_id,
-  :presence => true
+  validates :issue, :presence => true, :allow_blank => false
 
+  validates :activity_object_id, :presence => true
   validate :is_activity_object_valid
-
   def is_activity_object_valid
   	validAO = false
   	unless self.activity_object_id.nil?
@@ -21,7 +19,6 @@ class SpamReport < ActiveRecord::Base
           end
         end
     end
-
      if validAO
      	true
      else
