@@ -62,14 +62,36 @@ User.class_eval do
   end
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0,20]
-      user.name = auth.info.name   # assuming the user model has a name
-      # user.image = auth.info.image # assuming the user model has an image
-      # If you are using confirmable and the provider(s) you use validate emails,
-      # uncomment the line below to skip the confirmation emails.
-      # user.skip_confirmation!
+    user = find_by_email(auth.info.email)
+    if user
+      return user
+    else
+      #EIDAS Case
+      #does not exist in BBDD, create it
+      u = User.new(provider: auth.provider, uid: auth.uid)
+      u.email = auth.info.email
+      u.password = Devise.friendly_token[0,20]
+      if auth.info.name
+        u.name = auth.info.name
+      elsif auth.extra && auth.extra.raw_info && auth.extra.raw_info.eidas_profile && auth.extra.raw_info.eidas_profile.FirstName
+        u.name = auth.extra.raw_info.eidas_profile.FirstName + " " + auth.extra.raw_info.eidas_profile.FamilyName
+      elsif auth.extra && auth.extra.raw_info && auth.extra.raw_info.username
+        u.name = auth.extra.raw_info.username
+      else
+        u.name = auth.info.name
+      end
+
+      u.save!
+
+      if auth.extra && auth.extra.raw_info && auth.extra.raw_info.eidas_profile && auth.extra.raw_info.eidas_profile.DateOfBirth
+        u.birthday = Date.parse(auth.extra.raw_info.eidas_profile.DateOfBirth)
+      end
+      u.tags = [ ActsAsTaggableOn::Tag.new(name: "Biology"), ActsAsTaggableOn::Tag.new(name: "ETSIT")]
+      binding.pry
+      if auth.extra && auth.extra.raw_info && auth.extra.raw_info.organizations
+        u.organization = auth.extra.raw_info.organizations
+      end
+      return u
     end
   end
 
