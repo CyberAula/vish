@@ -259,7 +259,7 @@ class Lom
       end
 
       #Annotations (include comments if any).
-      comments = ao.post_activity.comments
+      comments = ao.post_activity.nil? ? nil : ao.post_activity.comments
       unless comments.blank?
         comments.map{|commentActivity| commentActivity.activity_objects.first}.reject{|c| c.nil? or c.description.blank?}.first(30).each do |comment|
           myxml.annotation do
