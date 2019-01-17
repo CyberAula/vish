@@ -28,7 +28,6 @@
             </a>
           </li>
         <% end %>
-
         <% if Vish::Application.config.only_cas %>
           <li class="btn-group">
             <a type="button" id="drop3" class="btn btn-primary" href="<%=user_session_path%>">
@@ -36,7 +35,7 @@
             </a>
           </li>
         <% elsif Vish::Application.config.oauth2%>
-          <%= link_to t("sign_in"), user_omniauth_authorize_path(:idm) %>
+          <%= link_to t("sign_in"), user_omniauth_authorize_path(:idm), :class=>"btn btn-primary" %>
         <% else %>
           <li class="btn-group dropdown">
             <a href="#" id="drop3" role="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">

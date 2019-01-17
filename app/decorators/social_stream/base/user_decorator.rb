@@ -86,8 +86,7 @@ User.class_eval do
       if auth.extra && auth.extra.raw_info && auth.extra.raw_info.eidas_profile && auth.extra.raw_info.eidas_profile.DateOfBirth
         u.birthday = Date.parse(auth.extra.raw_info.eidas_profile.DateOfBirth)
       end
-      u.tags = [ ActsAsTaggableOn::Tag.new(name: "Biology"), ActsAsTaggableOn::Tag.new(name: "ETSIT")]
-      binding.pry
+      u.tag_list = [ "ETSIT" ]
       if auth.extra && auth.extra.raw_info && auth.extra.raw_info.organizations
         u.organization = auth.extra.raw_info.organizations
       end

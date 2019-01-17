@@ -13,7 +13,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
-    binding.pry
+    #binding.pry
+    logger.debug "FAILURE IN OmniauthCallbacksController. Session:"
+    logger.debug session.to_s
+    logger.debug "params: " + params.to_s
     redirect_to root_path
   end
 end
