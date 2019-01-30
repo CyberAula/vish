@@ -12,7 +12,6 @@ class VETOEDIPHY
     global_config = self.create_global_config(excursion_json)
     marks_by_id = names["marks"]
     exercises = self.create_exercises(names["navs_boxes"],  names["cv_boxes"], boxes_and_plugin_toolbars["toolbars"], boxes_and_plugin_toolbars["answers"], boxes_and_plugin_toolbars["current_answers"])
-
     {
         "present" => {
             "version"=> 2.1,
@@ -68,7 +67,8 @@ class VETOEDIPHY
         "difficulty" => excursion_json["difficulty"],
         "allowDownload" => (excursion_json["allow_download"] == true || excursion_json["allow_download"] == "true") ? true : nil,
         "allowClone" => (excursion_json["allow_clone"] == true || excursion_json["allow_clone"] == "true") ? true : nil,
-        "allowComments" => (excursion_json["allow_comment"] == true || excursion_json["allow_comment"] == "true") ? true : nil
+        "allowComments" => (excursion_json["allow_comment"] == true || excursion_json["allow_comment"] == "true") ? true : nil,
+        "originalContributors" => excursion_json["contributors"]
     }
 
   end

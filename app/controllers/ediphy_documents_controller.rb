@@ -62,9 +62,13 @@ class EdiphyDocumentsController < ApplicationController
   def create
     params[:ediphy_document].permit!
     scope = params[:ediphy_document][:json][:present][:status] rescue "draft"
+    contributors = params[:ediphy_document][:json][:present][:globalConfig][:originalContributors]
+
     params[:ediphy_document][:json] = params[:ediphy_document][:json].to_json if params[:ediphy_document][:json].present?
     ed = EdiphyDocument.new(params[:ediphy_document])
-    
+    ed.contributors = contributors.nil? ? [] : contributors.map{|c| (Actor.find_by_id(c["vishMetadata"]["id"]))}  rescue []
+    ed.contributors.uniq!
+    ed.contributors.delete(Actor.find_by_id(params["ediphy_document"]["author_id"]))
     #Set scope and draft
     ed.draft = (scope == "draft" ? true :  false)
     ed.scope = (ed.draft == true ? 1 :  0)

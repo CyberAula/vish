@@ -1,7 +1,9 @@
 class EdiphyDocument < ActiveRecord::Base
   
   include SocialStream::Models::Object
-  
+  has_many :ediphy_document_contributors, :dependent => :destroy
+  has_many :contributors, :class_name => "Actor", :through => :ediphy_document_contributors
+
   before_validation :fill_license
   after_save :parse_for_meta
   after_save :fix_post_activity_nil
@@ -86,25 +88,25 @@ class EdiphyDocument < ActiveRecord::Base
       return nil
     end
 
-    # contributors = self.contributors || []
-    # contributors.push(self.author)
-    # contributors.uniq!
-    # contributors.delete(sbj)
+    contributors = self.contributors || []
+    contributors.push(self.author)
+    contributors.uniq!
+    contributors.delete(sbj)
 
-    e=EdiphyDocument.new
+    e = EdiphyDocument.new
     e.author=sbj
     e.owner=sbj
     e.user_author=sbj.user.actor
     eJson = JSON(self.json)
     eJson["present"]["globalConfig"]["author"] = sbj.name
-    # unless contributors.blank?
-    #   eJson["contributors"] = contributors.map{|c| {name: c.name, vishMetadata:{ id: c.id}}}
-    # end
-    # eJson.delete("license")
+    unless contributors.blank?
+      eJson["present"]["globalConfig"]["contributors"] = contributors.map{|c| {name: c.name, vishMetadata:{ id: c.id}}}
+    end
+    eJson.delete("license")
     eJson["present"]["status"] = "draft"
     e.json = eJson.to_json
 
-    # e.contributors=contributors
+    e.contributors=contributors
     e.draft=true
 
     e.save!
