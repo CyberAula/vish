@@ -116,7 +116,7 @@ class EdiphyDocument < ActiveRecord::Base
     if ((self.scope_was!=0 or self.new_record?) and (self.scope==0))
       if self.license.nil? or self.license.private?
         license_metadata = JSON(self.json)["present"]["globalConfig"]["rights"] rescue nil
-        license = License.find_by_id(license_metadata)
+        license = License.find_by_key(license_metadata)
         self.license_id = license.id unless license.nil?
         if self.license.nil? or self.license.private?
           self.license_id = License.default.id
