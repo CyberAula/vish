@@ -102,7 +102,6 @@ class UsersController < ApplicationController
   def all_resources
     respond_to do |format|
       format.json {
-        # response.headers['Access-Control-Allow-Origin'] = '*' # SONSOLES
         render :json => {results: view_context.subject_all_resources(profile_or_current_subject, {:scope => :me, :limit => 0, :force_filter_private_ignoring_scope => true}).map{|ao| ao.search_json(self)}}
       }
     end
