@@ -113,14 +113,29 @@ class EdiphyDocumentsController < ApplicationController
         response.headers['Access-Control-Max-Age'] = "1728000"
         if params[:id]
           @excursion = Excursion.find(params[:id])
+          if @excursion.allow_clone
+            render json: @excursion.to_ediphy
+          else
+            render json: {error: "Not allowed", status: 403}, status: 403
+          end
+        else
+          render json: {error: "Not found", status: 404}, status: 404
         end
-        render json: @excursion.to_ediphy
       end
       format.html do
-        render 'ediphy_documents/new', :layout => 'ediphy', :locals => { :default_tag=> params[:default_tag]}
+        if params[:id]
+          @excursion = Excursion.find(params[:id])
+          if can? :clone, @excursion
+            render 'ediphy_documents/new', :layout => 'ediphy', :locals => { :default_tag=> params[:default_tag]}
+          else
+            redirect_to(excursion_path(@excursion))
+          end
+        end
+
       end
     end
   end
+
   def clone
     original = EdiphyDocument.find_by_id(params[:id])
     if original.blank?

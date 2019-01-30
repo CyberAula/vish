@@ -165,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function(){
         </span>
       </a>
     </li>
+    <% if can?(:download_source, @ediphy_document) %>
       <li>
         <a href="#tab4" tabTitle='download' data-toggle="tab">
           <i class="fa fa-download"></i>
@@ -173,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function(){
           </span>
         </a>
       </li>
+      <%end %>
     <li>
       <a href="#tab5" tabTitle='flag' data-toggle="tab">
         <i class="fa fa-flag"></i>

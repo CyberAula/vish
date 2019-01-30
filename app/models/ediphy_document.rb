@@ -132,7 +132,7 @@ class EdiphyDocument < ActiveRecord::Base
 
     parsed_tag_list = []
     globalconfig["keywords"].each do |key|
-      parsed_tag_list.push(key["text"])
+      parsed_tag_list.push(key["text"].nil? ? key: key["text"])
     end
     activity_object.tag_list = parsed_tag_list
 
@@ -143,8 +143,8 @@ class EdiphyDocument < ActiveRecord::Base
       activity_object.allow_clone = globalconfig["allowClone"]
     end
 
-    unless globalconfig["allowComment"].nil?
-      activity_object.allow_comment = globalconfig["allowComment"]
+    unless globalconfig["allowComments"].nil?
+      activity_object.allow_comment = globalconfig["allowComments"]
     end
 
     unless globalconfig["allowDownload"].nil?

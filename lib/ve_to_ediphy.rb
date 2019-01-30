@@ -11,11 +11,11 @@ class VETOEDIPHY
     boxes_and_plugin_toolbars = self.create_boxes_and_plugin_toolbars( names["navs_boxes"], names["cv_boxes"], names["templates"], names["plugins"])
     global_config = self.create_global_config(excursion_json)
     marks_by_id = names["marks"]
-    exercises = self.create_exercises(names["navs_boxes"],  names["cv_boxes"], boxes_and_plugin_toolbars["toolbars"], boxes_and_plugin_toolbars["answers"])
+    exercises = self.create_exercises(names["navs_boxes"],  names["cv_boxes"], boxes_and_plugin_toolbars["toolbars"], boxes_and_plugin_toolbars["answers"], boxes_and_plugin_toolbars["current_answers"])
 
     {
         "present" => {
-            "version"=> "2",
+            "version"=> 2.1,
             "lastActionDispatched" => "@@INIT",
             "globalConfig" => global_config,
             "displayMode"=> "list",
@@ -29,7 +29,7 @@ class VETOEDIPHY
             "pluginToolbarsById" => boxes_and_plugin_toolbars["toolbars"],
             "containedViewsById" => contained_views_by_id,
             "exercises" => exercises,
-            "isBusy" => "",
+            "isBusy" => ""
         }
     }.to_json
   end
@@ -38,7 +38,6 @@ class VETOEDIPHY
 
     time = excursion_json["TLT"] && excursion_json["TLT"].match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/)
     age = excursion_json["age_range"] && excursion_json["age_range"].match(/(\d+).+(\d)/)
-
     {
         "title" => excursion_json["title"],
         "description" => excursion_json["description"],
@@ -55,6 +54,7 @@ class VETOEDIPHY
             "max" => (age && age[2]) ? age[2] : 100,
             "min" => (age && age[1]) ? age[1] : 0,
         },
+        # "keywords" => excursion_json["tags"] ? excursion_json["tags"].each_with_index.map{|a,i| {"id":i+1,"text":a }} : [],
         "keywords" => excursion_json["tags"] ? excursion_json["tags"] : [],
         "typicalLearningTime" => {
             "h" => (time && time[1] )? time[1] : 0,
@@ -65,7 +65,10 @@ class VETOEDIPHY
         "thumbnail" => excursion_json["avatar"],
         "status" => 'draft',
         "structure" => 'linear',
-        "difficulty" => excursion_json["difficulty"]
+        "difficulty" => excursion_json["difficulty"],
+        "allowDownload" => (excursion_json["allow_download"] == true || excursion_json["allow_download"] == "true") ? true : nil,
+        "allowClone" => (excursion_json["allow_clone"] == true || excursion_json["allow_clone"] == "true") ? true : nil,
+        "allowComments" => (excursion_json["allow_comment"] == true || excursion_json["allow_comment"] == "true") ? true : nil
     }
 
   end
@@ -384,6 +387,7 @@ class VETOEDIPHY
     boxes = {}
     toolbars = {}
     answers = {}
+    current_answers = {}
     views = boxes_names.merge(cv_boxes)
     counter = 0
     views.each do|key, boxes_ids|
@@ -396,10 +400,11 @@ class VETOEDIPHY
           boxes[box] = self.create_box(box, key, 0, template_box)
           if !!toolbars[box]["state"]["__pluginContainerIds"]
             child_states = toolbars[box]["state"]["child_states"]
-            right_answers = toolbars[box]["state"]["right_answers"]
-            answers[box] = right_answers
+            answers[box] = toolbars[box]["state"]["right_answers"]
+            current_answers[box] =  toolbars[box]["state"]["current_answers"]
             toolbars[box]["state"].delete("child_states")
             toolbars[box]["state"].delete("right_answers")
+            toolbars[box]["state"].delete("current_answers")
             boxes[box]["children"] = toolbars[box]["state"]["__pluginContainerIds"].keys
             toolbars[box]["state"]["__pluginContainerIds"].keys.each_with_index do |key_c, ind|
               child = generate_box_name(ind, "__#{index}__#{counter}")
@@ -414,7 +419,7 @@ class VETOEDIPHY
         end
       end
     end
-    { "boxes" => boxes, "toolbars" => toolbars, "answers" => answers}
+    { "boxes" => boxes, "toolbars" => toolbars, "answers" => answers, "current_answers" => current_answers}
   end
   def self.convert_plugin(plugin_template, template_box, box_shape)
     require 'uri'
@@ -518,7 +523,7 @@ class VETOEDIPHY
         }
         right_answer = isMA ? [] : ""
         answers.each_with_index do |ans, i|
-          ind = isMA ? (i+1):i
+          ind = i
           plugin_container_ids["sc-Answer#{ind}"] = { "id" => "sc-Answer#{ind}", "name" => "Answer #{ind}", "height" => "auto" }
           child_states["sc-Answer#{ind}"] = { "type" => "text", "body" => ans["wysiwygValue"] || ans["value"] }
           if ans["answer"]
@@ -542,7 +547,9 @@ class VETOEDIPHY
             "quizColor" => "rgba(0, 173, 156, 1)",
             "__pluginContainerIds" => plugin_container_ids,
             "child_states" => child_states,
-            "right_answers" => right_answer
+            "right_answers" => right_answer,
+            "current_answers" => "",
+
         }
       when "truefalse"
         pluginId =  "TrueFalse"
@@ -572,7 +579,8 @@ class VETOEDIPHY
             "quizColor" => "rgba(0, 173, 156, 1)",
             "__pluginContainerIds" => plugin_container_ids,
             "child_states" => child_states,
-            "right_answers" => right_answer
+            "right_answers" => right_answer.map { |n| n.to_s },
+            "current_answers" => right_answer.map { |n| "" }
         }
       when "openAnswer"
         pluginId =  "FreeResponse"
@@ -595,7 +603,8 @@ class VETOEDIPHY
             "correct"=> plugin_template["selfA"],
             "__pluginContainerIds" => plugin_container_ids,
             "child_states" => child_states,
-            "right_answers" => plugin_template["answer"]["value"]
+            "right_answers" => plugin_template["answer"]["value"],
+            "current_answers" => "",
         }
       when "sorting"
         pluginId =  "Ordering"
@@ -624,7 +633,8 @@ class VETOEDIPHY
             "quizColor" => "rgba(0, 173, 156, 1)",
             "__pluginContainerIds" => plugin_container_ids,
             "child_states" => child_states,
-            "right_answers" => nil
+            "right_answers" => nil,
+            "current_answers" => ""
         }
       end
     else
@@ -644,20 +654,20 @@ class VETOEDIPHY
         "value" => value
     }
   end
-  def self.create_exercise(name, box, answer)
+  def self.create_exercise(name, box, answer, current_answer)
     {
         "name" => name,
         "id" => box,
         "weight" => 1,
         "correctAnswer" => answer,
-        "currentAnswer" => "",
+        "currentAnswer" => current_answer,
         "attempted" => false,
         "score" => 0,
         "quizColor" => "rgba(11,255,255,1)",
         "correct" => false
     }
   end
-  def self.create_exercises( nav_names, cv_names, plugin_toolbars_by_id, answers)
+  def self.create_exercises( nav_names, cv_names, plugin_toolbars_by_id, answers, current_answers)
     exercises = {}
     views = nav_names.merge(cv_names)
     views.each do|key, boxes|
@@ -666,7 +676,7 @@ class VETOEDIPHY
         if !box.nil?
           plugin = plugin_toolbars_by_id[box]
           if  ["MultipleChoice", "MultipleAnswer", "InputText", "Ordering", "ScormPackage", "FreeResponse", "TrueFalse"].include? plugin["pluginId"]
-            ex_boxes[box] = create_exercise( plugin["pluginId"], box, answers[box] )
+            ex_boxes[box] = create_exercise( plugin["pluginId"], box, answers[box], current_answers[box] )
           end
         end
       end
