@@ -142,12 +142,18 @@
                   <% end %>
 
                   <li>
-                    <%= link_to destroy_user_session_path, :method => :delete do %>
-                    <i class="fa fa-sign-out"></i>
-                    <%= t('sign_out') %>
-                    <% end %>
+                    <%if Vish::Application.config.oauth2%>
+                      <%= link_to Vish::Application.config.APP_CONFIG["OAUTH2"]["site"] + "/auth/external_logout?_method=delete&client_id=" + Vish::Application.config.APP_CONFIG["OAUTH2"]["app_id"], :method => :delete do %>
+                        <i class="fa fa-sign-out"></i>
+                        <%= t('sign_out') %>
+                      <% end %>
+                    <%else%>
+                      <%= link_to destroy_user_session_path, :method => :delete do %>
+                        <i class="fa fa-sign-out"></i>
+                        <%= t('sign_out') %>
+                      <% end %>
+                    <%end%>
                   </li>
-
                 </ul>
           </li>
 

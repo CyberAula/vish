@@ -1,3 +1,6 @@
+require 'net/http'
+require 'net/https'
+
 class SessionsController < Devise::SessionsController
   skip_before_filter :store_location
   after_filter :logout_oauth, :only => :destroy
@@ -19,7 +22,7 @@ class SessionsController < Devise::SessionsController
 
   def logout_oauth
     #binding.pry
-    puts "BYE"
     logger.debug "ADIOS ADIOS-------------------------------------------------"
+    puts "BYE"
   end
 end
