@@ -24,7 +24,9 @@ Vish::Application.routes.draw do
   end
 
   if Vish::Application.config.oauth2
-    get '/users/oauth2_sign_out', to: 'devise/sessions#destroy'
+    devise_scope :user do
+      get '/users/oauth2_sign_out', to: 'devise/sessions#destroy'
+    end
   end
 
   match 'users/:id/excursions' => 'users#excursions'
