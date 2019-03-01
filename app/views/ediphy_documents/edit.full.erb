@@ -10,6 +10,7 @@
 
    var ediphy_editor_params = {
       name: "<%= current_subject.name %>",
+      slug:  "<%= current_subject.slug %>",
       id: "<%= Actor.normalize_id(current_subject) %>",
       exit_document_url: "<%= url_for(EdiphyDocument.find(params[:id])) %>",
       exit_tab_url: "<%= url_for(current_subject) %>" + "?tab=ediphy_documents",

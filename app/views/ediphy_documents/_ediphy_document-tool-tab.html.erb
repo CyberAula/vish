@@ -58,7 +58,13 @@ document.addEventListener("DOMContentLoaded", function(){
           break;
       }
     });
-
+    $('.clone').popover({
+        html : true,
+        content: function() {
+            return $('.contentclone').html();
+        },
+        container: ".actions_layout_show"
+    });
     $('.delete').popover({
       html : true,
       content: function() {
@@ -80,7 +86,20 @@ document.addEventListener("DOMContentLoaded", function(){
       <i class="fa fa-edit"></i>
     </button>
   <%end%>
+  <!-- Clone -->
+  <% if user_signed_in? and !editingToolbar and (can? :clone, @ediphy_document) %>
+    <button class="with_tooltip clone btn btn-default" data-toggle="popover" title="<%=t('ediphy_document.actions.clone')%>">
+      <i class="fa fa-copy"></i>
+    </button>
 
+    <div class="contentclone" style="display: none">
+      <p class=""><i class="fa fa-copy"></i>  <%=t('ediphy_document.clone.confirm')%></p>
+      <div class="actions">
+        <a class="btn btn_cancel closepopover"><%=t('cancel')%></a>
+        <a class="btn btn-primary" onclick="location.href='<%=ediphy_document_path(@ediphy_document) + '/clone'%>'"><%=t('ediphy_document.actions.clone')%></a>
+      </div>
+    </div>
+  <%end%>
   <!--Remove-->
   <% if user_signed_in? and can?(:destroy, @ediphy_document) %>
     <button class="with_tooltip delete btn btn-default" data-toggle="popover" data-container="body" title="<%=t('ediphy_document.actions.delete')%>" data-placement="left" aria-hidden="true">
@@ -146,6 +165,7 @@ document.addEventListener("DOMContentLoaded", function(){
         </span>
       </a>
     </li>
+    <% if can?(:download_source, @ediphy_document) %>
       <li>
         <a href="#tab4" tabTitle='download' data-toggle="tab">
           <i class="fa fa-download"></i>
@@ -154,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function(){
           </span>
         </a>
       </li>
+      <%end %>
     <li>
       <a href="#tab5" tabTitle='flag' data-toggle="tab">
         <i class="fa fa-flag"></i>

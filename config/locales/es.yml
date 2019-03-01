@@ -390,6 +390,7 @@ es:
     actions:
       add: "Añadir EDiphy"
       delete: "Eliminar"
+      clone: "Clonar"
       delete_alert: "¿Estás seguro? Si eliminas este documento los cambios NO podrán recuperarse."
       edit: "Editar"
       favorite: "Favoritas"
@@ -397,6 +398,11 @@ es:
       scorm12: "SCORM 1.2"
       scorm2004: "SCORM 2004"
       html: "HTML"
+    clone:
+      confirm: "Esto clonará el documento Ediphy en tu propio repositorio y la abrirá para editarla"
+      not_found: "Documento Ediphy no encontradO"
+      ok: "Clonado con éxito"
+      owner: "Este documento Ediphy ya es tuyo"
     confirm_delete: "Confirmar borrado"
     other: "Documentos Ediphy"
   date_name: "fecha"
@@ -606,6 +612,7 @@ es:
       attachment: "Archivo Adjunto"
       bookmark: "marcardor"
       clone: "clonar"
+      translate: "transformar en un documento Ediphy"
       delete: "Borrar"
       download: "Descargar"
       edit: "Editar"
@@ -663,6 +670,12 @@ es:
     session_start: "inicia sesión"
     title:
       other: "excursiones"
+    translate:
+      confirm: "Esto transformará tu excursión en un documento EDiphy conservando el original."
+      confirm_button: "Transformar"
+      not_found: "Excursion no encontrada"
+      ok: "Transformada con éxito"
+      owner: "Esta excursión ya es tuya"
     upcomming: "próxima"
     unload_warning: "¡La excursión no está salvada!"
     top: "paraMí"

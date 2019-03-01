@@ -1,7 +1,9 @@
 class EdiphyDocument < ActiveRecord::Base
   
   include SocialStream::Models::Object
-  
+  has_many :ediphy_document_contributors, :dependent => :destroy
+  has_many :contributors, :class_name => "Actor", :through => :ediphy_document_contributors
+
   before_validation :fill_license
   after_save :parse_for_meta
   after_save :fix_post_activity_nil
@@ -14,7 +16,7 @@ class EdiphyDocument < ActiveRecord::Base
 
   def thumbnail
     thumbnail = (JSON.parse(self.json)["present"]["globalConfig"]["thumbnail"] || "") rescue ""
-    thumbnail = thumbnail + "?style=500" if thumbnail!="" and /data:image/.match(thumbnail).nil?
+    thumbnail = thumbnail + "?style=500" if thumbnail!="" and /data:image/.match(thumbnail).nil? and /style=500/.match(thumbnail).nil?
     thumbnail
   end
 
@@ -80,7 +82,36 @@ class EdiphyDocument < ActiveRecord::Base
       end
     end
   end
+  def clone_for sbj
+    return nil if sbj.blank?
+    unless self.clonable? or sbj.admin? or (sbj===self.owner)
+      return nil
+    end
 
+    contributors = self.contributors || []
+    contributors.push(self.author)
+    contributors.uniq!
+    contributors.delete(sbj)
+
+    e = EdiphyDocument.new
+    e.author=sbj
+    e.owner=sbj
+    e.user_author=sbj.user.actor
+    eJson = JSON(self.json)
+    eJson["present"]["globalConfig"]["author"] = sbj.name
+    unless contributors.blank?
+      eJson["present"]["globalConfig"]["contributors"] = contributors.map{|c| {name: c.name, vishMetadata:{ id: c.id}}}
+    end
+    eJson.delete("license")
+    eJson["present"]["status"] = "draft"
+    e.json = eJson.to_json
+
+    e.contributors=contributors
+    e.draft=true
+
+    e.save!
+    e
+  end
   private
 
   def fill_license
@@ -98,17 +129,30 @@ class EdiphyDocument < ActiveRecord::Base
    
   def parse_for_meta
     globalconfig = JSON(self.json)["present"]["globalConfig"]
-
     activity_object.title = (globalconfig["title"].nil? ? "Untitled" : globalconfig["title"])
     activity_object.description = globalconfig["description"]
 
     parsed_tag_list = []
     globalconfig["keywords"].each do |key|
-      parsed_tag_list.push(key["text"])
+      parsed_tag_list.push(key["text"].nil? ? key: key["text"])
     end
     activity_object.tag_list = parsed_tag_list
 
     activity_object.language = globalconfig["language"]
+
+
+    unless globalconfig["allowClone"].nil?
+      activity_object.allow_clone = globalconfig["allowClone"]
+    end
+
+    unless globalconfig["allowComments"].nil?
+      activity_object.allow_comment = globalconfig["allowComments"]
+    end
+
+    unless globalconfig["allowDownload"].nil?
+      activity_object.allow_download = globalconfig["allowDownload"]
+    end
+
 
     unless globalconfig["age"].blank?
       begin

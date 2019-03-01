@@ -38,6 +38,11 @@ class Excursion < ActiveRecord::Base
     json
   end
 
+  def to_ediphy
+    require 've_to_ediphy'
+    VETOEDIPHY.translate(json)
+  end
+
   ####################
   ## OAI-PMH Management
   ####################

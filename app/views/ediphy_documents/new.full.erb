@@ -11,6 +11,7 @@
     
     var ediphy_editor_params = {
       name: "<%= current_subject.name %>",
+      slug:  "<%= current_subject.slug %>",
       id: "<%= Actor.normalize_id(current_subject) %>",
       exit_document_url: "",
       exit_tab_url: "<%= url_for(current_subject) %>" + "?tab=ediphy_documents",
@@ -30,5 +31,6 @@
   </script>
 <% end %>
 
-<%=render partial: 'ediphy_documents/ediphy_document_edit', :locals => {:ediphy_editor_json => 'undefined'}%>
+
+<%=render partial: 'ediphy_documents/ediphy_document_edit', :locals => {:ediphy_editor_json => params[:excursion_id].blank? ? 'undefined' : Excursion.find(params[:excursion_id]).to_ediphy  }%>
 

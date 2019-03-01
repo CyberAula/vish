@@ -87,6 +87,10 @@ class Ability
         can?(:clone,o.activity_object)
       end
 
+      can :clone, [EdiphyDocument] do |o|
+        can?(:clone,o.activity_object)
+      end
+
       #Roles and user management
       can :update, Actor do |a|
         a.id == subject.actor_id

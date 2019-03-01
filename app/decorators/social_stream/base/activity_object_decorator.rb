@@ -283,7 +283,7 @@ ActivityObject.class_eval do
       :title => title,
       :description => resource.description || "",
       :tags => resource.tag_list,
-      :url =>  controller.url_for(resource)
+      :url =>  controller.url_for(resource),
     }
 
     fullUrl = self.getFullUrl(controller)
@@ -330,6 +330,11 @@ ActivityObject.class_eval do
     if resource.class.name == "Excursion"
       searchJson[:loModel] = JSON(resource.json)
       searchJson[:slide_count] = resource.slide_count
+      searchJson[:allow_clone] = resource.clonable?
+    end
+
+    if resource.class.name == "EdiphyDocument"
+      searchJson[:allow_clone] = resource.clonable?
     end
 
     unless resource.reviewers_qscore.nil?
@@ -422,6 +427,9 @@ ActivityObject.class_eval do
     elsif ["Excursion"].include? resource.class.name
       # relativePath = Rails.application.routes.url_helpers.excursion_path(resource, :format=> "full")
       absolutePath = controller.url_for(resource) + ".full"
+    elsif ["EdiphyDocument"].include? resource.class.name
+      # relativePath = Rails.application.routes.url_helpers.excursion_path(resource, :format=> "full")
+      absolutePath = controller.url_for(resource) + ".full"
     elsif ["Link"].include? resource.class.name
       absolutePath = resource.url
     elsif ["Embed"].include? resource.class.name
@@ -464,6 +472,8 @@ ActivityObject.class_eval do
       relativePath = resource.logo.url(:medium)
     elsif resource.class.name=="Excursion"
       absolutePath = resource.thumbnail_url
+    elsif resource.class.name=="EdiphyDocument"
+      absolutePath = resource.thumbnail
     elsif resource.class.name=="Picture"
       relativePath = document.file.url + "?style=500"
     elsif resource.avatar.exists?

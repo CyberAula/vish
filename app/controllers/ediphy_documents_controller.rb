@@ -1,11 +1,12 @@
 class EdiphyDocumentsController < ApplicationController
 
-  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update ]
+  before_filter :authenticate_user!, :only => [ :new, :create, :edit, :update, :clone ]
+  skip_load_and_authorize_resource :only => [:translate, :clone]
   before_filter :profile_subject!, :only => :index
   before_filter :merge_json_params
   before_filter :fill_create_params, :only => [ :new, :create ]
   skip_before_filter :store_location, :if => :format_full?
-  
+  skip_after_filter :discard_flash, :only => [:clone]
   include SocialStream::Controllers::Objects
 
 
@@ -40,6 +41,7 @@ class EdiphyDocumentsController < ApplicationController
         end
       }
       format.json {
+        response.headers['Access-Control-Allow-Origin'] = '*'
         render :json => resource
       }
     end
@@ -60,9 +62,12 @@ class EdiphyDocumentsController < ApplicationController
   def create
     params[:ediphy_document].permit!
     scope = params[:ediphy_document][:json][:present][:status] rescue "draft"
+    contributors = params[:ediphy_document][:json][:present][:globalConfig][:originalContributors]
+
     params[:ediphy_document][:json] = params[:ediphy_document][:json].to_json if params[:ediphy_document][:json].present?
     ed = EdiphyDocument.new(params[:ediphy_document])
-    
+    ed.contributors = contributors.nil? ? [] : contributors.select { |c|  c["vishMetadata"]["id"] != params["ediphy_document"]["author_id"] }.map{|c| (Actor.find_by_id(c["vishMetadata"]["id"]))}  rescue []
+    ed.contributors.uniq!
     #Set scope and draft
     ed.draft = (scope == "draft" ? true :  false)
     ed.scope = (ed.draft == true ? 1 :  0)
@@ -104,7 +109,48 @@ class EdiphyDocumentsController < ApplicationController
     end
   end
 
+  def translate
+    respond_to do |format|
+      format.json do
+        response.headers['Access-Control-Allow-Origin'] = '*'
+        response.headers['Access-Control-Max-Age'] = "1728000"
+        if params[:id]
+          @excursion = Excursion.find(params[:id])
+          if @excursion.allow_clone
+            render json: @excursion.to_ediphy
+          else
+            render json: {error: "Not allowed", status: 403}, status: 403
+          end
+        else
+          render json: {error: "Not found", status: 404}, status: 404
+        end
+      end
+      format.html do
+        if params[:id]
+          @excursion = Excursion.find(params[:id])
+          if can? :clone, @excursion
+            render 'ediphy_documents/new', :layout => 'ediphy', :locals => { :default_tag=> params[:default_tag]}
+          else
+            redirect_to(excursion_path(@excursion))
+          end
+        end
 
+      end
+    end
+  end
+
+  def clone
+    original = EdiphyDocument.find_by_id(params[:id])
+    if original.blank?
+      flash[:error] = t('ediphy_document.clone.not_found')
+      redirect_to excursions_path if original.blank? # Bad parameter
+    else
+      # Do clone
+      ediphy_document = original.clone_for current_subject.actor
+      flash[:success] = t('ediphy_document.clone.ok')
+      redirect_to ediphy_document_path(ediphy_document)
+    end
+  end
   private
 
   def allowed_params

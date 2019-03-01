@@ -53,6 +53,7 @@ class ExcursionsController < ApplicationController
         render "show.full", :layout => 'veditor'
       }
       format.json {
+        response.headers['Access-Control-Allow-Origin'] = '*'
         render :json => resource 
       }
       format.gateway {
@@ -312,7 +313,6 @@ class ExcursionsController < ApplicationController
       }
     end
   end
-
 
 
   #####################

@@ -97,11 +97,15 @@ Vish::Application.routes.draw do
   match '/excursions/tmpJson' => 'excursions#uploadTmpJSON', :via => :post
   match '/excursions/tmpJson' => 'excursions#downloadTmpJSON', :via => :get
 
+  match '/excursions/:id/translate' => 'ediphy_documents#translate', :via => :get
+  match '/excursions/translate' => 'ediphy_documents#translate', :via => :post
+
   resources :excursions
 
   #Ediphy documents
   match '/ediphy_documents/:id' => 'ediphy_documents#update', :via => :post
   match '/ediphy_documents/:id/delete' => 'ediphy_documents#destroy', :via => :post
+  match 'ediphy_documents/:id/clone' => 'ediphy_documents#clone'
 
   resources :ediphy_documents
 

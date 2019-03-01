@@ -140,7 +140,7 @@ namespace :ediphy do
 	end
 
 	task :rewrite_api_paths do
-		system "mv " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/lib/jspdf.debug.js " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/lib/jspdf.js"
+		#system "mv " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/lib/jspdf.debug.js " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/lib/jspdf.js"
 		#system "sed -i 's#" + REGEX_SAVE+ "#" + SAVE_URL_DALI + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
 		#system "sed -i 's#" + REGEX_GET+ "#" + GET_URL_DALI + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
 	end
@@ -153,7 +153,7 @@ namespace :ediphy do
 	end
 
 	task :rewrite_images_paths do
-		system "sed -i 's#" + REGEX_IMAGES_SRC+ "#" + PATH_IMAGES_SRC + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/vendor/lib/visor/index.ejs"
+		#system "sed -i 's#" + REGEX_IMAGES_SRC+ "#" + PATH_IMAGES_SRC + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/vendor/lib/visor/index.ejs"
 		#system "sed -i 's#" + REGEX_IMAGES_SRC2+ "#" + PATH_IMAGES_SRC2 + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/ediphy_documents/textStyles.css"
 		#system "sed -i 's#" + REGEX_IMAGES_PLAIN+ "#" + PATH_IMAGES_PLAIN + "#g' " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
 	end

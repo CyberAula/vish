@@ -1,5 +1,5 @@
 <div id="editor_wrapper">
-  <iframe id="presentation_ediphy_iframe" src="<%= new_ediphy_document_path(:format => :full)%>"
+  <iframe id="presentation_ediphy_iframe" src="<%= new_ediphy_document_path(:format => :full, :excursion_id => @excursion.nil? ? nil : @excursion.id  )%>"
     scrolling="no" width="100%" height="100%" style="border:0; height: 100%"
     iframeborder="0" frameborder="0" iframeElement.frameBorder=0; webkitAllowFullScreen="true" allowfullscreen="true" mozallowfullscreen="true"></iframe>
 </div>

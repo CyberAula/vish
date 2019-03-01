@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20181005084441) do
+ActiveRecord::Schema.define(:version => 20190130140809) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -296,6 +296,14 @@ ActiveRecord::Schema.define(:version => 20181005084441) do
   end
 
   add_index "documents", ["activity_object_id"], :name => "index_documents_on_activity_object_id"
+
+  create_table "ediphy_contributors", :force => true do |t|
+  end
+
+  create_table "ediphy_document_contributors", :force => true do |t|
+    t.integer "ediphy_document_id"
+    t.integer "contributor_id"
+  end
 
   create_table "ediphy_documents", :force => true do |t|
     t.integer  "activity_object_id"
@@ -767,8 +775,6 @@ ActiveRecord::Schema.define(:version => 20181005084441) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "private_student_group_id"
-    t.string   "provider"
-    t.string   "uid"
   end
 
   add_index "users", ["actor_id"], :name => "index_users_on_actor_id"
