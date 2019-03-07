@@ -62,14 +62,15 @@ User.class_eval do
   end
 
   def self.from_omniauth(auth)
-    user = find_by_email(auth.info.email)
+    user = find_by_email(auth.info.email.downcase)
+    binding.pry
     if user
       return user
     else
       #EIDAS Case
       #does not exist in BBDD, create it
       u = User.new(provider: auth.provider, uid: auth.uid)
-      u.email = auth.info.email
+      u.email = auth.info.email.downcase
       u.password = Devise.friendly_token[0,20]
       if auth.info.name
         u.name = auth.info.name
