@@ -18,11 +18,16 @@ class TrackingSystemEntry < ActiveRecord::Base
   end
 
   def self.isUserAgentBot?(user_agent)
-    matches = nil
-    unless user_agent.blank?
-      matches = user_agent.match(/(BingPreview|eSobiSubscriber|startmebot|Mail.RU_Bot|SeznamBot|360Spider|bingbot|MJ12bot|web spider|YandexBot|Baiduspider|AhrefsBot|OrangeBot|msnbot|spbot|facebook|postrank|voyager|twitterbot|googlebot|slurp|butterfly|pycurl|tweetmemebot|metauri|evrinid|reddit|digg)/mi)
-    end
-    return (user_agent.blank? or !matches.nil?)
+    return true if user_agent.blank?
+    matches = user_agent.match(/(BingPreview|eSobiSubscriber|startmebot|Mail.RU_Bot|SeznamBot|360Spider|bingbot|MJ12bot|web spider|YandexBot|Baiduspider|AhrefsBot|OrangeBot|msnbot|spbot|facebook|postrank|voyager|twitterbot|googlebot|slurp|butterfly|pycurl|tweetmemebot|metauri|evrinid|reddit|digg)/mi)
+    require "browser"
+    browser = Browser.new(user_agent)
+    return (browser.bot? or !matches.nil?)
+  end
+
+  def self.isUserAgentDesktop?(user_agent)
+    browser = Browser.new(user_agent)
+    return !(browser.device.mobile? or browser.device.tablet? or browser.device.kindle? or browser.device.console? or browser.device.tv? or browser.device.surface?)
   end
 
 end
