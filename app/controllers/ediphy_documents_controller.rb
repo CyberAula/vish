@@ -7,6 +7,8 @@ class EdiphyDocumentsController < ApplicationController
   before_filter :fill_create_params, :only => [ :new, :create ]
   skip_before_filter :store_location, :if => :format_full?
   skip_after_filter :discard_flash, :only => [:clone]
+
+
   include SocialStream::Controllers::Objects
 
 
