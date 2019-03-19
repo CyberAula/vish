@@ -62,35 +62,73 @@ User.class_eval do
   end
 
   def self.from_omniauth(auth)
-    user = find_by_email(auth.info.email.downcase)
-    binding.pry
+    #get user email
+    if auth["extra"] && auth["extra"]["raw_info"] && auth["extra"]["raw_info"]["eidas_profile"] && auth["extra"]["raw_info"]["eidas_profile"]["Email"]
+      email = auth["extra"]["raw_info"]["eidas_profile"]["Email"].downcase
+    elsif auth["extra"] && auth["extra"]["raw_info"] && auth["extra"]["raw_info"]["email"]
+      email = auth["extra"]["raw_info"]["email"].downcase
+    else
+      email = auth["info"]["email"].downcase
+    end
+    user = find_by_email(email)
     if user
       return user
     else
       #EIDAS Case
       #does not exist in BBDD, create it
       u = User.new(provider: auth.provider, uid: auth.uid)
-      u.email = auth.info.email.downcase
+      u.email = email
       u.password = Devise.friendly_token[0,20]
-      if auth.info.name
-        u.name = auth.info.name
-      elsif auth.extra && auth.extra.raw_info && auth.extra.raw_info.eidas_profile && auth.extra.raw_info.eidas_profile.FirstName
-        u.name = auth.extra.raw_info.eidas_profile.FirstName + " " + auth.extra.raw_info.eidas_profile.FamilyName
-      elsif auth.extra && auth.extra.raw_info && auth.extra.raw_info.username
-        u.name = auth.extra.raw_info.username
+      u.provider = "idm"
+      if auth["info"] && auth["info"]["name"]
+        u.name = auth["info"]["name"]
+      elsif auth["extra"] && auth["extra"]["raw_info"] && auth["extra"]["raw_info"]["eidas_profile"] && auth["extra"]["raw_info"]["eidas_profile"]["FirstName"]
+        u.name = auth["extra"]["raw_info"]["eidas_profile"]["FirstName"] + " " + auth["extra"]["raw_info"]["eidas_profile"]["FamilyName"]
+      elsif auth["extra"] && auth["extra"]["raw_info"] && auth["extra"]["raw_info"]["username"]
+        u.name = auth["extra"]["raw_info"]["username"]
       else
-        u.name = auth.info.name
+        u.name = auth["info"]["name"]
       end
-
       u.save!
 
-      if auth.extra && auth.extra.raw_info && auth.extra.raw_info.eidas_profile && auth.extra.raw_info.eidas_profile.DateOfBirth
-        u.birthday = Date.parse(auth.extra.raw_info.eidas_profile.DateOfBirth)
+      if auth["extra"] && auth["extra"]["raw_info"] && auth["extra"]["raw_info"]["eidas_profile"]
+        #birthday
+        if auth["extra"]["raw_info"]["eidas_profile"]["DateOfBirth"]
+          u.birthday = Date.parse(auth["extra"]["raw_info"]["eidas_profile"]["DateOfBirth"])
+        end
+        #city
+        if auth["extra"]["raw_info"]["eidas_profile"]["PlaceOfBirth"]
+          u.city = auth["extra"]["raw_info"]["eidas_profile"]["PlaceOfBirth"]
+        end
+        #country
+        if auth["extra"]["raw_info"]["eidas_profile"]["CountryOfBirth"]
+          u.country = Eid4u.getCountry(auth["extra"]["raw_info"]["eidas_profile"]["CountryOfBirth"])
+        end
+        #language
+        if auth["extra"]["raw_info"]["eidas_profile"]["CountryOfBirth"] && auth["extra"]["raw_info"]["eidas_profile"]["CountryOfBirth"] == "ES"
+          u.language = "es"
+        else
+          u.language = "en"
+        end
+        #organization
+        if auth["extra"]["raw_info"]["eidas_profile"]["HomeInstitutionName"]
+          u.organization = auth["extra"]["raw_info"]["eidas_profile"]["HomeInstitutionName"]
+        elsif auth["extra"] && auth["extra"]["raw_info"] && auth["extra"]["raw_info"]["organizations"]
+          u.organization = auth["extra"]["raw_info"]["organizations"].join(" ")
+        end
+        #tags
+        if auth["extra"]["raw_info"]["eidas_profile"]["FieldOfStudy"]
+          u.tag_list = Eid4u.getTagsFromIscedCode(auth["extra"]["raw_info"]["eidas_profile"]["FieldOfStudy"])
+          if u.tag_list.length > 0
+            u.tag_list = u.tag_list.split(" ")
+          else
+            u.tag_list = [ "ETSIT" ]
+          end
+        end
+
       end
-      u.tag_list = [ "ETSIT" ]
-      if auth.extra && auth.extra.raw_info && auth.extra.raw_info.organizations
-        u.organization = auth.extra.raw_info.organizations
-      end
+      #binding.pry
+      u.save!
       return u
     end
   end

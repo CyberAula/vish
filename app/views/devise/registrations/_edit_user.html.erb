@@ -34,15 +34,19 @@
   </header>
 
   <div class="panel-body content settings_content collapse" id="email_form_content">
-    <%= form_for(resource, :class => "form-group", :as => resource_name, :url => registration_path(resource_name), :html => { :id => "user_email_form", :method => :put }) do |f| %>
-        <%= f.label :email %>
-        <%= f.email_field :email, :class => "required form-control" %>
-    
-        <%= f.label :current_password %>
-        <%= f.password_field :current_password, :class => "required form-control", :id=>"user_current_password2" %>
-  
-        <%= f.submit t('button.update'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
-    <% end %>
+    <%if resource.provider == "idm" %>
+        <%= form_for(resource, :class => "form-group", :as => resource_name, :url => registration_path(resource_name), :html => { :id => "user_email_form", :method => :put }) do |f| %>
+            <%= f.label :email %>
+            <%= f.email_field :email, :class => "required form-control" %>
+
+            <%= f.label :current_password %>
+            <%= f.password_field :current_password, :class => "required form-control", :id=>"user_current_password2" %>
+
+            <%= f.submit t('button.update'), :class => "btn btn-primary", "data-loading-text" => t('button.sending') %>
+        <% end %>
+    <%else%>
+        <p><%=t('settings.no_change_email')%></p>
+    <%end%>
   </div>
 </div>
 
@@ -57,4 +61,3 @@
     $(this).button('loading');
   });
 <%end%>
-
