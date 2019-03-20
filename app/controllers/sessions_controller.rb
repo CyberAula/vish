@@ -1,5 +1,9 @@
+require 'net/http'
+require 'net/https'
+
 class SessionsController < Devise::SessionsController
   skip_before_filter :store_location
+  after_filter :logout_oauth, :only => :destroy
 
   # GET /resource/sign_in
   def new
@@ -14,5 +18,11 @@ class SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
   def destroy
     super
+  end
+
+  def logout_oauth
+    #binding.pry
+    logger.debug "ADIOS ADIOS-------------------------------------------------"
+    puts "BYE"
   end
 end

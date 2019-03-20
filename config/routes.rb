@@ -12,6 +12,7 @@ Vish::Application.routes.draw do
   deviseControllers[:invitations] = "devise_invitations" if Vish::Application.config.invitations
   deviseControllers[:sessions] = "devise/cas_sessions" if Vish::Application.config.cas
   deviseSkipControllers = [:registrations].push(:registrations) if Vish::Application.config.register_policy == "INVITATION_ONLY"
+  deviseControllers[:omniauth_callbacks] = 'omniauth_callbacks' if Vish::Application.config.oauth2
 
   devise_for :users, :controllers => deviseControllers, :skip => deviseSkipControllers
 
@@ -19,6 +20,12 @@ Vish::Application.routes.draw do
     as :user do
       get 'users/edit' => 'devise/registrations#edit', :as => 'edit_user_registration'
       put 'users' => 'devise/registrations#update', :as => 'user_registration'
+    end
+  end
+
+  if Vish::Application.config.oauth2
+    devise_scope :user do
+      get '/users/oauth2_sign_out', to: 'devise/sessions#destroy'
     end
   end
 

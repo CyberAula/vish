@@ -1,3 +1,5 @@
+require 'strategies/idm'
+
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
@@ -41,6 +43,11 @@ Devise.setup do |config|
 	  config.cas_destination_logout_param_name = Vish::Application.config.APP_CONFIG["CAS"]["cas_destination_logout_param_name"]
 	  # Enable single sign out
 	  config.cas_enable_single_sign_out = Vish::Application.config.APP_CONFIG["CAS"]["cas_enable_single_sign_out"]
+  end
+
+  #oauth2
+  if Vish::Application.config.oauth2
+    config.omniauth :idm, Vish::Application.config.APP_CONFIG["OAUTH2"]["app_id"], Vish::Application.config.APP_CONFIG["OAUTH2"]["app_secret"]
   end
 
   # Configure parameters from the request object used for authentication. Each entry
@@ -238,13 +245,13 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   #config.omniauth :linkedin, "ekxfXU8nueVSMQ9fc5KJAryBkyztUlCBYMW3DoQPzbE79WhivvzhQloRNHCHgPeB", "WYiHFT-KKFgjd45W3-pEAficmXRHmN6_6DGwj1C_ZILJlSO1gBvv6VNYXU9tybGY"
-                      
+
   #config.omniauth :facebook, "129571360447856","eef39dce5e20e76f77495c59623bdb38"
-                      
+
   #config.omniauth :twitter, "wgTxO0fTpjTeSnjKC9ZHA","JepulVWwLcuAnGfWjwCu47yEP0TcJJfKtvISPBsilI"
-                      
+
   config.token_authentication_key = :auth_token
-                      
+
   config.skip_session_storage << :token_auth
 
   # ==> Warden configuration
@@ -261,4 +268,3 @@ end
 ActionController::Responder.class_eval do
   alias :to_mobile :to_html
 end
-

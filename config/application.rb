@@ -28,16 +28,29 @@ module Vish
     config.login_policy = "LOCAL"
     #Custom values
     config.register_policy = config.APP_CONFIG["register_policy"] if ["REGISTER_ONLY","INVITATION_ONLY","HYBRID"].include? config.APP_CONFIG["register_policy"]
-    config.login_policy = config.APP_CONFIG["login_policy"] if ["LOCAL","CAS","HYBRID"].include? config.APP_CONFIG["login_policy"]
+    config.login_policy = config.APP_CONFIG["login_policy"] if ["LOCAL","CAS","HYBRID","OAUTH2"].include? config.APP_CONFIG["login_policy"]
     #Features related to login and register policies
-    config.only_cas = config.login_policy==="CAS" and !config.APP_CONFIG["CAS"].blank?
-    config.cas = !config.APP_CONFIG["CAS"].blank? and ["CAS","HYBRID"].include? config.login_policy
+    if config.login_policy==="CAS" and !config.APP_CONFIG["CAS"].blank?
+      config.only_cas = true
+    else
+      config.only_cas = false
+    end
+    if !config.APP_CONFIG["CAS"].blank? and ["CAS","HYBRID"].include? config.login_policy
+      config.cas = true
+    else
+      config.cas = false
+    end
+    if !config.APP_CONFIG["OAUTH2"].blank? and ["OAUTH2"].include? config.login_policy
+      config.oauth2 = true
+    else
+      config.oauth2 = false
+    end
     config.registrations = ["REGISTER_ONLY","HYBRID"].include? config.register_policy
     config.invitations = ["INVITATION_ONLY","HYBRID"].include? config.register_policy
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
-    # config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/lib/strategies)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
