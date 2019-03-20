@@ -34,7 +34,7 @@
   </header>
 
   <div class="panel-body content settings_content collapse" id="email_form_content">
-    <%if resource.provider == "idm" %>
+    <%if resource.provider != "idm" %>
         <%= form_for(resource, :class => "form-group", :as => resource_name, :url => registration_path(resource_name), :html => { :id => "user_email_form", :method => :put }) do |f| %>
             <%= f.label :email %>
             <%= f.email_field :email, :class => "required form-control" %>
