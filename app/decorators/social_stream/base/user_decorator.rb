@@ -122,12 +122,13 @@ User.class_eval do
           if u.tag_list.length > 0
             u.tag_list = u.tag_list.split(" ")
           else
-            u.tag_list = [ "ETSIT" ]
+            u.tag_list = [ "Erasmus" ]
           end
+        else
+          u.tag_list = [ "Erasmus" ]
         end
 
       end
-      #binding.pry
       u.save!
       return u
     end
