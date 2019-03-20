@@ -74,8 +74,7 @@ User.class_eval do
     if user
       return user
     else
-      #EIDAS Case
-      #does not exist in BBDD, create it
+      #OAuth Case. User does not exist in BBDD, create it.
       u = User.new(provider: auth.provider, uid: auth.uid)
       u.email = email
       u.password = Devise.friendly_token[0,20]
@@ -92,6 +91,7 @@ User.class_eval do
       u.save!
 
       if auth["extra"] && auth["extra"]["raw_info"] && auth["extra"]["raw_info"]["eidas_profile"]
+        #EIDAS
         #birthday
         if auth["extra"]["raw_info"]["eidas_profile"]["DateOfBirth"]
           u.birthday = Date.parse(auth["extra"]["raw_info"]["eidas_profile"]["DateOfBirth"])
@@ -117,19 +117,17 @@ User.class_eval do
           u.organization = auth["extra"]["raw_info"]["organizations"].join(" ")
         end
         #tags
-        if auth["extra"]["raw_info"]["eidas_profile"]["FieldOfStudy"]
-          u.tag_list = Eid4u.getTagsFromIscedCode(auth["extra"]["raw_info"]["eidas_profile"]["FieldOfStudy"])
-          if u.tag_list.length > 0
-            u.tag_list = u.tag_list.split(" ")
-          else
-            u.tag_list = [ "Erasmus" ]
-          end
+        user_tags = nil
+        user_tags = Eid4u.getTagsFromIscedCode(auth["extra"]["raw_info"]["eidas_profile"]["FieldOfStudy"]) unless auth["extra"]["raw_info"]["eidas_profile"]["FieldOfStudy"].blank?
+        if user_tags.is_a? String
+          u.tag_list = user_tags.split(' ')
         else
           u.tag_list = [ "Erasmus" ]
         end
-
       end
+
       u.save!
+
       return u
     end
   end

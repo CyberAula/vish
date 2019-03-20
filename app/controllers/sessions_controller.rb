@@ -21,8 +21,5 @@ class SessionsController < Devise::SessionsController
   end
 
   def logout_oauth
-    #binding.pry
-    logger.debug "ADIOS ADIOS-------------------------------------------------"
-    puts "BYE"
   end
 end

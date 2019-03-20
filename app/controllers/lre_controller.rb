@@ -86,7 +86,6 @@ class LreController < ApplicationController
 			elsif(final_ids[-1]==",")
 				final_ids[-1]=""
 			end
-			# puts final_ids
 		else
 			final_ids = ids
 		end

@@ -5,14 +5,16 @@ module OmniAuth
     class Idm < OmniAuth::Strategies::OAuth2
       # Give your strategy a name.
       option :name, "idm"
-      #binding.pry
-      # This is where you pass the options you would pass when
-      # initializing your consumer from the OAuth gem.
-      option :client_options, {
-        :site => Vish::Application.config.APP_CONFIG["OAUTH2"]["site"],
-        :authorize_url => Vish::Application.config.APP_CONFIG["OAUTH2"]["authorize_path"],
-        :token_url     => Vish::Application.config.APP_CONFIG["OAUTH2"]["token_url"]
-      }
+
+      unless Vish::Application.config.APP_CONFIG["OAUTH2"].blank?
+        # This is where you pass the options you would pass when
+        # initializing your consumer from the OAuth gem.
+        option :client_options, {
+          :site => Vish::Application.config.APP_CONFIG["OAUTH2"]["site"],
+          :authorize_url => Vish::Application.config.APP_CONFIG["OAUTH2"]["authorize_path"],
+          :token_url     => Vish::Application.config.APP_CONFIG["OAUTH2"]["token_url"]
+        }
+      end
 
       # These are called after authentication has succeeded. If
       # possible, you should try to set the UID without making

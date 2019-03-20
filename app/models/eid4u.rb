@@ -1,53 +1,49 @@
 
 class Eid4u
-  #VISH CATEGORIES
-  #categories: ["art","biology","chemistry","citizenship","computerScience",
-  #  "economics","education","engineering","foreignLanguages","generalCulture",
-  #  "geography","geology","history","humanities",
-  #  "literature","maths","music","naturalScience","physics","technology"]
-
 
   def self.getTagsFromIscedCode(code)
+    res = nil
+
     equivalence = {
       "0" => "generalCulture",
       "01" => "generalCulture",
       "08" => "literature maths",
-      "09" => "education personal development",
+      "09" => "education",
       "1" => "education",
-      "14" => "teachertraining education",
-      "2" => "humanities arts",
+      "14" => "education",
+      "2" => "humanities art",
       "21" => "art",
       "22" => "humanities",
       "3" => "citizenship business law economics",
       "31" => "citizenship",
-      "32" => "journalism information",
-      "34" => "business administration economics",
+      "32" => "humanities",
+      "34" => "business economics",
       "38" => "law",
       "4" => "science naturalScience",
       "42" => "naturalScience",
       "44" => "physics",
-      "46" => "maths statistics",
-      "48" => "computerScience Computing",
-      "5" => "engineering manufacturing construction",
+      "46" => "maths",
+      "48" => "computerScience technology",
+      "5" => "engineering",
       "52" => "engineering",
-      "54" => "manufacturing processing",
-      "58" => "architecture building",
-      "6" => "agriculture",
-      "62" => "agriculture forestry fishery",
+      "54" => "engineering",
+      "58" => "architecture",
+      "6" => "agriculture biology",
+      "62" => "agriculture biology",
       "64" => "veterinary biology",
-      "7" => "health welfare",
-      "72" => "health",
-      "76" => "social",
+      "7" => "health welfare biology",
+      "72" => "health biology",
+      "76" => "humanities",
       "8" => "services",
-      "81" => "personal",
+      "81" => "services",
       "84" => "transport",
-      "85" => "environmental protection",
+      "85" => "naturalScience biology",
       "86" => "security"
     }
-    if (!code.blank? and equivalence.key?(code.to_s))
-       res = equivalence[code.to_s]
-    end
-    res
+   
+   res = equivalence[code.to_s] unless code.blank?
+   
+   res
   end
 
 

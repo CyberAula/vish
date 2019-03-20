@@ -13,7 +13,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
-    #binding.pry
     logger.debug "FAILURE IN OmniauthCallbacksController. Session:"
     logger.debug session.to_s
     logger.debug "params: " + params.to_s

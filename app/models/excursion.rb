@@ -1141,7 +1141,7 @@ class Excursion < ActiveRecord::Base
         driver.quit
       rescue
       end
-      puts e.message
+      #puts e.message
       return nil
     end
   end
