@@ -55,10 +55,14 @@ class VishEditorUtils
     end
   end
 
-  def self.getResources(loJSON)
-    require "uri"
-    resources = []
+  def self.getAllElementTypes
+    return ["text","image","object","snapshot","video","audio","quiz"]
+  end
 
+  def self.getResources(loJSON,types=nil)
+    require "uri"
+    types = getAllElementTypes if types.blank?
+    resources = []
     begin
       slides = loJSON["slides"]
       standardSlides = []
@@ -96,7 +100,7 @@ class VishEditorUtils
         when nil
           #Do nothing
         when "text"
-          if !el["body"].blank?
+          if !el["body"].blank? and types.include?("text")
             rawText = Nokogiri::HTML(el["body"]).text rescue ""
             if rawText.length > 150
               #Do not consider small texts for reusing...
@@ -104,13 +108,17 @@ class VishEditorUtils
             end
           end
         when "image"
-          resources.push(el["body"]) unless el["body"].blank?
+          resources.push(el["body"]) unless el["body"].blank? or !types.include?("image")
+        when "object"
+          resources = resources + URI.extract(el["body"],/http(s)?/) unless el["body"].blank? or !types.include?("object")
         when "object","snapshot"
-          resources = resources + URI.extract(el["body"],/http(s)?/) unless el["body"].blank?
-        when "video","audio"
-          resources = resources + URI.extract(el["sources"],/http(s)?/) unless el["sources"].blank?
+          resources = resources + URI.extract(el["body"],/http(s)?/) unless el["body"].blank? or !types.include?("snapshot")
+        when "video"
+          resources = resources + URI.extract(el["sources"],/http(s)?/) unless el["sources"].blank? or !types.include?("video")
+        when "audio"
+          resources = resources + URI.extract(el["sources"],/http(s)?/) unless el["sources"].blank? or !types.include?("audio")
         when "quiz"
-          unless el["quiztype"].blank? or el["question"]["value"].blank? or el["choices"].blank?
+          unless el["quiztype"].blank? or el["question"]["value"].blank? or el["choices"].blank? or !types.include?("quiz")
             quizResource = el["quiztype"] + el["question"]["value"] + el["choices"].map{|c| c["value"]}.sum
             resources.push(quizResource)
           end
