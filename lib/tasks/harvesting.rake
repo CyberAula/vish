@@ -122,6 +122,10 @@ namespace :harvesting do
 
     #Quality metrics
     lo.calculate_qscore
+
+    #Popularity metrics
+    lo.activity_object.update_column :visit_count,searchjson["visit_count"] if searchjson["visit_count"].is_a? Integer
+    lo.activity_object.update_column :download_count,searchjson["download_count"] if searchjson["download_count"].is_a? Integer
     
     return lo
   end
