@@ -143,26 +143,32 @@ namespace :harvesting do
     avatarURL = createAvatar(json["avatar"],owner)
     json["avatar"] = avatarURL
     
-    #Resources
+    #Retrieve resources of the VE presentation
     resourceURLmapping = {}
+    resourceURLs = []
     domain = URI.parse(url).host
-    ["image","object","video","audio"].each do |rType|
-      resources = VishEditorUtils.getResources(json, [rType]).select{|r| URI.parse(r).kind_of?(URI::HTTP)}.uniq
-      resources.select{|r| URI.parse(r).host === domain}.each do |r|
-        #Resource stored in the foreign ViSH instance
-        case rType
-        when "image"
-          #Create picture
-          imageURL = createPicture(r,owner)
-          resourceURLmapping[r] = imageURL unless imageURL.blank?
-        when "object"
-        when "video"
-        when "audio"
-        else
-        end
-      end
+    resourceURLs = resourceURLs + VishEditorUtils.getResources(json, ["image","object","video","audio"])
+    #Get resources embedded inside text and quiz resources
+    VishEditorUtils.getResources(json, ["text","quiz"]).each do |string|
+      resourceURLs = resourceURLs + string.scan(Regexp.new("http[s]?://[a-z0-9.]+/[a-z]+/[a-z0-9.]+"))
     end
-    
+    resourceURLs = resourceURLs.uniq.select{|r| URI.parse(r).kind_of?(URI::HTTP)}
+    resourceURLs = resourceURLs.select{|r| URI.parse(r).host === domain}.uniq  #Retrieve only resources stored in the foreign vish instance
+    resourceURLs = resourceURLs.map{|string| 
+      if string.ends_with?(")")
+        string = string[0...-1]
+      end
+      if File.extname(string).include?("?")
+        string = string.split("?")[0]
+      end
+      string
+    }
+    resourceURLs.each do |r|
+      next unless resourceURLmapping[r].blank?
+      resourceURL = createResource(r,owner)
+      resourceURLmapping[r] = resourceURL unless resourceURL.blank?
+    end
+
     resourceURLmapping.each do |oldURL,newURL|
       json = replaceStringInHash(json,oldURL,newURL)
     end
@@ -191,6 +197,30 @@ namespace :harvesting do
     rescue => e
       return nil
     end
+  end
+
+  def createResource(resourceURL,owner)
+    case File.extname(resourceURL)
+    when ".png",".jpeg",".jpg", ".gif", ".tiff", ".bmp", ".svg"
+      return createPicture(resourceURL,owner)
+    when ".mp4",".webm"
+      #TODO
+    when ".mp3", ".wav"
+      #TODO
+    when ".ogg"
+      #TODO
+    when ".swf"
+      #TODO
+    when ""
+      #Do nothing
+    else
+      puts "#########################################################################"
+      puts "#########################################################################"
+      puts "Unrecognized extension: " + File.extname(resourceURL)
+      puts "#########################################################################"
+      puts "#########################################################################"
+    end
+    return nil
   end
 
   def createAvatar(avatarURL,owner)
