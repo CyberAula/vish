@@ -110,6 +110,7 @@ class VishEditorUtils
         when "object","snapshot"
           resources = resources + URI.extract(el["body"],/http(s)?/) unless el["body"].blank? or !types.include?("snapshot")
         when "video"
+          resources.push(el["poster"]) unless el["poster"].blank? or !types.include?("image")
           resources = resources + URI.extract(el["sources"],/http(s)?/) unless el["sources"].blank? or !types.include?("video")
         when "audio"
           resources = resources + URI.extract(el["sources"],/http(s)?/) unless el["sources"].blank? or !types.include?("audio")

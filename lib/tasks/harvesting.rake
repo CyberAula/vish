@@ -153,26 +153,31 @@ namespace :harvesting do
       resourceURLs = resourceURLs + string.scan(Regexp.new("http[s]?://[a-z0-9.]+/[a-z]+/[a-z0-9.]+"))
     end
     resourceURLs = resourceURLs.uniq.select{|r| URI.parse(r).kind_of?(URI::HTTP)}
-    resourceURLs = resourceURLs.select{|r| URI.parse(r).host === domain}.uniq  #Retrieve only resources stored in the foreign vish instance
+    resourceURLs = resourceURLs.select{|r| URI.parse(r).host === domain or URI.parse(r).host === ("www." + domain)}.uniq #Retrieve only resources stored in the foreign vish instance
     resourceURLs = resourceURLs.map{|string| 
       if string.ends_with?(")")
         string = string[0...-1]
       end
       if File.extname(string).include?("?")
-        string = string.split("?")[0]
+        string = string.split("?")[0] unless File.extname(string).include?("?style=")
       end
       string
+    }
+    #For videos from ViSH instances with multiple sources, only take into account mp4 files (and png files for posters)
+    resourceURLs = resourceURLs.reject{ |string| 
+      URI.parse(string).host === domain and string.include?("/videos/") and (!string.include?(".mp4") and !string.include?(".png"))
     }
     resourceURLs.each do |r|
       next unless resourceURLmapping[r].blank?
       resourceURL = createResource(r,owner)
       resourceURLmapping[r] = resourceURL unless resourceURL.blank?
     end
-
     resourceURLmapping.each do |oldURL,newURL|
       json = replaceStringInHash(json,oldURL,newURL)
     end
 
+    json = replaceSourcesInHash(json,resourceURLmapping.values,harvestingConfig)
+    
     ex.json = json.to_json
     ex.owner_id = owner.id
     ex.author_id = owner.id
@@ -200,13 +205,14 @@ namespace :harvesting do
   end
 
   def createResource(resourceURL,owner)
-    case File.extname(resourceURL)
+    extension = File.extname(resourceURL).split("?")[0]
+    case extension
     when ".png",".jpeg",".jpg", ".gif", ".tiff", ".bmp", ".svg"
       return createPicture(resourceURL,owner)
     when ".mp4",".webm"
-      #TODO
-    when ".mp3", ".wav"
-      #TODO
+      return createObject("Video",resourceURL,owner)
+    when ".mp3", ".wav", ".webma"
+      return createObject("Audio",resourceURL,owner)
     when ".ogg"
       #TODO
     when ".swf"
@@ -216,7 +222,7 @@ namespace :harvesting do
     else
       puts "#########################################################################"
       puts "#########################################################################"
-      puts "Unrecognized extension: " + File.extname(resourceURL)
+      puts "Unrecognized extension: " + extension
       puts "#########################################################################"
       puts "#########################################################################"
     end
@@ -235,7 +241,7 @@ namespace :harvesting do
       pictureURI = URI.parse(pictureURL)
       fileName = File.basename(pictureURI.path)
       filePath = "tmp/vishHarvesting/" + fileName
-      pictureURL = URI.encode(pictureURL)
+      pictureURL = URI.encode(pictureURL) unless pictureURL.include?("?style=170x127%23")
       command = "wget " + pictureURL + " --output-document='" + filePath + "'"
       system(command)
     rescue => e
@@ -272,6 +278,43 @@ namespace :harvesting do
     end
   end
 
+  def createObject(type,resourceURL,owner)
+    system("rm -rf tmp/vishHarvesting")
+    system("mkdir -p tmp/vishHarvesting")
+
+    begin
+      resourceURI = URI.parse(resourceURL)
+      fileName = File.basename(resourceURI.path)
+      filePath = "tmp/vishHarvesting/" + fileName
+      resourceURL = URI.encode(resourceURL)
+      command = "wget " + resourceURL + " --output-document='" + filePath + "'"
+      system(command)
+    rescue => e
+      filePath = nil
+    end
+    return nil if filePath.nil? or !File.exist?(filePath) or File.zero?(filePath)
+
+    if type === "Video"
+      r = Video.new
+    elsif type === "Audio"
+      r = Audio.new
+    end
+    r.title = fileName
+    r.owner_id = owner.id
+    r.author_id = owner.id
+    r.user_author_id = owner.id
+    r.scope = 1
+    r.file = File.open(filePath, "r")
+
+    begin
+      r.save!
+    rescue => e
+      return nil
+    end
+
+    return r.getDownloadUrl(nil)
+  end
+
   def replaceStringInHash(h,oldString,newString)
     h.each do |key,value|
       if h[key].is_a? Hash
@@ -286,6 +329,69 @@ namespace :harvesting do
         }
       elsif h[key].is_a? String
         h[key] = value.gsub(oldString,newString)
+      end
+    end
+    return h
+  end
+
+  def replaceSourcesInHash(h,localSources,harvestingConfig)
+    if h.key?("sources") and (h["type"]==="video" or h["type"]==="audio")
+      sources = JSON.parse(h["sources"]) rescue nil
+      unless sources.blank?
+        localSource = sources.map.select{|src| localSources.include?(src["src"])}.first["src"] rescue nil
+        unless localSource.blank?
+          if VishConfig.getAvailableServices.include? "MediaConversion" and harvestingConfig["mediaconversion"] != false
+            #Replace no local sources with converted local sources
+            localSourceExtension = File.extname(localSource).split("?")[0]
+            sources = sources.map{|src|
+              if src["src"].include?(".mp4")
+                src["type"] = "video/mp4"
+                src["src"] = localSource.gsub(localSourceExtension,".mp4")
+              elsif src["src"].include?(".webma")
+                src["type"] == "audio/webma"
+                src["src"] = localSource.gsub(localSourceExtension,".webma")
+              elsif src["src"].include?(".webm")
+                if h["type"]==="video"
+                  src["type"] = "video/webm"
+                else
+                  src["type"] = "audio/webm"
+                end
+                src["src"] = localSource.gsub(localSourceExtension,".webm")
+              elsif src["src"].include?(".flv")
+                src["type"] == "video/x-flv"
+                src["src"] = localSource.gsub(localSourceExtension,".flv")
+              elsif src["src"].include?(".mp3")
+                src["type"] == "audio/mpeg"
+                src["src"] = localSource.gsub(localSourceExtension,".mp3")
+              elsif src["src"].include?(".wav")
+                src["type"] == "audio/wav"
+                src["src"] = localSource.gsub(localSourceExtension,".wav")
+              else
+                src = nil
+              end
+              src
+            }
+            sources = sources.compact
+          else
+            #Remove no local sources
+            sources = sources.select{|src| src["src"]===localSource}
+          end
+          h["sources"] = sources.to_json
+        end
+      end
+    end
+
+    h.each do |key,value|
+      if h[key].is_a? Hash
+        h[key] = replaceSourcesInHash(h[key],localSources,harvestingConfig)
+      elsif h[key].is_a? Array
+        h[key] = h[key].map{ |el|
+          if el.is_a? Hash
+            replaceSourcesInHash(el,localSources,harvestingConfig)
+          else
+            el
+          end
+        }
       end
     end
     return h
