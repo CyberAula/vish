@@ -116,9 +116,14 @@ namespace :harvesting do
     owner = User.find_by_email(harvestingConfig["owner_email"]).actor rescue nil
     return nil if owner.nil?
 
-    return createVEPresentation(json,searchjson,owner,url,harvestingConfig) if json["type"]==="presentation"
+    if json["type"]==="presentation"
+      lo = createVEPresentation(json,searchjson,owner,url,harvestingConfig)
+    end
+
+    #Quality metrics
+    lo.calculate_qscore
     
-    nil
+    return lo
   end
 
   def createVEPresentation(json,searchjson,owner,url,harvestingConfig)
@@ -131,6 +136,9 @@ namespace :harvesting do
     json["vishMetadata"]["released"] = "true"
     json["vishMetadata"]["name"] = "ViSH"
     
+    #Tags
+    json["tags"] = parseTags(json["tags"],harvestingConfig["additional_tags"])
+
     #Avatar
     avatarURL = createAvatar(json["avatar"],owner)
     json["avatar"] = avatarURL
@@ -168,6 +176,13 @@ namespace :harvesting do
     unless searchjson["created_at"].blank?
       parsedTime = Time.parse(searchjson["created_at"])
       ex.created_at = parsedTime unless parsedTime.nil?
+    end
+
+    unless searchjson["reviewers_qscore"].blank?
+      ex.reviewers_qscore = BigDecimal(searchjson["reviewers_qscore"],6) if searchjson["reviewers_qscore"].to_s.to_f === searchjson["reviewers_qscore"]
+    end
+    unless searchjson["users_qscore"].blank?
+      ex.users_qscore = BigDecimal(searchjson["users_qscore"],6) if searchjson["users_qscore"].to_s.to_f === searchjson["users_qscore"]
     end
 
     begin
@@ -244,6 +259,44 @@ namespace :harvesting do
       end
     end
     return h
+  end
+
+  def parseTags(tags,additionalTags)
+    return [] unless tags.is_a? Array
+    tags = tags.uniq.first(Vish::Application.config.tagsSettings["maxTags"])
+
+    #Additional tags
+    if additionalTags.is_a? Array and additionalTags.length > 0
+      #Limit number of additional tags if necessary
+      additionalTags = additionalTags.uniq.first(Vish::Application.config.tagsSettings["maxTags"])
+      #Prevent tag repetition 
+      tags = (tags - additionalTags)
+
+      #Check if existing tags need to be removed
+      atL = additionalTags.length
+      tL = tags.length
+      if tL+atL > Vish::Application.config.tagsSettings["maxTags"]
+        #Remove existing tags to add the new ones
+        tagsToRemove = atL+tL-Vish::Application.config.tagsSettings["maxTags"]
+        #Remove tags that do not correspond to a category first
+        (tags - Vish::Application.config.catalogue["categories"]).sample(tagsToRemove).each do |tagToRemove|
+          tags = tags.reject{|tag| tag === tagToRemove}
+        end
+        #Then, remove any existing tag if necessary
+        tL = tags.length
+        tagsToRemove = [atL+tL-Vish::Application.config.tagsSettings["maxTags"],0].max
+        if tagsToRemove > 0
+          tags.sample(tagsToRemove).each do |tagToRemove|
+            tags = tags.reject{|tag| tag === tagToRemove}
+          end
+        end
+      end
+      tags = (tags+additionalTags).first(Vish::Application.config.tagsSettings["maxTags"])
+    end
+
+    tags = tags.map{|tL| tL.gsub(" ","_")} if Vish::Application.config.tagsSettings["triggerKeys"].include?("space")
+    tags = tags.map{|tL| tL.gsub(",","_")} if Vish::Application.config.tagsSettings["triggerKeys"].include?("comma")
+    return tags
   end
 
 end
