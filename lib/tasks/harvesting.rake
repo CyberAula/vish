@@ -30,12 +30,12 @@ namespace :harvesting do
   def retrieveLOs(urls,harvestingConfig=nil,i=0)
     if !urls.is_a? Array or urls.blank? or urls.select{|s| !s.is_a? String}.length>0
       yield "Invalid urls", nil if block_given?
-      return "Invalid urls"
+      return
     end
 
     if i === urls.length
       yield "Finish", true if block_given?
-      return true
+      return
     end
 
     puts "Retrieving LO with URL: " + (urls[i] or "undefined")
@@ -43,7 +43,7 @@ namespace :harvesting do
       if code.blank?
         puts "LO NOT retrieved. Reason: " + response
       else
-        puts "LO succesfully retrieved. LO id: " + response.id.to_s
+        puts "LO succesfully retrieved. LO id: " + response.getGlobalId
       end
       retrieveLOs(urls,harvestingConfig,i+1)
     }
@@ -52,40 +52,63 @@ namespace :harvesting do
   def retrieveLO(url,harvestingConfig=nil)
     if url.blank?
       yield "URL is blank", nil if block_given?
-      return nil
+      return
     end
-    url = url + ".json" unless url.ends_with?(".json")
 
-    response = RestClient::Request.execute(
+    domain = URI.parse(url).host rescue nil
+    resourceMatch = url.match(/([a-z]+)\/([0-9]+)$/)
+    if domain.blank? or resourceMatch.nil?
+      yield "URL is not valid", nil if block_given?
+      return
+    end
+    jsonURL = url + ".json" 
+    resourceId = resourceMatch[1].capitalize.singularize + ":" + resourceMatch[2] + "@" + domain
+    searchURL = "http://" + domain + "/apis/search?id=" + resourceId
+    
+    RestClient::Request.execute(
       :method => :get,
-      :url => url,
+      :url => jsonURL,
       :timeout => 8, 
       :open_timeout => 8
     ){ |response|
       if response.code === 200
-        
-        response = JSON(response) rescue nil
-        if response.nil?
+        lojson = JSON(response) rescue nil
+        if lojson.nil?
           yield "Invalid response",nil if block_given?
-          return nil
+          return
         end
-        
-        lo = createLO(response,url,harvestingConfig)
-        if lo.nil?
-          yield "LO could not be created",nil if block_given?
-          return nil
-        end
-        
-        yield lo,true if block_given?
-        return true
+
+        afterRetrieveLO(lojson,url,searchURL,harvestingConfig){ |lo|
+          yield lo,true if block_given?
+          return
+        }
       else
         yield "Response with invalid code", nil if block_given?
-        return nil
+        return
       end
     }
   end
 
-  def createLO(json,url,harvestingConfig=nil)
+  def afterRetrieveLO(lojson,url,searchURL,harvestingConfig)
+      RestClient::Request.execute(
+        :method => :get,
+        :url => searchURL,
+        :timeout => 8, 
+        :open_timeout => 8
+      ){ |response|
+        searchjson = {}
+        if response.code === 200
+          searchjson = JSON(response) rescue {}
+        end
+        lo = createLO(lojson,searchjson,url,harvestingConfig)
+        if lo.nil?
+          yield "LO could not be created",nil if block_given?
+        end
+        yield lo,true if block_given?
+      }
+  end
+
+  def createLO(json,searchjson,url,harvestingConfig=nil)
     return nil unless json.is_a? Hash
     harvestingConfig = YAML.load_file("config/harvesting.yml") rescue {} if harvestingConfig.nil?
 
@@ -93,14 +116,15 @@ namespace :harvesting do
     owner = User.find_by_email(harvestingConfig["owner_email"]).actor rescue nil
     return nil if owner.nil?
 
-    return createVEPresentation(json,owner,url,harvestingConfig) if json["type"]==="presentation"
+    return createVEPresentation(json,searchjson,owner,url,harvestingConfig) if json["type"]==="presentation"
     
     nil
   end
 
-  def createVEPresentation(json,owner,url,harvestingConfig)
+  def createVEPresentation(json,searchjson,owner,url,harvestingConfig)
     ex = Excursion.new
     json["draft"] = false
+    sourceAuthor = json["author"] || {}
     json["author"] = {"name":owner.name,"vishMetadata":{"id":owner.id}}
     json["vishMetadata"] = json["vishMetadata"] || {}
     json["vishMetadata"]["draft"] = "false"
@@ -113,26 +137,24 @@ namespace :harvesting do
     
     #Resources
     resourceURLmapping = {}
-    domain = URI.parse(url).host rescue nil
-    unless domain.blank?
-      ["image","object","video","audio"].each do |rType|
-        resources = VishEditorUtils.getResources(json, [rType]).select{|r| URI.parse(r).kind_of?(URI::HTTP)}.uniq
-        resources.select{|r| URI.parse(r).host === domain}.each do |r|
-          #Resource stored in the foreign ViSH instance
-          case rType
-          when "image"
-            #Create picture
-            imageURL = createPicture(r,owner)
-            resourceURLmapping[r] = imageURL unless imageURL.blank?
-          when "object"
-          when "video"
-          when "audio"
-          else
-          end
+    domain = URI.parse(url).host
+    ["image","object","video","audio"].each do |rType|
+      resources = VishEditorUtils.getResources(json, [rType]).select{|r| URI.parse(r).kind_of?(URI::HTTP)}.uniq
+      resources.select{|r| URI.parse(r).host === domain}.each do |r|
+        #Resource stored in the foreign ViSH instance
+        case rType
+        when "image"
+          #Create picture
+          imageURL = createPicture(r,owner)
+          resourceURLmapping[r] = imageURL unless imageURL.blank?
+        when "object"
+        when "video"
+        when "audio"
+        else
         end
       end
     end
-
+    
     resourceURLmapping.each do |oldURL,newURL|
       json = replaceStringInHash(json,oldURL,newURL)
     end
@@ -141,6 +163,12 @@ namespace :harvesting do
     ex.owner_id = owner.id
     ex.author_id = owner.id
     ex.user_author_id = owner.id
+    ex.license_attribution = (sourceAuthor["name"] || "") + " (" + url + ")"
+
+    unless searchjson["created_at"].blank?
+      parsedTime = Time.parse(searchjson["created_at"])
+      ex.created_at = parsedTime unless parsedTime.nil?
+    end
 
     begin
       ex.save!
