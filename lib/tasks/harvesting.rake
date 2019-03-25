@@ -213,10 +213,10 @@ namespace :harvesting do
       return createObject("Video",resourceURL,owner)
     when ".mp3", ".wav", ".webma"
       return createObject("Audio",resourceURL,owner)
-    when ".ogg"
-      #TODO
     when ".swf"
-      #TODO
+      return createObject("SWF",resourceURL,owner)
+    when ".pdf"
+      return createObject("Officedoc",resourceURL,owner)
     when ""
       #Do nothing
     else
@@ -298,6 +298,12 @@ namespace :harvesting do
       r = Video.new
     elsif type === "Audio"
       r = Audio.new
+    elsif type === "SWF"
+      r = Swf.new
+    elsif type === "Officedoc"
+      r = Officedoc.new
+    else
+      r = Document.new
     end
     r.title = fileName
     r.owner_id = owner.id
@@ -340,10 +346,11 @@ namespace :harvesting do
       unless sources.blank?
         localSource = sources.map.select{|src| localSources.include?(src["src"])}.first["src"] rescue nil
         unless localSource.blank?
-          if VishConfig.getAvailableServices.include? "MediaConversion" and harvestingConfig["mediaconversion"] != false
-            #Replace no local sources with converted local sources
-            localSourceExtension = File.extname(localSource).split("?")[0]
-            sources = sources.map{|src|
+          sources = sources.map{|src|
+            if src["src"]!=localSource and (!VishConfig.getAvailableServices.include? "MediaConversion" or harvestingConfig["mediaconversion"] === false)
+              nil #Remove no local sources
+            else
+              localSourceExtension = File.extname(localSource).split("?")[0]
               if src["src"].include?(".mp4")
                 src["type"] = "video/mp4"
                 src["src"] = localSource.gsub(localSourceExtension,".mp4")
@@ -370,13 +377,9 @@ namespace :harvesting do
                 src = nil
               end
               src
-            }
-            sources = sources.compact
-          else
-            #Remove no local sources
-            sources = sources.select{|src| src["src"]===localSource}
-          end
-          h["sources"] = sources.to_json
+            end
+          }
+          h["sources"] = sources.compact.to_json
         end
       end
     end
