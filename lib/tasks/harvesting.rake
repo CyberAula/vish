@@ -64,7 +64,7 @@ namespace :harvesting do
     jsonURL = url + ".json" 
     resourceId = resourceMatch[1].capitalize.singularize + ":" + resourceMatch[2] + "@" + domain
     searchURL = "http://" + domain + "/apis/search?id=" + resourceId
-    
+
     RestClient::Request.execute(
       :method => :get,
       :url => jsonURL,
@@ -172,21 +172,30 @@ namespace :harvesting do
     app.user_author_id = owner.id
     app.scope = 0
 
+    #Author
+    authorName = ""
+    if !searchjson["original_author"].blank?
+      authorName = searchjson["original_author"]
+    elsif !searchjson["author"].blank?
+      authorName = searchjson["author"]
+    end
+
     #License
     if searchjson["license_key"].is_a? String or searchjson["license"].is_a? String
       if searchjson["license_key"].is_a? String
         license = License.where(:key => searchjson["license_key"])
       elsif searchjson["license"].is_a? String
-        license = License.getLicenseWithName("Creative Commons Reconocimiento-NoComercial")
+        license = License.getLicenseWithName(searchjson["license"])
       end
-      license = License.where(:key => "other") if license.nil?
+      license = License.find_by_key("other") if license.nil?
       app.license = license
       app.license_custom = searchjson["license"] if license.key === "other" and searchjson["license"].is_a? String
     else
       #No license data
       #Use default
     end
-    app.license_attribution = (searchjson["author"] || "") + " (" + url + ")"
+    app.license_attribution = authorName + " (" + url + ")"
+    app.license_attribution = app.license_attribution + ". " + searchjson["license_attribution"] unless searchjson["license_attribution"].blank?
 
     #File
     unless searchjson["file_url"].blank?

@@ -287,18 +287,22 @@ ActivityObject.class_eval do
     }
 
     fullUrl = self.getFullUrl(controller)
-    unless fullUrl.nil?
+    unless fullUrl.blank?
       searchJson[:url_full] = fullUrl
     end
 
     downloadUrl = self.getDownloadUrl(controller)
-    unless downloadUrl.nil?
+    unless downloadUrl.blank?
       searchJson[:file_url] = downloadUrl
     end
 
-    unless authorName.nil? or author_profile_url.nil?
+    unless authorName.blank? or author_profile_url.blank?
       searchJson[:author] = authorName
       searchJson[:author_profile_url] = author_profile_url
+    end
+
+    unless resource.original_author.blank?
+      searchJson[:original_author] = resource.original_author
     end
 
     unless resource.language.blank?
@@ -308,6 +312,9 @@ ActivityObject.class_eval do
     if resource.should_have_license? and !resource.license.nil?
       searchJson[:license_key] = resource.license.key
       searchJson[:license] = resource.license_name
+      if !resource.original_author.blank? and !resource.license_attribution.blank?
+        searchJson[:license_attribution] = resource.license_attribution
+      end
     end
 
     avatarUrl = getAvatarUrl

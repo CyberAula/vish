@@ -21,6 +21,7 @@ class License < ActiveRecord::Base
         end
       end
     end
+    nil
   end
 
   def public?
