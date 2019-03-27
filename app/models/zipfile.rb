@@ -5,10 +5,15 @@ class Zipfile < Document
       "#{ size.to_s }/zip.png"
   end
 
-  def as_json(options)
-    super.merge!({
-      :src => options[:helper].polymorphic_url(self, format: format)
-    })
+  def as_json(options = nil)
+    {
+     :id => id,
+     :title => title,
+     :description => description,
+     :author => author.name,
+     :src => options[:helper].polymorphic_url(self, format: format),
+     :type => "Zipfile"
+    }
   end
 
   def fileType

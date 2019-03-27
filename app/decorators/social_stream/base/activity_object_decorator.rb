@@ -306,6 +306,7 @@ ActivityObject.class_eval do
     end
 
     if resource.should_have_license? and !resource.license.nil?
+      searchJson[:license_key] = resource.license.key
       searchJson[:license] = resource.license_name
     end
 

@@ -78,8 +78,8 @@ namespace :harvesting do
           return
         end
 
-        afterRetrieveLO(lojson,url,searchURL,harvestingConfig){ |lo|
-          yield lo,true if block_given?
+        afterRetrieveLO(lojson,url,searchURL,harvestingConfig){ |lo,code|
+          yield lo, code if block_given?
           return
         }
       else
@@ -102,7 +102,8 @@ namespace :harvesting do
         end
         lo = createLO(lojson,searchjson,url,harvestingConfig)
         if lo.nil?
-          yield "LO could not be created",nil if block_given?
+          yield "LO could not be created", nil if block_given?
+          return
         end
         yield lo,true if block_given?
       }
@@ -116,19 +117,109 @@ namespace :harvesting do
     owner = User.find_by_email(harvestingConfig["owner_email"]).actor rescue nil
     return nil if owner.nil?
 
-    if json["type"]==="presentation"
+    resourceType = (json["type"] || searchjson["type"])
+    case resourceType
+    when "presentation"
       lo = createVEPresentation(json,searchjson,owner,url,harvestingConfig)
+    when "scormpackage","webapp","imscppackage","Zipfile"
+      lo = createApp(json,searchjson,owner,url,harvestingConfig,resourceType)
+    else
     end
 
-    #Quality metrics
-    lo.calculate_qscore
+    unless lo.nil?
+      #Quality metrics
+      lo.calculate_qscore
 
-    #Popularity metrics
-    lo.activity_object.update_column :visit_count,searchjson["visit_count"] if searchjson["visit_count"].is_a? Integer
-    lo.activity_object.update_column :download_count,searchjson["download_count"] if searchjson["download_count"].is_a? Integer
-    
+      #Popularity metrics
+      lo.activity_object.update_column :visit_count,searchjson["visit_count"] if searchjson["visit_count"].is_a? Integer
+      lo.activity_object.update_column :download_count,searchjson["download_count"] if searchjson["download_count"].is_a? Integer
+    end
+
     return lo
   end
+
+  def createApp(json,searchjson,owner,url,harvestingConfig,appType)
+    case appType
+    when "scormpackage","webapp","imscppackage","Zipfile"
+      app = Zipfile.new
+    else
+    end
+
+    app.title = searchjson["title"] unless searchjson["title"].blank?
+    app.description = searchjson["description"] unless searchjson["description"].blank?
+    app.language = searchjson["language"] unless searchjson["language"].blank?
+
+    #Age range
+    if searchjson["age_range"].is_a? String and !searchjson["age_range"].blank? 
+      ageRange = searchjson["age_range"].split("-")
+      if ageRange.length === 2 and ageRange.map{|s| s.to_i.to_s === s.to_s}.uniq === [true]
+        app.age_min = ageRange[0].to_i
+        app.age_max = ageRange[1].to_i
+      end
+    end
+    
+    #Tags
+    app.tag_list = (parseTags(searchjson["tags"],harvestingConfig["additional_tags"]))
+
+    #Avatar
+    unless searchjson["avatar_url"].blank?
+      avatarFile = downloadFile(searchjson["avatar_url"])
+      app.avatar = avatarFile unless avatarFile.nil?
+    end
+
+    app.owner_id = owner.id
+    app.author_id = owner.id
+    app.user_author_id = owner.id
+    app.scope = 0
+
+    #License
+    if searchjson["license_key"].is_a? String or searchjson["license"].is_a? String
+      if searchjson["license_key"].is_a? String
+        license = License.where(:key => searchjson["license_key"])
+      elsif searchjson["license"].is_a? String
+        license = License.getLicenseWithName("Creative Commons Reconocimiento-NoComercial")
+      end
+      license = License.where(:key => "other") if license.nil?
+      app.license = license
+      app.license_custom = searchjson["license"] if license.key === "other" and searchjson["license"].is_a? String
+    else
+      #No license data
+      #Use default
+    end
+    app.license_attribution = (searchjson["author"] || "") + " (" + url + ")"
+
+    #File
+    unless searchjson["file_url"].blank?
+      file = downloadFile(searchjson["file_url"])
+      app.file = file unless file.nil?
+    end
+
+    unless searchjson["created_at"].blank?
+      parsedTime = Time.parse(searchjson["created_at"])
+      app.created_at = parsedTime unless parsedTime.nil?
+    end
+
+    unless searchjson["reviewers_qscore"].blank?
+      app.reviewers_qscore = BigDecimal(searchjson["reviewers_qscore"],6) if searchjson["reviewers_qscore"].to_s.to_f === searchjson["reviewers_qscore"]
+    end
+    unless searchjson["users_qscore"].blank?
+      app.users_qscore = BigDecimal(searchjson["users_qscore"],6) if searchjson["users_qscore"].to_s.to_f === searchjson["users_qscore"]
+    end
+
+    begin
+      app.save!
+      if ["scormpackage","webapp","imscppackage"].include? appType
+        newApp = app.getResourceAfterSave
+        raise "Invalid app" if newApp.is_a? String
+      else
+        newApp = app
+      end
+      return newApp
+    rescue => e
+      return nil
+    end
+  end
+
 
   def createVEPresentation(json,searchjson,owner,url,harvestingConfig)
     ex = Excursion.new
@@ -231,6 +322,25 @@ namespace :harvesting do
       puts "#########################################################################"
     end
     return nil
+  end
+
+  def downloadFile(fileURL)
+    #Download file
+    system("rm -rf tmp/vishHarvesting")
+    system("mkdir -p tmp/vishHarvesting")
+
+    begin
+      fileURI = URI.parse(fileURL)
+      fileName = File.basename(fileURI.path)
+      filePath = "tmp/vishHarvesting/" + fileName
+      fileURL = URI.encode(fileURL)
+      command = "wget " + fileURL + " --output-document='" + filePath + "'"
+      system(command)
+      file = File.new(filePath)
+    rescue => e
+      file = nil
+    end
+    return file
   end
 
   def createAvatar(avatarURL,owner)

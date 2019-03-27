@@ -12,6 +12,17 @@ class License < ActiveRecord::Base
     License.find_by_key("cc-by-nc")
   end
 
+  def self.getLicenseWithName(name)
+    return nil if !name.is_a? String or name.blank?
+    License.all.each do |l|
+      I18n.available_locales.each do |locale|
+        if l.name(locale) === name
+          return l
+        end
+      end
+    end
+  end
+
   def public?
     !self.private?
   end

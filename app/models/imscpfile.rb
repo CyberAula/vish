@@ -67,6 +67,10 @@ class Imscpfile < ActiveRecord::Base
       resource.owner_id = zipfile.owner_id
       resource.author_id = zipfile.author_id
       resource.user_author = zipfile.user_author
+      resource.created_at = zipfile.created_at
+      resource.updated_at = zipfile.updated_at
+      resource.activity_object.created_at = zipfile.created_at
+      resource.activity_object.updated_at = zipfile.updated_at
       resource.activity_object.scope = zipfile.activity_object.scope
       resource.activity_object.relation_ids = zipfile.activity_object.relation_ids
       resource.activity_object.title = zipfile.activity_object.title
@@ -79,6 +83,8 @@ class Imscpfile < ActiveRecord::Base
       resource.activity_object.license_attribution = zipfile.activity_object.license_attribution
       resource.activity_object.license_custom = zipfile.activity_object.license_custom
       resource.activity_object.original_author = zipfile.activity_object.original_author
+      resource.activity_object.reviewers_qscore = zipfile.reviewers_qscore
+      resource.activity_object.users_qscore = zipfile.users_qscore
       #Copy attachment
       resource.file = zipfile.file
       #Copy avatar
