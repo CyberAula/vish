@@ -4,6 +4,14 @@ LinksController.class_eval do
   after_filter :notify_teacher, :only => [:create]
   skip_after_filter :discard_flash, :only => [:create, :update]
 
+  def show
+    super do |format|
+      format.json {
+        render :json => resource
+      }
+    end
+  end
+
   def create
     super do |format|
       format.json {

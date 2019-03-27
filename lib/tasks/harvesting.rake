@@ -11,8 +11,12 @@ namespace :harvesting do
     puts "#####################################"
     harvestingConfig = YAML.load_file("config/harvesting.yml") rescue {}
     urls = harvestingConfig["resources"]
-    retrieveLOs(urls,harvestingConfig){ |response,code|
-      puts "Finish"
+    retrieveLOs(urls,harvestingConfig){ |response|
+      puts "\n\n\nHarvesting finished"
+      response.each do |msg|
+        puts msg
+      end
+      puts "\n"
     }
   end
 
@@ -27,25 +31,27 @@ namespace :harvesting do
     puts "Finish"
   end
 
-  def retrieveLOs(urls,harvestingConfig=nil,i=0)
+  def retrieveLOs(urls,harvestingConfig=nil,i=0,output=[])
     if !urls.is_a? Array or urls.blank? or urls.select{|s| !s.is_a? String}.length>0
       yield "Invalid urls", nil if block_given?
       return
     end
 
     if i === urls.length
-      yield "Finish", true if block_given?
+      yield output if block_given?
       return
     end
 
     puts "Retrieving LO with URL: " + (urls[i] or "undefined")
     retrieveLO(urls[i],harvestingConfig){ |response,code|
       if code.blank?
-        puts "LO NOT retrieved. Reason: " + response
+        output.push("LO with url " + urls[i] + " NOT retrieved. Reason: " + response)
       else
-        puts "LO succesfully retrieved. LO id: " + response.getGlobalId
+        output.push("LO with url " + urls[i] + " retrieved. LO id: " + response.getGlobalId)
       end
-      retrieveLOs(urls,harvestingConfig,i+1)
+      retrieveLOs(urls,harvestingConfig,i+1,output){ |output|
+        yield output if block_given?
+      }
     }
   end
 
@@ -61,6 +67,8 @@ namespace :harvesting do
       yield "URL is not valid", nil if block_given?
       return
     end
+    domainPort = URI.parse(url).port rescue nil
+    domain = domain + ":" + domainPort.to_s unless domainPort.nil? or domainPort===80 or domainPort === 443
     jsonURL = url + ".json" 
     resourceId = resourceMatch[1].capitalize.singularize + ":" + resourceMatch[2] + "@" + domain
     searchURL = "http://" + domain + "/apis/search?id=" + resourceId
@@ -121,8 +129,8 @@ namespace :harvesting do
     case resourceType
     when "presentation"
       lo = createVEPresentation(json,searchjson,owner,url,harvestingConfig)
-    when "scormpackage","webapp","imscppackage","Zipfile"
-      lo = createApp(json,searchjson,owner,url,harvestingConfig,resourceType)
+    when "scormpackage","webapp","imscppackage","Zipfile","Link"
+      lo = createResource(json,searchjson,owner,url,harvestingConfig,resourceType)
     else
     end
 
@@ -138,39 +146,41 @@ namespace :harvesting do
     return lo
   end
 
-  def createApp(json,searchjson,owner,url,harvestingConfig,appType)
-    case appType
+  def createResource(json,searchjson,owner,url,harvestingConfig,rType)
+    case rType
     when "scormpackage","webapp","imscppackage","Zipfile"
-      app = Zipfile.new
+      r = Zipfile.new
+    when "Link"
+      r = Link.new
     else
     end
 
-    app.title = searchjson["title"] unless searchjson["title"].blank?
-    app.description = searchjson["description"] unless searchjson["description"].blank?
-    app.language = searchjson["language"] unless searchjson["language"].blank?
+    r.title = searchjson["title"] unless searchjson["title"].blank?
+    r.description = searchjson["description"] unless searchjson["description"].blank?
+    r.language = searchjson["language"] unless searchjson["language"].blank?
 
     #Age range
     if searchjson["age_range"].is_a? String and !searchjson["age_range"].blank? 
       ageRange = searchjson["age_range"].split("-")
       if ageRange.length === 2 and ageRange.map{|s| s.to_i.to_s === s.to_s}.uniq === [true]
-        app.age_min = ageRange[0].to_i
-        app.age_max = ageRange[1].to_i
+        r.age_min = ageRange[0].to_i
+        r.age_max = ageRange[1].to_i
       end
     end
     
     #Tags
-    app.tag_list = (parseTags(searchjson["tags"],harvestingConfig["additional_tags"]))
+    r.tag_list = (parseTags(searchjson["tags"],harvestingConfig["additional_tags"]))
 
     #Avatar
     unless searchjson["avatar_url"].blank?
       avatarFile = downloadFile(searchjson["avatar_url"])
-      app.avatar = avatarFile unless avatarFile.nil?
+      r.avatar = avatarFile unless avatarFile.nil?
     end
 
-    app.owner_id = owner.id
-    app.author_id = owner.id
-    app.user_author_id = owner.id
-    app.scope = 0
+    r.owner_id = owner.id
+    r.author_id = owner.id
+    r.user_author_id = owner.id
+    r.scope = 0
 
     #Author
     authorName = ""
@@ -188,47 +198,49 @@ namespace :harvesting do
         license = License.getLicenseWithName(searchjson["license"])
       end
       license = License.find_by_key("other") if license.nil?
-      app.license = license
-      app.license_custom = searchjson["license"] if license.key === "other" and searchjson["license"].is_a? String
+      r.license = license
+      r.license_custom = searchjson["license"] if license.key === "other" and searchjson["license"].is_a? String
     else
       #No license data
       #Use default
     end
-    app.license_attribution = authorName + " (" + url + ")"
-    app.license_attribution = app.license_attribution + ". " + searchjson["license_attribution"] unless searchjson["license_attribution"].blank?
+    r.license_attribution = authorName + " (" + url + ")"
+    r.license_attribution = r.license_attribution + ". " + searchjson["license_attribution"] unless searchjson["license_attribution"].blank?
 
     #File
     unless searchjson["file_url"].blank?
       file = downloadFile(searchjson["file_url"])
-      app.file = file unless file.nil?
+      r.file = file unless file.nil?
     end
 
     unless searchjson["created_at"].blank?
       parsedTime = Time.parse(searchjson["created_at"] + " 12:00")
-      app.created_at = parsedTime unless parsedTime.nil?
+      r.created_at = parsedTime unless parsedTime.nil?
     end
 
     unless searchjson["reviewers_qscore"].blank?
-      app.reviewers_qscore = BigDecimal(searchjson["reviewers_qscore"],6) if searchjson["reviewers_qscore"].to_s.to_f === searchjson["reviewers_qscore"]
+      r.reviewers_qscore = BigDecimal(searchjson["reviewers_qscore"],6) if searchjson["reviewers_qscore"].to_s.to_f === searchjson["reviewers_qscore"]
     end
     unless searchjson["users_qscore"].blank?
-      app.users_qscore = BigDecimal(searchjson["users_qscore"],6) if searchjson["users_qscore"].to_s.to_f === searchjson["users_qscore"]
+      r.users_qscore = BigDecimal(searchjson["users_qscore"],6) if searchjson["users_qscore"].to_s.to_f === searchjson["users_qscore"]
     end
 
+    r.url = searchjson["url_full"] if r.respond_to?("url") and !searchjson["url_full"].blank? #For links
+    r.is_embed = true if r.respond_to?("is_embed")
+
     begin
-      app.save!
-      if ["scormpackage","webapp","imscppackage"].include? appType
-        newApp = app.getResourceAfterSave
-        raise "Invalid app" if newApp.is_a? String
+      r.save!
+      if ["scormpackage","webapp","imscppackage"].include? rType
+        newR = r.getResourceAfterSave
+        raise "Invalid resource" if newR.is_a? String
       else
-        newApp = app
+        newR = r
       end
-      return newApp
+      return newR
     rescue => e
       return nil
     end
   end
-
 
   def createVEPresentation(json,searchjson,owner,url,harvestingConfig)
     ex = Excursion.new
@@ -273,7 +285,7 @@ namespace :harvesting do
     }
     resourceURLs.each do |r|
       next unless resourceURLmapping[r].blank?
-      resourceURL = createResource(r,owner)
+      resourceURL = createPrivateResource(r,owner)
       resourceURLmapping[r] = resourceURL unless resourceURL.blank?
     end
     resourceURLmapping.each do |oldURL,newURL|
@@ -308,7 +320,7 @@ namespace :harvesting do
     end
   end
 
-  def createResource(resourceURL,owner)
+  def createPrivateResource(resourceURL,owner)
     extension = File.extname(resourceURL).split("?")[0]
     case extension
     when ".png",".jpeg",".jpg", ".gif", ".tiff", ".bmp", ".svg"
