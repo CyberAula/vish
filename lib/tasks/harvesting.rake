@@ -183,7 +183,7 @@ namespace :harvesting do
     #License
     if searchjson["license_key"].is_a? String or searchjson["license"].is_a? String
       if searchjson["license_key"].is_a? String
-        license = License.where(:key => searchjson["license_key"])
+        license = License.find_by_key(searchjson["license_key"])
       elsif searchjson["license"].is_a? String
         license = License.getLicenseWithName(searchjson["license"])
       end
@@ -204,7 +204,7 @@ namespace :harvesting do
     end
 
     unless searchjson["created_at"].blank?
-      parsedTime = Time.parse(searchjson["created_at"])
+      parsedTime = Time.parse(searchjson["created_at"] + " 12:00")
       app.created_at = parsedTime unless parsedTime.nil?
     end
 
@@ -289,7 +289,7 @@ namespace :harvesting do
     ex.license_attribution = (sourceAuthor["name"] || "") + " (" + url + ")"
 
     unless searchjson["created_at"].blank?
-      parsedTime = Time.parse(searchjson["created_at"])
+      parsedTime = Time.parse(searchjson["created_at"] + " 12:00")
       ex.created_at = parsedTime unless parsedTime.nil?
     end
 
