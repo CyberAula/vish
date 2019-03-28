@@ -13,6 +13,7 @@ namespace :harvesting do
     opts = {}
     opts[:harvestingConfig] = YAML.load_file("config/harvesting.yml") rescue {}
     urls = opts[:harvestingConfig]["resources"]
+    opts[:harvestingConfig].delete("resources")
 
     retrieveLOs(urls,opts){ |response|
       puts "\n\n\nHarvesting finished"
@@ -81,9 +82,10 @@ namespace :harvesting do
     domainPort = URI.parse(url).port rescue nil
     domain = domain + ":" + domainPort.to_s unless domainPort.nil? or domainPort===80 or domainPort === 443
     allowedDomains = [domain]
-    allowedDomains = (allowedDomains + opts[:harvestingConfig]["allowed_domains"].select{|d| d.is_a? String and URI.parse(d).kind_of?(URI::HTTP)}).uniq if opts[:harvestingConfig]["allowed_domains"].is_a? Array
+    allowedDomains = (allowedDomains + opts[:harvestingConfig]["allowed_domains"].select{|d| d.is_a? String}).uniq if opts[:harvestingConfig]["allowed_domains"].is_a? Array
+    allowedDomains = (allowedDomains + opts[:harvestingConfig]["allowed_code_domains"].select{|d| d.is_a? String}).uniq if opts[:harvestingConfig]["allowed_code_domains"].is_a? Array
     allowedDomains.each do |d|
-      allowedDomains.push("www." + d) unless d.include?(".www")
+      allowedDomains.push("www." + d) unless d.include?("www.")
     end
     allowedDomains.uniq!
     opts[:domain] = domain
@@ -182,7 +184,10 @@ namespace :harvesting do
       r = Zipfile.new
     else
       rClass = opts[:resourceType].capitalize.constantize rescue nil
-      return nil if rClass.nil?
+      if rClass.nil?
+        yield nil if block_given?
+        return nil 
+      end
       r = rClass.new
     end
 
@@ -270,7 +275,6 @@ namespace :harvesting do
       end
     end
      
-
     r.valid?
     if r.errors.full_messages.length === 1 and r.errors.full_messages[0].include?("same title")
       prefix = r.class.last.nil? ? (r.class.count+1).to_s : r.class.last.id.to_s
@@ -454,7 +458,7 @@ namespace :harvesting do
 
     if resourceURLmapping[resourceURLs[i]].blank?
       createPrivateResource(resourceURLs[i],opts){ |resourceURL|
-        resourceURLmapping[resourceURL] = resourceURL unless resourceURL.blank?
+        resourceURLmapping[resourceURLs[i]] = resourceURL unless resourceURL.blank?
         createPrivateResources(resourceURLs,opts,i+1,resourceURLmapping){ |rmapping|
           yield rmapping if block_given?
         }
@@ -467,6 +471,51 @@ namespace :harvesting do
   end
 
   def createPrivateResource(resourceURL,opts)
+    if opts[:allowedDomains].include?(URI.parse(resourceURL).host)
+      newResourceURL = nil
+      resourceMatch = resourceURL.match((/([a-z]+)\/([0-9]+)(.[a-z]+)?$/))
+      if !resourceMatch.nil?
+        #Resources from ViSH instances. Retrieve in the same way as other ViSH resources but with scope=1.
+        newResourceURL = resourceURL
+        newResourceURL = newResourceURL.gsub(resourceMatch[3],"") unless resourceMatch[3].blank?
+        newResourceURL = newResourceURL.gsub("www.","") if !opts[:domain].include?("www.")
+      else
+        webappMatch = resourceURL.match((/webappscode\/([0-9]+)/))
+        if !webappMatch.nil?
+          newResourceURL = "http://" + opts[:domain] + "/webapps/" + webappMatch[1]
+        else
+          scormpackageMatch = resourceURL.match((/\/scorm\/packages\/([0-9]+)\/vishubcode_scorm_wrapper.html/))
+          if !scormpackageMatch.nil?
+            newResourceURL = "http://" + opts[:domain] + "/scormfiles/" + scormpackageMatch[1]
+          end
+        end
+      end
+
+      unless newResourceURL.blank?
+        newOpts = Marshal.load(Marshal.dump(opts))
+        newOpts[:scope] = 1
+
+        if newResourceURL.include?("excursions")
+          #Prevent loops
+          yield nil if block_given?
+          return nil
+        end
+
+        retrieveLO(newResourceURL,newOpts){ |lo,success|
+          if success.blank?
+            yield nil if block_given?
+            return
+          else
+            #Return LO URL
+            loURL = lo.getFullUrl(nil) rescue nil
+            yield loURL if block_given?
+            return
+          end
+        }
+      end
+    end
+
+    #Retrieve it as foreign resources
     extension = File.extname(resourceURL).split("?")[0]
     opts[:extension] = extension
     case extension
@@ -491,23 +540,18 @@ namespace :harvesting do
         yield resourceURL if block_given?
       }
     when ".full"
-      # if allowedDomains.include?(URI.parse(resourceURL).host)
-      #   resourceMatch = resourceURL.match((/([a-z]+)\/([0-9]+).full$/))
-      #   unless resourceMatch-nil?
-      #     resourceURL = resourceURL.gsub(".full","")
-      #     createPrivateObject(resourceMatch[1].singularize.capitalize,resourceURL,owner)
-      #   end
-      # end
+      yield nil if block_given?
+    when ".html"
       yield nil if block_given?
     when "", ".org",".es",".com"
       #Do nothing
       yield nil if block_given?
     else
-      puts "#########################################################################"
-      puts "#########################################################################"
-      puts "Unrecognized extension: " + extension
-      puts "#########################################################################"
-      puts "#########################################################################"
+      # puts "#########################################################################"
+      # puts "#########################################################################"
+      # puts "Unrecognized extension: " + extension
+      # puts "#########################################################################"
+      # puts "#########################################################################"
       yield nil if block_given?
     end
   end
@@ -526,7 +570,10 @@ namespace :harvesting do
     pictureFile = downloadFile(pictureURL)
     
     if pictureFile.nil?
-      return nil unless opts[:avatar]===true
+      unless opts[:avatar]===true
+        yield nil if block_given?
+        return nil
+      end
       pictureFile = File.open(Rails.root.to_s + '/app/assets/images/logos/original/ao-default.png', "r")
     end
 
@@ -542,7 +589,10 @@ namespace :harvesting do
       pic.save!
     rescue => e
       #Corrupted (but downloaded) images
-      return nil unless opts[:avatar]===true
+      unless opts[:avatar]===true
+        yield nil if block_given?
+        return nil 
+      end
       pic.file = File.open(Rails.root.to_s + '/app/assets/images/logos/original/ao-default.png', "r")
       pic.save!
     end
@@ -561,7 +611,10 @@ namespace :harvesting do
     system("mkdir -p tmp/vishHarvesting")
 
     objectFile = downloadFile(resourceURL)
-    return nil if objectFile.nil?
+    if objectFile.nil?
+      yield nil if block_given?
+      return nil
+    end
 
     begin
       r = type.downcase.capitalize.constantize.new
@@ -578,11 +631,10 @@ namespace :harvesting do
 
     begin
       r.save!
+      yield r.getDownloadUrl(nil) if block_given?
     rescue => e
-      return nil
+      yield nil if block_given?
     end
-
-    yield r.getDownloadUrl(nil) if block_given?
   end
 
 

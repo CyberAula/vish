@@ -2,4 +2,5 @@ resources: ["http://vishub.org/excursions/1597","http://vishub.org/excursions/13
 owner_email: "virtual.science.hub+1@gmail.com"
 additional_tags: ["engineering"]
 mediaconversion: false
-allowed_domains: ["vishubcode.org"]
+allowed_domains: ["vishub.org"]
+allowed_code_domains: ["vishubcode.org"]
