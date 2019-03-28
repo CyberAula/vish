@@ -9,9 +9,12 @@ namespace :harvesting do
     puts "#####################################"
     puts "Retrieving Learning Objects from other ViSH instances"
     puts "#####################################"
-    harvestingConfig = YAML.load_file("config/harvesting.yml") rescue {}
-    urls = harvestingConfig["resources"]
-    retrieveLOs(urls,harvestingConfig){ |response|
+    
+    opts = {}
+    opts[:harvestingConfig] = YAML.load_file("config/harvesting.yml") rescue {}
+    urls = opts[:harvestingConfig]["resources"]
+
+    retrieveLOs(urls,opts){ |response|
       puts "\n\n\nHarvesting finished"
       response.each do |msg|
         puts msg
@@ -25,13 +28,17 @@ namespace :harvesting do
   #In production: bundle exec rake harvesting:retrieveLO RAILS_ENV=production
   task :retrieveLO, [:url] => :environment do |t,args|
     abort("No URL was provided") if args.url.blank?
-    retrieveLO(args.url){ |response,code|
-      abort("Error retrieving LO with url: " + args.url) if code.nil?
+
+    opts = {}
+    opts[:harvestingConfig] = YAML.load_file("config/harvesting.yml") rescue {}
+
+    retrieveLO(args.url,opts){ |response,success|
+      puts "\n\n\nHarvesting finished"
+      abort("Error retrieving LO with url: " + args.url) if success.nil?
     }
-    puts "Finish"
   end
 
-  def retrieveLOs(urls,harvestingConfig=nil,i=0,output=[])
+  def retrieveLOs(urls,opts={},i=0,output=[])
     if !urls.is_a? Array or urls.blank? or urls.select{|s| !s.is_a? String}.length>0
       yield "Invalid urls", nil if block_given?
       return
@@ -43,35 +50,50 @@ namespace :harvesting do
     end
 
     puts "Retrieving LO with URL: " + (urls[i] or "undefined")
-    retrieveLO(urls[i],harvestingConfig){ |response,code|
-      if code.blank?
+    retrieveLO(urls[i],opts){ |response,success|
+      if success.blank?
         output.push("LO with url " + urls[i] + " NOT retrieved. Reason: " + response)
       else
         output.push("LO with url " + urls[i] + " retrieved. LO id: " + response.getGlobalId)
       end
-      retrieveLOs(urls,harvestingConfig,i+1,output){ |output|
+      retrieveLOs(urls,opts,i+1,output){ |output|
         yield output if block_given?
       }
     }
   end
 
-  def retrieveLO(url,harvestingConfig=nil)
+  def retrieveLO(url,opts={})
     if url.blank?
       yield "URL is blank", nil if block_given?
       return
     end
+    opts[:url] = url
+    opts[:harvestingConfig] = YAML.load_file("config/harvesting.yml") rescue {} if opts[:harvestingConfig].nil?
 
     domain = URI.parse(url).host rescue nil
     resourceMatch = url.match(/([a-z]+)\/([0-9]+)$/)
     if domain.blank? or resourceMatch.nil?
-      yield "URL is not valid", nil if block_given?
+      yield "URL is not valid",false if block_given?
       return
     end
+    
+    #Get domain and allowed domains
     domainPort = URI.parse(url).port rescue nil
     domain = domain + ":" + domainPort.to_s unless domainPort.nil? or domainPort===80 or domainPort === 443
+    allowedDomains = [domain]
+    allowedDomains = (allowedDomains + opts[:harvestingConfig]["allowed_domains"].select{|d| d.is_a? String and URI.parse(d).kind_of?(URI::HTTP)}).uniq if opts[:harvestingConfig]["allowed_domains"].is_a? Array
+    allowedDomains.each do |d|
+      allowedDomains.push("www." + d) unless d.include?(".www")
+    end
+    allowedDomains.uniq!
+    opts[:domain] = domain
+    opts[:allowedDomains] = allowedDomains
+
     jsonURL = url + ".json" 
     resourceId = resourceMatch[1].capitalize.singularize + ":" + resourceMatch[2] + "@" + domain
     searchURL = "http://" + domain + "/apis/search?id=" + resourceId
+    opts[:universalResourceId] = resourceId
+    opts[:searchURL] = searchURL
 
     RestClient::Request.execute(
       :method => :get,
@@ -82,36 +104,36 @@ namespace :harvesting do
       if response.code === 200
         lojson = JSON(response) rescue nil
         if lojson.nil?
-          yield "Invalid response",nil if block_given?
+          yield "Invalid response",false if block_given?
           return
         end
+        opts[:json] = lojson
 
-        afterRetrieveLO(lojson,url,searchURL,domain,harvestingConfig){ |lo,code|
-          yield lo, code if block_given?
+        afterRetrieveLO(opts){ |lo,success|
+          yield lo, success if block_given?
           return
         }
       else
-        yield "Response with invalid code", nil if block_given?
+        yield "Response with invalid code",false if block_given?
         return
       end
     }
   end
 
-  def afterRetrieveLO(lojson,url,searchURL,domain,harvestingConfig)
+  def afterRetrieveLO(opts)
       RestClient::Request.execute(
         :method => :get,
-        :url => searchURL,
+        :url => opts[:searchURL],
         :timeout => 8, 
         :open_timeout => 8
       ){ |response|
         searchjson = {}
-        if response.code === 200
-          searchjson = JSON(response) rescue {}
-        end
-        createLO(lojson,searchjson,url,domain,harvestingConfig){ |lo|
+        searchjson = JSON(response) rescue {} if response.code === 200
+        opts[:searchjson] = searchjson
+        createLO(opts){ |lo|
           if block_given?
             if lo.nil?
-              yield "LO could not be created", nil
+              yield "LO could not be created", false
             else
               yield lo, true
             end
@@ -120,124 +142,51 @@ namespace :harvesting do
       }
   end
 
-  def createLO(json,searchjson,url,domain,harvestingConfig=nil)
-    unless json.is_a? Hash
+  def createLO(opts)
+    unless opts[:json].is_a? Hash
       yield nil if block_given?
       return nil
     end
-    harvestingConfig = YAML.load_file("config/harvesting.yml") rescue {} if harvestingConfig.nil?
 
     # Set a specific owner
-    owner = User.find_by_email(harvestingConfig["owner_email"]).actor rescue nil
-    if owner.nil?
+    opts[:owner] = User.find_by_email( opts[:harvestingConfig]["owner_email"]).actor rescue nil
+    if opts[:owner].nil?
       yield nil if block_given?
       return nil
     end
 
-    resourceType = (json["type"] || searchjson["type"])
+    resourceType = (opts[:json]["type"] || opts[:searchjson]["type"])
     resourceType = resourceType.underscore if resourceType.is_a? String
+    opts[:resourceType] = resourceType
+
     case resourceType
     when "presentation"
-      createVEPresentation(json,searchjson,owner,url,domain,harvestingConfig){ |lo|
-        afterCreateLO(lo,json,searchjson,url,domain,harvestingConfig){|lo|
-          yield lo
-        }
+      createVEPresentation(opts){ |lo|
+        yield lo
       }
     when "scormpackage","webapp","imscppackage","zipfile","link","officedoc","swf","picture","video","audio"
-      createResource(json,searchjson,owner,url,domain,harvestingConfig,resourceType){ |lo|
-        afterCreateLO(lo,json,searchjson,url,domain,harvestingConfig){|lo|
-          yield lo
-        }
+      createResource(opts){ |lo|
+        yield lo
       }
     when "category"
-      createCategory(json,searchjson,owner,url,domain,harvestingConfig){ |lo|
-        afterCreateLO(lo,json,searchjson,url,domain,harvestingConfig){|lo|
-          yield lo
-        }
+      createCategory(opts){ |lo|
+        yield lo
       }
     else
     end
   end
 
-  def afterCreateLO(lo,json,searchjson,url,domain,harvestingConfig)
-    unless lo.nil?
-      #Quality metrics
-      lo.calculate_qscore
-
-      #Popularity metrics
-      lo.activity_object.update_column :visit_count,searchjson["visit_count"] if searchjson["visit_count"].is_a? Integer
-      lo.activity_object.update_column :download_count,searchjson["download_count"] if searchjson["download_count"].is_a? Integer
-
-      #Category
-      unless harvestingConfig["category_id"].blank?
-        c = Category.find_by_id(harvestingConfig["category_id"].to_i)
-        unless c.nil?
-          ao = lo.activity_object
-          if ao.object_type === "Category"
-            lo.parent = c
-            lo.save
-          else
-            c.insertPropertyObject(lo.activity_object)
-          end
-        end       
-      end
-    end
-
-    yield lo,true if block_given?
-  end
-
-  def createCategory(json,searchjson,owner,url,domain,harvestingConfig)
-    #Create category
-    createResource(json,searchjson,owner,url,domain,harvestingConfig,"Category"){ |category|
-      if category.nil?
-        yield nil if block_given?
-        return nil
-      end
-      puts "##############################}"
-      puts "Category created with id: " + category.id.to_s
-      puts "##############################}"
-
-      if json["elements"].blank? or !json["elements"].is_a? Array
-        yield category if block_given?
-        return category
-      end
-
-      #Create the resources of the retrieved category and included them in the local created category
-      resourceURLs = []
-      json["elements"].each do |el|
-        elMatch = el.match(/([aA-zZ]+):([0-9]+)$/)
-        next if elMatch.blank? or elMatch[1].blank? or elMatch[2].blank?
-        universalResourceId = el + "@" + domain
-        resourceURL = ActivityObject.getUrlForUniversalId(universalResourceId)
-        next if resourceURL.blank?
-        resourceURLs.push(resourceURL)
-      end
-
-      newHarvestingConfig = harvestingConfig.clone
-      newHarvestingConfig["category_id"] = category.id.to_s
-
-      puts "\n\n\nHarvesting resources of category " + url + "."
-      retrieveLOs(resourceURLs,newHarvestingConfig){ |response|
-        puts "\n\n\nHarvesting of resources of category " + url + " finished. Results are shown below."
-        response.each do |msg|
-          puts msg
-        end
-        puts "\n"
-
-        yield category if block_given?
-      }
-    }
-  end
-
-  def createResource(json,searchjson,owner,url,domain,harvestingConfig,rType)
-    case rType
+  def createResource(opts)
+    case opts[:resourceType]
     when "scormpackage","webapp","imscppackage"
       r = Zipfile.new
     else
-      rClass = rType.capitalize.constantize rescue nil
+      rClass = opts[:resourceType].capitalize.constantize rescue nil
       return nil if rClass.nil?
       r = rClass.new
     end
+
+    searchjson = opts[:searchjson]
     r.title = searchjson["title"] unless searchjson["title"].blank?
     r.description = searchjson["description"] unless searchjson["description"].blank?
     r.language = searchjson["language"] unless searchjson["language"].blank?
@@ -252,7 +201,7 @@ namespace :harvesting do
     end
     
     #Tags
-    r.tag_list = (parseTags(searchjson["tags"],harvestingConfig["additional_tags"]))
+    r.tag_list = (parseTags(searchjson["tags"],opts[:harvestingConfig]["additional_tags"]))
 
     #Avatar
     unless searchjson["avatar_url"].blank?
@@ -260,11 +209,15 @@ namespace :harvesting do
       r.avatar = avatarFile unless avatarFile.nil?
     end
 
-    r.owner_id = owner.id
-    r.author_id = owner.id
-    r.user_author_id = owner.id
-    r.scope = 0
-
+    r.owner_id = opts[:owner].id
+    r.author_id = opts[:owner].id
+    r.user_author_id = opts[:owner].id
+    if [0,1].include?(opts[:scope])
+      r.scope = opts[:scope]
+    else
+      r.scope = 0
+    end
+    
     #Author
     authorName = ""
     if !searchjson["original_author"].blank?
@@ -287,7 +240,7 @@ namespace :harvesting do
       #No license data
       #Use default
     end
-    r.license_attribution = authorName + " (" + url + ")"
+    r.license_attribution = authorName + " (" + opts[:url] + ")"
     r.license_attribution = r.license_attribution + ". " + searchjson["license_attribution"] unless searchjson["license_attribution"].blank?
 
     #File
@@ -309,7 +262,14 @@ namespace :harvesting do
     end
 
     r.url = searchjson["url_full"] if r.respond_to?("url") and !searchjson["url_full"].blank? #For links
-    r.is_embed = true if r.respond_to?("is_embed")
+    if r.respond_to?("is_embed")
+      if [true, false].include? opts[:is_embed]
+        r.is_embed = opts[:is_embed]
+      else
+        r.is_embed = true
+      end
+    end
+     
 
     r.valid?
     if r.errors.full_messages.length === 1 and r.errors.full_messages[0].include?("same title")
@@ -319,123 +279,315 @@ namespace :harvesting do
 
     begin
       r.save!
-      if ["scormpackage","webapp","imscppackage"].include? rType
+      if ["scormpackage","webapp","imscppackage"].include? opts[:resourceType]
         newR = r.getResourceAfterSave
         raise "Invalid resource" if newR.is_a? String
       else
         newR = r
       end
-      response = newR
+      afterCreateLO(newR,opts){ |lo|
+        yield lo if block_given?
+      }
     rescue => e
-      response = nil
+      yield nil if block_given?
     end
-    yield response if block_given?
   end
 
-  def createVEPresentation(json,searchjson,owner,url,domain,harvestingConfig)
+  def afterCreateLO(lo,opts)
+    unless lo.nil?
+      searchjson = opts[:searchjson]
+
+      #Quality metrics
+      lo.calculate_qscore
+
+      #Popularity metrics
+      lo.activity_object.update_column :visit_count,searchjson["visit_count"] if searchjson["visit_count"].is_a? Integer
+      lo.activity_object.update_column :download_count,searchjson["download_count"] if searchjson["download_count"].is_a? Integer
+
+      #Category
+      unless opts[:harvestingConfig]["category_id"].blank?
+        c = Category.find_by_id(opts[:harvestingConfig]["category_id"].to_i)
+        unless c.nil?
+          ao = lo.activity_object
+          if ao.object_type === "Category"
+            lo.parent = c
+            lo.save
+          else
+            c.insertPropertyObject(lo.activity_object)
+          end
+        end       
+      end
+    end
+
+    yield lo if block_given?
+  end
+
+  def createCategory(opts)
+    #Create category
+
+    createResource(opts){ |category|
+      if category.nil?
+        yield nil if block_given?
+        return nil
+      end
+      puts "##############################}"
+      puts "Category created with id: " + category.id.to_s
+      puts "##############################}"
+
+      if opts[:json]["elements"].blank? or !opts[:json]["elements"].is_a? Array
+        yield category if block_given?
+        return category
+      end
+
+      #Create the resources of the retrieved category and included them in the local created category
+      resourceURLs = []
+      opts[:json]["elements"].each do |el|
+        elMatch = el.match(/([aA-zZ]+):([0-9]+)$/)
+        next if elMatch.blank? or elMatch[1].blank? or elMatch[2].blank?
+        universalResourceId = el + "@" + opts[:domain]
+        resourceURL = ActivityObject.getUrlForUniversalId(universalResourceId)
+        next if resourceURL.blank?
+        resourceURLs.push(resourceURL)
+      end
+
+      newOpts = Marshal.load(Marshal.dump(opts))
+      newOpts[:harvestingConfig]["category_id"] = category.id.to_s
+
+      puts "\n\n\nHarvesting resources of category " + opts[:url] + "."
+      retrieveLOs(resourceURLs,newOpts){ |response|
+        puts "\n\n\nHarvesting of resources of category " + opts[:url] + " finished. Results are shown below."
+        response.each do |msg|
+          puts msg
+        end
+        puts "\n"
+
+        yield category if block_given?
+      }
+    }
+  end
+
+  def createVEPresentation(opts)
+    json = opts[:json]
+    searchjson = opts[:searchjson]
+
     ex = Excursion.new
     json["draft"] = false
     sourceAuthor = json["author"] || {}
-    json["author"] = {"name":owner.name,"vishMetadata":{"id":owner.id}}
+    json["author"] = {"name":opts[:owner].name,"vishMetadata":{"id":opts[:owner].id}}
     json["vishMetadata"] = json["vishMetadata"] || {}
     json["vishMetadata"]["draft"] = "false"
     json["vishMetadata"]["released"] = "true"
     json["vishMetadata"]["name"] = "ViSH"
     
     #Tags
-    json["tags"] = parseTags(json["tags"],harvestingConfig["additional_tags"])
+    json["tags"] = parseTags(json["tags"],opts[:harvestingConfig]["additional_tags"])
 
     #Avatar
-    avatarURL = createAvatar(json["avatar"],owner)
-    json["avatar"] = avatarURL
-    
-    #Retrieve resources of the VE presentation
-    resourceURLmapping = {}
-    resourceURLs = []
-    domain = URI.parse(url).host
-    resourceURLs = resourceURLs + VishEditorUtils.getResources(json, ["image","object","video","audio"])
-    #Get resources embedded inside text and quiz resources
-    VishEditorUtils.getResources(json, ["text","quiz"]).each do |string|
-      resourceURLs = resourceURLs + string.scan(Regexp.new("http[s]?://[a-z0-9.]+/[a-z]+/[a-z0-9.]+"))
-    end
-    resourceURLs = resourceURLs.uniq.select{|r| URI.parse(r).kind_of?(URI::HTTP)}
-    resourceURLs = resourceURLs.select{|r| URI.parse(r).host === domain or URI.parse(r).host === ("www." + domain)}.uniq #Retrieve only resources stored in the foreign vish instance
-    resourceURLs = resourceURLs.map{|string| 
-      if string.ends_with?(")")
-        string = string[0...-1]
+    createAvatar(json["avatar"],opts){ |avatarURL|
+      json["avatar"] = avatarURL
+      
+      #Retrieve resources of the VE presentation
+      resourceURLs = []
+
+      resourceURLs = resourceURLs + VishEditorUtils.getResources(json, ["image","object","video","audio"])
+      #Get resources embedded inside text and quiz resources
+      VishEditorUtils.getResources(json, ["text","quiz"]).each do |string|
+        resourceURLs = resourceURLs + string.scan(Regexp.new("http[s]?://[a-z0-9.]+/[a-z]+/[a-z0-9.]+"))
       end
-      if File.extname(string).include?("?")
-        string = string.split("?")[0] unless File.extname(string).include?("?style=")
-      end
-      string
+      resourceURLs = resourceURLs.uniq.select{|r| URI.parse(r).kind_of?(URI::HTTP)}
+      resourceURLs = resourceURLs.select{|r| opts[:allowedDomains].include?(URI.parse(r).host)} #Retrieve only resources stored in the foreign vish instance or allowed domains
+      resourceURLs = resourceURLs.map{|string| 
+        if string.ends_with?(")")
+          string = string[0...-1]
+        end
+        if File.extname(string).include?("?")
+          string = string.split("?")[0] unless File.extname(string).include?("?style=")
+        end
+        string
+      }
+      #For videos from ViSH instances with multiple sources, only take into account mp4 files (and png files for posters)
+      resourceURLs = resourceURLs.reject{ |string| 
+        opts[:allowedDomains].include?(URI.parse(string).host) and string.include?("/videos/") and (!string.include?(".mp4") and !string.include?(".png"))
+      }
+
+      createPrivateResources(resourceURLs,opts){ |resourceURLmapping|
+        resourceURLmapping.each do |oldURL,newURL|
+          json = replaceStringInHash(json,oldURL,newURL)
+        end
+        json = replaceSourcesInHash(json,resourceURLmapping.values,opts[:harvestingConfig])
+
+        ex.json = json.to_json
+        ex.owner_id = opts[:owner].id
+        ex.author_id = opts[:owner].id
+        ex.user_author_id = opts[:owner].id
+        ex.license_attribution = (sourceAuthor["name"] || "") + " (" + opts[:url] + ")"
+
+        unless searchjson["created_at"].blank?
+          parsedTime = Time.parse(searchjson["created_at"] + " 12:00")
+          ex.created_at = parsedTime unless parsedTime.nil?
+        end
+
+        unless searchjson["reviewers_qscore"].blank?
+          ex.reviewers_qscore = BigDecimal(searchjson["reviewers_qscore"],6) if searchjson["reviewers_qscore"].to_s.to_f === searchjson["reviewers_qscore"]
+        end
+        unless searchjson["users_qscore"].blank?
+          ex.users_qscore = BigDecimal(searchjson["users_qscore"],6) if searchjson["users_qscore"].to_s.to_f === searchjson["users_qscore"]
+        end
+
+        begin
+          ex.save!
+          afterCreateLO(ex,opts){ |lo|
+            yield lo if block_given?
+          }
+        rescue => e
+          yield nil if block_given?
+        end
+      }
     }
-    #For videos from ViSH instances with multiple sources, only take into account mp4 files (and png files for posters)
-    resourceURLs = resourceURLs.reject{ |string| 
-      URI.parse(string).host === domain and string.include?("/videos/") and (!string.include?(".mp4") and !string.include?(".png"))
-    }
-    resourceURLs.each do |r|
-      next unless resourceURLmapping[r].blank?
-      resourceURL = createPrivateResource(r,owner)
-      resourceURLmapping[r] = resourceURL unless resourceURL.blank?
-    end
-    resourceURLmapping.each do |oldURL,newURL|
-      json = replaceStringInHash(json,oldURL,newURL)
-    end
-
-    json = replaceSourcesInHash(json,resourceURLmapping.values,harvestingConfig)
-    
-    ex.json = json.to_json
-    ex.owner_id = owner.id
-    ex.author_id = owner.id
-    ex.user_author_id = owner.id
-    ex.license_attribution = (sourceAuthor["name"] || "") + " (" + url + ")"
-
-    unless searchjson["created_at"].blank?
-      parsedTime = Time.parse(searchjson["created_at"] + " 12:00")
-      ex.created_at = parsedTime unless parsedTime.nil?
-    end
-
-    unless searchjson["reviewers_qscore"].blank?
-      ex.reviewers_qscore = BigDecimal(searchjson["reviewers_qscore"],6) if searchjson["reviewers_qscore"].to_s.to_f === searchjson["reviewers_qscore"]
-    end
-    unless searchjson["users_qscore"].blank?
-      ex.users_qscore = BigDecimal(searchjson["users_qscore"],6) if searchjson["users_qscore"].to_s.to_f === searchjson["users_qscore"]
-    end
-
-    begin
-      ex.save!
-      response = ex
-    rescue => e
-      response = nil
-    end
-    yield response if block_given?
   end
 
-  def createPrivateResource(resourceURL,owner)
+  def createPrivateResources(resourceURLs,opts,i=0,resourceURLmapping={})
+    if i === resourceURLs.length
+      yield resourceURLmapping if block_given?
+      return resourceURLmapping
+    end
+
+    if resourceURLmapping[resourceURLs[i]].blank?
+      createPrivateResource(resourceURLs[i],opts){ |resourceURL|
+        resourceURLmapping[resourceURL] = resourceURL unless resourceURL.blank?
+        createPrivateResources(resourceURLs,opts,i+1,resourceURLmapping){ |rmapping|
+          yield rmapping if block_given?
+        }
+      }
+    else
+      createPrivateResources(resourceURLs,opts,i+1,resourceURLmapping){ |rmapping|
+        yield rmapping if block_given?
+      }
+    end
+  end
+
+  def createPrivateResource(resourceURL,opts)
     extension = File.extname(resourceURL).split("?")[0]
+    opts[:extension] = extension
     case extension
     when ".png",".jpeg",".jpg", ".gif", ".tiff", ".bmp", ".svg"
-      return createPicture(resourceURL,owner)
+      createPrivatePicture(resourceURL,opts){ |resourceURL|
+        yield resourceURL if block_given?
+      }
     when ".mp4",".webm"
-      return createObject("Video",resourceURL,owner)
+      createPrivateObject("video",resourceURL,opts){ |resourceURL|
+        yield resourceURL if block_given?
+      }
     when ".mp3", ".wav", ".webma"
-      return createObject("Audio",resourceURL,owner)
+      createPrivateObject("audio",resourceURL,opts){ |resourceURL|
+        yield resourceURL if block_given?
+      }
     when ".swf"
-      return createObject("SWF",resourceURL,owner)
+      createPrivateObject("swf",resourceURL,opts){ |resourceURL|
+        yield resourceURL if block_given?
+      }
     when ".pdf"
-      return createObject("Officedoc",resourceURL,owner)
-    when "full"
-    when ""
+      createPrivateObject("officedoc",resourceURL,opts){ |resourceURL|
+        yield resourceURL if block_given?
+      }
+    when ".full"
+      # if allowedDomains.include?(URI.parse(resourceURL).host)
+      #   resourceMatch = resourceURL.match((/([a-z]+)\/([0-9]+).full$/))
+      #   unless resourceMatch-nil?
+      #     resourceURL = resourceURL.gsub(".full","")
+      #     createPrivateObject(resourceMatch[1].singularize.capitalize,resourceURL,owner)
+      #   end
+      # end
+      yield nil if block_given?
+    when "", ".org",".es",".com"
       #Do nothing
+      yield nil if block_given?
     else
       puts "#########################################################################"
       puts "#########################################################################"
       puts "Unrecognized extension: " + extension
       puts "#########################################################################"
       puts "#########################################################################"
+      yield nil if block_given?
     end
-    return nil
   end
+
+  def createAvatar(avatarURL,opts)
+    opts[:avatar] = true
+    createPrivatePicture(avatarURL,opts){ |resourceURL|
+      yield resourceURL if block_given?
+    }
+  end
+
+  def createPrivatePicture(pictureURL,opts)
+    system("rm -rf tmp/vishHarvesting")
+    system("mkdir -p tmp/vishHarvesting")
+
+    pictureFile = downloadFile(pictureURL)
+    
+    if pictureFile.nil?
+      return nil unless opts[:avatar]===true
+      pictureFile = File.open(Rails.root.to_s + '/app/assets/images/logos/original/ao-default.png', "r")
+    end
+
+    pic = Picture.new
+    pic.title = File.basename(pictureFile)
+    pic.owner_id = opts[:owner].id
+    pic.author_id = opts[:owner].id
+    pic.user_author_id = opts[:owner].id
+    pic.scope = 1
+    pic.file = pictureFile
+
+    begin
+      pic.save!
+    rescue => e
+      #Corrupted (but downloaded) images
+      return nil unless opts[:avatar]===true
+      pic.file = File.open(Rails.root.to_s + '/app/assets/images/logos/original/ao-default.png', "r")
+      pic.save!
+    end
+
+    if opts[:avatar]===true
+      resourceURL = pic.getAvatarUrl
+    else
+      resourceURL = pic.getFullUrl(nil)
+    end
+
+    yield resourceURL if block_given?
+  end
+
+  def createPrivateObject(type,resourceURL,opts)
+    system("rm -rf tmp/vishHarvesting")
+    system("mkdir -p tmp/vishHarvesting")
+
+    objectFile = downloadFile(resourceURL)
+    return nil if objectFile.nil?
+
+    begin
+      r = type.downcase.capitalize.constantize.new
+    rescue
+      r = Document.new
+    end
+
+    r.title = File.basename(objectFile)
+    r.owner_id = opts[:owner].id
+    r.author_id = opts[:owner].id
+    r.user_author_id = opts[:owner].id
+    r.scope = 1
+    r.file = objectFile
+
+    begin
+      r.save!
+    rescue => e
+      return nil
+    end
+
+    yield r.getDownloadUrl(nil) if block_given?
+  end
+
+
+
+  #Utils
 
   def downloadFile(fileURL)
     #Download file
@@ -454,98 +606,6 @@ namespace :harvesting do
       file = nil
     end
     return file
-  end
-
-  def createAvatar(avatarURL,owner)
-    createPicture(avatarURL,owner,true)
-  end
-
-  def createPicture(pictureURL,owner,avatar=false)
-    system("rm -rf tmp/vishHarvesting")
-    system("mkdir -p tmp/vishHarvesting")
-
-    begin
-      pictureURI = URI.parse(pictureURL)
-      fileName = File.basename(pictureURI.path)
-      filePath = "tmp/vishHarvesting/" + fileName
-      pictureURL = URI.encode(pictureURL) unless pictureURL.include?("?style=170x127%23")
-      command = "wget " + pictureURL + " --output-document='" + filePath + "'"
-      system(command)
-    rescue => e
-      filePath = nil
-    end
-    
-    if filePath.nil? or !File.exist?(filePath) or File.zero?(filePath)
-      return nil unless avatar===true
-      filePath = Rails.root.to_s + '/app/assets/images/logos/original/ao-default.png'
-    end
-
-    pic = Picture.new
-    pic.title = fileName
-    pic.owner_id = owner.id
-    pic.author_id = owner.id
-    pic.user_author_id = owner.id
-    pic.scope = 1
-    pic.file = File.open(filePath, "r")
-
-    begin
-      pic.save!
-    rescue => e
-      #Corrupted (but downloaded) images
-      return nil unless avatar===true
-      filePath = Rails.root.to_s + '/app/assets/images/logos/original/ao-default.png'
-      pic.file = File.open(filePath, "r")
-      pic.save!
-    end
-
-    if avatar===true
-      return pic.getAvatarUrl
-    else
-      return pic.getFullUrl(nil)
-    end
-  end
-
-  def createObject(type,resourceURL,owner)
-    system("rm -rf tmp/vishHarvesting")
-    system("mkdir -p tmp/vishHarvesting")
-
-    begin
-      resourceURI = URI.parse(resourceURL)
-      fileName = File.basename(resourceURI.path)
-      filePath = "tmp/vishHarvesting/" + fileName
-      resourceURL = URI.encode(resourceURL)
-      command = "wget " + resourceURL + " --output-document='" + filePath + "'"
-      system(command)
-    rescue => e
-      filePath = nil
-    end
-    return nil if filePath.nil? or !File.exist?(filePath) or File.zero?(filePath)
-
-    if type === "Video"
-      r = Video.new
-    elsif type === "Audio"
-      r = Audio.new
-    elsif type === "SWF"
-      r = Swf.new
-    elsif type === "Officedoc"
-      r = Officedoc.new
-    else
-      r = Document.new
-    end
-    r.title = fileName
-    r.owner_id = owner.id
-    r.author_id = owner.id
-    r.user_author_id = owner.id
-    r.scope = 1
-    r.file = File.open(filePath, "r")
-
-    begin
-      r.save!
-    rescue => e
-      return nil
-    end
-
-    return r.getDownloadUrl(nil)
   end
 
   def replaceStringInHash(h,oldString,newString)
@@ -567,14 +627,14 @@ namespace :harvesting do
     return h
   end
 
-  def replaceSourcesInHash(h,localSources,harvestingConfig)
+  def replaceSourcesInHash(h,localSources,opts)
     if h.key?("sources") and (h["type"]==="video" or h["type"]==="audio")
       sources = JSON.parse(h["sources"]) rescue nil
       unless sources.blank?
         localSource = sources.map.select{|src| localSources.include?(src["src"])}.first["src"] rescue nil
         unless localSource.blank?
           sources = sources.map{|src|
-            if src["src"]!=localSource and (!VishConfig.getAvailableServices.include? "MediaConversion" or harvestingConfig["mediaconversion"] === false)
+            if src["src"]!=localSource and (!VishConfig.getAvailableServices.include? "MediaConversion" or opts[:harvestingConfig]["mediaconversion"] === false)
               nil #Remove no local sources
             else
               localSourceExtension = File.extname(localSource).split("?")[0]
@@ -613,11 +673,11 @@ namespace :harvesting do
 
     h.each do |key,value|
       if h[key].is_a? Hash
-        h[key] = replaceSourcesInHash(h[key],localSources,harvestingConfig)
+        h[key] = replaceSourcesInHash(h[key],localSources,opts)
       elsif h[key].is_a? Array
         h[key] = h[key].map{ |el|
           if el.is_a? Hash
-            replaceSourcesInHash(el,localSources,harvestingConfig)
+            replaceSourcesInHash(el,localSources,opts)
           else
             el
           end
