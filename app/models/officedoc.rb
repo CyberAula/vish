@@ -16,4 +16,15 @@ class Officedoc < Document
     "https://docs.google.com/viewer?url=" + self.source_full_url(protocol) + "&embedded=true"
   end
 
+  def as_json(options = nil)
+    {
+     :id => id,
+     :title => title,
+     :description => description,
+     :author => author.name,
+     :src => options[:helper].polymorphic_url(self, format: format),
+     :type => self.class.name
+    }
+  end
+
 end

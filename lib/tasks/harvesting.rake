@@ -126,10 +126,11 @@ namespace :harvesting do
     return nil if owner.nil?
 
     resourceType = (json["type"] || searchjson["type"])
+    resourceType = resourceType.underscore if resourceType.is_a? String
     case resourceType
     when "presentation"
       lo = createVEPresentation(json,searchjson,owner,url,harvestingConfig)
-    when "scormpackage","webapp","imscppackage","Zipfile","Link"
+    when "scormpackage","webapp","imscppackage","zipfile","link","officedoc","swf","picture","video","audio"
       lo = createResource(json,searchjson,owner,url,harvestingConfig,resourceType)
     else
     end
@@ -148,13 +149,13 @@ namespace :harvesting do
 
   def createResource(json,searchjson,owner,url,harvestingConfig,rType)
     case rType
-    when "scormpackage","webapp","imscppackage","Zipfile"
+    when "scormpackage","webapp","imscppackage"
       r = Zipfile.new
-    when "Link"
-      r = Link.new
     else
+      rClass = rType.capitalize.constantize rescue nil
+      return nil if rClass.nil?
+      r = rClass.new
     end
-
     r.title = searchjson["title"] unless searchjson["title"].blank?
     r.description = searchjson["description"] unless searchjson["description"].blank?
     r.language = searchjson["language"] unless searchjson["language"].blank?
