@@ -17,7 +17,7 @@ class CategoriesController < ApplicationController
         render
       }
       format.json {
-        render :json => @category 
+        render :json => @category.to_json(helper: self)
       }
       format.scorm {
         if (can? :download_source, @category)

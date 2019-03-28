@@ -789,6 +789,15 @@ ActivityObject.class_eval do
     return resource
   end
 
+  def self.getUrlForUniversalId(id)
+    #Universal id example: "Excursion:616@localhost:3000"
+    return nil if id.blank?
+    uidregexp = /([aA-zZ]+):([0-9]+)@([aA-zZ]+(:[0-9]+)?)$/
+    regexpResult = (id =~ uidregexp)
+    return nil if regexpResult.nil? or $1.nil? or $2.nil? or $3.nil?
+    return "http://" + $3 + "/" + $1.pluralize.underscore + "/" + $2
+  end
+
   def self.getAllResources
     ActivityObject.where("object_type in (?)", VishConfig.getAvailableResourceModels)
   end

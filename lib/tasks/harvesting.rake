@@ -86,7 +86,7 @@ namespace :harvesting do
           return
         end
 
-        afterRetrieveLO(lojson,url,searchURL,harvestingConfig){ |lo,code|
+        afterRetrieveLO(lojson,url,searchURL,domain,harvestingConfig){ |lo,code|
           yield lo, code if block_given?
           return
         }
@@ -97,7 +97,7 @@ namespace :harvesting do
     }
   end
 
-  def afterRetrieveLO(lojson,url,searchURL,harvestingConfig)
+  def afterRetrieveLO(lojson,url,searchURL,domain,harvestingConfig)
       RestClient::Request.execute(
         :method => :get,
         :url => searchURL,
@@ -108,33 +108,58 @@ namespace :harvesting do
         if response.code === 200
           searchjson = JSON(response) rescue {}
         end
-        lo = createLO(lojson,searchjson,url,harvestingConfig)
-        if lo.nil?
-          yield "LO could not be created", nil if block_given?
-          return
-        end
-        yield lo,true if block_given?
+        createLO(lojson,searchjson,url,domain,harvestingConfig){ |lo|
+          if block_given?
+            if lo.nil?
+              yield "LO could not be created", nil
+            else
+              yield lo, true
+            end
+          end
+        }
       }
   end
 
-  def createLO(json,searchjson,url,harvestingConfig=nil)
-    return nil unless json.is_a? Hash
+  def createLO(json,searchjson,url,domain,harvestingConfig=nil)
+    unless json.is_a? Hash
+      yield nil if block_given?
+      return nil
+    end
     harvestingConfig = YAML.load_file("config/harvesting.yml") rescue {} if harvestingConfig.nil?
 
     # Set a specific owner
     owner = User.find_by_email(harvestingConfig["owner_email"]).actor rescue nil
-    return nil if owner.nil?
+    if owner.nil?
+      yield nil if block_given?
+      return nil
+    end
 
     resourceType = (json["type"] || searchjson["type"])
     resourceType = resourceType.underscore if resourceType.is_a? String
     case resourceType
     when "presentation"
-      lo = createVEPresentation(json,searchjson,owner,url,harvestingConfig)
+      createVEPresentation(json,searchjson,owner,url,domain,harvestingConfig){ |lo|
+        afterCreateLO(lo,json,searchjson,url,domain,harvestingConfig){|lo|
+          yield lo
+        }
+      }
     when "scormpackage","webapp","imscppackage","zipfile","link","officedoc","swf","picture","video","audio"
-      lo = createResource(json,searchjson,owner,url,harvestingConfig,resourceType)
+      createResource(json,searchjson,owner,url,domain,harvestingConfig,resourceType){ |lo|
+        afterCreateLO(lo,json,searchjson,url,domain,harvestingConfig){|lo|
+          yield lo
+        }
+      }
+    when "category"
+      createCategory(json,searchjson,owner,url,domain,harvestingConfig){ |lo|
+        afterCreateLO(lo,json,searchjson,url,domain,harvestingConfig){|lo|
+          yield lo
+        }
+      }
     else
     end
+  end
 
+  def afterCreateLO(lo,json,searchjson,url,domain,harvestingConfig)
     unless lo.nil?
       #Quality metrics
       lo.calculate_qscore
@@ -142,12 +167,69 @@ namespace :harvesting do
       #Popularity metrics
       lo.activity_object.update_column :visit_count,searchjson["visit_count"] if searchjson["visit_count"].is_a? Integer
       lo.activity_object.update_column :download_count,searchjson["download_count"] if searchjson["download_count"].is_a? Integer
+
+      #Category
+      unless harvestingConfig["category_id"].blank?
+        c = Category.find_by_id(harvestingConfig["category_id"].to_i)
+        unless c.nil?
+          ao = lo.activity_object
+          if ao.object_type === "Category"
+            lo.parent = c
+            lo.save
+          else
+            c.insertPropertyObject(lo.activity_object)
+          end
+        end       
+      end
     end
 
-    return lo
+    yield lo,true if block_given?
   end
 
-  def createResource(json,searchjson,owner,url,harvestingConfig,rType)
+  def createCategory(json,searchjson,owner,url,domain,harvestingConfig)
+    #Create category
+    createResource(json,searchjson,owner,url,domain,harvestingConfig,"Category"){ |category|
+      if category.nil?
+        yield nil if block_given?
+        return nil
+      end
+      puts "##############################}"
+      puts "Category created with id: " + category.id.to_s
+      puts "##############################}"
+
+      if json["elements"].blank? or !json["elements"].is_a? Array
+        yield category if block_given?
+        return category
+      end
+
+      #Create the resources of the retrieved category and included them in the local created category
+      resourceURLs = []
+      json["elements"].each do |el|
+        elMatch = el.match(/([aA-zZ]+):([0-9]+)$/)
+        next if elMatch.blank? or elMatch[1].blank? or elMatch[2].blank?
+        universalResourceId = el + "@" + domain
+        resourceURL = ActivityObject.getUrlForUniversalId(universalResourceId)
+        next if resourceURL.blank?
+        resourceURLs.push(resourceURL)
+      end
+
+      newHarvestingConfig = harvestingConfig.clone
+      newHarvestingConfig["category_id"] = category.id.to_s
+
+      puts "\n\n\nHarvesting resources of category " + url + "."
+      retrieveLOs(resourceURLs,newHarvestingConfig){ |response|
+        puts "\n\n\nHarvesting of resources of category " + url + " finished. Results are shown below."
+        response.each do |msg|
+          puts msg
+        end
+        puts "\n"
+
+        yield category if block_given?
+      }
+    }
+  end
+
+  def createResource(json,searchjson,owner,url,domain,harvestingConfig,rType)
     case rType
     when "scormpackage","webapp","imscppackage"
       r = Zipfile.new
@@ -229,6 +311,12 @@ namespace :harvesting do
     r.url = searchjson["url_full"] if r.respond_to?("url") and !searchjson["url_full"].blank? #For links
     r.is_embed = true if r.respond_to?("is_embed")
 
+    r.valid?
+    if r.errors.full_messages.length === 1 and r.errors.full_messages[0].include?("same title")
+      prefix = r.class.last.nil? ? (r.class.count+1).to_s : r.class.last.id.to_s
+      r.title = r.title + "-" + prefix
+    end
+
     begin
       r.save!
       if ["scormpackage","webapp","imscppackage"].include? rType
@@ -237,13 +325,14 @@ namespace :harvesting do
       else
         newR = r
       end
-      return newR
+      response = newR
     rescue => e
-      return nil
+      response = nil
     end
+    yield response if block_given?
   end
 
-  def createVEPresentation(json,searchjson,owner,url,harvestingConfig)
+  def createVEPresentation(json,searchjson,owner,url,domain,harvestingConfig)
     ex = Excursion.new
     json["draft"] = false
     sourceAuthor = json["author"] || {}
@@ -315,10 +404,11 @@ namespace :harvesting do
 
     begin
       ex.save!
-      return ex
+      response = ex
     rescue => e
-      return nil
+      response = nil
     end
+    yield response if block_given?
   end
 
   def createPrivateResource(resourceURL,owner)
@@ -334,6 +424,7 @@ namespace :harvesting do
       return createObject("SWF",resourceURL,owner)
     when ".pdf"
       return createObject("Officedoc",resourceURL,owner)
+    when "full"
     when ""
       #Do nothing
     else
