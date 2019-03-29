@@ -266,10 +266,11 @@ namespace :harvesting do
       r.users_qscore = BigDecimal(searchjson["users_qscore"],6) if searchjson["users_qscore"].to_s.to_f === searchjson["users_qscore"]
     end
 
-    r.url = searchjson["url_full"] if r.respond_to?("url") and !searchjson["url_full"].blank? #For links
+    #For links
+    r.url = searchjson["url_full"] if r.respond_to?("url") and !searchjson["url_full"].blank? 
     if r.respond_to?("is_embed")
-      if [true, false].include? opts[:is_embed]
-        r.is_embed = opts[:is_embed]
+      if [true, false].include? opts[:json]["is_embed"]
+        r.is_embed = opts[:json]["is_embed"]
       else
         r.is_embed = true
       end
@@ -496,6 +497,7 @@ namespace :harvesting do
       unless newResourceURL.blank?
         newOpts = Marshal.load(Marshal.dump(opts))
         newOpts[:scope] = 1
+        newOpts[:harvestingConfig].delete("category_id") #Private resources should not be stored in categories
 
         if newResourceURL.include?("excursions")
           #Prevent loops
