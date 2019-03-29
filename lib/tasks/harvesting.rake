@@ -418,7 +418,7 @@ namespace :harvesting do
         resourceURLmapping.each do |oldURL,newURL|
           json = replaceStringInHash(json,oldURL,newURL)
         end
-        json = replaceSourcesInHash(json,resourceURLmapping.values,opts[:harvestingConfig])
+        json = replaceSourcesInHash(json,resourceURLmapping.values,opts)
 
         ex.json = json.to_json
         ex.owner_id = opts[:owner].id
