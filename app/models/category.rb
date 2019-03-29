@@ -159,7 +159,7 @@ class Category < ActiveRecord::Base
   end
 
   def as_json(options = nil)
-    {
+    json = {
      :id => id,
      :title => title,
      :description => description,
@@ -168,6 +168,8 @@ class Category < ActiveRecord::Base
      :elements => property_objects.map{|ao| ao.getGlobalId },
      :type => self.class.name
     }
+    json[:category_order] = self.category_order unless self.category_order.blank?
+    json
   end
 
   private

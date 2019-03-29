@@ -41,12 +41,12 @@ namespace :harvesting do
 
   def retrieveLOs(urls,opts={},i=0,output=[])
     if !urls.is_a? Array or urls.blank? or urls.select{|s| !s.is_a? String}.length>0
-      yield "Invalid urls", nil if block_given?
+      yield "Invalid urls", nil 
       return
     end
 
     if i === urls.length
-      yield output if block_given?
+      yield output 
       return
     end
 
@@ -58,14 +58,14 @@ namespace :harvesting do
         output.push("LO with url " + urls[i] + " retrieved. LO id: " + response.getGlobalId)
       end
       retrieveLOs(urls,opts,i+1,output){ |output|
-        yield output if block_given?
+        yield output 
       }
     }
   end
 
   def retrieveLO(url,opts={})
     if url.blank?
-      yield "URL is blank", nil if block_given?
+      yield "URL is blank", nil 
       return
     end
     opts[:url] = url
@@ -74,7 +74,7 @@ namespace :harvesting do
     domain = URI.parse(url).host rescue nil
     resourceMatch = url.match(/([a-z]+)\/([0-9]+)$/)
     if domain.blank? or resourceMatch.nil?
-      yield "URL is not valid",false if block_given?
+      yield "URL is not valid",false 
       return
     end
     
@@ -106,54 +106,52 @@ namespace :harvesting do
       if response.code === 200
         lojson = JSON(response) rescue nil
         if lojson.nil?
-          yield "Invalid response",false if block_given?
+          yield "Invalid response",false 
           return
         end
         opts[:json] = lojson
 
         afterRetrieveLO(opts){ |lo,success|
-          yield lo, success if block_given?
+          yield lo, success 
           return
         }
       else
-        yield "Response with invalid code",false if block_given?
+        yield "Response with invalid code",false 
         return
       end
     }
   end
 
   def afterRetrieveLO(opts)
-      RestClient::Request.execute(
-        :method => :get,
-        :url => opts[:searchURL],
-        :timeout => 8, 
-        :open_timeout => 8
-      ){ |response|
-        searchjson = {}
-        searchjson = JSON(response) rescue {} if response.code === 200
-        opts[:searchjson] = searchjson
-        createLO(opts){ |lo|
-          if block_given?
-            if lo.nil?
-              yield "LO could not be created", false
-            else
-              yield lo, true
-            end
-          end
-        }
+    RestClient::Request.execute(
+      :method => :get,
+      :url => opts[:searchURL],
+      :timeout => 8, 
+      :open_timeout => 8
+    ){ |response|
+      searchjson = {}
+      searchjson = JSON(response) rescue {} if response.code === 200
+      opts[:searchjson] = searchjson
+      createLO(opts){ |lo|
+        if lo.nil?
+          yield "LO could not be created", false
+        else
+          yield lo, true
+        end
       }
+    }
   end
 
   def createLO(opts)
     unless opts[:json].is_a? Hash
-      yield nil if block_given?
+      yield nil 
       return nil
     end
 
     # Set a specific owner
     opts[:owner] = User.find_by_email( opts[:harvestingConfig]["owner_email"]).actor rescue nil
     if opts[:owner].nil?
-      yield nil if block_given?
+      yield nil 
       return nil
     end
 
@@ -166,7 +164,7 @@ namespace :harvesting do
       createVEPresentation(opts){ |lo|
         yield lo
       }
-    when "scormpackage","webapp","imscppackage","zipfile","link","officedoc","swf","picture","video","audio"
+    when "scormpackage","webapp","imscppackage","zipfile","link","officedoc","swf","picture","video","audio","document"
       createResource(opts){ |lo|
         yield lo
       }
@@ -175,6 +173,8 @@ namespace :harvesting do
         yield lo
       }
     else
+      #Unrecognized type
+      yield nil
     end
   end
 
@@ -185,7 +185,7 @@ namespace :harvesting do
     else
       rClass = opts[:resourceType].capitalize.constantize rescue nil
       if rClass.nil?
-        yield nil if block_given?
+        yield nil 
         return nil 
       end
       r = rClass.new
@@ -291,10 +291,10 @@ namespace :harvesting do
         newR = r
       end
       afterCreateLO(newR,opts){ |lo|
-        yield lo if block_given?
+        yield lo 
       }
     rescue => e
-      yield nil if block_given?
+      yield nil 
     end
   end
 
@@ -326,7 +326,7 @@ namespace :harvesting do
       end
     end
 
-    yield lo if block_given?
+    yield lo 
   end
 
   def createCategory(opts)
@@ -334,7 +334,7 @@ namespace :harvesting do
 
     createResource(opts){ |category|
       if category.nil?
-        yield nil if block_given?
+        yield nil 
         return nil
       end
       puts "##############################}"
@@ -342,7 +342,7 @@ namespace :harvesting do
       puts "##############################}"
 
       if opts[:json]["elements"].blank? or !opts[:json]["elements"].is_a? Array
-        yield category if block_given?
+        yield category 
         return category
       end
 
@@ -368,7 +368,7 @@ namespace :harvesting do
         end
         puts "\n"
 
-        yield category if block_given?
+        yield category 
       }
     }
   end
@@ -444,10 +444,10 @@ namespace :harvesting do
         begin
           ex.save!
           afterCreateLO(ex,opts){ |lo|
-            yield lo if block_given?
+            yield lo 
           }
         rescue => e
-          yield nil if block_given?
+          yield nil 
         end
       }
     }
@@ -455,7 +455,7 @@ namespace :harvesting do
 
   def createPrivateResources(resourceURLs,opts,i=0,resourceURLmapping={})
     if i === resourceURLs.length
-      yield resourceURLmapping if block_given?
+      yield resourceURLmapping 
       return resourceURLmapping
     end
 
@@ -463,12 +463,12 @@ namespace :harvesting do
       createPrivateResource(resourceURLs[i],opts){ |resourceURL|
         resourceURLmapping[resourceURLs[i]] = resourceURL unless resourceURL.blank?
         createPrivateResources(resourceURLs,opts,i+1,resourceURLmapping){ |rmapping|
-          yield rmapping if block_given?
+          yield rmapping 
         }
       }
     else
       createPrivateResources(resourceURLs,opts,i+1,resourceURLmapping){ |rmapping|
-        yield rmapping if block_given?
+        yield rmapping 
       }
     end
   end
@@ -501,18 +501,18 @@ namespace :harvesting do
 
         if newResourceURL.include?("excursions")
           #Prevent loops
-          yield nil if block_given?
+          yield nil 
           return nil
         end
 
         retrieveLO(newResourceURL,newOpts){ |lo,success|
           if success.blank?
-            yield nil if block_given?
+            yield nil 
             return
           else
             #Return LO URL
             loURL = lo.getFullUrl(nil) rescue nil
-            yield loURL if block_given?
+            yield loURL 
             return
           end
         }
@@ -525,38 +525,38 @@ namespace :harvesting do
     case extension
     when ".png",".jpeg",".jpg", ".gif", ".tiff", ".bmp", ".svg"
       createPrivatePicture(resourceURL,opts){ |resourceURL|
-        yield resourceURL if block_given?
+        yield resourceURL 
       }
     when ".mp4",".webm"
       createPrivateObject("video",resourceURL,opts){ |resourceURL|
-        yield resourceURL if block_given?
+        yield resourceURL 
       }
     when ".mp3", ".wav", ".webma"
       createPrivateObject("audio",resourceURL,opts){ |resourceURL|
-        yield resourceURL if block_given?
+        yield resourceURL 
       }
     when ".swf"
       createPrivateObject("swf",resourceURL,opts){ |resourceURL|
-        yield resourceURL if block_given?
+        yield resourceURL 
       }
     when ".pdf"
       createPrivateObject("officedoc",resourceURL,opts){ |resourceURL|
-        yield resourceURL if block_given?
+        yield resourceURL 
       }
     when ".full"
-      yield nil if block_given?
+      yield nil 
     when ".html"
-      yield nil if block_given?
+      yield nil 
     when "", ".org",".es",".com"
       #Do nothing
-      yield nil if block_given?
+      yield nil 
     else
       # puts "#########################################################################"
       # puts "#########################################################################"
       # puts "Unrecognized extension: " + extension
       # puts "#########################################################################"
       # puts "#########################################################################"
-      yield nil if block_given?
+      yield nil 
     end
   end
 
@@ -564,7 +564,7 @@ namespace :harvesting do
     newOpts = Marshal.load(Marshal.dump(opts))
     newOpts[:avatar] = true
     createPrivatePicture(avatarURL,newOpts){ |resourceURL|
-      yield resourceURL if block_given?
+      yield resourceURL 
     }
   end
 
@@ -576,7 +576,7 @@ namespace :harvesting do
     
     if pictureFile.nil?
       unless opts[:avatar]===true
-        yield nil if block_given?
+        yield nil 
         return nil
       end
       pictureFile = File.open(Rails.root.to_s + '/app/assets/images/logos/original/ao-default.png', "r")
@@ -596,7 +596,7 @@ namespace :harvesting do
     rescue => e
       #Corrupted (but downloaded) images
       unless opts[:avatar]===true
-        yield nil if block_given?
+        yield nil 
         return nil 
       end
       pic.file = File.open(Rails.root.to_s + '/app/assets/images/logos/original/ao-default.png', "r")
@@ -609,7 +609,7 @@ namespace :harvesting do
       resourceURL = pic.getFullUrl(nil)
     end
 
-    yield resourceURL if block_given?
+    yield resourceURL 
   end
 
   def createPrivateObject(type,resourceURL,opts)
@@ -618,7 +618,7 @@ namespace :harvesting do
 
     objectFile = downloadFile(resourceURL)
     if objectFile.nil?
-      yield nil if block_given?
+      yield nil 
       return nil
     end
 
@@ -638,9 +638,9 @@ namespace :harvesting do
 
     begin
       r.save!
-      yield r.getDownloadUrl(nil) if block_given?
+      yield r.getDownloadUrl(nil) 
     rescue => e
-      yield nil if block_given?
+      yield nil 
     end
   end
 
