@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20190130140809) do
+ActiveRecord::Schema.define(:version => 20190329091126) do
 
   create_table "activities", :force => true do |t|
     t.integer  "activity_verb_id"
@@ -70,42 +70,45 @@ ActiveRecord::Schema.define(:version => 20190130140809) do
   create_table "activity_objects", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "object_type",          :limit => 45
-    t.integer  "like_count",                                                        :default => 0
-    t.string   "title",                                                             :default => ""
+    t.string   "object_type",                 :limit => 45
+    t.integer  "like_count",                                                               :default => 0
+    t.string   "title",                                                                    :default => ""
     t.text     "description"
-    t.integer  "follower_count",                                                    :default => 0
-    t.integer  "visit_count",                                                       :default => 0
+    t.integer  "follower_count",                                                           :default => 0
+    t.integer  "visit_count",                                                              :default => 0
     t.string   "language"
-    t.integer  "age_min",                                                           :default => 0
-    t.integer  "age_max",                                                           :default => 0
-    t.boolean  "notified_after_draft",                                              :default => false
-    t.integer  "comment_count",                                                     :default => 0
-    t.integer  "popularity",                                                        :default => 0
-    t.integer  "download_count",                                                    :default => 0
-    t.integer  "qscore",                                                            :default => 500000
-    t.decimal  "reviewers_qscore",                   :precision => 12, :scale => 6
-    t.decimal  "users_qscore",                       :precision => 12, :scale => 6
-    t.integer  "ranking",                                                           :default => 0
-    t.integer  "title_length",                                                      :default => 1
-    t.integer  "desc_length",                                                       :default => 1
-    t.integer  "tags_length",                                                       :default => 1
-    t.integer  "scope",                                                             :default => 0
+    t.integer  "age_min",                                                                  :default => 0
+    t.integer  "age_max",                                                                  :default => 0
+    t.boolean  "notified_after_draft",                                                     :default => false
+    t.integer  "comment_count",                                                            :default => 0
+    t.integer  "popularity",                                                               :default => 0
+    t.integer  "download_count",                                                           :default => 0
+    t.integer  "qscore",                                                                   :default => 500000
+    t.decimal  "reviewers_qscore",                          :precision => 12, :scale => 6
+    t.decimal  "users_qscore",                              :precision => 12, :scale => 6
+    t.integer  "ranking",                                                                  :default => 0
+    t.integer  "title_length",                                                             :default => 1
+    t.integer  "desc_length",                                                              :default => 1
+    t.integer  "tags_length",                                                              :default => 1
+    t.integer  "scope",                                                                    :default => 0
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.decimal  "teachers_qscore",                    :precision => 12, :scale => 6
+    t.decimal  "teachers_qscore",                           :precision => 12, :scale => 6
     t.integer  "license_id"
     t.text     "original_author"
     t.text     "license_attribution"
     t.text     "license_custom"
-    t.decimal  "metadata_qscore",                    :precision => 12, :scale => 6
-    t.boolean  "allow_download",                                                    :default => true
-    t.boolean  "allow_comment",                                                     :default => true
-    t.boolean  "allow_clone",                                                       :default => true
-    t.text     "tag_array_text",                                                    :default => ""
-    t.decimal  "interaction_qscore",                 :precision => 12, :scale => 6
+    t.decimal  "metadata_qscore",                           :precision => 12, :scale => 6
+    t.boolean  "allow_download",                                                           :default => true
+    t.boolean  "allow_comment",                                                            :default => true
+    t.boolean  "allow_clone",                                                              :default => true
+    t.text     "tag_array_text",                                                           :default => ""
+    t.decimal  "interaction_qscore",                        :precision => 12, :scale => 6
+    t.decimal  "reviewers_qscore_loriam",                   :precision => 12, :scale => 6
+    t.integer  "reviewers_qscore_loriam_int"
+    t.boolean  "harvested",                                                                :default => false
   end
 
   create_table "activity_objects_wa_resources_galleries", :id => false, :force => true do |t|
@@ -296,9 +299,6 @@ ActiveRecord::Schema.define(:version => 20190130140809) do
   end
 
   add_index "documents", ["activity_object_id"], :name => "index_documents_on_activity_object_id"
-
-  create_table "ediphy_contributors", :force => true do |t|
-  end
 
   create_table "ediphy_document_contributors", :force => true do |t|
     t.integer "ediphy_document_id"
@@ -775,6 +775,8 @@ ActiveRecord::Schema.define(:version => 20190130140809) do
     t.integer  "invited_by_id"
     t.string   "invited_by_type"
     t.integer  "private_student_group_id"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["actor_id"], :name => "index_users_on_actor_id"

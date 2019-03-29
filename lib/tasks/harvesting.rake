@@ -299,12 +299,14 @@ namespace :harvesting do
 
   def afterCreateLO(lo,opts)
     unless lo.nil?
-      searchjson = opts[:searchjson]
+      #Harvested
+      lo.activity_object.update_column :harvested,true
 
       #Quality metrics
       lo.calculate_qscore
 
       #Popularity metrics
+      searchjson = opts[:searchjson]
       lo.activity_object.update_column :visit_count,searchjson["visit_count"] if searchjson["visit_count"].is_a? Integer
       lo.activity_object.update_column :download_count,searchjson["download_count"] if searchjson["download_count"].is_a? Integer
 
@@ -557,8 +559,9 @@ namespace :harvesting do
   end
 
   def createAvatar(avatarURL,opts)
-    opts[:avatar] = true
-    createPrivatePicture(avatarURL,opts){ |resourceURL|
+    newOpts = Marshal.load(Marshal.dump(opts))
+    newOpts[:avatar] = true
+    createPrivatePicture(avatarURL,newOpts){ |resourceURL|
       yield resourceURL if block_given?
     }
   end
@@ -583,6 +586,7 @@ namespace :harvesting do
     pic.author_id = opts[:owner].id
     pic.user_author_id = opts[:owner].id
     pic.scope = 1
+    pic.harvested = true
     pic.file = pictureFile
 
     begin
@@ -627,6 +631,7 @@ namespace :harvesting do
     r.author_id = opts[:owner].id
     r.user_author_id = opts[:owner].id
     r.scope = 1
+    r.harvested = true
     r.file = objectFile
 
     begin
@@ -680,6 +685,8 @@ namespace :harvesting do
   end
 
   def replaceSourcesInHash(h,localSources,opts)
+    h.delete("vishubPdfexId") if h.key?("vishubPdfexId")
+
     if h.key?("sources") and (h["type"]==="video" or h["type"]==="audio")
       sources = JSON.parse(h["sources"]) rescue nil
       unless sources.blank?
