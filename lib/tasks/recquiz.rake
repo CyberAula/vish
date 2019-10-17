@@ -31,8 +31,9 @@ namespace :recquiz do
             uId = d["user_profile"]["id"]
           end
 
-          users[uId] = {sessions: 0, successes: 0, failures: 0} if users[uId].nil?
+          users[uId] = {sessions: 0, successes: 0, failures: 0, times: []} if users[uId].nil?
           users[uId][:sessions] = users[uId][:sessions]+1
+          users[uId][:times].push(d["duration"].to_i);
           unless d["actions"].blank?
             d["actions"].each do |k,v|
               case v["action_type"]
@@ -87,6 +88,16 @@ namespace :recquiz do
         rows += Array.new(products.length).map{|r|[]}
         products.sort.to_h.each do |k,v|
           rows[rowIndex] = [k,v[:name],(v[:successes]+v[:failures]),v[:successes],v[:failures],(v[:successes]/(v[:successes]+v[:failures]).to_f*100).round(2)]
+          rowIndex = rowIndex+1
+        end
+
+        #Users
+        rows << ["User id","Sessions","Questions","Successes","Failures","Success ratio","Total time (s)","Time per session (M)","Time per session (SD)"]
+        rows << ["","","","","",""]
+        rowIndex = rows.length
+        rows += Array.new(users.length).map{|r|[]}
+        users.sort.to_h.each do |k,v|
+          rows[rowIndex] = [k,v[:sessions],(v[:successes]+v[:failures]),v[:successes],v[:failures],(v[:successes]/(v[:successes]+v[:failures]).to_f*100).round(2),v[:times].sum,DescriptiveStatistics.mean(v[:times]).round(0),DescriptiveStatistics.standard_deviation(v[:times]).round(0)]
           rowIndex = rowIndex+1
         end
         
