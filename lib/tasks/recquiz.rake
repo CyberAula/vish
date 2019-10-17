@@ -82,6 +82,7 @@ namespace :recquiz do
         rows << [stats[:total_users],stats[:total_sessions],stats[:total_questions]]
 
         #Products
+        rows << [""]
         rows << ["Product id","Product name","Generated questions","Successes","Failures","Success ratio"]
         rows << ["","","","","",""]
         rowIndex = rows.length
@@ -92,6 +93,7 @@ namespace :recquiz do
         end
 
         #Users
+        rows << [""]
         rows << ["User id","Sessions","Questions","Successes","Failures","Success ratio","Total time (s)","Time per session (M)","Time per session (SD)"]
         rows << ["","","","","",""]
         rowIndex = rows.length
