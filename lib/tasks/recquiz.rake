@@ -114,4 +114,29 @@ namespace :recquiz do
     puts("Task Finished. Results generated at " + REPORT_FILE_PATH)
   end
 
+  #Usage
+  #Development:   bundle exec rake recquiz:populateusers
+  task :populateusers => :environment do |t,args|
+    printTitle("Populate users")
+    require 'csv'
+    csv_text = File.read('tmp/users.csv')
+    csv = CSV.parse(csv_text, :headers => true)
+    csv.each do |row|
+      email = row.to_s.gsub("\n","")
+      #Create user with email
+      user = User.find_by_email(email)
+      next unless user.blank?
+
+      user = User.new
+      user.name = email.split("@")[0]
+      user.email = email
+      user.password = 'reciclaje'
+      user.password_confirmation = user.password
+      user.language = "es"
+      user.save!
+    end
+
+    printTitle("Task finished")
+  end
+
 end

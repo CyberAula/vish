@@ -6,7 +6,7 @@
 if [ -z "$1" ]
 then
   #Get last dump
-  dumpFile=`find . -type f -name "*.sql" -printf '%T@ %p\n' | sort -n | tail -1 | cut -f2- -d" "`
+  dumpFile=`find . -type f -name "*dump*.sql" -printf '%T@ %p\n' | sort -n | tail -1 | cut -f2- -d" "`
 else
   dumpFile=$1
 fi
