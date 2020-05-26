@@ -53,7 +53,7 @@ ViSH is a customizable Ruby on Rails application. The current version supports R
 
 <br/>
 
-See a real instance of ViSH in action at [here](http://github.com/ging/vish/releases).
+See a real instance of ViSH in action at [http://vishub.org](http://vishub.org).
 It's free to register and enter in the community.  
 
 
