@@ -454,14 +454,14 @@ html {
   font-size: 2.25rem;
   line-height: 64.8px;
   line-height: 4.05rem;
-  margin: 1.125em 0 0;
+  margin: 1.125em;
 }
 .content h2 {
   font-size: 27.2px;
   font-size: 1.7rem;
   line-height: 48.96px;
   line-height: 3.06rem;
-  margin: 0.9em 0 0;
+  margin: 0.9em;
 }
 .content h3 {
   font-size: 24px;
@@ -469,7 +469,7 @@ html {
   line-height: 43.2px;
   line-height: 2.7rem;
   font-weight: 500;
-  margin: 0.75em 0 0;
+  margin: 0.75em;
 }
 .content h4 {
   font-size: 19.2px;
@@ -477,7 +477,7 @@ html {
   line-height: 34.56px;
   line-height: 2.16rem;
   font-weight: 500;
-  margin: 0.75em 0 0;
+  margin: 0.75em;
 }
 .content h5 {
   font-size: 17.6px;
@@ -485,7 +485,7 @@ html {
   line-height: 31.68px;
   line-height: 1.98rem;
   font-weight: 500;
-  margin: 0.75em 0 0;
+  margin: 0.75em;
 }
 .content hr {
   border: 0;
@@ -1103,7 +1103,7 @@ main .grid-container.freed-width {
   height: 147px;
 }
 .content .grid-switch-magic {
-  margin: 3.5em 0 0;
+  margin: 3.5em;
 }
 #info-box {
   padding-bottom: 0;

@@ -116,6 +116,8 @@ namespace :ediphy do
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets"
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/images"
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets"
+		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/themes"
+		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/transitions"
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/ediphy_documents"
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts"
 		system "mkdir " + DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor"
@@ -127,6 +129,10 @@ namespace :ediphy do
 
 		system "cp -r " + DALI_EDITOR_PATH + "/dist/images " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/images"
 		system "cp -r " + DALI_EDITOR_PATH + "/dist/lib " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts"
+		system "cp -r " + DALI_EDITOR_PATH + "/dist/themes " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/themes"
+		system "cp -r " + DALI_EDITOR_PATH + "/dist/transitions " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/transitions"
+		system "cp "    + DALI_EDITOR_PATH + "/dist/theme.css " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/stylesheets/theme.css"
+		
 		
 		#system "cp -r " + DALI_EDITOR_PATH + "/plugins " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/plugins"
 		system "cp " + DALI_EDITOR_PATH + "/dist/prod/app-bundle.min.js " +  DALI_EDITOR_PLUGIN_PATH + "/app/assets/javascripts/editor/app-bundle.js"
