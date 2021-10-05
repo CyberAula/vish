@@ -19,7 +19,10 @@ module Vish
         resource '*', headers: :any, methods: [:get, :post, :options]
       end
     end
-
+    
+    #DISABLE SSL VERIFY - UBUNTU 14 DOES NOT VERIFY CA LETSENCRYPT ETC
+    OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
