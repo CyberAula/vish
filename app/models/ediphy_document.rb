@@ -140,7 +140,6 @@ class EdiphyDocument < ActiveRecord::Base
 
     activity_object.language = globalconfig["language"]
 
-
     unless globalconfig["allowClone"].nil?
       activity_object.allow_clone = globalconfig["allowClone"]
     end

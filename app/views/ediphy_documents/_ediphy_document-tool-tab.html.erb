@@ -1,4 +1,5 @@
 <% availableModels ||= available_models %>
+<% editingToolbar = (@ediphy_document.draft or controller.action_name == "edit") %>
 <script>
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -78,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <!--BTN ACTIONS-->
 <div class="btn-group actions_layout_show">
-<% editingToolbar = false %>
 
   <!-- Edit -->
   <% if user_signed_in? and !editingToolbar and (can? :update, @ediphy_document) %>
