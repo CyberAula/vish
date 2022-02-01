@@ -19,7 +19,7 @@ class TrackingSystemEntry < ActiveRecord::Base
 
   def self.isUserAgentBot?(user_agent)
     return true if user_agent.blank?
-    matches = user_agent.match(/(BingPreview|eSobiSubscriber|startmebot|Mail.RU_Bot|SeznamBot|360Spider|bingbot|MJ12bot|web spider|YandexBot|Baiduspider|AhrefsBot|OrangeBot|msnbot|spbot|facebook|postrank|voyager|twitterbot|googlebot|slurp|butterfly|pycurl|tweetmemebot|metauri|evrinid|reddit|digg)/mi)
+    matches = user_agent.match(/(BingPreview|eSobiSubscriber|startmebot|Mail.RU_Bot|SeznamBot|360Spider|bingbot|MJ12bot|web spider|YandexBot|Baiduspider|AhrefsBot|OrangeBot|msnbot|spbot|facebook|postrank|voyager|twitterbot|googlebot|slurp|butterfly|pycurl|tweetmemebot|metauri|evrinid|reddit|digg|Amazonbot|Seekport Crawler|DataForSeoBot|Qwantify|Daum|Adsbot|Knowledge AI|serpstatbot|VelenPublicWebCrawler|PetalBot|badbot|Jooblebot|LinkpadBot|IonCrawl|SemanticScholarBot|LightspeedSystemsCrawler)/mi)
     require "browser"
     browser = Browser.new(user_agent)
     return (browser.bot? or !matches.nil?)
