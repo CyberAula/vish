@@ -56,7 +56,12 @@
           <% end %>
         <%end%>
 
-
+        <%if Vish::Application.config.enable_recaptcha %>
+          <br>
+          <div class="action">
+            <%= recaptcha_tags %>
+          </div>
+        <%end%>
 
         <hr class="soften">
         <div class="conditions">
@@ -68,16 +73,12 @@
               <%= t('conditions.check_message_2') %>
             </span>
           </label>
-          
-          <div class="action">
-              <%if Vish::Application.config.enable_recaptcha %>
-                  <%= invisible_recaptcha_tags :text=> t('action.accept').capitalize, :callback=> 'submitRegistrationInvisibleRecaptchaForm', :class => "btn btn-primary pull-right" %>
-              <%else%>
-                  <%= f.submit t('action.accept').capitalize, :class => "btn btn-primary pull-right" %>
-              <%end%>
-          </div>
-
         </div>
+
+        <div class="action">
+          <%= f.submit t('action.accept').capitalize, :class => "btn btn-primary pull-right" %>
+        </div>
+
       </div>
     <% end %>
 
