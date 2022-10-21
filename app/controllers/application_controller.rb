@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
       !request.xhr? && # don't store ajax calls
       !request.path_info.include?("/users/service")  && #for CAS authentication avoid ERR_TOO_MANY_REDIRECTS
       !request.path_info.include?("/users/sign_in")
+      !request.path_info.include?("/users/confirmation")
     )
       session[:user_return_to] = request.fullpath
     end

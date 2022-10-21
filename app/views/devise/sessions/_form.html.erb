@@ -27,6 +27,10 @@
 
       <%= link_to t('devise.links.forgot_password'), new_password_path(resource_name),  :class=> "forgot-link remember_password" %>
 
+      <% if devise_mapping.confirmable? %>
+        <p><%= link_to('Resend confirmation instructions', new_user_confirmation_path) %></p>
+      <% end %>
+
       <%= f.submit t('sign_in'), :class =>"btn btn-primary" %>
     </article>
   <% end %>

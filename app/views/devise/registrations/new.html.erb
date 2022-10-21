@@ -66,9 +66,6 @@
               <%= t('conditions.check_message') %>
               <%= link_to t('conditions.check_message_1'), '/legal_notice', :target => '_blank' %>
               <%= t('conditions.check_message_2') %>
-              <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
-                <%= link_to t('confirmation.not_received.long'), new_confirmation_path(resource_name) %>.
-              <% end -%>
             </span>
           </label>
           

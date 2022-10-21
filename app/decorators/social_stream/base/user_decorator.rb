@@ -23,7 +23,7 @@ User.class_eval do
     validates :password, :presence =>true,  :confirmation =>true, length: { minimum: Devise.password_length.min, maximum: Devise.password_length.max }, :on=>:create
   end
 
-  devise :omniauthable, omniauth_providers: %i[idm]
+  devise :confirmable, :omniauthable, omniauth_providers: %i[idm]
 
   validate :user_locale
   def user_locale
