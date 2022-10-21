@@ -271,6 +271,21 @@ namespace :fix do
     printTitle("Task finished. Test contest created with id " + c.id.to_s)
   end
 
+  #Usage
+  #Development:   bundle exec rake fix:removeSpamUsers
+  #In production: bundle exec rake fix:removeSpamUsers RAILS_ENV=production
+  task :removeSpamUsers => :environment do
+    printTitle("Removing spam users")
+    users = User.where("CONFIRMED_AT is NULL AND SIGN_IN_COUNT < 2")
+    users = users.select{|u| ActivityObject.authored_by(u).count == 0 }
+    users = users.select{|u| u.actor_historial.nil? or u.actor_historial.length < 3 }
+    users.each do |u|
+      u.destroy
+    end
+
+    printTitle("Task finished")
+  end
+
   ####################
   #Task Utils
   ####################
