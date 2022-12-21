@@ -4,7 +4,7 @@ source 'http://rubygems.org'
 gem 'rails', :git => 'https://github.com/rails/rails.git', :branch => "3-2-stable"
 
 #Database Adapters
-gem 'sqlite3', '= 1.3.9'
+gem 'sqlite3', '= 1.3.11'
 gem 'pg', '= 0.17.1'
 #gem 'mysql2', '= 0.3.16'
 
