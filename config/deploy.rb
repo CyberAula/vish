@@ -33,7 +33,6 @@ if rvm
   }
 else 
   require "capistrano-rbenv"
-  require "capistrano-rails"
   set :rbenv_ruby_version, "2.2.1"
 end
 
@@ -60,7 +59,6 @@ role :app, server_url # This may be the same as your `Web` server
 role :db,  server_url, :primary => true # This is where Rails migrations will run
 
 after 'deploy:update_code', 'deploy:fix_file_permissions'
-#after 'deploy:update_code', 'deploy:link_files'
 before 'deploy:assets:precompile', 'deploy:link_files'
 before 'deploy:restart', 'deploy:start_sphinx'
 after  'deploy:start_sphinx', 'deploy:fix_sphinx_file_permissions'
