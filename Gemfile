@@ -1,7 +1,7 @@
 #ruby '2.2.0'
 source 'http://rubygems.org'
 
-gem 'rails', :git => 'git://github.com/rails/rails.git', :branch => "3-2-stable"
+gem 'rails', :git => 'https://github.com/rails/rails.git', :branch => "3-2-stable"
 
 #Database Adapters
 gem 'sqlite3', '= 1.3.9'
@@ -18,7 +18,7 @@ gem 'jquery-ui-rails', '= 4.1.2'
 gem 'json', '= 1.8.3'
 gem 'sinatra', '= 1.3.2'
 gem 'selenium-webdriver', '= 2.44.0'
-gem 'god', :git => 'git://github.com/mojombo/god.git', :ref => '92c06aa5f6293cf26498a306e9bb7ac856d7dca0'
+gem 'god', :git => 'https://github.com/mojombo/god.git', :ref => '92c06aa5f6293cf26498a306e9bb7ac856d7dca0'
 gem 'redis', '= 3.3.3'
 gem 'resque', '= 1.27.0'
 gem 'rmagick', '=2.13.2'
@@ -34,7 +34,7 @@ gem 'pdf-reader', '= 1.3.3'
 gem 'avatars_for_rails', '= 1.1.4'
 gem 'axlsx', '= 2.0.1' #xlsx generation
 gem 'axlsx_rails', '= 0.1.5'
-gem 'acts_as_xlsx', :git => 'git://github.com/randym/acts_as_xlsx.git', :ref => '919817e590b1cf8e27632e630469603c78a50402'
+gem 'acts_as_xlsx', :git => 'https://github.com/randym/acts_as_xlsx.git', :ref => '919817e590b1cf8e27632e630469603c78a50402'
 gem "paperclip", '= 3.5.1'
 gem "delayed_paperclip", "= 2.7.0"
 gem 'sanitize', '= 2.1.0'
@@ -51,11 +51,12 @@ gem 'rake', '10.5.0'
 gem 'ejs', '=1.1.1'
 gem 'browser', '=2.5.3'
 gem 'rack-cors', '=1.0.3'
+gem 'rack-cache', '=1.6.1'
 
 #Gems from Git repositories
-gem 'delegates_attributes_to', :git => 'git://github.com/pahanix/delegates_attributes_to.git', :ref => '69704cb'
-gem "oai_repository", :git => 'git://github.com/ebarra/oai_repository.git'
-gem 'paperclip-ffmpeg', :git => 'git://github.com/ebarra/paperclip-ffmpeg.git'
+gem 'delegates_attributes_to', :git => 'https://github.com/pahanix/delegates_attributes_to.git', :ref => '69704cb'
+gem "oai_repository", :git => 'https://github.com/ebarra/oai_repository.git'
+gem 'paperclip-ffmpeg', :git => 'https://github.com/ebarra/paperclip-ffmpeg.git'
 
 #Customized/Local Gems
 # $ export FORCE_LOCAL_SS=socialStreamPath
@@ -72,7 +73,7 @@ else
     gem 'social_stream-base'
     gem 'social_stream-documents'
     gem 'social_stream-linkser'
-    gem 'social_stream-ostatus'
+    #gem 'social_stream-ostatus'
     gem 'social_stream-events'
   end
 end
