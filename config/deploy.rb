@@ -14,6 +14,7 @@ begin
   keys = config["keys"]
   branch = config["branch"] || "master"
   with_workers = config["with_workers"]
+  rvm = (config["rvm"] == true)
 rescue Exception => e
   #puts e.message
   puts "Sorry, the file config/deploy/" + ENV['DEPLOY'] + '.yml does not exist.'
@@ -22,13 +23,19 @@ end
 
 set :keep_releases, 2
 
-set :default_environment, {
-  'PATH' => '/home/'+username+'/.rvm/gems/ruby-2.2.0/bin:/home/'+username+'/.rvm/gems/ruby-2.2.0@global/bin:/home/'+username+'/.rvm/rubies/ruby-2.2.0/bin:/home/'+username+'/.rvm/bin:/home/'+username+'/.rbenv/plugins/ruby-build/bin:/home/'+username+'/.rbenv/shims:/home/'+username+'/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
-  'RUBY_VERSION' => 'ruby-2.2.0p0',
-  'GEM_HOME'     => '/home/'+username+'/.rvm/gems/ruby-2.2.0',
-  'GEM_PATH'     => '/home/'+username+'/.rvm/gems/ruby-2.2.0:/home/'+username+'/.rvm/gems/ruby-2.2.0@global',
-  'BUNDLE_PATH'  => '/home/'+username+'/.rvm/gems/ruby-2.2.0:/home/'+username+'/.rvm/gems/ruby-2.2.0@global'
-}
+if rvm
+  set :default_environment, {
+    'PATH' => '/home/'+username+'/.rvm/gems/ruby-2.2.0/bin:/home/'+username+'/.rvm/gems/ruby-2.2.0@global/bin:/home/'+username+'/.rvm/rubies/ruby-2.2.0/bin:/home/'+username+'/.rvm/bin:/home/'+username+'/.rbenv/plugins/ruby-build/bin:/home/'+username+'/.rbenv/shims:/home/'+username+'/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games',
+    'RUBY_VERSION' => 'ruby-2.2.0p0',
+    'GEM_HOME'     => '/home/'+username+'/.rvm/gems/ruby-2.2.0',
+    'GEM_PATH'     => '/home/'+username+'/.rvm/gems/ruby-2.2.0:/home/'+username+'/.rvm/gems/ruby-2.2.0@global',
+    'BUNDLE_PATH'  => '/home/'+username+'/.rvm/gems/ruby-2.2.0:/home/'+username+'/.rvm/gems/ruby-2.2.0@global'
+  }
+else 
+  require "capistrano-rbenv"
+  require "capistrano-rails"
+  set :rbenv_ruby_version, "2.2.1"
+end
 
 # Where we get the app from and all...
 set :scm, :git
@@ -60,7 +67,10 @@ after  'deploy:start_sphinx', 'deploy:fix_sphinx_file_permissions'
 if with_workers
   after 'deploy:restart', 'deploy:stop_workers'
 end
-after 'deploy:update_code', 'deploy:rm_dot_git', 'rvm:trust_rvmrc'
+after 'deploy:update_code', 'deploy:rm_dot_git'
+if rvm
+  after 'deploy:rm_dot_git', 'rvm:trust_rvmrc'
+end
 # after "deploy:restart", "deploy:cleanup"
 
 
@@ -122,7 +132,7 @@ namespace(:deploy) do
   end
 
   task :stop_workers do
-    sudo_command = "rvmsudo"    
+    sudo_command = (rvm ? "rvmsudo" : "")
     run "cd #{current_path} && #{sudo_command} bundle exec \"rake workers:killall RAILS_ENV=production\""
   end
 
