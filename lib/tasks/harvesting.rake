@@ -380,7 +380,7 @@ namespace :harvesting do
     ex = Excursion.new
     json["draft"] = false
     sourceAuthor = json["author"] || {}
-    json["author"] = {"name":opts[:owner].name,"vishMetadata":{"id":opts[:owner].id}}
+    json["author"] = "TODO"
     json["vishMetadata"] = json["vishMetadata"] || {}
     json["vishMetadata"]["draft"] = "false"
     json["vishMetadata"]["released"] = "true"
