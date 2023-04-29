@@ -19,14 +19,12 @@ class ApplicationController < ActionController::Base
   #############
   # Store last url. This filter is used for post-login redirect to whatever the user last visited.
   def store_location
-    if (
-      request.get? && #only store get requests
+    if request.get? && #only store get requests
       request.format.to_s == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
       !request.xhr? && # don't store ajax calls
       !request.path_info.include?("/users/service")  && #for CAS authentication avoid ERR_TOO_MANY_REDIRECTS
       !request.path_info.include?("/users/sign_in")
       !request.path_info.include?("/users/confirmation")
-    )
       session[:user_return_to] = request.fullpath
     end
   end
