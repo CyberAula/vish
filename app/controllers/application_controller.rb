@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   def store_location
     if (
       request.get? && #only store get requests
-      request.format == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
+      request.format.to_s == "text/html" &&   #if the user asks for a specific resource .jpeg, .png etc do not redirect to it
       !request.xhr? && # don't store ajax calls
       !request.path_info.include?("/users/service")  && #for CAS authentication avoid ERR_TOO_MANY_REDIRECTS
       !request.path_info.include?("/users/sign_in")
