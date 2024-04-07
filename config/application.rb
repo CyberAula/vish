@@ -146,6 +146,9 @@ module Vish
       end
     end
 
+    #File size restrictions
+    config.max_file_allowed = (config.APP_CONFIG['max_file_allowed'].nil? ? 20 : config.APP_CONFIG['max_file_allowed'])
+
     #Tracker
     config.trackingSystem = (!config.APP_CONFIG['trackingSystemAPIKEY'].nil? and !config.APP_CONFIG['trackingSystemAPIURL'].nil?)
 

@@ -40,6 +40,10 @@ class Zipfile < Document
   end
 
   def getResourceAfterSave
+    unless self.errors.blank?
+      return self.errors.full_messages.reject{|m| m.include?("File file size size")}.join(",")
+    end
+
     case self.fileType
     when "Scormfile"
       resource = Scormfile.createScormfileFromZip(self)

@@ -9,7 +9,7 @@
       <div class="error">
         <ul>
           <h4>
-            <% resource.errors.full_messages.each do |msg| %>
+            <% resource.errors.full_messages.reject{|m| m.include?("File file size size")}.each do |msg| %>
           </h4>
           <li>
             <h5>
